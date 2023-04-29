@@ -1,6 +1,6 @@
 # /association/ - network your collections - CLIENT
 
-[![My Skills](https://skills.thijs.gg/icons?i=react&theme=light)](https://skills.thijs.gg)
+# ![My Skills](https://skills.thijs.gg/icons?i=react&theme=light)
 
 Repo for the CLIENT of the Ironhack M3 Project brought to you by The Three Amigos
 
