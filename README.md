@@ -1,8 +1,8 @@
-# /association/ - network your collections - CLIENT
-
-# ![My Skills](https://skills.thijs.gg/icons?i=react&theme=light)
+# CLIENT - /association/ - network your collections
 
 Repo for the CLIENT of the Ironhack M3 Project brought to you by The Three Amigos
+
+![My Skills](https://skills.thijs.gg/icons?i=react&theme=light)
 
 ## Project Description
 
