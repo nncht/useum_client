@@ -1,6 +1,6 @@
-# /association/ - network your collections
+# /association/ - network your collections - CLIENT
 
-Repo for the Ironhack M3 Project brought to you by The Three Amigos
+Repo for the CLIENT of the Ironhack M3 Project brought to you by The Three Amigos
 
 ## Project Description
 
@@ -18,11 +18,11 @@ Coming soon.
 
 Coming a bit later.
 
-## Technologies
+## Technologies CLIENT
 
 For sure the MERN stack.
 
-## Project Structure
+## Project Structure CLIENT
 
 Here we will make sense of the convoluted network of parts that make up our project.
 
