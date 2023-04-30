@@ -26,7 +26,7 @@ For sure the MERN stack.
 
 ## Project Structure CLIENT
 
-Here we will make sense of the convoluted network of parts that make up our project.
+Here we will make sense of the convoluted network of parts that will make up the CLIENT side of our project.
 
 <h2 align="center"> Contributors </h2>
 
