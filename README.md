@@ -12,6 +12,22 @@ It will make use of MongoDB, Express, React and Node.
 
 And it will be unapologetically great.
 
+### How to
+
+always run
+
+```bash
+npm install
+```
+
+before
+
+```bash
+npm run dev
+```
+
+to make sure everything is there
+
 ### Basic Functionalities (Minimum Viable Product)
 
 Coming soon.
