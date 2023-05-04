@@ -1,3 +1,5 @@
+import * as React from "react";
+import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import { Link } from "react-router-dom";
@@ -19,14 +21,18 @@ function NavBar() {
       </Link>
       {!isLoggedIn && (
         <ul>
-          <li style={{ display: "inline-block" }}>
+          <li style={{ display: "inline-block" }} className="mx-2">
             <Link to="/login">
-              <Button variant="text">Log In</Button>
+              <Button variant="outlined" size="medium">
+                Log In
+              </Button>
             </Link>
           </li>
           <li style={{ display: "inline-block" }}>
             <Link to="/signup">
-              <Button variant="text">Sign Up</Button>
+              <Button variant="contained" size="medium">
+                Sign Up
+              </Button>
             </Link>
           </li>
         </ul>
