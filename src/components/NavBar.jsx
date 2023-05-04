@@ -2,6 +2,9 @@ import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import { useContext } from "react";
+import SettingsIcon from "@mui/icons-material/Settings";
+import LogoutIcon from "@mui/icons-material/Logout";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 function NavBar() {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
@@ -32,13 +35,23 @@ function NavBar() {
         <ul>
           <li style={{ display: "inline-block" }}>
             <Link to="/profile">
-              <Button variant="text">Profile</Button>
+              <Button variant="text" size="large">
+                <AccountCircleIcon />
+              </Button>
             </Link>
           </li>
 
           <li style={{ display: "inline-block" }}>
-            <Button variant="text" onClick={logOutUser}>
-              Log Out
+            <Link to="/settings">
+              <Button variant="text" size="large">
+                <SettingsIcon />
+              </Button>
+            </Link>
+          </li>
+
+          <li style={{ display: "inline-block" }}>
+            <Button variant="text" size="large" onClick={logOutUser}>
+              <LogoutIcon />
             </Button>
           </li>
         </ul>
