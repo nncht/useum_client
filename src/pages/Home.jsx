@@ -19,7 +19,6 @@ const Home = () => {
         <li>the create collection form</li>
         <li>the create item form</li>
         <li>and so on</li>
-        <a href="#">test link</a>
       </ol>
       <br />
 
