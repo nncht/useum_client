@@ -10,14 +10,15 @@ function App() {
   return (
     <div className="App">
       <main>
-        <section className="bg-gray-50 min-h-screen p-3">
+        <section className="bg-gray-50 min-h-screen p-0">
           <NavBar />
-
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/signup" element={<SignupPage />} />
-          </Routes>
+          <div id="main-content" className="p-4">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/signup" element={<SignupPage />} />
+            </Routes>
+          </div>
         </section>
       </main>
     </div>

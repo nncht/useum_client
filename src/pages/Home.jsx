@@ -6,10 +6,10 @@ const Home = () => {
   const { user, isLoggedIn } = useContext(AuthContext);
 
   return !isLoggedIn ? (
-    <h1>Not logged in</h1>
+    <p>Not logged in</p>
   ) : (
     <div>
-      <h3>Welcome back, User</h3>
+      <p>Welcome back, User</p>
     </div>
   );
 };

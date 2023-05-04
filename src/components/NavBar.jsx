@@ -14,7 +14,7 @@ function NavBar() {
   return (
     // Temporary NavBar for easier navigation during the initial development phase. To be improved later.
 
-    <nav className="flex justify-between">
+    <nav className="flex justify-between bg-slate-200 pt-3 pb-1 px-4">
       <Link href="/" underline="none">
         <h2>USEUM</h2>
       </Link>
