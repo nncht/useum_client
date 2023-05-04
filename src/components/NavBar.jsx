@@ -1,8 +1,7 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
-import { Link } from "react-router-dom";
+import Link from "@mui/material/Link";
 import { AuthContext } from "../context/auth.context";
 import { useContext } from "react";
 import SettingsIcon from "@mui/icons-material/Settings";
@@ -16,7 +15,7 @@ function NavBar() {
     // Temporary NavBar for easier navigation during the initial development phase. To be improved later.
 
     <nav className="flex justify-between">
-      <Link to="/">
+      <Link to="/" underline="none">
         <h2>USEUM</h2>
       </Link>
       {!isLoggedIn && (
