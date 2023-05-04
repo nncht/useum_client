@@ -15,27 +15,32 @@ function NavBar() {
       </Link>
       {!isLoggedIn && (
         <ul>
-          <Link to="/login">
-            <Button variant="text">Log In</Button>
-          </Link>
-          <Link to="/signup">
-            <Button variant="text">Sign Up</Button>
-          </Link>
+          <li style={{ display: "inline-block" }}>
+            <Link to="/login">
+              <Button variant="text">Log In</Button>
+            </Link>
+          </li>
+          <li style={{ display: "inline-block" }}>
+            <Link to="/signup">
+              <Button variant="text">Sign Up</Button>
+            </Link>
+          </li>
         </ul>
       )}
 
       {isLoggedIn && (
         <ul>
-          <Link to="/">
-            <Button variant="text">Browse</Button>
-          </Link>
-          <Link to="/profile">
-            <Button variant="text">Profile</Button>
-          </Link>
+          <li style={{ display: "inline-block" }}>
+            <Link to="/profile">
+              <Button variant="text">Profile</Button>
+            </Link>
+          </li>
 
-          <Button variant="text" onClick={logOutUser}>
-            Log Out
-          </Button>
+          <li style={{ display: "inline-block" }}>
+            <Button variant="text" onClick={logOutUser}>
+              Log Out
+            </Button>
+          </li>
         </ul>
       )}
     </nav>
