@@ -9,23 +9,23 @@ function NavBar() {
   return (
     // Temporary NavBar for easier navigation during the initial development phase. To be improved later.
 
-    <nav>
+    <nav className="flex justify-between">
       <Link to="/">
         <h2>USEUM</h2>
       </Link>
       {!isLoggedIn && (
-        <>
+        <ul>
           <Link to="/login">
             <Button variant="text">Log In</Button>
           </Link>
           <Link to="/signup">
             <Button variant="text">Sign Up</Button>
           </Link>
-        </>
+        </ul>
       )}
 
       {isLoggedIn && (
-        <>
+        <ul>
           <Link to="/">
             <Button variant="text">Browse</Button>
           </Link>
@@ -36,7 +36,7 @@ function NavBar() {
           <Button variant="text" onClick={logOutUser}>
             Log Out
           </Button>
-        </>
+        </ul>
       )}
     </nav>
   );
