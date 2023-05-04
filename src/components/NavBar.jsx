@@ -15,20 +15,20 @@ function NavBar() {
     // Temporary NavBar for easier navigation during the initial development phase. To be improved later.
 
     <nav className="flex justify-between">
-      <Link to="/" underline="none">
+      <Link href="/" underline="none">
         <h2>USEUM</h2>
       </Link>
       {!isLoggedIn && (
         <ul>
           <li style={{ display: "inline-block" }} className="mx-2">
-            <Link to="/login">
+            <Link href="/login">
               <Button variant="outlined" size="medium">
                 Log In
               </Button>
             </Link>
           </li>
           <li style={{ display: "inline-block" }}>
-            <Link to="/signup">
+            <Link href="/signup">
               <Button variant="contained" size="medium">
                 Sign Up
               </Button>
@@ -40,7 +40,7 @@ function NavBar() {
       {isLoggedIn && (
         <ul>
           <li style={{ display: "inline-block" }}>
-            <Link to="/profile">
+            <Link href="/profile">
               <IconButton color="primary" variant="text">
                 <AccountCircleIcon />
               </IconButton>
@@ -48,7 +48,7 @@ function NavBar() {
           </li>
 
           <li style={{ display: "inline-block" }}>
-            <Link to="/settings">
+            <Link href="/settings">
               <IconButton color="primary" variant="text">
                 <SettingsIcon />
               </IconButton>
