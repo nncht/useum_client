@@ -1,4 +1,5 @@
 import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import { useContext } from "react";
@@ -35,24 +36,24 @@ function NavBar() {
         <ul>
           <li style={{ display: "inline-block" }}>
             <Link to="/profile">
-              <Button variant="text" size="large">
+              <IconButton color="primary" variant="text">
                 <AccountCircleIcon />
-              </Button>
+              </IconButton>
             </Link>
           </li>
 
           <li style={{ display: "inline-block" }}>
             <Link to="/settings">
-              <Button variant="text" size="large">
+              <IconButton color="primary" variant="text">
                 <SettingsIcon />
-              </Button>
+              </IconButton>
             </Link>
           </li>
 
           <li style={{ display: "inline-block" }}>
-            <Button variant="text" size="large" onClick={logOutUser}>
+            <IconButton color="primary" variant="text" onClick={logOutUser}>
               <LogoutIcon />
-            </Button>
+            </IconButton>
           </li>
         </ul>
       )}
