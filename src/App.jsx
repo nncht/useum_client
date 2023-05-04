@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="App">
       <main>
-        <section className="bg-slate-300 min-h-screen">
+        <section className="bg-slate-100 min-h-screen p-3">
           <NavBar />
 
           <Routes>
