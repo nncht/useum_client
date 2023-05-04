@@ -9,12 +9,14 @@ import SignupPage from "./pages/SignupPage";
 function App() {
   return (
     <div className="App">
-      <NavBar />
+      <main>
+        <NavBar />
+      </main>
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
-
       </Routes>
     </div>
   );
