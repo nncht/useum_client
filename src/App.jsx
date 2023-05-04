@@ -10,6 +10,7 @@ function App() {
   return (
     <div className="App">
       <main>
+        <section className="bg-slate-700 h-screen"></section>
         <NavBar />
       </main>
 
