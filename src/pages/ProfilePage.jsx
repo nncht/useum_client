@@ -1,56 +1,69 @@
+import { AuthContext } from '../context/auth.context';
+import { useState, useEffect, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-import { AuthContext } from '../context/auth.context'
-import { useState, useEffect, useContext } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import axios from 'axios'
-
-
-
+const API_URL = 'http://localhost:5005';
 
 const ProfilePage = () => {
+	const { user } = useContext(AuthContext);
 
-    const { user } = useContext(AuthContext)
+	const [currentUser, setCurrentUser] = useState(user);
 
+	useEffect(() => {
+		if (user && user._id) {
+			axios
+				.get(`${API_URL}/users/${user._id}`)
+				.then((res) => {
+					setCurrentUser(res.data);
+					console.log(res.data);
+				})
+				.catch((err) => {
+					console.error(err);
+				});
+		}
+	}, [user]);
 
-  return (
+	console.log('the currentUser', currentUser);
 
-    user && (
+	return (
+		currentUser && (
+			<div>
+				<h1>{currentUser.username}'s Spielecke</h1>
+				<img src={currentUser.imageUrl} alt='A picture of you!' />
 
+				<p>Email: {user.email}</p>
 
-        <div>
-            <h1>{user.username}'s Spielecke</h1>
-            <img src={user.imageUrl} alt="A picture of you!" />
+				<h3>My Collections:</h3>
 
-            <p>Email: {user.email}</p>
+				{!user.collections ? (
+					<p>You have no collections yet!</p>
+				) : (
+					user.collections.map((collection) => {
+						return (
+							<div key={collection._id}>
+								<p>{collection.name}</p>
+							</div>
+						);
+					})
+				)}
 
-            <h3>My Collections:</h3>
+				<h3>My interests:</h3>
 
-            { !user.collections ? <p>You have no collections yet!</p> : user.collections.map((collection) => {
-                return (
-                    <div key={collection._id}>
-                        <p>{collection.name}</p>
-                    </div>
-                )
-            })}
+				{!user.categories ? (
+					<p>You have no interests yet!</p>
+				) : (
+					user.categories.map((category) => {
+						return (
+							<div key={category._id}>
+								<p>{category.name}</p>
+							</div>
+						);
+					})
+				)}
+			</div>
+		)
+	);
+};
 
-            <h3>My interests:</h3>
-
-            { !user.categories ? <p>You have no interests yet!</p> : user.categories.map((category) => {
-                return (
-                    <div key={category._id}>
-                        <p>{category.name}</p>
-                    </div>
-                )
-            })}
-
-
-        </div>
-
-
-    )
-
-
-  )
-}
-
-export default ProfilePage
+export default ProfilePage;
