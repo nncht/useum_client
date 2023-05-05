@@ -37,6 +37,7 @@ function SignupPage() {
 			.then((response) => {
 				// response carries "fileUrl" which we can use to update the state
 				setImageUrl(response.data.fileUrl);
+
 			})
 			.catch((err) => console.log('Error while uploading the file: ', err));
 	};
