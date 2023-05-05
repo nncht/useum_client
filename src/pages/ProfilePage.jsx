@@ -30,7 +30,7 @@ const ProfilePage = () => {
 		currentUser && (
 			<div>
 				<h1>{currentUser.username}'s Spielecke</h1>
-				<img src={currentUser.imageUrl} alt='A picture of you!' />
+				<img src={currentUser.imageUrl} width={100} height={150} alt='A picture of you!' />
 
 				<p>Email: {user.email}</p>
 
