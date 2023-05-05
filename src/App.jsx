@@ -6,6 +6,7 @@ import NavBar from "./components/NavBar";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import CreateItemPage from "./pages/CreateItemPage"
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   return (
@@ -18,7 +19,17 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignupPage />} />
-        <Route path="/create-item" element={<CreateItemPage/>} />            </Routes>
+              <Route path="/create-item" element={<CreateItemPage/>} />
+
+
+
+
+              <Route path="/profile" element={<ProfilePage />} />
+
+
+
+
+            </Routes>
           </div>
         </section>
       </main>
