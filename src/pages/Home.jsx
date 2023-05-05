@@ -9,7 +9,7 @@ const Home = () => {
     <p>Not logged in</p>
   ) : (
     <div>
-      <p>Welcome back, User</p>
+      <p>Welcome back, {user.username}</p>
     </div>
   );
 };

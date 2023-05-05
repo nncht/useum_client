@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Routes, Route } from "react-router-dom";
+import { AuthContext } from "./context/auth.context";
 import "./App.css";
 import Home from "./pages/Home";
 import NavBar from "./components/NavBar";
@@ -9,6 +10,9 @@ import CreateItemPage from "./pages/CreateItemPage"
 import ProfilePage from "./pages/ProfilePage";
 
 function App() {
+
+
+
   return (
     <div className="App">
       <main>
