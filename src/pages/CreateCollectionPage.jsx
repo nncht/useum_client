@@ -84,13 +84,13 @@ function CollectionsPage() {
       <div>
         <h2>Collections List</h2>
         <ul>
-          {collections.map((collection) => (
-            <li key={collection._id}>
-              <Link to="/" onClick={() => setSelectedCollection(collection.name)}>
-                {collection.name}
-              </Link>
-            </li>
-          ))}
+            {Array.isArray(collections) && collections.map((collection) => (
+                <li key={collection.id}>
+                    <Link to="/" onClick={() => setSelectedCollection(collection.name)}>
+                        {collection.name}
+                    </Link>
+                </li>
+            ))}
         </ul>
       </div>
     </div>

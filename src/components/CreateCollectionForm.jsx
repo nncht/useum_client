@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 
-function CreateCollectionForm({ onCollectionCreated }) {
+function CreateCollectionForm({ onCreateCollection }) {
   const [name, setName] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
     try {
       const response = await fetch('http://localhost:5005/collections', {
         method: 'POST',
@@ -15,12 +15,12 @@ function CreateCollectionForm({ onCollectionCreated }) {
         },
         body: JSON.stringify({ name }),
       });
-
+  
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-
-      onCollectionCreated(name);
+  
+      onCreateCollection(name);
       setName('');
     } catch (error) {
       console.error('Error creating collection:', error);
@@ -39,7 +39,7 @@ function CreateCollectionForm({ onCollectionCreated }) {
 }
 
 CreateCollectionForm.propTypes = {
-  onCollectionCreated: PropTypes.func.isRequired,
-};
+    onCreateCollection: PropTypes.func.isRequired,
+  };
 
 export default CreateCollectionForm;
