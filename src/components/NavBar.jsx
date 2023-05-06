@@ -16,8 +16,8 @@ function NavBar() {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
 
   return (
-    <nav className="flex justify-between bg-slate-200 pt-2 pb-0 px-4">
-      <Link href="/" underline="none" className="p-0 m-0">
+    <nav className="flex justify-between bg-slate-200 sticky top-0 px-4">
+      <Link href="/" underline="none">
         <h3>USEUM</h3>
       </Link>
 
