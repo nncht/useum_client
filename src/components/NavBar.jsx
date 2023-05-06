@@ -24,22 +24,19 @@ function NavBar() {
 
         {/* LOGGED OUT NAVBAR */}
         {!isLoggedIn && (
-          <ul>
-            <li style={{ display: "inline-block" }} className="mx-2">
-              <Link href="/login">
-                <Button variant="outlined" size="medium">
-                  Log In
-                </Button>
-              </Link>
-            </li>
-            <li style={{ display: "inline-block" }}>
-              <Link href="/signup">
-                <Button variant="contained" size="medium">
-                  Sign Up
-                </Button>
-              </Link>
-            </li>
-          </ul>
+          <div>
+            <Link href="/login">
+              <Button variant="outlined" size="medium">
+                Log In
+              </Button>
+            </Link>
+
+            <Link href="/signup">
+              <Button variant="contained" size="medium">
+                Sign Up
+              </Button>
+            </Link>
+          </div>
         )}
 
         {/* LOGGED IN NAVBAR */}
