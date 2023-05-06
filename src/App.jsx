@@ -8,6 +8,8 @@ import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import CreateItemPage from "./pages/CreateItemPage"
 import ProfilePage from "./pages/ProfilePage";
+import IsPrivate from "./components/isPrivate";
+import IsPublic from "./components/isPublic";
 
 function App() {
 
@@ -21,14 +23,13 @@ function App() {
           <div id="main-content" className="p-4">
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/signup" element={<SignupPage />} />
-              <Route path="/create-item" element={<CreateItemPage/>} />
+              <Route path="/login" element={<isPublic> <LoginPage /> </isPublic>} />
+              <Route path="/signup" element={<isPublic> <SignupPage /></isPublic> } />
+              <Route path="/create-item" element={<IsPrivate> <CreateItemPage/> </IsPrivate>} />
 
 
 
-
-              <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/profile" element={<IsPrivate> <ProfilePage /> </IsPrivate>} />
 
 
 
