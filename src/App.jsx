@@ -1,6 +1,6 @@
-import { useState, useContext } from "react";
+// import { useState, useContext } from "react";
 import { Routes, Route } from "react-router-dom";
-import { AuthContext } from "./context/auth.context";
+// import { AuthContext } from "./context/auth.context";
 import "./App.css";
 import Home from "./pages/Home";
 import NavBar from "./components/NavBar";
@@ -31,18 +31,7 @@ function App() {
 
 
 
-              <Route path="/create-collection" element={<CreateCollectionPage/>} />
-
-
-
-
-
-
-
-
-              <Route path="/create-collection" element={<CreateCollectionPage/>} />
-
-
+              <Route path="/create-collection" element={<isPrivate><CreateCollectionPage/></isPrivate>} />
 
 
 
@@ -54,11 +43,11 @@ function App() {
 
 
 
-              <Route path="/collections" element={<Collections/>} />
+              <Route path="/collections" element={<IsPrivate><Collections/></IsPrivate>} />
 
 
 
-              <Route path="/my-collections/:collectionId" element={<MyCollection/>} />
+              <Route path="/my-collections/:collectionId" element={<IsPrivate><MyCollection/></IsPrivate>} />
 
 
 
