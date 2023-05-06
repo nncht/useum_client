@@ -32,7 +32,6 @@ function App() {
 
             </Routes>
           </div>
-        </section>
       </main>
     </div>
   );

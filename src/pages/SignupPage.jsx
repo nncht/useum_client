@@ -4,10 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
-
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import ImageUploader from '../components/ImageUploader';
 
 const API_URL = 'http://localhost:5005';
