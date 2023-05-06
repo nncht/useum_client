@@ -50,7 +50,7 @@ const ProfilePage = () => {
         <section className="p-3 bg-slate-300">
           <h4 className="text-2xl text-slate-600">Collections</h4>
 
-          {currentUser.collections.length === 0 ? (
+          {!currentUser.collections ? (
             <p>You've not added any collections.</p>
           ) : (
             currentUser.collections.map((collection) => {
@@ -66,7 +66,7 @@ const ProfilePage = () => {
 
           <h4 className="text-2xl text-slate-600">Interests</h4>
 
-          {currentUser.categories.length === 0  ? (
+          {! currentUser.categories  ? (
             <p>You've not specified any interests yet.</p>
           ) : (
             currentUser.categories.map((category) => {
