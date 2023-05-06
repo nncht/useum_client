@@ -37,7 +37,6 @@ const ProfilePage = () => {
         <ProfileHeader />
         <ProfileBio currentUser={currentUser} />
 
-				<p>Email: {currentUser.email}</p>
 
 				<h3>My Collections:</h3>
 
