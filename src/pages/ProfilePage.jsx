@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Button from "@mui/material/Button";
 import ProfileHeader from "../components/Profile/ProfileHeader";
+import ProfileBio from "../components/Profile/ProfileBio";
 
 const API_URL = "http://localhost:5005";
 
@@ -27,23 +28,16 @@ const ProfilePage = () => {
     }
   }, [user]);
 
-  console.log("the currentUser", currentUser);
+  // console.log("the currentUser", currentUser);
 
   // USER PROFILE RENDER
   return (
     currentUser && (
       <div>
         <ProfileHeader />
-        <h1>{currentUser.username}'s Profil</h1>
-        <img
-          src={currentUser.imageUrl}
-          width={100}
-          height={150}
-          alt="A picture of you!"
-        />
+        <ProfileBio currentUser={currentUser} />
 
-        <p>Email: {user.email}</p>
-
+        {/* To be moved to collections components */}
         <h3>My Collections:</h3>
 
         {!user.collections ? (
