@@ -3,9 +3,8 @@ const ProfilePicture = ({ currentUser }) => {
     <div>
       <img
         src={currentUser.imageUrl}
-        width={100}
-        height={150}
-        alt="A picture of you!"
+        alt="User Profile Picture"
+        className="w-48 h-48 rounded-full object-cover object-center left-0 z-10"
       />
     </div>
   );

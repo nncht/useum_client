@@ -35,11 +35,18 @@ const ProfilePage = () => {
   return (
     currentUser && (
       <div>
-        <ProfileHeader />
-        <ProfilePicture currentUser={currentUser} />
-        <ProfileBio currentUser={currentUser} />
+        <div className="relative">
+          <ProfileHeader />
+          <div className="absolute mt-[-85px] mx-4">
+            <ProfilePicture currentUser={currentUser} />
+          </div>
+        </div>
 
-        <h3>My Collections:</h3>
+        <div>
+          <ProfileBio currentUser={currentUser} />
+        </div>
+
+        {/* <h3>My Collections:</h3>
 
         {!currentUser.collections ? (
           <p>You have no collections yet!</p>
@@ -67,7 +74,7 @@ const ProfilePage = () => {
               </div>
             );
           })
-        )}
+        )} */}
       </div>
     )
   );
