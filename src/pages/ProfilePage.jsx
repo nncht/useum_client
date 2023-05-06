@@ -32,17 +32,19 @@ const ProfilePage = () => {
 				<h1>{currentUser.username}'s Profil</h1>
 				<img src={currentUser.imageUrl} width={100} height={150} alt='A picture of you!' />
 
-				<p>Email: {user.email}</p>
+				<p>Email: {currentUser.email}</p>
 
 				<h3>My Collections:</h3>
 
-				{!user.collections ? (
+				{!currentUser.collections ? (
 					<p>You have no collections yet!</p>
 				) : (
-					user.collections.map((collection) => {
+					currentUser.collections.map((collection) => {
 						return (
 							<div key={collection._id}>
-								<p>{collection.name}</p>
+								<Link to={`/my-collections/${collection._id}`}>
+									<p>{collection.name}</p>
+								</Link>
 							</div>
 						);
 					})
@@ -50,10 +52,10 @@ const ProfilePage = () => {
 
 				<h3>My interests:</h3>
 
-				{!user.categories ? (
+				{!currentUser.categories ? (
 					<p>You have no interests yet!</p>
 				) : (
-					user.categories.map((category) => {
+					currentUser.categories.map((category) => {
 						return (
 							<div key={category._id}>
 								<p>{category.name}</p>
