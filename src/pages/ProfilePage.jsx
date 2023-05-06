@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Button from "@mui/material/Button";
+import ProfileHeader from "../components/Profile/ProfileHeader";
 
 const API_URL = "http://localhost:5005";
 
@@ -30,6 +31,7 @@ const ProfilePage = () => {
   return (
     currentUser && (
       <div>
+        <ProfileHeader />
         <h1>{currentUser.username}'s Profil</h1>
         <img
           src={currentUser.imageUrl}
