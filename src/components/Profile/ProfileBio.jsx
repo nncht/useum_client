@@ -6,7 +6,15 @@ const ProfileBio = ({ currentUser }) => {
   console.log({ currentUser });
   return (
     <div>
-      <h1>{currentUser.username}'s Profil</h1>
+      <div className="bg-slate-600 px-3 py-2">
+        <h2 className="text-3xl text-white">{currentUser.username}</h2>
+        <p className="text-white">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </p>
+      </div>
       <img
         src={currentUser.imageUrl}
         width={100}
