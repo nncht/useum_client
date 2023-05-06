@@ -8,6 +8,9 @@ import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import CreateItemPage from "./pages/CreateItemPage";
 import ProfilePage from "./pages/ProfilePage";
+import CreateCollectionPage from "./pages/CollectionPages/CreateCollectionPage";
+import Collections from "./pages/CollectionPages/Collections";
+import MyCollection from "./pages/CollectionPages/MyCollection";
 import IsPrivate from "./components/IsPrivate";
 import IsPublic from "./components/IsPublic";
 
@@ -25,8 +28,37 @@ function App() {
 
 
 
+
+
+
+              <Route path="/create-collection" element={<CreateCollectionPage/>} />
+
+
+
+
+
+
+
+
+              <Route path="/create-collection" element={<CreateCollectionPage/>} />
+
+
+
+
+
+
+
               <Route path="/profile" element={<IsPrivate> <ProfilePage /> </IsPrivate>} />
 
+
+
+
+
+              <Route path="/collections" element={<Collections/>} />
+
+
+
+              <Route path="/my-collections/:collectionId" element={<MyCollection/>} />
 
 
 

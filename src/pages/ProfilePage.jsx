@@ -37,37 +37,40 @@ const ProfilePage = () => {
         <ProfileHeader />
         <ProfileBio currentUser={currentUser} />
 
-        {/* To be moved to collections components */}
-        <h3>My Collections:</h3>
+				<p>Email: {currentUser.email}</p>
 
-        {!user.collections ? (
-          <p>You have no collections yet!</p>
-        ) : (
-          user.collections.map((collection) => {
-            return (
-              <div key={collection._id}>
-                <p>{collection.name}</p>
-              </div>
-            );
-          })
-        )}
+				<h3>My Collections:</h3>
+
+				{!currentUser.collections ? (
+					<p>You have no collections yet!</p>
+				) : (
+					currentUser.collections.map((collection) => {
+						return (
+							<div key={collection._id}>
+								<Link to={`/my-collections/${collection._id}`}>
+									<p>{collection.name}</p>
+								</Link>
+							</div>
+						);
+					})
+				)}
 
         <h3>My interests:</h3>
 
-        {!user.categories ? (
-          <p>You have no interests yet!</p>
-        ) : (
-          user.categories.map((category) => {
-            return (
-              <div key={category._id}>
-                <p>{category.name}</p>
-              </div>
-            );
-          })
-        )}
-      </div>
-    )
-  );
+				{!currentUser.categories ? (
+					<p>You have no interests yet!</p>
+				) : (
+					currentUser.categories.map((category) => {
+						return (
+							<div key={category._id}>
+								<p>{category.name}</p>
+							</div>
+						);
+					})
+				)}
+			</div>
+		)
+	);
 };
 
 export default ProfilePage;
