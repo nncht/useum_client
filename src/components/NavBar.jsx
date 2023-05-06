@@ -41,29 +41,23 @@ function NavBar() {
 
         {/* LOGGED IN NAVBAR */}
         {isLoggedIn && (
-          <ul>
-            <li style={{ display: "inline-block" }}>
-              <Link href="/profile">
-                <IconButton color="primary" variant="text">
-                  <AccountCircleIcon />
-                </IconButton>
-              </Link>
-            </li>
-
-            <li style={{ display: "inline-block" }}>
-              <Link href="/settings">
-                <IconButton color="primary" variant="text">
-                  <SettingsIcon />
-                </IconButton>
-              </Link>
-            </li>
-
-            <li style={{ display: "inline-block" }}>
-              <IconButton color="primary" variant="text" onClick={logOutUser}>
-                <LogoutIcon />
+          <div>
+            <Link href="/profile">
+              <IconButton color="primary" variant="text">
+                <AccountCircleIcon />
               </IconButton>
-            </li>
-          </ul>
+            </Link>
+
+            <Link href="/settings">
+              <IconButton color="primary" variant="text">
+                <SettingsIcon />
+              </IconButton>
+            </Link>
+
+            <IconButton color="primary" variant="text" onClick={logOutUser}>
+              <LogoutIcon />
+            </IconButton>
+          </div>
         )}
       </div>
     </nav>
