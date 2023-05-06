@@ -8,3 +8,16 @@
   max-width: 1280px;
   margin: 0 auto;
 }
+
+.cover {
+  width: 100%;
+  background-color: #555;
+  height: 200px;
+  overflow: hidden;
+}
+
+.cover img {
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
