@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import handleFileUpload from '../components/handleFileUpload';
+import ImageUploader from '../components/ImageUploader';
 
 const API_URL = 'http://localhost:5005';
 
@@ -24,13 +24,17 @@ function SignupPage() {
 		setNewUser({ ...newUser, [name]: value });
 	};
 
-
 	const handleSignupSubmit = (e) => {
 		e.preventDefault();
 
-		const signupBody = { email: newUser.email, password: newUser.password, username: newUser.username, imageUrl: imageUrl };
+		const signupBody = {
+			email: newUser.email,
+			password: newUser.password,
+			username: newUser.username,
+			imageUrl: imageUrl,
+		};
 
-		console.log("signupBody is: ", signupBody)
+		console.log('signupBody is: ', signupBody);
 		axios
 			.post(`${API_URL}/signup`, signupBody)
 			.then((res) => {
@@ -56,9 +60,7 @@ function SignupPage() {
 				<label htmlFor='name'>Name:</label>
 				<input type='text' name='username' value={newUser.username} onChange={handleChange} id='name' />
 
-				<label htmlFor="image">Upload profile picture</label>
-				<input type="file" id="image" onChange={(e) => handleFileUpload(setImageUrl, e)} />
-
+				<ImageUploader setImageUrl={setImageUrl} message={'Upload profile picture'} />
 
 				<button type='submit'>Sign Up</button>
 			</form>
