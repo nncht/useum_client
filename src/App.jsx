@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      <main id="main-container" className="bg-gray-50 min-h-screen p-0">
+      <main className="bg-gray-50 min-h-screen p-0">
         <div id="main-content" className="p-4">
           <Routes>
             <Route path="/" element={<Home />} />

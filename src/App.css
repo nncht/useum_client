@@ -3,6 +3,8 @@
   text-align: left;
 }
 
-#main-container {
+#main-content,
+#nav-bar {
   max-width: 1280px;
+  margin: 0 auto;
 }

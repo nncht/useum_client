@@ -16,57 +16,59 @@ function NavBar() {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
 
   return (
-    <nav className="flex justify-between bg-slate-200 sticky top-0 px-4">
-      <Link href="/" underline="none">
-        <h3>USEUM</h3>
-      </Link>
+    <nav className="bg-slate-200 sticky top-0 px-4">
+      <div id="nav-bar">
+        <Link href="/" underline="none">
+          <h3>USEUM</h3>
+        </Link>
 
-      {/* LOGGED OUT NAVBAR */}
-      {!isLoggedIn && (
-        <ul>
-          <li style={{ display: "inline-block" }} className="mx-2">
-            <Link href="/login">
-              <Button variant="outlined" size="medium">
-                Log In
-              </Button>
-            </Link>
-          </li>
-          <li style={{ display: "inline-block" }}>
-            <Link href="/signup">
-              <Button variant="contained" size="medium">
-                Sign Up
-              </Button>
-            </Link>
-          </li>
-        </ul>
-      )}
+        {/* LOGGED OUT NAVBAR */}
+        {!isLoggedIn && (
+          <ul>
+            {/* <li style={{ display: "inline-block" }} className="mx-2">
+              <Link href="/login">
+                <Button variant="outlined" size="medium">
+                  Log In
+                </Button>
+              </Link>
+            </li>
+            <li style={{ display: "inline-block" }}>
+              <Link href="/signup">
+                <Button variant="contained" size="medium">
+                  Sign Up
+                </Button>
+              </Link>
+            </li> */}
+          </ul>
+        )}
 
-      {/* LOGGED IN NAVBAR */}
-      {isLoggedIn && (
-        <ul>
-          <li style={{ display: "inline-block" }}>
-            <Link href="/profile">
-              <IconButton color="primary" variant="text">
-                <AccountCircleIcon />
+        {/* LOGGED IN NAVBAR */}
+        {isLoggedIn && (
+          <ul>
+            {/* <li style={{ display: "inline-block" }}>
+              <Link href="/profile">
+                <IconButton color="primary" variant="text">
+                  <AccountCircleIcon />
+                </IconButton>
+              </Link>
+            </li>
+
+            <li style={{ display: "inline-block" }}>
+              <Link href="/settings">
+                <IconButton color="primary" variant="text">
+                  <SettingsIcon />
+                </IconButton>
+              </Link>
+            </li>
+
+            <li style={{ display: "inline-block" }}>
+              <IconButton color="primary" variant="text" onClick={logOutUser}>
+                <LogoutIcon />
               </IconButton>
-            </Link>
-          </li>
-
-          <li style={{ display: "inline-block" }}>
-            <Link href="/settings">
-              <IconButton color="primary" variant="text">
-                <SettingsIcon />
-              </IconButton>
-            </Link>
-          </li>
-
-          <li style={{ display: "inline-block" }}>
-            <IconButton color="primary" variant="text" onClick={logOutUser}>
-              <LogoutIcon />
-            </IconButton>
-          </li>
-        </ul>
-      )}
+            </li> */}
+          </ul>
+        )}
+      </div>
     </nav>
   );
 }
