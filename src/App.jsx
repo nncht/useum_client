@@ -8,7 +8,9 @@ import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import CreateItemPage from "./pages/CreateItemPage"
 import ProfilePage from "./pages/ProfilePage";
-import CreateCollectionPage from "./pages/CreateCollectionPage";
+import CreateCollectionPage from "./pages/CollectionPages/CreateCollectionPage";
+import Collections from "./pages/CollectionPages/Collections";
+import MyCollection from "./pages/CollectionPages/MyCollection";
 
 function App() {
 
@@ -25,13 +27,31 @@ function App() {
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignupPage />} />
               <Route path="/create-item" element={<CreateItemPage/>} />
+
+
+
+
+
+
               <Route path="/create-collection" element={<CreateCollectionPage/>} />
+
+
+
 
 
 
 
               <Route path="/profile" element={<ProfilePage />} />
 
+
+
+
+
+              <Route path="/collections" element={<Collections/>} />
+
+
+
+              <Route path="/my-collections/:collectionId" element={<MyCollection/>} />
 
 
 
