@@ -46,36 +46,38 @@ const ProfilePage = () => {
           <ProfileBio currentUser={currentUser} />
         </div>
 
-        {/* TO BE MOVED TO OTHER COMPONENTS */}
-        <h3>My Collections:</h3>
+        {/* TO BE MOVED TO OWN COMPONENTS */}
+        <section className="p-3 bg-slate-300">
+          <h4 className="text-2xl text-slate-600">Collections</h4>
 
-        {!currentUser.collections ? (
-          <p>You have no collections yet!</p>
-        ) : (
-          currentUser.collections.map((collection) => {
-            return (
-              <div key={collection._id}>
-                <Link to={`/my-collections/${collection._id}`}>
-                  <p>{collection.name}</p>
-                </Link>
-              </div>
-            );
-          })
-        )}
+          {!currentUser.collections ? (
+            <p>You've not added any collections.</p>
+          ) : (
+            currentUser.collections.map((collection) => {
+              return (
+                <div key={collection._id}>
+                  <Link to={`/my-collections/${collection._id}`}>
+                    <p>{collection.name}</p>
+                  </Link>
+                </div>
+              );
+            })
+          )}
 
-        <h3>My interests:</h3>
+          <h4 className="text-2xl text-slate-600">Interests</h4>
 
-        {!currentUser.categories ? (
-          <p>You have no interests yet!</p>
-        ) : (
-          currentUser.categories.map((category) => {
-            return (
-              <div key={category._id}>
-                <p>{category.name}</p>
-              </div>
-            );
-          })
-        )}
+          {!currentUser.categories ? (
+            <p>You've not specified any interests yet.</p>
+          ) : (
+            currentUser.categories.map((category) => {
+              return (
+                <div key={category._id}>
+                  <p>{category.name}</p>
+                </div>
+              );
+            })
+          )}
+        </section>
       </div>
     )
   );
