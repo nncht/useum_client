@@ -16,10 +16,10 @@ function NavBar() {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
 
   return (
-    <nav className="sticky top-0">
+    <nav className="sticky top-0 bg-slate-200">
       <div id="nav-bar" className="flex justify-between px-4">
         <Link href="/" underline="none">
-          <h1 className="w-full text-3xl font-bold">USEUM.</h1>
+          <h1 className="w-full text-3xl font-bold">USEUM</h1>
         </Link>
 
         {/* LOGGED OUT NAVBAR */}
