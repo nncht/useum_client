@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import ImageUploader from '../components/ImageUploader';
 
 const API_URL = 'http://localhost:5005';
 
@@ -23,31 +24,17 @@ function SignupPage() {
 		setNewUser({ ...newUser, [name]: value });
 	};
 
-	const handleFileUpload = (e) => {
-		// console.log("The file to be uploaded is: ", e.target.files[0]);
-
-		const uploadData = new FormData();
-
-		// imageUrl => this name has to be the same as in the model since we pass
-		// req.body to .create() method when creating a new movie in '/api/movies' POST route
-		uploadData.append('imageUrl', e.target.files[0]);
-
-		axios
-			.post(`${API_URL}/upload`, uploadData)
-			.then((response) => {
-				// response carries "fileUrl" which we can use to update the state
-				setImageUrl(response.data.fileUrl);
-
-			})
-			.catch((err) => console.log('Error while uploading the file: ', err));
-	};
-
 	const handleSignupSubmit = (e) => {
 		e.preventDefault();
 
-		const signupBody = { email: newUser.email, password: newUser.password, username: newUser.username, imageUrl: imageUrl };
+		const signupBody = {
+			email: newUser.email,
+			password: newUser.password,
+			username: newUser.username,
+			imageUrl: imageUrl,
+		};
 
-		console.log("signupBody is: ", signupBody)
+		console.log('signupBody is: ', signupBody);
 		axios
 			.post(`${API_URL}/signup`, signupBody)
 			.then((res) => {
@@ -73,9 +60,7 @@ function SignupPage() {
 				<label htmlFor='name'>Name:</label>
 				<input type='text' name='username' value={newUser.username} onChange={handleChange} id='name' />
 
-				<label htmlFor="image">Upload profile picture</label>
-				<input type="file" id="image" onChange={(e) => handleFileUpload(e)} />
-
+				<ImageUploader setImageUrl={setImageUrl} message={'Upload profile picture'} />
 
 				<button type='submit'>Sign Up</button>
 			</form>
