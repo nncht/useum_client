@@ -37,7 +37,7 @@ const ProfilePage = () => {
       <div>
         <div className="relative">
           <ProfileHeader />
-          <div className="absolute mt-[-85px] mx-4">
+          <div className="absolute mt-[-80px] mx-4">
             <ProfilePicture currentUser={currentUser} />
           </div>
         </div>
