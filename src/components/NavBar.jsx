@@ -1,23 +1,27 @@
 import * as React from "react";
+import { AuthContext } from "../context/auth.context";
+import { useContext } from "react";
+
+// MUI imports
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import Link from "@mui/material/Link";
-import { AuthContext } from "../context/auth.context";
-import { useContext } from "react";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+
+// -- End of Imports
 
 function NavBar() {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
 
   return (
-    // Temporary NavBar for easier navigation during the initial development phase. To be improved later.
-
-    <nav className="flex justify-between bg-slate-200 pt-3 pb-1 px-4">
-      <Link href="/" underline="none">
-        <h2>USEUM</h2>
+    <nav className="flex justify-between bg-slate-200 pt-2 pb-0 px-4">
+      <Link href="/" underline="none" className="p-0 m-0">
+        <h3>USEUM</h3>
       </Link>
+
+      {/* LOGGED OUT NAVBAR */}
       {!isLoggedIn && (
         <ul>
           <li style={{ display: "inline-block" }} className="mx-2">
@@ -37,6 +41,7 @@ function NavBar() {
         </ul>
       )}
 
+      {/* LOGGED IN NAVBAR */}
       {isLoggedIn && (
         <ul>
           <li style={{ display: "inline-block" }}>
