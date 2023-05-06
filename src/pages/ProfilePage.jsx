@@ -46,7 +46,8 @@ const ProfilePage = () => {
           <ProfileBio currentUser={currentUser} />
         </div>
 
-        {/* <h3>My Collections:</h3>
+        {/* TO BE MOVED TO OTHER COMPONENTS */}
+        <h3>My Collections:</h3>
 
         {!currentUser.collections ? (
           <p>You have no collections yet!</p>
@@ -74,7 +75,7 @@ const ProfilePage = () => {
               </div>
             );
           })
-        )} */}
+        )}
       </div>
     )
   );
