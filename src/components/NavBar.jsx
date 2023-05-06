@@ -17,9 +17,12 @@ function NavBar() {
 
   return (
     <nav className="sticky top-0 bg-slate-200">
+      {/* BRAND LOGO */}
       <div id="nav-bar" className="flex items-center justify-between px-4">
         <Link href="/" underline="none" className="flex items-center">
-          <h1 className="w-full text-3xl font-bold my-2">USEUM</h1>
+          <h1 className="w-full text-3xl font-bold my-2 text-slate-600">
+            USEUM
+          </h1>
         </Link>
 
         {/* LOGGED OUT NAVBAR */}
@@ -44,18 +47,18 @@ function NavBar() {
           <div>
             <Link href="/profile">
               <IconButton color="primary" variant="text">
-                <AccountCircleIcon />
+                <AccountCircleIcon className="text-slate-600" />
               </IconButton>
             </Link>
 
             <Link href="/settings">
               <IconButton color="primary" variant="text">
-                <SettingsIcon />
+                <SettingsIcon className="text-slate-600" />
               </IconButton>
             </Link>
 
             <IconButton color="primary" variant="text" onClick={logOutUser}>
-              <LogoutIcon />
+              <LogoutIcon className="text-slate-600" />
             </IconButton>
           </div>
         )}

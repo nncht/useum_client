@@ -5,6 +5,7 @@ import axios from "axios";
 import Button from "@mui/material/Button";
 import ProfileHeader from "../components/Profile/ProfileHeader";
 import ProfileBio from "../components/Profile/ProfileBio";
+import ProfilePicture from "../components/Profile/ProfilePicture";
 
 const API_URL = "http://localhost:5005";
 
@@ -28,48 +29,58 @@ const ProfilePage = () => {
     }
   }, [user]);
 
-  // console.log("the currentUser", currentUser);
+  console.log("the currentUser", currentUser);
 
   // USER PROFILE RENDER
   return (
     currentUser && (
       <div>
-        <ProfileHeader />
-        <ProfileBio currentUser={currentUser} />
+        <div className="relative">
+          <ProfileHeader />
+          <div className="absolute mt-[-80px] mx-4">
+            <ProfilePicture currentUser={currentUser} />
+          </div>
+        </div>
 
+        <div>
+          <ProfileBio currentUser={currentUser} />
+        </div>
 
-				<h3>My Collections:</h3>
+        {/* TO BE MOVED TO OWN COMPONENTS */}
+        <section className="p-3 bg-slate-300">
+          <h4 className="text-2xl text-slate-600">Collections</h4>
 
-				{!currentUser.collections ? (
-					<p>You have no collections yet!</p>
-				) : (
-					currentUser.collections.map((collection) => {
-						return (
-							<div key={collection._id}>
-								<Link to={`/my-collections/${collection._id}`}>
-									<p>{collection.name}</p>
-								</Link>
-							</div>
-						);
-					})
-				)}
+          {currentUser.collections.length === 0 ? (
+            <p>You've not added any collections.</p>
+          ) : (
+            currentUser.collections.map((collection) => {
+              return (
+                <div key={collection._id}>
+                  <Link to={`/my-collections/${collection._id}`}>
+                    <p>{collection.name}</p>
+                  </Link>
+                </div>
+              );
+            })
+          )}
 
-        <h3>My interests:</h3>
+          <h4 className="text-2xl text-slate-600">Interests</h4>
 
-				{!currentUser.categories ? (
-					<p>You have no interests yet!</p>
-				) : (
-					currentUser.categories.map((category) => {
-						return (
-							<div key={category._id}>
-								<p>{category.name}</p>
-							</div>
-						);
-					})
-				)}
-			</div>
-		)
-	);
+          {currentUser.categories.length === 0  ? (
+            <p>You've not specified any interests yet.</p>
+          ) : (
+            currentUser.categories.map((category) => {
+              return (
+                <div key={category._id}>
+                  <p>{category.name}</p>
+                </div>
+              );
+            })
+          )}
+        </section>
+      </div>
+    )
+  );
 };
 
 export default ProfilePage;
