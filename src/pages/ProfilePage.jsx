@@ -7,6 +7,7 @@ import ProfileHeader from "../components/Profile/ProfileHeader";
 
 const API_URL = "http://localhost:5005";
 
+// DETERMINE CURRENT USER
 const ProfilePage = () => {
   const { user } = useContext(AuthContext);
 
@@ -28,6 +29,7 @@ const ProfilePage = () => {
 
   console.log("the currentUser", currentUser);
 
+  // USER PROFILE RENDER
   return (
     currentUser && (
       <div>
