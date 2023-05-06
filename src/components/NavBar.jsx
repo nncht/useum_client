@@ -17,15 +17,15 @@ function NavBar() {
 
   return (
     <nav className="sticky top-0 bg-slate-200">
-      <div id="nav-bar" className="flex justify-between px-4">
-        <Link href="/" underline="none">
-          <h1 className="w-full text-3xl font-bold">USEUM</h1>
+      <div id="nav-bar" className="flex items-center justify-between px-4">
+        <Link href="/" underline="none" className="flex items-center">
+          <h1 className="w-full text-3xl font-bold my-2">USEUM</h1>
         </Link>
 
         {/* LOGGED OUT NAVBAR */}
         {!isLoggedIn && (
-          <div>
-            <Link href="/login">
+          <div className="flex items-center">
+            <Link href="/login" className="mx-2">
               <Button variant="outlined" size="medium">
                 Log In
               </Button>
