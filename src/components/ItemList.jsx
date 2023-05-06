@@ -22,7 +22,7 @@ function ItemList() {
       <h1>Items List</h1>
       <ul>
         {items.map((item) => (
-          <li key={item.id}>
+          <li key={item._id}>
             <h2>{item.name}</h2>
             <p>{item.description}</p>
           </li>
