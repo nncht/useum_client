@@ -16,16 +16,16 @@ function NavBar() {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
 
   return (
-    <nav className="bg-slate-200 sticky top-0 px-4">
-      <div id="nav-bar">
+    <nav className="sticky top-0">
+      <div id="nav-bar" className="flex justify-between px-4">
         <Link href="/" underline="none">
-          <h3>USEUM</h3>
+          <h1 className="w-full text-3xl font-bold">USEUM.</h1>
         </Link>
 
         {/* LOGGED OUT NAVBAR */}
         {!isLoggedIn && (
           <ul>
-            {/* <li style={{ display: "inline-block" }} className="mx-2">
+            <li style={{ display: "inline-block" }} className="mx-2">
               <Link href="/login">
                 <Button variant="outlined" size="medium">
                   Log In
@@ -38,14 +38,14 @@ function NavBar() {
                   Sign Up
                 </Button>
               </Link>
-            </li> */}
+            </li>
           </ul>
         )}
 
         {/* LOGGED IN NAVBAR */}
         {isLoggedIn && (
           <ul>
-            {/* <li style={{ display: "inline-block" }}>
+            <li style={{ display: "inline-block" }}>
               <Link href="/profile">
                 <IconButton color="primary" variant="text">
                   <AccountCircleIcon />
@@ -65,7 +65,7 @@ function NavBar() {
               <IconButton color="primary" variant="text" onClick={logOutUser}>
                 <LogoutIcon />
               </IconButton>
-            </li> */}
+            </li>
           </ul>
         )}
       </div>
