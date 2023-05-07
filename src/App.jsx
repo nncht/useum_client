@@ -22,37 +22,68 @@ function App() {
         <div id="main-content" className="px-0">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/login" element={<IsPublic> <LoginPage /> </IsPublic>} />
-            <Route path="/signup" element={<IsPublic> <SignupPage /></IsPublic> } />
-            <Route path="/create-item" element={<IsPrivate> <CreateItemPage /> </IsPrivate>} />
-
-
-
-
-
-
-              <Route path="/create-collection" element={<isPrivate><CreateCollectionPage/></isPrivate>} />
-
-
-
-
-
-              <Route path="/profile" element={<IsPrivate> <ProfilePage /> </IsPrivate>} />
-
-
-
-
-
-              <Route path="/collections" element={<IsPrivate><Collections/></IsPrivate>} />
-
-
-
-              <Route path="/my-collections/:collectionId" element={<IsPrivate><MyCollection/></IsPrivate>} />
-
-
-
-            </Routes>
-          </div>
+            <Route
+              path="/login"
+              element={
+                <IsPublic>
+                  {" "}
+                  <LoginPage />{" "}
+                </IsPublic>
+              }
+            />
+            <Route
+              path="/signup"
+              element={
+                <IsPublic>
+                  {" "}
+                  <SignupPage />
+                </IsPublic>
+              }
+            />
+            <Route
+              path="/create-item"
+              element={
+                <IsPrivate>
+                  {" "}
+                  <CreateItemPage />{" "}
+                </IsPrivate>
+              }
+            />
+            <Route
+              path="/create-collection"
+              element={
+                <isPrivate>
+                  <CreateCollectionPage />
+                </isPrivate>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <IsPrivate>
+                  {" "}
+                  <ProfilePage />{" "}
+                </IsPrivate>
+              }
+            />
+            <Route
+              path="/collections"
+              element={
+                <IsPrivate>
+                  <Collections />
+                </IsPrivate>
+              }
+            />
+            <Route
+              path="/my-collections/:collectionId"
+              element={
+                <IsPrivate>
+                  <MyCollection />
+                </IsPrivate>
+              }
+            />
+          </Routes>
+        </div>
       </main>
     </div>
   );
