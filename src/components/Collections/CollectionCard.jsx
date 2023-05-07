@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -46,8 +47,12 @@ const CollectionCard = ({ collection }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">View</Button>
-        <Button size="small">Share</Button>
+        <Link to={`/collections/${collection._id}`} className="m-2">
+          <Button size="small">View</Button>
+        </Link>
+        <Link to="#" className="m-2">
+          <Button size="small">Share</Button>
+        </Link>
       </CardActions>
     </Card>
   );
