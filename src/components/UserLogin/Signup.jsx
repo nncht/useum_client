@@ -95,7 +95,10 @@ export default function Signup() {
         </Button>
       </form>
 
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
+      {/* Error message */}
+      <div className="my-2">
+        {errorMessage && <p className="text-danger">{errorMessage}</p>}
+      </div>
     </div>
   );
 }
