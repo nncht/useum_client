@@ -52,16 +52,6 @@ export default function Signup() {
   return (
     <div className="my-3">
       <form onSubmit={handleSignupSubmit}>
-        {/* Username input */}
-        <input
-          type="text"
-          name="username"
-          value={newUser.username}
-          onChange={handleChange}
-          id="name"
-          className={fixedInputClass}
-          placeholder="Username"
-        />
 
         {/* Email input */}
         <input
@@ -71,8 +61,18 @@ export default function Signup() {
           onChange={handleChange}
           id="email"
           className={fixedInputClass}
-          placeholder="Email address"
-        />
+          placeholder="Email address"      />
+
+
+      {/* Username input */}
+        <input
+          type="text"
+          name="username"
+          value={newUser.username}
+          onChange={handleChange}
+          id="name"
+          className={fixedInputClass}
+          placeholder="Username"      />
 
         {/* Password input */}
         <input
