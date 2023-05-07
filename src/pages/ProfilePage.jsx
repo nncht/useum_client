@@ -35,7 +35,7 @@ const ProfilePage = () => {
   return (
     currentUser && (
       <div>
-        {/* Header and profile picture block */}
+        {/* Header and profile picture */}
         <div className="relative">
           <ProfileHeader />
           <div className="absolute mt-[-80px] mx-4">
@@ -43,17 +43,32 @@ const ProfilePage = () => {
           </div>
         </div>
 
-        {/* User bio, needs to be added to User model */}
+        {/* User bio */}
         <div>
           <ProfileBio currentUser={currentUser} />
         </div>
 
         {/* TO BE MOVED TO OWN COMPONENTS */}
         <section className="p-3 bg-slate-300">
+          {/* Temporary navigation for collections/items development. WILL BE REMOVED AFTER DEV */}
+          <nav className="mb-4">
+            <Link to="/collections" className="m-2">
+              <Button variant="contained">Collections (redundant)</Button>
+            </Link>
+            <Link to="/create-item" className="m-2">
+              <Button variant="contained">Add new item</Button>
+            </Link>
+            <p className="text-danger m-2">
+              Temporary buttons, will be removed later
+            </p>
+          </nav>
+
+          {/* Available collections of this user will be rendered as cards here */}
+
           <h4 className="text-2xl text-slate-600">Collections</h4>
 
           {!currentUser.collections ? (
-            <p>You've not added any collections.</p>
+            <p>No collections available</p>
           ) : (
             currentUser.collections.map((collection) => {
               return (
@@ -65,8 +80,12 @@ const ProfilePage = () => {
               );
             })
           )}
+          <Link to="/create-collection" className="m-2">
+            <Button variant="contained">Add new collection</Button>
+          </Link>
+          {/* Uncommented this for now, because categories should be shown as labels/tags within the user bio */}
 
-          <h4 className="text-2xl text-slate-600">Interests</h4>
+          {/* <h4 className="text-2xl text-slate-600">Interests</h4>
 
           {!currentUser.categories ? (
             <p>You've not specified any interests yet.</p>
@@ -78,7 +97,7 @@ const ProfilePage = () => {
                 </div>
               );
             })
-          )}
+          )} */}
         </section>
       </div>
     )
