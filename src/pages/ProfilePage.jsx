@@ -35,6 +35,7 @@ const ProfilePage = () => {
   return (
     currentUser && (
       <div>
+        {/* Header and profile picture block */}
         <div className="relative">
           <ProfileHeader />
           <div className="absolute mt-[-80px] mx-4">
@@ -42,6 +43,7 @@ const ProfilePage = () => {
           </div>
         </div>
 
+        {/* User bio, needs to be added to User model */}
         <div>
           <ProfileBio currentUser={currentUser} />
         </div>
@@ -66,7 +68,7 @@ const ProfilePage = () => {
 
           <h4 className="text-2xl text-slate-600">Interests</h4>
 
-          {! currentUser.categories  ? (
+          {!currentUser.categories ? (
             <p>You've not specified any interests yet.</p>
           ) : (
             currentUser.categories.map((category) => {
