@@ -15,7 +15,7 @@ function NavBar() {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
 
   return (
-    <nav className="sticky top-0 bg-slate-700">
+    <nav className="sticky top-0 bg-slate-700" style={{ zIndex: 10 }}>
       {/* BRAND LOGO */}
       <div id="nav-bar" className="flex items-center justify-between px-4">
         <Link href="/" underline="none" className="flex items-center">
