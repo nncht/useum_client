@@ -1,12 +1,12 @@
 // IMPORTS
-import { useState, useContext } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import Header from "../components/UserLogin/Header";
+import Login from "../components/UserLogin/Login";
 
 // MUI Imports
-import Button from "@mui/material/Button";
 
 // USER AUTH
 const API_URL = "http://localhost:5005";
@@ -50,6 +50,7 @@ function LoginPage() {
         linkName="Signup"
         linkUrl="/signup"
       />
+      <Login />
 
       <form onSubmit={handleLoginSubmit}>
         <label htmlFor="email">Email</label>

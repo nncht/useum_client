@@ -17,7 +17,7 @@ export default function Header({
         {paragraph}{" "}
         <Link
           to={linkUrl}
-          className="font-medium text-blue-600 hover:text-cyan-500 "
+          className="font-medium text-blue-600 hover:text-blue-500 "
         >
           {linkName}
         </Link>
