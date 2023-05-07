@@ -71,15 +71,12 @@ const ProfilePage = () => {
             <Link to="/create-collection" className="m-2">
               <Button variant="contained">Add new collection</Button>
             </Link>
-            <Link to="/collections" className="m-2">
-              <Button variant="contained">Collections (redundant)</Button>
-            </Link>
             <Link to="/create-item" className="m-2">
               <Button variant="contained">Add new item</Button>
             </Link>
-            <p className="text-danger m-2">
-              Temporary buttons, will be removed later
-            </p>
+            <Link to="/collections" className="m-2">
+              <Button variant="outlined">Collections (redundant)</Button>
+            </Link>
           </nav>
         </section>
       </div>
