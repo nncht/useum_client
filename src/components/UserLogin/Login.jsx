@@ -43,35 +43,36 @@ export default function Login() {
     "rounded-md appearance-none relative block w-full px-3 py-2 my-4 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm";
 
   return (
-    <div className="flex justify-center my-3">
-      <div className="flex items-center">
-        <form onSubmit={handleLoginSubmit}>
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            id="email"
-            className={fixedInputClass}
-            placeholder="Email address"
-          />
+    <div className="my-3">
+      <form onSubmit={handleLoginSubmit}>
+        <input
+          type="email"
+          name="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          id="email"
+          className={fixedInputClass}
+          placeholder="Email address"
+        />
 
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            id="password"
-            className={fixedInputClass}
-            placeholder="Password"
-          />
-          <FormExtra />
+        <input
+          type="password"
+          name="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          id="password"
+          className={fixedInputClass}
+          placeholder="Password"
+        />
+        <FormExtra />
+        <div className="mx-auto">
+          {/* This little shit won't be affected by Tailwind classes and I hate it, but I'll style collectively buttons another day. */}
           <Button variant="contained" type="submit" className="my-3">
             Login
           </Button>
-        </form>
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
-      </div>
+        </div>
+      </form>
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
     </div>
   );
 }

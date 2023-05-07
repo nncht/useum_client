@@ -22,11 +22,19 @@
   object-fit: cover;
 }
 
+#login-box {
+  max-width: 600px;
+}
+
 @media screen and (max-width: 400px) {
   .cover {
     width: 100%;
     background-color: #555;
     height: 140px;
     overflow: hidden;
+  }
+
+  #login-box {
+    width: 100%;
   }
 }
