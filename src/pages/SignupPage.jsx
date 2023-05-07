@@ -6,6 +6,9 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import ImageUploader from "../components/ImageUploader";
 
+import Header from "../components/UserLogin/Header";
+import Login from "../components/UserLogin/Login";
+
 const API_URL = "http://localhost:5005";
 
 function SignupPage() {
@@ -50,45 +53,56 @@ function SignupPage() {
   //   SIGN UP FORM (FRONTEND)
 
   return (
-    <div>
-      <form onSubmit={handleSignupSubmit}>
-        <input
-          type="email"
-          name="email"
-          value={newUser.email}
-          onChange={handleChange}
-          id="email"
+    <div className="flex justify-center">
+      <div className="bg-white p-4 mt-5 rounded-lg mx-auto" id="login-box">
+        <Header
+          heading="Create an account"
+          paragraph="Already have an account? "
+          linkName="Login"
+          linkUrl="/login"
         />
-
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={newUser.password}
-          onChange={handleChange}
-          id="password"
-        />
-
-        <input
-          type="text"
-          name="username"
-          value={newUser.username}
-          onChange={handleChange}
-          id="name"
-        />
-
-        <ImageUploader
-          setImageUrl={setImageUrl}
-          message={"Upload profile picture"}
-        />
-
-        <Button variant="contained" type="submit">
-          Sign Up
-        </Button>
-      </form>
-
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
+        <Login />
+      </div>
     </div>
+
+    // <div>
+    //   <form onSubmit={handleSignupSubmit}>
+    //     <input
+    //       type="email"
+    //       name="email"
+    //       value={newUser.email}
+    //       onChange={handleChange}
+    //       id="email"
+    //     />
+
+    //     <input
+    //       type="password"
+    //       name="password"
+    //       value={newUser.password}
+    //       onChange={handleChange}
+    //       id="password"
+    //     />
+
+    //     <input
+    //       type="text"
+    //       name="username"
+    //       value={newUser.username}
+    //       onChange={handleChange}
+    //       id="name"
+    //     />
+
+    //     <ImageUploader
+    //       setImageUrl={setImageUrl}
+    //       message={"Upload profile picture"}
+    //     />
+
+    //     <Button variant="contained" type="submit">
+    //       Sign Up
+    //     </Button>
+    //   </form>
+
+    //   {errorMessage && <p className="error-message">{errorMessage}</p>}
+    // </div>
   );
 }
 
