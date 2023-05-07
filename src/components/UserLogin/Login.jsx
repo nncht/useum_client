@@ -38,13 +38,14 @@ export default function Login() {
       });
   };
 
-  // Store all UI classes into a reusable variable
+  // Store all UI classes into a reusable class variable
   const fixedInputClass =
     "rounded-md appearance-none relative block w-full px-3 py-2 my-4 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm";
 
   return (
     <div className="my-3">
       <form onSubmit={handleLoginSubmit}>
+        {/* Email input */}
         <input
           type="email"
           name="email"
@@ -55,6 +56,7 @@ export default function Login() {
           placeholder="Email address"
         />
 
+        {/* Password input */}
         <input
           type="password"
           name="password"
@@ -64,9 +66,11 @@ export default function Login() {
           className={fixedInputClass}
           placeholder="Password"
         />
+
         {/* Remember me and forgot password component. Not functional yet. */}
         <FormExtra />
-        {/* This little shit won't be affected by Tailwind classes and I hate it, but I'll style collectively buttons another day. */}
+
+        {/* Login button */}
         <div className="mx-auto">
           <Button variant="contained" type="submit" className="my-3">
             Login
