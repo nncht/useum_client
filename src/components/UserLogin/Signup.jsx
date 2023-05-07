@@ -52,6 +52,7 @@ export default function Signup() {
   return (
     <div className="my-3">
       <form onSubmit={handleSignupSubmit}>
+        {/* Username input */}
         <input
           type="text"
           name="username"
@@ -62,6 +63,7 @@ export default function Signup() {
           placeholder="Username"
         />
 
+        {/* Email input */}
         <input
           type="email"
           name="email"
@@ -72,6 +74,7 @@ export default function Signup() {
           placeholder="Email address"
         />
 
+        {/* Password input */}
         <input
           type="password"
           name="password"
@@ -84,7 +87,7 @@ export default function Signup() {
 
         <ImageUploader
           setImageUrl={setImageUrl}
-          message={"Upload profile picture"}
+          message={"Upload a profile picture"}
         />
 
         <Button variant="contained" type="submit">
