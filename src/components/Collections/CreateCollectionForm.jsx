@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
-import { AuthContext } from '../context/auth.context';
+import { AuthContext } from '../../context/auth.context';
 
 const API_URL = 'http://localhost:5005';
 function CreateCollectionForm() {

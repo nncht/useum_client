@@ -1,11 +1,13 @@
 import { AuthContext } from "../context/auth.context";
 import { useState, useEffect, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import Button from "@mui/material/Button";
+import { Grid } from "@mui/material";
 import ProfileHeader from "../components/Profile/ProfileHeader";
 import ProfileBio from "../components/Profile/ProfileBio";
 import ProfilePicture from "../components/Profile/ProfilePicture";
+import CollectionCard from "../components/Collections/CollectionCard";
 
 const API_URL = "http://localhost:5005";
 
@@ -35,7 +37,7 @@ const ProfilePage = () => {
   return (
     currentUser && (
       <div>
-        {/* Header and profile picture block */}
+        {/* Header and profile picture */}
         <div className="relative">
           <ProfileHeader />
           <div className="absolute mt-[-80px] mx-4">
@@ -43,42 +45,45 @@ const ProfilePage = () => {
           </div>
         </div>
 
-        {/* User bio, needs to be added to User model */}
+        {/* User bio */}
         <div>
           <ProfileBio currentUser={currentUser} />
         </div>
 
-        {/* TO BE MOVED TO OWN COMPONENTS */}
         <section className="p-3 bg-slate-300">
           <h4 className="text-2xl text-slate-600">Collections</h4>
+          <Grid container spacing={3}>
+            {/* Available collections of this user will be rendered as cards here */}
+            {!currentUser.collections ? (
+              <p>No collections available</p>
+            ) : (
+              currentUser.collections.map((collection) => {
+                return (
+                  <>
+                    <Grid item xs={12} sm={6} md={4} lg={3}>
+                      <CollectionCard
+                        key={collection._id}
+                        collection={collection}
+                      />
+                    </Grid>
+                  </>
+                );
+              })
+            )}
+          </Grid>
+          {/* Add new collection button */}
 
-          {!currentUser.collections ? (
-            <p>You've not added any collections.</p>
-          ) : (
-            currentUser.collections.map((collection) => {
-              return (
-                <div key={collection._id}>
-                  <Link to={`/my-collections/${collection._id}`}>
-                    <p>{collection.name}</p>
-                  </Link>
-                </div>
-              );
-            })
-          )}
-
-          <h4 className="text-2xl text-slate-600">Interests</h4>
-
-          {!currentUser.categories ? (
-            <p>You've not specified any interests yet.</p>
-          ) : (
-            currentUser.categories.map((category) => {
-              return (
-                <div key={category._id}>
-                  <p>{category.name}</p>
-                </div>
-              );
-            })
-          )}
+          <nav className="my-4">
+            <Link to="/create-collection" className="m-2">
+              <Button variant="contained">New collection</Button>
+            </Link>
+            <Link to="/create-item" className="m-2">
+              <Button variant="contained">Add new item</Button>
+            </Link>
+            <Link to="/collections" className="m-2">
+              <Button variant="outlined">Collections (redundant)</Button>
+            </Link>
+          </nav>
         </section>
       </div>
     )
