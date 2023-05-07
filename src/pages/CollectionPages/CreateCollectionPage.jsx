@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import CreateCollectionForm from '../../components/CreateCollectionForm';
+import CreateCollectionForm from '../../components/Collections/CreateCollectionForm';
 import CreateItemForm from '../../components/CreateItemForm';
 import axios from 'axios';
 
