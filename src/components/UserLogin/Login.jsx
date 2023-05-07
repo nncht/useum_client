@@ -2,27 +2,14 @@ import axios from "axios";
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
-import { loginFields } from "../../constants/formFields";
-import Input from "./Input";
-import FormAction from "./FormAction";
+import Button from "@mui/material/Button";
 import FormExtra from "./FormExtra";
 
-// USER AUTH
 const API_URL = "http://localhost:5005";
 
-const fields = loginFields;
-let fieldsState = {};
-fields.forEach((field) => (fieldsState[field.id] = ""));
-
 export default function Login() {
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  const [loginState, setLoginState] = useState(fieldsState);
-  const handleChange = (e) => {
-    setLoginState({ ...loginState, [e.target.id]: e.target.value });
-  };
-
-  console.log(loginState);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const [errorMessage, setErrorMessage] = useState(undefined);
 
@@ -51,29 +38,40 @@ export default function Login() {
       });
   };
 
+  // Store all UI classes into a reusable variable
+  const fixedInputClass =
+    "rounded-md appearance-none relative block w-full px-3 py-2 my-4 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm";
+
   return (
-    <div>
-      <form className="mt-8 space-y-6 onSubmit={handleLoginSubmit}">
-        <div className="-space-y-px">
-          {fields.map((field) => (
-            <Input
-              key={field.id}
-              handleChange={handleChange}
-              value={loginState[field.id]}
-              labelText={field.labelText}
-              labelFor={field.labelFor}
-              id={field.id}
-              name={field.name}
-              type={field.type}
-              isRequired={field.isRequired}
-              placeholder={field.placeholder}
-            />
-          ))}
-        </div>
-        <FormExtra />
-        <FormAction handleLoginSubmit={handleLoginSubmit} text="Login" />
-      </form>
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
+    <div className="flex justify-center my-3">
+      <div className="flex items-center">
+        <form onSubmit={handleLoginSubmit}>
+          <input
+            type="email"
+            name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            id="email"
+            className={fixedInputClass}
+            placeholder="Email address"
+          />
+
+          <input
+            type="password"
+            name="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            id="password"
+            className={fixedInputClass}
+            placeholder="Password"
+          />
+          <FormExtra />
+          <Button variant="contained" type="submit" className="my-3">
+            Login
+          </Button>
+        </form>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+      </div>
     </div>
   );
 }
