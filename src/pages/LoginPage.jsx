@@ -4,6 +4,7 @@ import { useState, useContext } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
+import Header from "../components/UserLogin/Header";
 
 const API_URL = "http://localhost:5005";
 
@@ -39,7 +40,8 @@ function LoginPage() {
 
   // LOGIN PAGE RENDER (FRONTEND)
   return (
-    <div>
+    <div className="p-4">
+      <Header />
       <h1>Login</h1>
 
       <form onSubmit={handleLoginSubmit}>
