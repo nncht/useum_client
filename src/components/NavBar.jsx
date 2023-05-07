@@ -1,4 +1,3 @@
-import * as React from "react";
 import { AuthContext } from "../context/auth.context";
 import { useContext } from "react";
 
@@ -16,11 +15,11 @@ function NavBar() {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
 
   return (
-    <nav className="sticky top-0 bg-slate-200">
+    <nav className="sticky top-0 bg-slate-700">
       {/* BRAND LOGO */}
       <div id="nav-bar" className="flex items-center justify-between px-4">
         <Link href="/" underline="none" className="flex items-center">
-          <h1 className="w-full text-3xl font-bold my-2 text-slate-600">
+          <h1 className="w-full text-3xl tracking-widest font-bold my-2 text-slate-50">
             USEUM
           </h1>
         </Link>
@@ -29,13 +28,13 @@ function NavBar() {
         {!isLoggedIn && (
           <div className="flex items-center">
             <Link href="/login" className="mx-2">
-              <Button variant="outlined" size="medium">
+              <Button sx={{ color: "white" }} variant="text" size="small">
                 Log In
               </Button>
             </Link>
 
             <Link href="/signup">
-              <Button variant="contained" size="medium">
+              <Button variant="contained" size="small">
                 Sign Up
               </Button>
             </Link>
@@ -47,18 +46,18 @@ function NavBar() {
           <div>
             <Link href="/profile">
               <IconButton color="primary" variant="text">
-                <AccountCircleIcon className="text-slate-600" />
+                <AccountCircleIcon className="text-slate-50" />
               </IconButton>
             </Link>
 
             <Link href="/settings">
               <IconButton color="primary" variant="text">
-                <SettingsIcon className="text-slate-600" />
+                <SettingsIcon className="text-slate-50" />
               </IconButton>
             </Link>
 
             <IconButton color="primary" variant="text" onClick={logOutUser}>
-              <LogoutIcon className="text-slate-600" />
+              <LogoutIcon className="text-slate-50" />
             </IconButton>
           </div>
         )}
