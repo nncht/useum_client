@@ -14,7 +14,7 @@ export default function Input({
   customClass,
 }) {
   return (
-    <div className="my-5">
+    <div className="my-3">
       <label htmlFor={labelFor} className="sr-only">
         {labelText}
       </label>
