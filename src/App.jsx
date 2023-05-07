@@ -52,9 +52,9 @@ function App() {
             <Route
               path="/create-collection"
               element={
-                <isPrivate>
+                <IsPrivate>
                   <CreateCollectionPage />
-                </isPrivate>
+                </IsPrivate>
               }
             />
             <Route
