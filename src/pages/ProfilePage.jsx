@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import ProfileHeader from "../components/Profile/ProfileHeader";
 import ProfileBio from "../components/Profile/ProfileBio";
 import ProfilePicture from "../components/Profile/ProfilePicture";
+import CollectionCard from "../components/Collections/CollectionCard";
 
 const API_URL = "http://localhost:5005";
 
@@ -72,32 +73,15 @@ const ProfilePage = () => {
           ) : (
             currentUser.collections.map((collection) => {
               return (
-                <div key={collection._id}>
-                  <Link to={`/my-collections/${collection._id}`}>
-                    <p>{collection.name}</p>
-                  </Link>
-                </div>
+                <CollectionCard key={collection._id} collection={collection} />
               );
             })
           )}
+
+          {/* Add new collection button */}
           <Link to="/create-collection" className="m-2">
             <Button variant="contained">Add new collection</Button>
           </Link>
-          {/* Uncommented this for now, because categories should be shown as labels/tags within the user bio */}
-
-          {/* <h4 className="text-2xl text-slate-600">Interests</h4>
-
-          {!currentUser.categories ? (
-            <p>You've not specified any interests yet.</p>
-          ) : (
-            currentUser.categories.map((category) => {
-              return (
-                <div key={category._id}>
-                  <p>{category.name}</p>
-                </div>
-              );
-            })
-          )} */}
         </section>
       </div>
     )
