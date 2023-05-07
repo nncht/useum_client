@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { loginFields } from "../../constants/formFields";
 import Input from "./Input";
+import FormAction from "./FormAction";
+import FormExtra from "./FormExtra";
 
 const fields = loginFields;
 let fieldsState = {};
@@ -13,8 +15,13 @@ export default function Login() {
     setLoginState({ ...loginState, [e.target.id]: e.target.value });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    authenticateUser();
+  };
+
   return (
-    <form className="mt-8 space-y-6">
+    <form className="mt-8 space-y-6 onSubmit={handleSubmit}">
       <div className="-space-y-px">
         {fields.map((field) => (
           <Input
@@ -31,6 +38,8 @@ export default function Login() {
           />
         ))}
       </div>
+      <FormExtra />
+      <FormAction handleSubmit={handleSubmit} text="Login" />
     </form>
   );
 }

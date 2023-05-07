@@ -53,27 +53,27 @@ function LoginPage() {
       />
       <Login />
 
-      <form onSubmit={handleLoginSubmit}>
-        {/* <input
+      {/* <form onSubmit={handleLoginSubmit}>
+        <input
           type="email"
           name="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           id="email"
-        /> */}
+        />
 
-        {/* <input
+        <input
           type="password"
           name="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           id="password"
-        /> */}
+        />
 
         <Button variant="contained" type="submit">
           Login
         </Button>
-      </form>
+      </form> */}
 
       {errorMessage && <p className="error-message">{errorMessage}</p>}
     </div>
