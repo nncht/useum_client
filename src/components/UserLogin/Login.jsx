@@ -64,9 +64,10 @@ export default function Login() {
           className={fixedInputClass}
           placeholder="Password"
         />
+        {/* Remember me and forgot password component. Not functional yet. */}
         <FormExtra />
+        {/* This little shit won't be affected by Tailwind classes and I hate it, but I'll style collectively buttons another day. */}
         <div className="mx-auto">
-          {/* This little shit won't be affected by Tailwind classes and I hate it, but I'll style collectively buttons another day. */}
           <Button variant="contained" type="submit" className="my-3">
             Login
           </Button>
