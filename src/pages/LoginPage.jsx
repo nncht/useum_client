@@ -1,11 +1,14 @@
-// src/pages/LoginPage.js
-
+// IMPORTS
 import { useState, useContext } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import Header from "../components/UserLogin/Header";
 
+// MUI Imports
+import Button from "@mui/material/Button";
+
+// USER AUTH
 const API_URL = "http://localhost:5005";
 
 function LoginPage() {
@@ -41,11 +44,15 @@ function LoginPage() {
   // LOGIN PAGE RENDER (FRONTEND)
   return (
     <div className="p-4">
-      <Header />
-      <h1>Login</h1>
+      <Header
+        heading="Login to your account"
+        paragraph="Don't have an account yet? "
+        linkName="Signup"
+        linkUrl="/signup"
+      />
 
       <form onSubmit={handleLoginSubmit}>
-        <label htmlFor="email">Email:</label>
+        <label htmlFor="email">Email</label>
         <input
           type="email"
           name="email"
@@ -54,7 +61,7 @@ function LoginPage() {
           id="email"
         />
 
-        <label htmlFor="password">Password:</label>
+        <label htmlFor="password">Password</label>
         <input
           type="password"
           name="password"
@@ -66,9 +73,6 @@ function LoginPage() {
         <button type="submit">Login</button>
       </form>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
-
-      <p>Don't have an account yet?</p>
-      <Link to="/signup"> Sign Up</Link>
     </div>
   );
 }
