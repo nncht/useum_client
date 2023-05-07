@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-// This page is redundant, because collections should be shown on the user profie.
-
 const Collections = () => {
   const [collections, setCollections] = useState([]);
 
@@ -21,6 +19,10 @@ const Collections = () => {
   return (
     <>
       <h2>Collections List</h2>
+      <h2 className="text-danger">
+        This page is redundant, because collections should be shown on the user
+        profie.
+      </h2>
       <ul>
         {collections.map((collection) => (
           <li key={collection._id}>
