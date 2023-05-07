@@ -17,7 +17,19 @@ const CollectionCard = ({ collection }) => {
         <Typography gutterBottom variant="h5" component="div">
           {collection.name}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{
+            minHeight: "2.4rem",
+            maxHeight: "2.4rem",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            display: "-webkit-box",
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: "vertical",
+          }}
+        >
           {collection.description}
         </Typography>
       </CardContent>

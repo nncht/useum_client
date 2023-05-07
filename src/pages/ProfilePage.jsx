@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Button from "@mui/material/Button";
+import { Grid } from "@mui/material";
 import ProfileHeader from "../components/Profile/ProfileHeader";
 import ProfileBio from "../components/Profile/ProfileBio";
 import ProfilePicture from "../components/Profile/ProfilePicture";
@@ -49,27 +50,32 @@ const ProfilePage = () => {
           <ProfileBio currentUser={currentUser} />
         </div>
 
-        {/* TO BE MOVED TO OWN COMPONENTS */}
         <section className="p-3 bg-slate-300">
-          {/* Available collections of this user will be rendered as cards here */}
-
           <h4 className="text-2xl text-slate-600">Collections</h4>
-
-          {!currentUser.collections ? (
-            <p>No collections available</p>
-          ) : (
-            currentUser.collections.map((collection) => {
-              return (
-                <CollectionCard key={collection._id} collection={collection} />
-              );
-            })
-          )}
-
+          <Grid container spacing={3}>
+            {/* Available collections of this user will be rendered as cards here */}
+            {!currentUser.collections ? (
+              <p>No collections available</p>
+            ) : (
+              currentUser.collections.map((collection) => {
+                return (
+                  <>
+                    <Grid item xs={12} sm={6} md={4} lg={3}>
+                      <CollectionCard
+                        key={collection._id}
+                        collection={collection}
+                      />
+                    </Grid>
+                  </>
+                );
+              })
+            )}
+          </Grid>
           {/* Add new collection button */}
 
           <nav className="my-4">
             <Link to="/create-collection" className="m-2">
-              <Button variant="contained">Add new collection</Button>
+              <Button variant="contained">New collection</Button>
             </Link>
             <Link to="/create-item" className="m-2">
               <Button variant="contained">Add new item</Button>
