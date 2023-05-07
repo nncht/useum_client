@@ -51,19 +51,6 @@ const ProfilePage = () => {
 
         {/* TO BE MOVED TO OWN COMPONENTS */}
         <section className="p-3 bg-slate-300">
-          {/* Temporary navigation for collections/items development. WILL BE REMOVED AFTER DEV */}
-          <nav className="mb-4">
-            <Link to="/collections" className="m-2">
-              <Button variant="contained">Collections (redundant)</Button>
-            </Link>
-            <Link to="/create-item" className="m-2">
-              <Button variant="contained">Add new item</Button>
-            </Link>
-            <p className="text-danger m-2">
-              Temporary buttons, will be removed later
-            </p>
-          </nav>
-
           {/* Available collections of this user will be rendered as cards here */}
 
           <h4 className="text-2xl text-slate-600">Collections</h4>
@@ -79,9 +66,21 @@ const ProfilePage = () => {
           )}
 
           {/* Add new collection button */}
-          <Link to="/create-collection" className="m-2">
-            <Button variant="contained">Add new collection</Button>
-          </Link>
+
+          <nav className="my-4">
+            <Link to="/create-collection" className="m-2">
+              <Button variant="contained">Add new collection</Button>
+            </Link>
+            <Link to="/collections" className="m-2">
+              <Button variant="contained">Collections (redundant)</Button>
+            </Link>
+            <Link to="/create-item" className="m-2">
+              <Button variant="contained">Add new item</Button>
+            </Link>
+            <p className="text-danger m-2">
+              Temporary buttons, will be removed later
+            </p>
+          </nav>
         </section>
       </div>
     )
