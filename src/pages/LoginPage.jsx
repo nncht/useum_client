@@ -74,6 +74,7 @@ function LoginPage() {
           Login
         </Button>
       </form>
+
       {errorMessage && <p className="error-message">{errorMessage}</p>}
     </div>
   );
