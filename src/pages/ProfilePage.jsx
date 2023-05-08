@@ -29,7 +29,7 @@ const ProfilePage = () => {
           console.error(err);
         });
     }
-  }, []);
+  }, [user]);
 
   // USER PROFILE RENDER
 
