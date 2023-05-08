@@ -11,8 +11,8 @@ import ProfilePage from "./pages/ProfilePage";
 import CreateCollectionPage from "./pages/CollectionPages/CreateCollectionPage";
 import Collections from "./pages/CollectionPages/Collections";
 import MyCollection from "./pages/CollectionPages/MyCollection";
-import IsPrivate from "./components/IsPrivate";
-import IsPublic from "./components/IsPublic";
+import IsPrivate from "./components/RouteProtectors/IsPrivate";
+import IsPublic from "./components/RouteProtectors/IsPublic";
 
 function App() {
   return (
