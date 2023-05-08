@@ -49,7 +49,7 @@ const ProfilePage = () => {
           <ProfileBio currentUser={currentUser} />
         </div>
 
-        <section className="p-3 bg-slate-300">
+        <section className="p-3">
           <h4 className="text-2xl text-slate-600">Collections</h4>
           <Grid container spacing={3}>
             {/* Available collections of this user will be rendered as cards here */}
@@ -75,12 +75,6 @@ const ProfilePage = () => {
           <nav className="my-4">
             <Link to="/create-collection" className="m-2">
               <Button variant="contained">New collection</Button>
-            </Link>
-            <Link to="/create-item" className="m-2">
-              <Button variant="contained">Add new item</Button>
-            </Link>
-            <Link to="/collections" className="m-2">
-              <Button variant="outlined">Collections (redundant)</Button>
             </Link>
           </nav>
         </section>
