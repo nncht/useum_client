@@ -13,6 +13,7 @@ import Collections from "./pages/CollectionPages/Collections";
 import MyCollection from "./pages/CollectionPages/MyCollection";
 import IsPrivate from "./components/RouteProtectors/IsPrivate";
 import IsPublic from "./components/RouteProtectors/IsPublic";
+import EditCollection from "./pages/CollectionPages/EditCollection";
 
 function App() {
   return (
@@ -79,6 +80,14 @@ function App() {
               element={
                 <IsPrivate>
                   <MyCollection />
+                </IsPrivate>
+              }
+            />
+            <Route
+              path="/edit-collection/:collectionId"
+              element={
+                <IsPrivate>
+                  <EditCollection />
                 </IsPrivate>
               }
             />
