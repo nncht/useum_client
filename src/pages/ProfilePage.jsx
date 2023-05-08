@@ -29,15 +29,14 @@ const ProfilePage = () => {
           console.error(err);
         });
     }
-  }, [user]);
-
-  console.log("the currentUser", currentUser);
+  }, []);
 
   // USER PROFILE RENDER
-  return (
-    currentUser && (
+
+  if (currentUser.categories || currentUser.collections) {
+    return (
       <div>
-        {/* Header and profile picture */}
+        {/* Header and profile picture block */}
         <div className="relative">
           <ProfileHeader />
           <div className="absolute mt-[-80px] mx-4">
@@ -45,7 +44,7 @@ const ProfilePage = () => {
           </div>
         </div>
 
-        {/* User bio */}
+        {/* User bio, needs to be added to User model */}
         <div>
           <ProfileBio currentUser={currentUser} />
         </div>
@@ -86,8 +85,8 @@ const ProfilePage = () => {
           </nav>
         </section>
       </div>
-    )
-  );
+    );
+  }
 };
 
 export default ProfilePage;
