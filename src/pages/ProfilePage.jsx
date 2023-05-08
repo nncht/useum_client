@@ -49,7 +49,7 @@ const ProfilePage = () => {
           <ProfileBio currentUser={currentUser} />
         </div>
 
-        <section className="p-3 bg-slate-300">
+        <section className="px-3 pt-3 pb-20 bg-slate-300">
           <h4 className="text-2xl text-slate-600">Collections</h4>
           <Grid container spacing={3}>
             {/* Available collections of this user will be rendered as cards here */}
@@ -76,7 +76,7 @@ const ProfilePage = () => {
             {/* Available categories of this user will be rendered as cards here */}
             {currentUser.categories.length < 1 ? (
               <Grid item xs={12} sm={6} md={4} lg={3}>
-              <p>No categories available</p>
+                <p>No categories available</p>
               </Grid>
             ) : (
               currentUser.categories.map((category) => {
@@ -84,7 +84,6 @@ const ProfilePage = () => {
                   <>
                     <Grid item xs={12} sm={6} md={4} lg={3}>
                       <h5>{category}</h5>
-
                     </Grid>
                   </>
                 );

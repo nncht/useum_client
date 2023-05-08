@@ -12,6 +12,7 @@
   max-width: 1280px;
   height: calc(100vh - 52px);
   margin: 0 auto;
+  padding-bottom: 50px;
 }
 
 /* -----------------------------
