@@ -1,5 +1,5 @@
 // import { AuthContext } from "../context/auth.context";
-import { useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Grid } from "@mui/material";
 import CollectionCard from "../components/Collections/CollectionCard";
 import axios from "axios";
@@ -14,7 +14,8 @@ const Home = () => {
     axios
       .get(`${API_URL}/collections`)
       .then((res) => {
-        setCollections(res.data);
+        const sortedCollections = res.data.collections.sort((a, b) => b.likes.length - a.likes.length);
+        setCollections({ collections: sortedCollections });
         console.log(res.data);
       })
       .catch((err) => {
@@ -31,7 +32,7 @@ const Home = () => {
         <h4 className="text-2xl text-slate-600">Collections</h4>
         <Grid container spacing={3}>
           {/* Available collections of all users will be rendered as cards here */}
-          {collections.length < 3 ? (
+          {collections.collections.length < 3 ? (
             <p>No collections available</p>
           ) : (
             collections.collections.map((collection) => {
