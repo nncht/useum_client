@@ -2,6 +2,7 @@
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import CollectionHeader from "../../components/Collections/CollectionHeader";
 import { Button } from "@mui/material";
 
 const API_URL = "http://localhost:5005";
@@ -35,14 +36,17 @@ const MyCollection = () => {
   return (
     <>
       {collection && (
-        <section className="p-3">
-          <h4 className="text-2xl text-slate-600">{collection.name}</h4>
-          <p>{collection.description}</p>
-          <img src={collection.imageUrl} alt="collection" />
-          <Link to="/create-item" className="m-2">
-            <Button variant="contained">Add new item</Button>
-          </Link>
-        </section>
+        <div>
+          <CollectionHeader />
+          <section className="p-3">
+            <h4 className="text-2xl text-slate-600">{collection.name}</h4>
+            <p>{collection.description}</p>
+
+            <Link to="/create-item" className="m-2">
+              <Button variant="contained">Add new item</Button>
+            </Link>
+          </section>
+        </div>
       )}
     </>
   );
