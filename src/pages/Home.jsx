@@ -1,16 +1,19 @@
 import { AuthContext } from "../context/auth.context";
-import { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
 
 const Home = () => {
   const { user, isLoggedIn } = useContext(AuthContext);
 
   return !isLoggedIn ? (
-    <p>Not logged in</p>
+    <section className="p-3">
+      <p>Not logged in</p>
+    </section>
   ) : (
-    <div>
-      <p>Welcome back, {user.username}</p>
-    </div>
+    <section className="p-3">
+      <div>
+        <p className="text-2xl text-slate-600">Welcome back, {user.username}</p>
+      </div>
+    </section>
   );
 };
 
