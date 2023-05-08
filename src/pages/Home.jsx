@@ -26,7 +26,7 @@ const Home = () => {
   return (
     <section id="main-content" className="p-3 bg-slate-300">
       <div>
-        <p className="text-2xl text-slate-600">Welcome back, {/*user.username*/}</p>
+        <p className="text-2xl text-slate-600">Welcome back, my dear Friend {/*user.username*/ /*I broke this, please help me fix it*/}</p>
       </div>
       <div>
         <h4 className="text-2xl text-slate-600">Collections</h4>
