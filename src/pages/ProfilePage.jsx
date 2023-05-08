@@ -49,7 +49,7 @@ const ProfilePage = () => {
           <ProfileBio currentUser={currentUser} />
         </div>
 
-        <section className="p-3">
+        <section className="p-3 bg-slate-300">
           <h4 className="text-2xl text-slate-600">Collections</h4>
           <Grid container spacing={3}>
             {/* Available collections of this user will be rendered as cards here */}
