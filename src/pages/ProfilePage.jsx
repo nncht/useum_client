@@ -35,7 +35,7 @@ const ProfilePage = () => {
 
   if (currentUser.categories || currentUser.collections) {
     return (
-      <div>
+      <div id="main-content">
         {/* Header and profile picture block */}
         <div className="relative">
           <ProfileHeader />

@@ -36,7 +36,7 @@ const MyCollection = () => {
   return (
     <>
       {collection && (
-        <div>
+        <div id="main-content">
           <CollectionHeader collection={collection} />
           <section className="p-3">
             {/* Collection name and description */}

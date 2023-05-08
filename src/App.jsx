@@ -19,7 +19,7 @@ function App() {
     <div className="App">
       <NavBar />
       <main className="p-0">
-        <div id="main-content" className="px-0 bg-slate-300">
+        <div className="px-0">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route
