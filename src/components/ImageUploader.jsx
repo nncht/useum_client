@@ -15,7 +15,7 @@ const handleFileUpload = (setImageUrl, e) => {
     .catch((err) => console.log("Error while uploading the file: ", err));
 };
 
-const ImageUploadFormComponent = ({ setImageUrl, message }) => {
+const ImageUploader = ({ setImageUrl, message }) => {
   return (
     <div>
       <div className="row">
@@ -36,4 +36,4 @@ const ImageUploadFormComponent = ({ setImageUrl, message }) => {
   );
 };
 
-export default ImageUploadFormComponent;
+export default ImageUploader;

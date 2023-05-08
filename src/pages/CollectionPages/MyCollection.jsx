@@ -41,7 +41,7 @@ const MyCollection = () => {
             <>
                 <h2>{collection.name}</h2>
                 <p>{collection.description}</p>
-                <img src={collection.image} alt="collection" />
+                <img src={collection.imageUrl} alt="collection" />
             </>
 
         )}
