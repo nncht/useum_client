@@ -21,6 +21,8 @@ const EditCollection = () => {
 		getCollection(collectionId, setCollection);
 	}, []);
 
+	console.log(collection)
+
 	useEffect(() => {
 		if (collection) {
 			setName(collection.name);
@@ -45,6 +47,7 @@ const EditCollection = () => {
 			name: name,
 			description: description,
 			imageUrl: imageUrl,
+			createdBy: collection.createdBy,
 		};
 
 		axios
@@ -59,6 +62,20 @@ const EditCollection = () => {
 				console.log('err is: ', err);
 			});
 	};
+
+	const deleteCollection = () => {
+		axios
+			.post(`${API_URL}/collections/${collectionId}`, {createdBy: collection.createdBy})
+			.then((res) => {
+				console.log('res is: ', res.data);
+				navigate('/profile');
+			})
+			.catch((err) => {
+				console.log('err is: ', err);
+			});
+	};
+
+
 
 	return (
 		<>
@@ -75,10 +92,19 @@ const EditCollection = () => {
 					onChange={handleChange}
 				/>
 
+				{imageUrl && <img src={imageUrl} width={250} height={150} alt='collection' />
+				}
+
+
 				<ImageUploader setImageUrl={setImageUrl} />
 
+
+
 				<Button type='submit'> Update </Button>
+
 			</form>
+
+			<Button onClick={deleteCollection}>Delete Collection</Button>
 		</>
 	);
 };
