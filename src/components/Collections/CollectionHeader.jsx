@@ -1,7 +1,7 @@
-const CollectionHeader = () => {
+const CollectionHeader = ({ collection }) => {
   return (
-    <div className="cover">
-      <img src="images/default/default-header.png" alt="" />
+    <div id="collection-header">
+      <img src={collection.imageUrl} alt={collection.name} />
     </div>
   );
 };

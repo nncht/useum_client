@@ -14,6 +14,19 @@
   margin: 0 auto;
 }
 
+/* -----------------------------
+USER LOGIN/SIGNUP
+-------------------------------- */
+
+#login-box {
+  max-width: 600px;
+  min-width: 400px;
+}
+
+/* -----------------------------
+USER PROFILE
+-------------------------------- */
+
 .cover {
   width: 100%;
   background-color: #555;
@@ -27,10 +40,29 @@
   object-fit: cover;
 }
 
-#login-box {
-  max-width: 600px;
-  min-width: 400px;
+/* -----------------------------
+COLLECTION DETAILS
+-------------------------------- */
+
+#collection-header {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 300px;
+  filter: brightness(75%) saturate(30%);
 }
+
+#collection-header img {
+  width: 100%;
+}
+
+/* -----------------------------
+MEDIA QUERIES FOR RESPONSIVE DESIGN
+-------------------------------- */
 
 @media screen and (max-width: 390px) {
   .cover {

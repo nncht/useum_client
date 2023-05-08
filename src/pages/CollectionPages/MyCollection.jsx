@@ -37,11 +37,20 @@ const MyCollection = () => {
     <>
       {collection && (
         <div>
-          <CollectionHeader />
+          <CollectionHeader collection={collection} />
           <section className="p-3">
-            <h4 className="text-2xl text-slate-600">{collection.name}</h4>
-            <p>{collection.description}</p>
+            {/* Collection name and description */}
+            <div>
+              <h4 className="text-2xl text-slate-600">{collection.name}</h4>
+              <p>{collection.description}</p>
+            </div>
 
+            {/* Items */}
+            <div>
+              {/* Map over items here - I'll style this later so it's okay to only map over item names for now */}
+            </div>
+
+            {/* Add new item buttone */}
             <Link to="/create-item" className="m-2">
               <Button variant="contained">Add new item</Button>
             </Link>
