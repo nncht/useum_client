@@ -11,7 +11,7 @@ const CollectionCard = ({ collection }) => {
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         sx={{ height: 200 }}
-        image="/images/default/default-header.png"
+        image={collection.imageUrl}
         title={collection.name}
       />
       <CardContent>
