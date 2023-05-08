@@ -13,6 +13,7 @@ import Collections from "./pages/CollectionPages/Collections";
 import MyCollection from "./pages/CollectionPages/MyCollection";
 import IsPrivate from "./components/RouteProtectors/IsPrivate";
 import IsPublic from "./components/RouteProtectors/IsPublic";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -85,6 +86,7 @@ function App() {
           </Routes>
         </div>
       </main>
+      <Footer />
     </div>
   );
 }
