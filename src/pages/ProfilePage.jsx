@@ -35,7 +35,7 @@ const ProfilePage = () => {
 
   if (currentUser.categories || currentUser.collections) {
     return (
-      <div>
+      <div id="main-content">
         {/* Header and profile picture block */}
         <div className="relative">
           <ProfileHeader />
@@ -96,12 +96,6 @@ const ProfilePage = () => {
           <nav className="my-4">
             <Link to="/create-collection" className="m-2">
               <Button variant="contained">New collection</Button>
-            </Link>
-            <Link to="/create-item" className="m-2">
-              <Button variant="contained">Add new item</Button>
-            </Link>
-            <Link to="/collections" className="m-2">
-              <Button variant="outlined">Collections (redundant)</Button>
             </Link>
           </nav>
         </section>

@@ -1,22 +1,25 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import CreateCollectionForm from '../../components/Collections/CreateCollectionForm';
-import CreateItemForm from '../../components/CreateItemForm';
-import axios from 'axios';
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import CreateCollectionForm from "../../components/Collections/CreateCollectionForm";
+import CreateItemForm from "../../components/CreateItemForm";
+import axios from "axios";
 
 function CollectionsPage() {
   const [selectedCollection, setSelectedCollection] = useState(null);
-  const [successMessage, setSuccessMessage] = useState('');
-
+  const [successMessage, setSuccessMessage] = useState("");
 
   const handleCreateItem = async (name, description) => {
     try {
-      const response = await fetch('http://localhost:5005/items', {
-        method: 'POST',
+      const response = await fetch("http://localhost:5005/items", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, description, collection: selectedCollection }),
+        body: JSON.stringify({
+          name,
+          description,
+          collection: selectedCollection,
+        }),
       });
 
       if (!response.ok) {
@@ -25,12 +28,12 @@ function CollectionsPage() {
 
       setSuccessMessage(`Item "${name}" created successfully!`);
     } catch (error) {
-      console.error('Error creating item:', error);
+      console.error("Error creating item:", error);
     }
   };
 
   return (
-    <div>
+    <div id="main-content">
       <h1>Collections</h1>
       <div>
         <h2>Create Collection</h2>
@@ -45,7 +48,6 @@ function CollectionsPage() {
         <p>Please select a collection to create items for.</p>
       )} */}
       {successMessage && <p>{successMessage}</p>}
-
     </div>
   );
 }

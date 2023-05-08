@@ -1,9 +1,7 @@
-import React from "react";
-
 const ProfileHeader = () => {
   return (
     <div className="cover">
-      <img src="images/default/default-header.png" />
+      <img src="images/default/default-header.png" alt="User picture" />
     </div>
   );
 };

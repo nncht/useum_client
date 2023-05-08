@@ -14,13 +14,14 @@ import MyCollection from "./pages/CollectionPages/MyCollection";
 import IsPrivate from "./components/RouteProtectors/IsPrivate";
 import IsPublic from "./components/RouteProtectors/IsPublic";
 import EditCollection from "./pages/CollectionPages/EditCollection";
+import Footer from "./components/Footer";
 
 function App() {
   return (
     <div className="App">
       <NavBar />
       <main className="p-0">
-        <div id="main-content" className="px-0">
+        <div className="px-0">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route
@@ -93,6 +94,7 @@ function App() {
             />
           </Routes>
         </div>
+        <Footer />
       </main>
     </div>
   );
