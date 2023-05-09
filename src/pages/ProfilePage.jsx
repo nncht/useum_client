@@ -51,25 +51,24 @@ const ProfilePage = () => {
 
         <section className="px-3 pt-3 pb-20 bg-slate-300">
           <h4 className="text-2xl text-slate-600">Collections</h4>
-          <Grid container spacing={3}>
-            {/* Available collections of this user will be rendered as cards here */}
-            {currentUser.collections.length < 1 ? (
-              <p>No collections available</p>
-            ) : (
-              currentUser.collections.map((collection) => {
-                return (
-                  <>
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                      <CollectionCard
-                        key={collection._id}
-                        collection={collection}
-                      />
-                    </Grid>
-                  </>
-                );
-              })
-            )}
-          </Grid>
+
+          {/* Available collections of this user will be rendered as cards here */}
+          {currentUser.collections.length < 1 ? (
+            <p>No collections available</p>
+          ) : (
+            currentUser.collections.map((collection) => {
+              return (
+                <>
+                  <Grid container spacing={3} item xs={12} sm={6} md={4} lg={3}>
+                    <CollectionCard
+                      key={collection._id}
+                      collection={collection}
+                    />
+                  </Grid>
+                </>
+              );
+            })
+          )}
 
           <h4 className="text-2xl text-slate-600">Interests</h4>
           <Grid container spacing={3}>
