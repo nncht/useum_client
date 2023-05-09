@@ -6,11 +6,12 @@ import Home from "./pages/Home";
 import NavBar from "./components/NavBar";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
-import CreateItemPage from "./pages/CreateItemPage";
+import CreateItemPage from "./pages/ItemPages/CreateItemPage";
 import ProfilePage from "./pages/ProfilePage";
 import CreateCollectionPage from "./pages/CollectionPages/CreateCollectionPage";
 import Collections from "./pages/CollectionPages/Collections";
 import MyCollection from "./pages/CollectionPages/MyCollection";
+import MyItem from "./pages/ItemPages/MyItem";
 import IsPrivate from "./components/RouteProtectors/IsPrivate";
 import IsPublic from "./components/RouteProtectors/IsPublic";
 import EditCollection from "./pages/CollectionPages/EditCollection";
@@ -84,6 +85,16 @@ function App() {
                 </IsPrivate>
               }
             />
+
+            <Route
+              path="/my-items/:itemId"
+              element={
+                <IsPrivate>
+                  <MyItem />
+                </IsPrivate>
+              }
+            />
+
             <Route
               path="/edit-collection/:collectionId"
               element={
