@@ -54,7 +54,9 @@ const ProfilePage = () => {
           <Grid container spacing={3}>
             {/* Available collections of this user will be rendered as cards here */}
             {currentUser.collections.length < 1 ? (
-              <p>No collections available</p>
+              <Grid item xs={12} sm={6} md={4} lg={3}>
+                <p>No collections available</p>
+              </Grid>
             ) : (
               currentUser.collections.map((collection) => {
                 return (
