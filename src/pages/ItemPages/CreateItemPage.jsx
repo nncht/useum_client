@@ -4,11 +4,9 @@ import CreateForm from "../../components/CreateForm";
 
 function CreateItemPage() {
   return (
-    <div id="main-content">
-      <h1>Create Item</h1>
-      <CreateForm target={"items"} idObject={"item"}/>
-
-    </div>
+    <section id="main-content" className="px-3 pt-3 pb-20 bg-slate-300">
+      <CreateForm target={"items"} idObject={"item"} className="w-50" />
+    </section>
   );
 }
 
