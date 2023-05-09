@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import SelectCategories from './SelectCategories';
 
 const API_URL = 'http://localhost:5005';
-function CreateForm({ target, idObject }) {
+function CreateForm({ target, idObject, forCollection }) {
 	const { user } = useContext(AuthContext);
 
 	const [currentUser, setCurrentUser] = useState(user);
@@ -21,6 +21,7 @@ function CreateForm({ target, idObject }) {
 	const storedToken = localStorage.getItem('authToken');
 
 	const navigate = useNavigate();
+	console.log("For collection", forCollection)
 
 	useEffect(() => {
 		if (user && user._id) {
@@ -47,6 +48,7 @@ function CreateForm({ target, idObject }) {
 			imageUrl: imageUrl,
 			categories: categoryArray,
 			reviews: reviews,
+			collections: forCollection,
 		};
 
 		axios
@@ -71,6 +73,10 @@ function CreateForm({ target, idObject }) {
 		currentUser && (
 			<div className='my-3'>
 				<form className='flex flex-col' onSubmit={handleSubmit}>
+
+				<input type="hidden" name="forCollection" value={forCollection} />
+
+
 					<label htmlFor='name'>
 						Name:
 						<input
