@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import CreateCollectionForm from "../../components/Collections/CreateCollectionForm";
-import CreateItemForm from "../../components/CreateItemForm";
+import CreateForm from "../../components/CreateForm";
 import axios from "axios";
 
 function CollectionsPage() {
@@ -35,9 +34,13 @@ function CollectionsPage() {
   return (
     <div id="main-content">
       <h1>Collections</h1>
-      <div>
+      <div className="flex justify-center">
+      <div className="bg-white p-4 mt-5 rounded-lg mx-auto" id="login-box">
         <h2>Create Collection</h2>
-        <CreateCollectionForm />
+        <CreateForm target={"collections"} idObject={"collection"}/>
+
+
+        </div>
       </div>
       {/* {selectedCollection ? (
         <div>
