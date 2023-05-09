@@ -1,4 +1,5 @@
 const ProfilePicture = ({ currentUser }) => {
+
   return (
     <div>
       <img

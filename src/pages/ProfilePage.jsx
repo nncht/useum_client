@@ -38,7 +38,7 @@ const ProfilePage = () => {
       <div id="main-content">
         {/* Header and profile picture block */}
         <div className="relative">
-          <ProfileHeader />
+          <ProfileHeader currentUser={currentUser}/>
           <div className="absolute mt-[-80px] mx-4">
             <ProfilePicture currentUser={currentUser} />
           </div>
