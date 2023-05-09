@@ -21,7 +21,6 @@ function CreateForm({ target, idObject, forCollection }) {
 	const storedToken = localStorage.getItem('authToken');
 
 	const navigate = useNavigate();
-	console.log("For collection", forCollection)
 
 	useEffect(() => {
 		if (user && user._id) {
@@ -39,7 +38,6 @@ function CreateForm({ target, idObject, forCollection }) {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
-		console.log(categoryArray);
 
 		const params = {
 			name: name,
