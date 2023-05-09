@@ -31,7 +31,7 @@ const Home = () => {
 				</div>
 			) : (
 
-        {/* This part will be decided by the user settings*/}
+
 				<div className='px-4 py-2 bg-slate-300'>
 					<p className='text-2xl text-slate-600'>Welcome back, {user.username}</p>
           <p>Based on what you selected in your settings, you could see a bunch of stuff here!</p>
