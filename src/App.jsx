@@ -15,6 +15,7 @@ import MyItem from "./pages/ItemPages/MyItem";
 import IsPrivate from "./components/RouteProtectors/IsPrivate";
 import IsPublic from "./components/RouteProtectors/IsPublic";
 import EditCollection from "./pages/CollectionPages/EditCollection";
+import EditItem from "./pages/ItemPages/EditItem";
 import Footer from "./components/Footer";
 
 function App() {
@@ -100,6 +101,15 @@ function App() {
               element={
                 <IsPrivate>
                   <EditCollection />
+                </IsPrivate>
+              }
+            />
+
+            <Route
+              path="/edit-item/:itemId"
+              element={
+                <IsPrivate>
+                  <EditItem />
                 </IsPrivate>
               }
             />
