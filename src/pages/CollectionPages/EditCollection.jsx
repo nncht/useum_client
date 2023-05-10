@@ -30,6 +30,10 @@ const EditCollection = () => {
 			setName(collection.name);
 			setDescription(collection.description);
 			setImageUrl(collection.imageUrl);
+      const tags = collection.categories.map((category) => {
+        return category.category
+      });
+      setCategoryArray(tags);
 		}
 	}, [collection]);
 
@@ -39,7 +43,9 @@ const EditCollection = () => {
 			setName(value);
 		} else if (name === 'description') {
 			setDescription(value);
-		}
+		}  else if (name === 'categoryArray') {
+      setCategoryArray(value);
+    }
 	};
 
 	const handleEditCollectionSubmit = (e) => {
@@ -50,6 +56,8 @@ const EditCollection = () => {
 			description: description,
 			imageUrl: imageUrl,
 			createdBy: collection.createdBy,
+      categories: categoryArray,
+
 		};
 
 		axios

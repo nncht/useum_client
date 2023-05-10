@@ -53,6 +53,8 @@ const SelectCategories = ({ categoryArray, setCategoryArray }) => {
 	return (
 		<Select
 
+
+			name="categoryArray"
 			id='categoryArray'
 			multiple
 			value={categoryArray}
