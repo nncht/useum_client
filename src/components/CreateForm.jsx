@@ -92,6 +92,11 @@ function CreateForm({ target, idObject, forCollection }) {
             value={description}
             onChange={(event) => setDescription(event.target.value)}
           />
+
+          <label htmlFor="categoryArray" className="text-xl">
+            Category
+          </label>
+
           <SelectCategories
             setCategoryArray={setCategoryArray}
             categoryArray={categoryArray}
