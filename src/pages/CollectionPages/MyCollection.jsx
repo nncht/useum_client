@@ -44,7 +44,7 @@ const MyCollection = () => {
                 return (
                   <>
                     <Grid item xs={12} sm={6} md={4} lg={3}>
-                      <ItemCard item={item} key={item._id} />
+                      <ItemCard item={item} key={item._id} currentCollection={collection._id} />
                     </Grid>
                   </>
                 );
