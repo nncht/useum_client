@@ -4,6 +4,8 @@ import Button from '@mui/material/Button';
 import getCollection from '../../services/getCollection';
 import CollectionHeader from '../../components/Collections/CollectionHeader';
 import { setCollectionId } from '../../services/sharedDatastore';
+import ItemCard from '../../components/Items/ItemCard';
+import { Grid } from '@mui/material';
 
 const API_URL = 'http://localhost:5005';
 
@@ -21,7 +23,7 @@ const MyCollection = () => {
 			{collection && (
 				<div id='main-content' className='bg-slate-300'>
 					<CollectionHeader collection={collection} />
-					<section className='p-3 pb-10'>
+					<section className='px-4 pt-3 pb-20 bg-slate-300'>
 						{/* Collection name and description */}
 						<div>
 							<h4 className='text-2xl text-slate-600'>{collection.name}</h4>
@@ -30,17 +32,15 @@ const MyCollection = () => {
 
 						{/* Items */}
 						<div>
-							{collection.items.map((item) => (
-                <div key={item._id} className='flex flex-col'>
-                  <Link to={`/my-items/${item._id}`}>
-                    <h4 className='text-2xl text-slate-600'>{item.name}</h4>
-                  </Link>
-                  <p>{item.description}</p>
-                </div>
-              ))
-
-
-      }
+							{collection.items.map((item) => {
+								return (
+									<>
+										<Grid item xs={12} sm={6} md={4} lg={3}>
+											<ItemCard item={item} key={item._id} />
+										</Grid>
+									</>
+								);
+							})}
 						</div>
 
 						{/* Add new item buttone */}
