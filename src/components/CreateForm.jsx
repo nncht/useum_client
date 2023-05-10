@@ -8,7 +8,7 @@ import Button from "@mui/material/Button";
 import SelectCategories from "./SelectCategories";
 
 const API_URL = "http://localhost:5005";
-function CreateForm({ target, idObject }) {
+function CreateForm({ target, idObject, forCollection }) {
   const { user } = useContext(AuthContext);
 
   const [currentUser, setCurrentUser] = useState(user);
@@ -38,8 +38,6 @@ function CreateForm({ target, idObject }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    console.log(categoryArray);
-
     const params = {
       name: name,
       description: description,
@@ -47,6 +45,7 @@ function CreateForm({ target, idObject }) {
       imageUrl: imageUrl,
       categories: categoryArray,
       reviews: reviews,
+      collections: forCollection,
     };
 
     axios
@@ -72,6 +71,7 @@ function CreateForm({ target, idObject }) {
       <div className="my-3">
         <form className="flex flex-col w-75 mx-auto" onSubmit={handleSubmit}>
           <h4 className="text-2xl text-slate-600 my-3">Create Item</h4>
+          <input type="hidden" name="forCollection" value={forCollection} />
           <label htmlFor="name" className="text-xl">
             Name
           </label>
