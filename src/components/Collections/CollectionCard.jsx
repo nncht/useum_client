@@ -7,15 +7,14 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
 const CollectionCard = ({ collection }) => {
+
+  console.log(collection.imageUrl)
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         sx={{ height: 200, filter: "brightness(90%) saturate(70%)" }}
-        image={
-          collection.imageUrl === "" || collection.imageUrl === "No image"
-            ? "/images/default/default-collection.svg"
-            : collection.imageUrl
-        }
+        image={collection.imageUrl}
         title={collection.name}
       />
       <CardContent>

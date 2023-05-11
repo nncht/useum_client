@@ -19,14 +19,13 @@ const ItemCard = ({ item, currentCollection }) => {
     getCollection(collectionId, setCollection);
   }, []);
 
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         sx={{ height: 200 }}
         image={
-          item.imageUrl === "" || item.imageUrl === "No image"
-            ? "/images/default/default-item.svg"
-            : item.imageUrl
+          item.imageUrl
         }
         title={item.name}
       />
