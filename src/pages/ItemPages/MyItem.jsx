@@ -47,16 +47,15 @@ const MyItem = () => {
 								})}
 							</div>)}
 
-							{/* If there are reviews, displays the reviews for the item */}
+							{/* If there are comments, displays the comments for the item */}
 
-							{item.reviews && (
+							{item.comments && (
 								<div>
-									{item.reviews.map((review) => {
+									{item.comments.map((comment) => {
 										return (
-											<div key={review._id}>
-												<p>{review.title}</p>
-												<p>{review.description}</p>
-												<p>{review.rating}</p>
+											<div key={comment._id}>
+												<p>{comment.title}</p>
+												<p>{comment.description}</p>
 											</div>
 										);
 									})}
