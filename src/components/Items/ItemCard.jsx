@@ -10,23 +10,25 @@ import Typography from "@mui/material/Typography";
 import { setCollectionId } from "../../services/sharedDatastore";
 import getCollection from "../../services/getCollection";
 
-
-
 const ItemCard = ({ item, currentCollection }) => {
-
   const [collection, setCollection] = useState(null);
 
-  const  collectionId = currentCollection
+  const collectionId = currentCollection;
 
   useEffect(() => {
     getCollection(collectionId, setCollection);
   }, []);
 
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         sx={{ height: 200 }}
-        image={item.imageUrl}
+        image={
+          item.imageUrl === "" || item.imageUrl === "No image"
+            ? "/images/default/default-item.svg"
+            : item.imageUrl
+        }
         title={item.name}
       />
       <CardContent>
@@ -62,7 +64,11 @@ const ItemCard = ({ item, currentCollection }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Link to={`/my-items/${item._id}`} className="m-2" onClick={() => setCollectionId(currentCollection)} >
+        <Link
+          to={`/my-items/${item._id}`}
+          className="m-2"
+          onClick={() => setCollectionId(currentCollection)}
+        >
           <Button size="small">View</Button>
         </Link>
         <Link to="#" className="m-2">
