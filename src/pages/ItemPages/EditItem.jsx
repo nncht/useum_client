@@ -1,12 +1,10 @@
-
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Button from '@mui/material/Button';
 import ImageUploader from '../../components/ImageUploader';
 import SelectCategories from '../../components/SelectCategories';
-import { getCollectionId } from "../../services/sharedDatastore";
-
+import { getCollectionId } from '../../services/sharedDatastore';
 
 const API_URL = 'http://localhost:5005';
 
@@ -15,11 +13,12 @@ const EditItem = () => {
 	const [imageUrl, setImageUrl] = useState('');
 	const [name, setName] = useState('');
 	const [description, setDescription] = useState('');
-  const [categoryArray, setCategoryArray] = useState([]);
+	const [categoryArray, setCategoryArray] = useState([]);
+	const [uploadingImage, setUploadingImage] = useState(false);
 
-  const collectionId = getCollectionId();
+	const collectionId = getCollectionId();
 
-  console.log("COLLECTION ID", collectionId);
+	console.log('COLLECTION ID', collectionId);
 
 	const { itemId } = useParams();
 
@@ -27,10 +26,8 @@ const EditItem = () => {
 
 	useEffect(() => {
 		axios.get(`${API_URL}/items/${itemId}`).then((res) => {
-      setItem(res.data.item);
-    }
-    )
-
+			setItem(res.data.item);
+		});
 	}, []);
 
 	console.log(item);
@@ -40,10 +37,10 @@ const EditItem = () => {
 			setName(item.name);
 			setDescription(item.description);
 			setImageUrl(item.imageUrl);
-      const tags = item.categories.map((category) => {
-        return category.category
-      });
-      setCategoryArray(tags);
+			const tags = item.categories.map((category) => {
+				return category.category;
+			});
+			setCategoryArray(tags);
 		}
 	}, [item]);
 
@@ -53,21 +50,24 @@ const EditItem = () => {
 			setName(value);
 		} else if (name === 'description') {
 			setDescription(value);
-		}  else if (name === 'categoryArray') {
-      setCategoryArray(value);
-    }
+		} else if (name === 'categoryArray') {
+			setCategoryArray(value);
+		}
 	};
 
 	const handleEditItemSubmit = (e) => {
 		e.preventDefault();
+
+		if (uploadingImage) {
+			return;
+		}
 
 		const updatedCollectionBody = {
 			name: name,
 			description: description,
 			imageUrl: imageUrl,
 			createdBy: item.createdBy,
-      categories: categoryArray,
-
+			categories: categoryArray,
 		};
 
 		axios
@@ -107,13 +107,7 @@ const EditItem = () => {
 				<label htmlFor='name' className='text-xl'>
 					Name
 				</label>
-				<input
-					type='text'
-					name='name'
-					value={name}
-					onChange={handleChange}
-					className={fixedInputClass}
-				/>
+				<input type='text' name='name' value={name} onChange={handleChange} className={fixedInputClass} />
 
 				<label htmlFor='description' className='text-xl'>
 					Description
@@ -127,13 +121,17 @@ const EditItem = () => {
 					className={fixedInputClass}
 				/>
 
-        <label htmlFor="categoryArray"> Categories </label>
+				<label htmlFor='categoryArray'> Categories </label>
 
-        <SelectCategories categoryArray={categoryArray} setCategoryArray={setCategoryArray} />
+				<SelectCategories categoryArray={categoryArray} setCategoryArray={setCategoryArray} />
 
-				{imageUrl && <img src={imageUrl} width={250} height={150} alt='collection' />}
+				{uploadingImage === true ? (
+					<p>Uploading image, please wait...</p>
+				) : (
+					<img src={imageUrl} width={250} height={350} alt='' />
+				)}
 
-				<ImageUploader setImageUrl={setImageUrl} />
+				<ImageUploader setImageUrl={setImageUrl} setUploadingImage={setUploadingImage} />
 
 				<div className='flex justify-center'>
 					<Button variant='contained' type='submit' className='m-3'>

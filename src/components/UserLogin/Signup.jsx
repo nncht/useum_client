@@ -14,6 +14,7 @@ export default function Signup() {
   });
 
   const [imageUrl, setImageUrl] = useState("");
+  const [uploadingImage, setUploadingImage] = useState(false);
   const [errorMessage, setErrorMessage] = useState(undefined);
 
   const navigate = useNavigate();
@@ -25,6 +26,10 @@ export default function Signup() {
 
   const handleSignupSubmit = (e) => {
     e.preventDefault();
+
+    if (uploadingImage) {
+      return;
+    }
 
     const signupBody = {
       email: newUser.email,
@@ -85,8 +90,15 @@ export default function Signup() {
           placeholder="Password"
         />
 
+        {/* Image uploader */}
+
+        { uploadingImage === true ? (<p>Uploading image, please wait...</p>) : (<img src={imageUrl} width={250} height={350} alt="" />)}
+
+
+
         <ImageUploader
           setImageUrl={setImageUrl}
+          setUploadingImage={setUploadingImage}
           message={"Upload a profile picture"}
         />
 
