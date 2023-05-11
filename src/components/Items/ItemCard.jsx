@@ -25,7 +25,9 @@ const ItemCard = ({ item, currentCollection }) => {
       <CardMedia
         sx={{ height: 200 }}
         image={
-          item.imageUrl
+          item.imageUrl === "" || item.imageUrl === "No image"
+            ? "/images/default/default-item.svg"
+            : item.imageUrl
         }
         title={item.name}
       />
