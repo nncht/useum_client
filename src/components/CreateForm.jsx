@@ -117,8 +117,16 @@ function CreateForm({ target, idObject, forCollection }) {
             onChange={(event) => setReviews(event.target.value)}
           />
 
-{ uploadingImage === true ? (<p>Uploading image, please wait...</p>) : (<img src={imageUrl} width={250} height={350} alt="" />)}
-
+          {uploadingImage === true ? (
+            <p>Uploading image, please wait...</p>
+          ) : (
+            <img
+              src={imageUrl !== "" ? imageUrl : "/images/default/no-image.svg"}
+              width={250}
+              height={350}
+              alt=""
+            />
+          )}
 
           <ImageUploader
             setImageUrl={setImageUrl}
