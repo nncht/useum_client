@@ -4,6 +4,7 @@ import axios from 'axios';
 import Button from '@mui/material/Button';
 import { setCollectionId } from '../../services/sharedDatastore';
 import { getCollectionId } from "../../services/sharedDatastore";
+import AddItemToCollection from '../../components/Items/AddItemToCollection';
 
 
 const API_URL = 'http://localhost:5005';
@@ -24,7 +25,6 @@ const MyItem = () => {
 			});
 	}, [itemId]);
 
-	console.log(item.categories);
 
 	return (
 		<>
@@ -66,6 +66,10 @@ const MyItem = () => {
 						<Link to={`/edit-item/${item._id}`} onClick={() => setCollectionId(collectionId)}>
 							<Button>Edit Item</Button>
 						</Link>
+
+						<AddItemToCollection itemId={item._id} />
+
+
 					</section>
 				</div>
 			)}
