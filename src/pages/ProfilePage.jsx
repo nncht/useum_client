@@ -8,6 +8,7 @@ import ProfileHeader from "../components/Profile/ProfileHeader";
 import ProfileBio from "../components/Profile/ProfileBio";
 import ProfilePicture from "../components/Profile/ProfilePicture";
 import CollectionCard from "../components/Collections/CollectionCard";
+import CategoryTag from "../components/Profile/CategoryTag";
 
 const API_URL = "http://localhost:5005";
 
@@ -38,7 +39,7 @@ const ProfilePage = () => {
       <div id="main-content">
         {/* Header and profile picture block */}
         <div className="relative">
-          <ProfileHeader currentUser={currentUser}/>
+          <ProfileHeader currentUser={currentUser} />
           <div className="absolute mt-[-80px] mx-4">
             <ProfilePicture currentUser={currentUser} />
           </div>
@@ -73,25 +74,6 @@ const ProfilePage = () => {
             )}
           </Grid>
 
-          <h4 className="text-2xl text-slate-600 my-4">Interests</h4>
-          <Grid container spacing={3}>
-            {/* Available categories of this user will be rendered as cards here */}
-            {currentUser.categories.length < 1 ? (
-              <Grid item xs={12} sm={6} md={4} lg={3}>
-                <p>No categories available</p>
-              </Grid>
-            ) : (
-              currentUser.categories.map((category) => {
-                return (
-                  <>
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                      <h5>{category}</h5>
-                    </Grid>
-                  </>
-                );
-              })
-            )}
-          </Grid>
           {/* Add new collection button */}
 
           <nav className="my-4">
