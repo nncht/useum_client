@@ -1,4 +1,5 @@
 import Button from "@mui/material/Button";
+import UserStatistics from "./UserStatistics";
 
 const ProfileBio = ({ currentUser }) => {
   return (
@@ -8,7 +9,10 @@ const ProfileBio = ({ currentUser }) => {
       </div>
       <div>
         <h2 className="text-3xl text-white">{currentUser.username}</h2>
+        <UserStatistics />
         <p className="text-white text-lg">
+          {/* Needs to be replaced with currentUser.userBio once the Edit Profile function is ready.\
+          Leaving Lorem ipsum for testing purposes for now. */}
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
