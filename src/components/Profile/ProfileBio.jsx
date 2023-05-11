@@ -1,6 +1,6 @@
 import Button from "@mui/material/Button";
 import UserStatistics from "./UserStatistics";
-import CategoryTag from "./CategoryTag";
+import CategoryTags from "./CategoryTags";
 
 const ProfileBio = ({ currentUser }) => {
   console.log(currentUser);
@@ -41,20 +41,9 @@ const ProfileBio = ({ currentUser }) => {
         {/* Display user's category/interests tags */}
         <div className="flex">
           <div className="mr-3">
-            <CategoryTag />
+            <CategoryTags />
           </div>
         </div>
-
-        {/* Available categories of this user will be rendered as tags here. Disabled until categories Array works */}
-        {/* <div className="flex">
-            {currentUser.categories.map((category) => {
-              return (
-                <div key={category} className="mr-3">
-                  <CategoryTag />
-                </div>
-              );
-            })}
-          </div> */}
       </div>
     </div>
   );

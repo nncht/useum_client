@@ -8,7 +8,6 @@ import ProfileHeader from "../components/Profile/ProfileHeader";
 import ProfileBio from "../components/Profile/ProfileBio";
 import ProfilePicture from "../components/Profile/ProfilePicture";
 import CollectionCard from "../components/Collections/CollectionCard";
-import CategoryTag from "../components/Profile/CategoryTag";
 
 const API_URL = "http://localhost:5005";
 
