@@ -13,7 +13,8 @@ const EditCollection = () => {
 	const [imageUrl, setImageUrl] = useState('');
 	const [name, setName] = useState('');
 	const [description, setDescription] = useState('');
-  const [categoryArray, setCategoryArray] = useState([]);
+	const [categoryArray, setCategoryArray] = useState([]);
+	const [uploadingImage, setUploadingImage] = useState(false);
 
 	const { collectionId } = useParams();
 
@@ -30,10 +31,10 @@ const EditCollection = () => {
 			setName(collection.name);
 			setDescription(collection.description);
 			setImageUrl(collection.imageUrl);
-      const tags = collection.categories.map((category) => {
-        return category.category
-      });
-      setCategoryArray(tags);
+			const tags = collection.categories.map((category) => {
+				return category.category;
+			});
+			setCategoryArray(tags);
 		}
 	}, [collection]);
 
@@ -43,21 +44,24 @@ const EditCollection = () => {
 			setName(value);
 		} else if (name === 'description') {
 			setDescription(value);
-		}  else if (name === 'categoryArray') {
-      setCategoryArray(value);
-    }
+		} else if (name === 'categoryArray') {
+			setCategoryArray(value);
+		}
 	};
 
 	const handleEditCollectionSubmit = (e) => {
 		e.preventDefault();
+
+		if (uploadingImage) {
+			return;
+		}
 
 		const updatedCollectionBody = {
 			name: name,
 			description: description,
 			imageUrl: imageUrl,
 			createdBy: collection.createdBy,
-      categories: categoryArray,
-
+			categories: categoryArray,
 		};
 
 		axios
@@ -97,13 +101,7 @@ const EditCollection = () => {
 				<label htmlFor='name' className='text-xl'>
 					Name
 				</label>
-				<input
-					type='text'
-					name='name'
-					value={name}
-					onChange={handleChange}
-					className={fixedInputClass}
-				/>
+				<input type='text' name='name' value={name} onChange={handleChange} className={fixedInputClass} />
 
 				<label htmlFor='description' className='text-xl'>
 					Description
@@ -117,13 +115,13 @@ const EditCollection = () => {
 					className={fixedInputClass}
 				/>
 
-        <label htmlFor="categoryArray"> Categories </label>
+				<label htmlFor='categoryArray'> Categories </label>
 
-        <SelectCategories categoryArray={categoryArray} setCategoryArray={setCategoryArray} />
+				<SelectCategories categoryArray={categoryArray} setCategoryArray={setCategoryArray} />
 
-				{imageUrl && <img src={imageUrl} width={250} height={150} alt='collection' />}
+				{ uploadingImage === true ? (<p>Uploading image, please wait...</p>) : (<img src={imageUrl} width={250} height={350} alt="" />)}
 
-				<ImageUploader setImageUrl={setImageUrl} />
+				<ImageUploader setImageUrl={setImageUrl} setUploadingImage={setUploadingImage} />
 
 				<div className='flex justify-center'>
 					<Button variant='contained' type='submit' className='m-3'>

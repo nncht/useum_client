@@ -14,6 +14,7 @@ export default function Signup() {
   });
 
   const [imageUrl, setImageUrl] = useState("");
+  const [uploadingImage, setUploadingImage] = useState(false);
   const [errorMessage, setErrorMessage] = useState(undefined);
 
   const navigate = useNavigate();
@@ -25,6 +26,10 @@ export default function Signup() {
 
   const handleSignupSubmit = (e) => {
     e.preventDefault();
+
+    if (uploadingImage) {
+      return;
+    }
 
     const signupBody = {
       email: newUser.email,
@@ -52,7 +57,6 @@ export default function Signup() {
   return (
     <div className="my-3">
       <form onSubmit={handleSignupSubmit}>
-
         {/* Email input */}
         <input
           type="email"
@@ -61,10 +65,10 @@ export default function Signup() {
           onChange={handleChange}
           id="email"
           className={fixedInputClass}
-          placeholder="Email address"      />
+          placeholder="Email address"
+        />
 
-
-      {/* Username input */}
+        {/* Username input */}
         <input
           type="text"
           name="username"
@@ -72,7 +76,8 @@ export default function Signup() {
           onChange={handleChange}
           id="name"
           className={fixedInputClass}
-          placeholder="Username"      />
+          placeholder="Username"
+        />
 
         {/* Password input */}
         <input
@@ -85,8 +90,22 @@ export default function Signup() {
           placeholder="Password"
         />
 
+        {/* Image uploader */}
+
+        {uploadingImage === true ? (
+          <p>Uploading image, please wait...</p>
+        ) : (
+          <img
+            src={imageUrl !== "" ? imageUrl : "/images/default/no-image.svg"}
+            width={250}
+            height={350}
+            alt=""
+          />
+        )}
+
         <ImageUploader
           setImageUrl={setImageUrl}
+          setUploadingImage={setUploadingImage}
           message={"Upload a profile picture"}
         />
 

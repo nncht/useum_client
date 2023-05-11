@@ -18,6 +18,8 @@ function CreateForm({ target, idObject, forCollection }) {
   const [categoryArray, setCategoryArray] = useState([]);
   const [errorMessage, setErrorMessage] = useState(undefined);
   const [reviews, setReviews] = useState([]);
+  const [uploadingImage, setUploadingImage] = useState(false);
+
   const storedToken = localStorage.getItem("authToken");
 
   const navigate = useNavigate();
@@ -37,6 +39,10 @@ function CreateForm({ target, idObject, forCollection }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if (uploadingImage) {
+      return;
+    }
 
     const params = {
       name: name,
@@ -110,8 +116,21 @@ function CreateForm({ target, idObject, forCollection }) {
             value={reviews}
             onChange={(event) => setReviews(event.target.value)}
           />
+
+          {uploadingImage === true ? (
+            <p>Uploading image, please wait...</p>
+          ) : (
+            <img
+              src={imageUrl !== "" ? imageUrl : "/images/default/no-image.svg"}
+              width={250}
+              height={350}
+              alt=""
+            />
+          )}
+
           <ImageUploader
             setImageUrl={setImageUrl}
+            setUploadingImage={setUploadingImage}
             message={"Upload a collection picture"}
           />
           <div>
