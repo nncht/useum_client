@@ -52,8 +52,10 @@ const SelectCategories = ({ categoryArray, setCategoryArray }) => {
 
 	return (
 		<Select
-			labelId='demo-multiple-checkbox-label'
-			id='demo-multiple-checkbox'
+
+
+			name="categoryArray"
+			id='categoryArray'
 			multiple
 			value={categoryArray}
 			onChange={handleSelectChange}

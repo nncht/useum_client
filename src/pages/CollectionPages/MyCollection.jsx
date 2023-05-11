@@ -17,6 +17,7 @@ const MyCollection = () => {
     getCollection(collectionId, setCollection);
   }, []);
 
+
   // COLLECTION DETAILS RENDER
   return (
     <>
@@ -29,6 +30,13 @@ const MyCollection = () => {
               <h4 className="text-2xl text-slate-600">{collection.name}</h4>
               <p>{collection.description}</p>
             </div>
+            <div>
+              <h4 className="text-2xl text-slate-600">Tags</h4>
+              {collection.categories.map((tag) => {
+                return <p key={tag._id}>{tag.category}</p>;
+
+              })}
+            </div>
 
             {/* Items */}
             <Grid container spacing={3}>
@@ -36,7 +44,7 @@ const MyCollection = () => {
                 return (
                   <>
                     <Grid item xs={12} sm={6} md={4} lg={3}>
-                      <ItemCard item={item} key={item._id} />
+                      <ItemCard item={item} key={item._id} currentCollection={collection._id} />
                     </Grid>
                   </>
                 );

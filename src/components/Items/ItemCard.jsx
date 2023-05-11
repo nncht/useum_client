@@ -1,12 +1,27 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { setCollectionId } from "../../services/sharedDatastore";
+import getCollection from "../../services/getCollection";
 
-const ItemCard = ({ item }) => {
+
+
+const ItemCard = ({ item, currentCollection }) => {
+
+  const [collection, setCollection] = useState(null);
+
+  const  collectionId = currentCollection
+
+  useEffect(() => {
+    getCollection(collectionId, setCollection);
+  }, []);
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -47,7 +62,7 @@ const ItemCard = ({ item }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Link to={`/my-items/${item._id}`} className="m-2">
+        <Link to={`/my-items/${item._id}`} className="m-2" onClick={() => setCollectionId(currentCollection)} >
           <Button size="small">View</Button>
         </Link>
         <Link to="#" className="m-2">
