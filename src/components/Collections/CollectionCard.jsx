@@ -12,9 +12,9 @@ const CollectionCard = ({ collection }) => {
       <CardMedia
         sx={{ height: 200 }}
         image={
-          collection.imageUrl !== ""
-            ? collection.imageUrl
-            : "/images/default/default-collection.svg"
+          collection.imageUrl === "" || collection.imageUrl === "No image"
+            ? "/images/default/default-collection.svg"
+            : collection.imageUrl
         }
         title={collection.name}
       />
