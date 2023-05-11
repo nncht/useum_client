@@ -76,7 +76,7 @@ const EditItem = () => {
 				console.log('res is: ', res.data);
 				setItem(res.data);
 
-				navigate(`/my-items/${itemId}`);
+				navigate(`/items/${itemId}`);
 			})
 			.catch((err) => {
 				console.log('err is: ', err);

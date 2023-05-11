@@ -70,7 +70,7 @@ const EditCollection = () => {
 				console.log('res is: ', res.data);
 				setCollection(res.data);
 
-				navigate(`/my-collections/${collectionId}`);
+				navigate(`/collections/${collectionId}`);
 			})
 			.catch((err) => {
 				console.log('err is: ', err);

@@ -65,7 +65,7 @@ const ItemCard = ({ item, currentCollection }) => {
       </CardContent>
       <CardActions>
         <Link
-          to={`/my-items/${item._id}`}
+          to={`/items/${item._id}`}
           className="m-2"
           onClick={() => setCollectionId(currentCollection)}
         >

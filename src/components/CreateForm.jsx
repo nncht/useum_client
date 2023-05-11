@@ -62,7 +62,7 @@ function CreateForm({ target, idObject, forCollection }) {
         setName("");
         setDescription("");
         setImageUrl("");
-        navigate(`/my-${target}/${res.data[idObject]._id}`);
+        navigate(`/${target}/${res.data[idObject]._id}`);
       })
       .catch((err) => {
         console.error(err);
