@@ -20,7 +20,7 @@ function NavBar() {
       <div id="nav-bar" className="flex items-center justify-between px-4">
         <Link href="/" underline="none" className="flex items-center">
           <h1 className="w-full text-3xl tracking-widest font-bold my-2 text-slate-50">
-            USEUM
+            /USEUM
           </h1>
         </Link>
 
