@@ -10,7 +10,7 @@ const CollectionCard = ({ collection }) => {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
-        sx={{ height: 200 }}
+        sx={{ height: 200, filter: "brightness(90%) saturate(70%)" }}
         image={
           collection.imageUrl === "" || collection.imageUrl === "No image"
             ? "/images/default/default-collection.svg"
