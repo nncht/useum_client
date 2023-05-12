@@ -88,6 +88,16 @@ function App() {
                 </IsPrivate>
               }
             />
+
+            <Route
+              path="/users/:username"
+              element={
+                <IsPrivate>
+                  <ProfilePage />
+                </IsPrivate>
+              }
+            />
+
             <Route
               path="/collections/:collectionId"
               element={

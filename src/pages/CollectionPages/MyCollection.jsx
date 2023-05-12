@@ -36,7 +36,7 @@ const MyCollection = () => {
               <h4 className="text-2xl text-slate-600">{collection.name}</h4>
               <div>
                 Created by{" "}
-                <Link to={`/profile/${collection.createdBy._id}`}>
+                <Link to={`/users/${collection.createdBy.username}`}>
                   {collection.createdBy.username}
                 </Link>
               </div>

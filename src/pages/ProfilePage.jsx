@@ -1,5 +1,5 @@
 import { AuthContext } from "../context/auth.context";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useParams } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Button from "@mui/material/Button";
