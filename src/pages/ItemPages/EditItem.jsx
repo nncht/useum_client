@@ -2,7 +2,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Button from '@mui/material/Button';
-import ImageUploader from '../../components/ImageUploader';
+import ImageUploader from '../../components/ImageUploader/ImageUploader';
 import SelectCategories from '../../components/SelectCategories';
 import { getCollectionId } from '../../services/sharedDatastore';
 

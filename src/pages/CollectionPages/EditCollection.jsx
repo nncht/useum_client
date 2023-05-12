@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Button from '@mui/material/Button';
 import getCollection from '../../services/getCollection';
-import ImageUploader from '../../components/ImageUploader';
+import ImageUploader from '../../components/ImageUploader/ImageUploader';
 import SelectCategories from '../../components/SelectCategories';
 
 const API_URL = 'http://localhost:5005';

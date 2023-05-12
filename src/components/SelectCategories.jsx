@@ -1,5 +1,7 @@
 import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
 import ListItemText from '@mui/material/ListItemText';
 import Select from '@mui/material/Select';
 import Checkbox from '@mui/material/Checkbox';
@@ -51,25 +53,27 @@ const SelectCategories = ({ categoryArray, setCategoryArray }) => {
 	};
 
 	return (
-		<Select
-
-
-			name="categoryArray"
-			id='categoryArray'
-			multiple
-			value={categoryArray}
-			onChange={handleSelectChange}
-			input={<OutlinedInput label='Tag' />}
-			renderValue={(selected) => selected.join(', ')}
-			MenuProps={MenuProps}
-		>
-			{allCategories.map((cat) => (
-				<MenuItem key={cat} value={cat}>
-					<Checkbox checked={categoryArray.indexOf(cat) > -1} onChange={handleSelectChange} />
-					<ListItemText primary={cat} />
-				</MenuItem>
-			))}
-		</Select>
+		<FormControl sx={{ my: 1, width: 250 }}>
+			<InputLabel id='select-categories'>Category</InputLabel>
+			<Select
+				name='categoryArray'
+				labelId='select-categories'
+				id='categoryArray'
+				multiple
+				value={categoryArray}
+				onChange={handleSelectChange}
+				input={<OutlinedInput label='Catego' />}
+				renderValue={(selected) => selected.join(', ')}
+				MenuProps={MenuProps}
+			>
+				{allCategories.map((cat) => (
+					<MenuItem key={cat} value={cat}>
+						<Checkbox checked={categoryArray.indexOf(cat) > -1} onChange={handleSelectChange} />
+						<ListItemText primary={cat} />
+					</MenuItem>
+				))}
+			</Select>
+		</FormControl>
 	);
 };
 
