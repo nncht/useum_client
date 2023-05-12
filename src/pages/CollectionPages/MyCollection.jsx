@@ -22,7 +22,7 @@ const MyCollection = () => {
 
   useEffect(() => {
     getCollection(collectionId, setCollection);
-  }, []);
+  }, [collectionId]);
 
   // COLLECTION DETAILS RENDER
   if (collection) {
@@ -68,7 +68,7 @@ const MyCollection = () => {
             </Grid>
             {/* Add new item buttone */}
 
-            {user._id === collection.createdBy ? (
+            {user.username === collection.createdBy.username ? (
               <div className="py-4">
                 <Link
                   to="/add-item"
