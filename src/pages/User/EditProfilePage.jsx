@@ -94,13 +94,15 @@ const EditProfilePage = () => {
 			categories: categoryArray,
 		};
 
+		const id = currentUser._id;
+
 		axios
-			.put(`${API_URL}/users/${userId}`, requestBody, {
+			.put(`${API_URL}/users/${id}`, requestBody, {
 				headers: { Authorization: `Bearer ${storedToken}` },
 			})
 			.then((response) => {
                 console.log(response.data)
-                navigate(`/profile`);
+                navigate(`/users/${currentUser.username}`);
 			})
 			.catch((err) => {
 				console.error(err);
