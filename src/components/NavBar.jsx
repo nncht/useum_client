@@ -1,18 +1,31 @@
 import { AuthContext } from "../context/auth.context";
 import { useContext } from "react";
 
-// MUI imports
+// MUI components
+import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
+import List from "@mui/material/List";
+import Divider from "@mui/material/Divider";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+
+// MUI icons
 import Link from "@mui/material/Link";
-import SettingsIcon from "@mui/icons-material/Settings";
-import LogoutIcon from "@mui/icons-material/Logout";
+
+import IconButton from "@mui/material/IconButton";
+// import SettingsIcon from "@mui/icons-material/Settings";
+// import LogoutIcon from "@mui/icons-material/Logout";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 // -- End of Imports
 
+// type Anchor = "right";
+
 function NavBar() {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
+  const drawerWidth = 240;
 
   return (
     <nav className="sticky shadow top-0 bg-slate-700" style={{ zIndex: 10 }}>
@@ -50,15 +63,15 @@ function NavBar() {
               </IconButton>
             </Link>
 
-            <Link href="/settings">
+            <Link href="/profile">
               <IconButton color="primary" variant="text">
-                <SettingsIcon className="text-slate-50" />
+                <AccountCircleIcon className="text-slate-50" />
               </IconButton>
             </Link>
 
-            <IconButton color="primary" variant="text" onClick={logOutUser}>
+            {/* <IconButton color="primary" variant="text" onClick={logOutUser}>
               <LogoutIcon className="text-slate-50" />
-            </IconButton>
+            </IconButton> */}
           </div>
         )}
       </div>
