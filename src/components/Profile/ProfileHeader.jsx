@@ -1,7 +1,7 @@
-const ProfileHeader = ({ currentUser }) => {
+const ProfileHeader = ({ userData }) => {
   return (
     <div className="cover">
-      <img src={currentUser.headerImageUrl} alt="Header image" />
+      <img src={userData.headerImageUrl} alt="Header image" />
     </div>
   );
 };
