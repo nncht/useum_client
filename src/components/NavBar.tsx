@@ -94,19 +94,6 @@ export default function NavBar() {
           </h1>
         </Link>
 
-        <div>
-          <React.Fragment key="left">
-            <Button onClick={toggleDrawer("left", true)}>Open Drawer</Button>
-            <Drawer
-              anchor="left"
-              open={state["left"]}
-              onClose={toggleDrawer("left", false)}
-            >
-              {list("left")}
-            </Drawer>
-          </React.Fragment>
-        </div>
-
         {/* LOGGED OUT NAVBAR */}
         {!isLoggedIn && (
           <div className="flex items-center">
@@ -127,6 +114,21 @@ export default function NavBar() {
         {/* LOGGED IN NAVBAR */}
         {isLoggedIn && (
           <div>
+            <div>
+              <React.Fragment key="left">
+                <Button onClick={toggleDrawer("left", true)}>
+                  Open Drawer
+                </Button>
+                <Drawer
+                  anchor="left"
+                  open={state["left"]}
+                  onClose={toggleDrawer("left", false)}
+                >
+                  {list("left")}
+                </Drawer>
+              </React.Fragment>
+            </div>
+
             <Link href="/profile">
               <IconButton color="primary" variant="text">
                 <AccountCircleIcon className="text-slate-50" />
