@@ -21,9 +21,9 @@ const AddItemToCollection = ({ itemId }) => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		if (user && user._id) {
+		if (user && user.username) {
 			axios
-				.get(`${API_URL}/users/${user._id}`)
+				.get(`${API_URL}/users/${user.username}`)
 				.then((res) => {
 					setCurrentUser(res.data);
 					console.log(res.data);
