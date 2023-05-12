@@ -137,6 +137,18 @@ export default function NavBar() {
 
       <Divider />
 
+      {/* New Collection */}
+      <ListItem key="New Collection" disablePadding>
+        <ListItemButton>
+          <ListItemIcon>
+            <AddBoxIcon />
+          </ListItemIcon>
+          <Link href="     /create-collection" underline="none">
+            <ListItemText primary="New Collection" />
+          </Link>
+        </ListItemButton>
+      </ListItem>
+
       {/* New Item */}
       <ListItem key="New Item" disablePadding>
         <ListItemButton>
