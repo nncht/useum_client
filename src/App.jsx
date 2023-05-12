@@ -80,20 +80,14 @@ function App() {
                 </IsPrivate>
               }
             />
+
+            <Route path="/users/:username" element={<ProfilePage />} />
+
             <Route
               path="/collections"
               element={
                 <IsPrivate>
                   <Collections />
-                </IsPrivate>
-              }
-            />
-
-            <Route
-              path="/users/:username"
-              element={
-                <IsPrivate>
-                  <ProfilePage />
                 </IsPrivate>
               }
             />
