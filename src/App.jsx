@@ -7,6 +7,7 @@ import NavBar from "./components/NavBar";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import CreateItemPage from "./pages/ItemPages/CreateItemPage";
+import CreateFreeItemPage from "./pages/ItemPages/CreateFreeItemPage";
 import ProfilePage from "./pages/ProfilePage";
 import CreateCollectionPage from "./pages/CollectionPages/CreateCollectionPage";
 import Collections from "./pages/CollectionPages/Collections";
@@ -45,7 +46,7 @@ function App() {
               }
             />
             <Route
-              path="/create-item"
+              path="/add-item"
               element={
                 <IsPrivate>
                   {" "}
@@ -53,6 +54,16 @@ function App() {
                 </IsPrivate>
               }
             />
+            <Route
+              path="/create-item"
+              element={
+                <IsPrivate>
+                  {" "}
+                  <CreateFreeItemPage />{" "}
+                </IsPrivate>
+              }
+            />
+
             <Route
               path="/create-collection"
               element={
@@ -79,7 +90,7 @@ function App() {
               }
             />
             <Route
-              path="/my-collections/:collectionId"
+              path="/collections/:collectionId"
               element={
                 <IsPrivate>
                   <MyCollection />
@@ -88,7 +99,7 @@ function App() {
             />
 
             <Route
-              path="/my-items/:itemId"
+              path="/items/:itemId"
               element={
                 <IsPrivate>
                   <MyItem />

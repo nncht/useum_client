@@ -62,7 +62,7 @@ function CreateForm({ target, idObject, forCollection }) {
         setName("");
         setDescription("");
         setImageUrl("");
-        navigate(`/my-${target}/${res.data[idObject]._id}`);
+        navigate(`/${target}/${res.data[idObject]._id}`);
       })
       .catch((err) => {
         console.error(err);
@@ -131,11 +131,11 @@ function CreateForm({ target, idObject, forCollection }) {
           <ImageUploader
             setImageUrl={setImageUrl}
             setUploadingImage={setUploadingImage}
-            message={"Upload a collection picture"}
+            message={"Upload a picture"}
           />
           <div>
             <Button variant="contained" type="submit" className="text-xl mt-3">
-              Create
+              Add
             </Button>
           </div>
         </form>

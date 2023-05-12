@@ -51,7 +51,7 @@ const CollectionCard = ({ collection }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Link to={`/my-collections/${collection._id}`} className="m-2">
+        <Link to={`/collections/${collection._id}`} className="m-2">
           <Button size="small">View</Button>
         </Link>
         <Link to="#" className="m-2">
