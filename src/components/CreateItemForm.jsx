@@ -1,18 +1,18 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 function CreateItemForm() {
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:5005/items', {
-        method: 'POST',
+      const response = await fetch("http://localhost:5005/items", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ name, description }),
       });
@@ -22,12 +22,11 @@ function CreateItemForm() {
       }
 
       // Reset form fields and set success status
-      setName('');
-      setDescription('');
+      setName("");
+      setDescription("");
       setIsSuccess(true);
-
     } catch (error) {
-      console.error('Error creating item:', error);
+      console.error("Error creating item:", error);
     }
   };
 
@@ -35,14 +34,14 @@ function CreateItemForm() {
     <>
       {isSuccess && <p>Item created successfully!</p>}
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name:</label>
+        <label htmlFor="name">Name</label>
         <input
           id="name"
           type="text"
           value={name}
           onChange={(event) => setName(event.target.value)}
         />
-        <label htmlFor="description">Description:</label>
+        <label htmlFor="description">Description</label>
         <textarea
           id="description"
           value={description}
@@ -55,5 +54,3 @@ function CreateItemForm() {
 }
 
 export default CreateItemForm;
-
-

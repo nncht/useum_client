@@ -38,7 +38,7 @@ const ProfilePage = () => {
       <div id="main-content">
         {/* Header and profile picture block */}
         <div className="relative">
-          <ProfileHeader currentUser={currentUser}/>
+          <ProfileHeader currentUser={currentUser} />
           <div className="absolute mt-[-80px] mx-4">
             <ProfilePicture currentUser={currentUser} />
           </div>
@@ -61,7 +61,14 @@ const ProfilePage = () => {
               currentUser.collections.map((collection) => {
                 return (
                   <>
-                    <Grid item xs={12} sm={6} md={4} lg={3} key={collection._id}>
+                    <Grid
+                      item
+                      xs={12}
+                      sm={6}
+                      md={4}
+                      lg={3}
+                      key={collection._id}
+                    >
                       <CollectionCard
                         key={collection._id}
                         collection={collection}
@@ -99,11 +106,9 @@ const ProfilePage = () => {
               <Button variant="contained">New collection</Button>
             </Link>
 
-            <Link to="/create-free-item" className="m-2">
-              <Button variant="contained">New Item</Button>
+            <Link to="/create-item" className="m-2">
+              <Button variant="contained">New item</Button>
             </Link>
-
-
           </nav>
         </section>
       </div>

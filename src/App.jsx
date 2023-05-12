@@ -46,7 +46,7 @@ function App() {
               }
             />
             <Route
-              path="/create-item"
+              path="/add-item"
               element={
                 <IsPrivate>
                   {" "}
@@ -55,7 +55,7 @@ function App() {
               }
             />
             <Route
-              path="/create-free-item"
+              path="/create-item"
               element={
                 <IsPrivate>
                   {" "}

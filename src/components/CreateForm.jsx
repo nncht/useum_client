@@ -131,11 +131,11 @@ function CreateForm({ target, idObject, forCollection }) {
           <ImageUploader
             setImageUrl={setImageUrl}
             setUploadingImage={setUploadingImage}
-            message={"Upload a collection picture"}
+            message={"Upload a picture"}
           />
           <div>
             <Button variant="contained" type="submit" className="text-xl mt-3">
-              Create
+              Add
             </Button>
           </div>
         </form>
