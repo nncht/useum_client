@@ -75,7 +75,7 @@ export default function NavBar() {
             <ListItemIcon>
               <AccountCircleIcon />
             </ListItemIcon>
-            <Link href={`/profile/${user.username}`} underline="none">
+            <Link href={`/users/${user.username}`} underline="none">
               <ListItemText primary="Profile" />
             </Link>
           </ListItemButton>

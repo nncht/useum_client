@@ -32,9 +32,9 @@ const ProfilePage = () => {
         </div>
       </div>
 
-      <div>
+      {/* <div>
         <ProfileBio currentUser={userData} />
-      </div>
+      </div> */}
 
       <section className="px-4 pt-3 pb-20 bg-slate-300">
         <h4 className="text-2xl text-slate-600">Collections</h4>
