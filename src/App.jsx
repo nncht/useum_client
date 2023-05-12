@@ -52,6 +52,7 @@ function App() {
 							element={
 								<IsPrivate>
 									{' '}
+
 									<EditProfilePage />
 								</IsPrivate>
 							}

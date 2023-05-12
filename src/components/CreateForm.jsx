@@ -24,18 +24,21 @@ function CreateForm({ target, idObject, forCollection }) {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (user && user._id) {
-      axios
-        .get(`${API_URL}/users/${user._id}`)
-        .then((res) => {
-          setCurrentUser(res.data);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    }
-  }, [user]);
+  //Apparently it doesn't matter if we fetch the user or not cause the user info is in the token...
+
+  // useEffect(() => {
+  //   if (user && user._id) {
+  //     axios
+  //       .get(`${API_URL}/users/${user._id}`)
+  //       .then((res) => {
+  //         setCurrentUser(res.data);
+  //       })
+  //       .catch((err) => {
+  //         console.error(err);
+  //       });
+  //   }
+  // }, [user]);
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
