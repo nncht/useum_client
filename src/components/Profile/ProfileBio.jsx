@@ -13,7 +13,7 @@ const ProfileBio = () => {
 		return (
 			<div className='grid grid-auto-rows bg-slate-600 px-4 h-30 py-2'>
 				<div className='text-right pt-3 pb-4'>
-					<Link to={`/edit/${userData._id}`} className='m-2'>
+					<Link to={`/edit/${userData.username}`} className='m-2'>
 						<Button variant='contained'>Edit Profile</Button>
 					</Link>
 				</div>
