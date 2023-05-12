@@ -18,18 +18,18 @@ const ProfilePage = () => {
   const [currentUser, setCurrentUser] = useState(user);
 
   useEffect(() => {
-    if (user && user._id) {
-      axios
-        .get(`${API_URL}/users/${user._id}`)
-        .then((res) => {
-          setCurrentUser(res.data);
-          console.log(res.data);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    }
-  }, [user]);
+  if (user && user.username) {
+    axios
+      .get(`${API_URL}/${user.username}`)
+      .then((res) => {
+        setCurrentUser(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+}, [user]);
 
   // USER PROFILE RENDER
 
