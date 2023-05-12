@@ -1,5 +1,4 @@
-import { AuthContext } from "../context/auth.context";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import Button from "@mui/material/Button";
@@ -11,9 +10,8 @@ import CollectionCard from "../components/Collections/CollectionCard";
 
 const API_URL = "http://localhost:5005";
 
-// DETERMINE CURRENT USER
-const ProfilePage = ({ currentUser }) => {
-  const { username } = useParams(); // get the user ID from the URL parameter
+const ProfilePage = () => {
+  const { username } = useParams();
   const [userData, setUserData] = useState({});
 
   useEffect(() => {
@@ -22,18 +20,11 @@ const ProfilePage = ({ currentUser }) => {
       setUserData(response.data);
     };
 
-    if (username) {
-      fetchData();
-    } else {
-      setUserData(currentUser);
-    }
-  }, [username, currentUser]);
-
-  // USER PROFILE RENDER
+    fetchData();
+  }, [username]);
 
   return (
     <div id="main-content">
-      {/* Header and profile picture block */}
       <div className="relative">
         <ProfileHeader currentUser={userData} />
         <div className="absolute mt-[-80px] mx-4">
@@ -41,7 +32,6 @@ const ProfilePage = ({ currentUser }) => {
         </div>
       </div>
 
-      {/* User bio, needs to be added to User model */}
       <div>
         <ProfileBio currentUser={userData} />
       </div>
@@ -49,28 +39,18 @@ const ProfilePage = ({ currentUser }) => {
       <section className="px-4 pt-3 pb-20 bg-slate-300">
         <h4 className="text-2xl text-slate-600">Collections</h4>
         <Grid container spacing={3}>
-          {/* Available collections of this user will be rendered as cards here */}
-          {userData.collections.length < 1 ? (
+          {userData.collections && userData.collections ? (
+            userData.collections.map((collection) => (
+              <Grid item xs={12} sm={6} md={4} lg={3} key={collection._id}>
+                <CollectionCard key={collection._id} collection={collection} />
+              </Grid>
+            ))
+          ) : (
             <Grid item xs={12} sm={6} md={4} lg={3}>
               <p>No collections available</p>
             </Grid>
-          ) : (
-            userData.collections.map((collection) => {
-              return (
-                <>
-                  <Grid item xs={12} sm={6} md={4} lg={3} key={collection._id}>
-                    <CollectionCard
-                      key={collection._id}
-                      collection={collection}
-                    />
-                  </Grid>
-                </>
-              );
-            })
           )}
         </Grid>
-
-        {/* Add new collection button */}
 
         <nav className="my-4">
           <Link to="/create-collection" className="m-2">
