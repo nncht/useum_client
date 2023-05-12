@@ -1,12 +1,16 @@
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
-import Button from "@mui/material/Button";
+import { setCollectionId } from "../../services/sharedDatastore";
+import { AuthContext } from "../../context/auth.context";
 import getCollection from "../../services/getCollection";
 import CollectionHeader from "../../components/Collections/CollectionHeader";
-import { setCollectionId } from "../../services/sharedDatastore";
 import ItemCard from "../../components/Items/ItemCard";
+
+// MUI imports
+import Button from "@mui/material/Button";
 import { Grid } from "@mui/material";
-import { AuthContext } from "../../context/auth.context";
+
+// End of imports
 
 const API_URL = "http://localhost:5005";
 
@@ -18,7 +22,7 @@ const MyCollection = () => {
 
   useEffect(() => {
     getCollection(collectionId, setCollection);
-  }, []);
+  }, [collectionId]);
 
   // COLLECTION DETAILS RENDER
   if (collection) {
@@ -28,9 +32,16 @@ const MyCollection = () => {
           <CollectionHeader collection={collection} />
           <section className="px-4 pt-3 pb-20 bg-slate-300">
             {/* Collection name and description */}
-            <div>
+            <div className="mb-4">
               <h4 className="text-2xl text-slate-600">{collection.name}</h4>
-              <p>{collection.description}</p>
+              <div>
+                Created by{" "}
+                <Link to={`/users/${collection.createdBy.username}`}>
+                  {collection.createdBy.username}
+                </Link>
+              </div>
+
+              <div>{collection.description}</div>
             </div>
             <div>
               <h4 className="text-2xl text-slate-600">Tags</h4>
@@ -57,7 +68,7 @@ const MyCollection = () => {
             </Grid>
             {/* Add new item buttone */}
 
-            {user._id === collection.createdBy ? (
+            {user.username === collection.createdBy.username ? (
               <div className="py-4">
                 <Link
                   to="/add-item"

@@ -1,7 +1,12 @@
-const ProfileHeader = ({ currentUser }) => {
+import { useContext } from "react";
+import { UserDataContext } from "../../context/userData.context";
+
+const ProfileHeader = () => {
+  const { userData } = useContext(UserDataContext);
+
   return (
     <div className="cover">
-      <img src={currentUser.headerImageUrl} alt="Header image" />
+      {userData && <img src={userData.headerImageUrl} alt="Header image" />}
     </div>
   );
 };
