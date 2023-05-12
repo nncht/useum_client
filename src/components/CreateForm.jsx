@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
-import ImageUploader from "./ImageUploader";
+import ImageUploader from "./ImageUploader/ImageUploader";
 import Button from "@mui/material/Button";
 import SelectCategories from "./SelectCategories";
 
