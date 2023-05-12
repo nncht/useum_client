@@ -1,11 +1,12 @@
-const CategoryTags = ({ userData }) => {
+import { useContext } from "react";
+import { UserDataContext } from "../../context/userData.context";
+
+const CategoryTags = () => {
+  const { userData } = useContext(UserDataContext);
+
   if (userData.categories) {
     return (
       <div className="mb-3">
-        {/* <span className="inline-block bg-slate-500 text-white text-xs px-2 py-1 rounded">
-        Category Name
-      </span> */}
-
         <div className="flex">
           {userData.categories.map((category) => {
             return (

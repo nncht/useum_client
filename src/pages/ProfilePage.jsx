@@ -27,15 +27,15 @@ const ProfilePage = () => {
   return (
     <div id="main-content">
       <div className="relative">
-        <ProfileHeader userData={userData} />
+        <ProfileHeader />
         <div className="absolute mt-[-80px] mx-4">
-          <ProfilePicture userData={userData} />
+          <ProfilePicture />
         </div>
       </div>
 
-      {/* <div>
-        <ProfileBio userData={userData} />
-      </div> */}
+      <div>
+        <ProfileBio />
+      </div>
 
       <section className="px-4 pt-3 pb-20 bg-slate-300">
         <h4 className="text-2xl text-slate-600">Collections</h4>

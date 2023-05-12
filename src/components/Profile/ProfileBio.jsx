@@ -6,7 +6,6 @@ import { UserDataContext } from "../../context/userData.context";
 
 const ProfileBio = () => {
   const { userData } = useContext(UserDataContext);
-  console.log(userData);
 
   return (
     <div className="grid grid-auto-rows bg-slate-600 px-4 h-30 py-2">
