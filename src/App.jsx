@@ -17,8 +17,19 @@ import IsPrivate from "./components/RouteProtectors/IsPrivate";
 import IsPublic from "./components/RouteProtectors/IsPublic";
 import EditCollection from "./pages/CollectionPages/EditCollection";
 import EditItem from "./pages/ItemPages/EditItem";
+import { AuthContext } from "./context/auth.context";
+import { useContext } from "react";
 
 function App() {
+
+  const { user } = useContext(AuthContext);
+
+
+  console.log("user", user)
+
+
+
+
   return (
     <div className="App">
       <NavBar />
@@ -71,15 +82,15 @@ function App() {
                 </IsPrivate>
               }
             />
-            <Route
-              path="/profile"
+            {user && (<Route
+              path={`/${user.username}`}
               element={
                 <IsPrivate>
                   {" "}
                   <ProfilePage />{" "}
                 </IsPrivate>
               }
-            />
+            />)}
             <Route
               path="/collections"
               element={
@@ -129,6 +140,7 @@ function App() {
       </main>
     </div>
   );
+
 }
 
 export default App;
