@@ -32,9 +32,16 @@ const MyCollection = () => {
           <CollectionHeader collection={collection} />
           <section className="px-4 pt-3 pb-20 bg-slate-300">
             {/* Collection name and description */}
-            <div>
+            <div className="mb-4">
               <h4 className="text-2xl text-slate-600">{collection.name}</h4>
-              <p>{collection.description}</p>
+              <div>
+                Created by{" "}
+                <Link to={`/profile/${collection.createdBy._id}`}>
+                  {collection.createdBy.username}
+                </Link>
+              </div>
+
+              <div>{collection.description}</div>
             </div>
             <div>
               <h4 className="text-2xl text-slate-600">Tags</h4>
