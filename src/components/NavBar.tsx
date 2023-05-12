@@ -58,32 +58,51 @@ export default function NavBar() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        {/* Profile */}
+        <ListItem key="Profile" disablePadding>
+          <ListItemButton>
+            <ListItemIcon>
+              <AccountCircleIcon />
+            </ListItemIcon>
+            <Link href="/profile" underline="none">
+              <ListItemText primary="Profile" />
+            </Link>
+          </ListItemButton>
+        </ListItem>
+
+        {/* Profile */}
+        <ListItem key="Profile" disablePadding>
+          <ListItemButton>
+            <ListItemIcon>
+              <AccountCircleIcon />
+            </ListItemIcon>
+            <Link href="/profile" underline="none">
+              <ListItemText primary="Profile" />
+            </Link>
+          </ListItemButton>
+        </ListItem>
       </List>
+
       <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
+      {/* Profile */}
+      <ListItem key="Profile" disablePadding>
+        <ListItemButton>
+          <ListItemIcon>
+            <AccountCircleIcon />
+          </ListItemIcon>
+          <Link href="/profile" underline="none">
+            <ListItemText primary="Profile" />
+          </Link>
+        </ListItemButton>
+      </ListItem>
     </Box>
   );
+
+  {
+    /* <IconButton color="primary" variant="text" onClick={logOutUser}>
+                <LogoutIcon className="text-slate-50" />
+              </IconButton> */
+  }
 
   return (
     <nav className="sticky shadow top-0 bg-slate-700" style={{ zIndex: 10 }}>
@@ -121,10 +140,6 @@ export default function NavBar() {
                   <AccountCircleIcon className="text-slate-50" />
                 </IconButton>
               </Link>
-
-              {/* <IconButton color="primary" variant="text" onClick={logOutUser}>
-                <LogoutIcon className="text-slate-50" />
-              </IconButton> */}
 
               {/* Burger menu */}
               <React.Fragment key="left">
