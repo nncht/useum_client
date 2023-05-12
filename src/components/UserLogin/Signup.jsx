@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Button from "@mui/material/Button";
-import ImageUploader from "../../components/ImageUploader";
+import ImageUploader from "../../components/ImageUploader/ImageUploader";
 
 const API_URL = "http://localhost:5005";
 
