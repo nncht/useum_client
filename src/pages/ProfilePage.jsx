@@ -1,6 +1,6 @@
 import { AuthContext } from "../context/auth.context";
-import { useState, useEffect, useContext, useParams } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import Button from "@mui/material/Button";
 import { Grid } from "@mui/material";
@@ -13,6 +13,7 @@ const API_URL = "http://localhost:5005";
 
 // DETERMINE CURRENT USER
 const ProfilePage = () => {
+  const { username } = useParams(); // get the user ID from the URL parameter
   const { user } = useContext(AuthContext);
 
   const [currentUser, setCurrentUser] = useState(user);
