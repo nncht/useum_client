@@ -1,9 +1,13 @@
+import { useContext } from "react";
 import Button from "@mui/material/Button";
 import UserStatistics from "./UserStatistics";
 import CategoryTags from "./CategoryTags";
+import { UserDataContext } from "../../context/userData.context";
 
-const ProfileBio = ({ userData }) => {
+const ProfileBio = () => {
+  const { userData } = useContext(UserDataContext);
   console.log(userData);
+
   return (
     <div className="grid grid-auto-rows bg-slate-600 px-4 h-30 py-2">
       <div className="text-right pt-3 pb-4">
@@ -26,7 +30,7 @@ const ProfileBio = ({ userData }) => {
 
         {/* Statistics (Followers, Collections, Items) */}
         <div className="my-2">
-          <UserStatistics userData={userData} />
+          <UserStatistics />
         </div>
 
         {/* UserBio */}
@@ -41,7 +45,7 @@ const ProfileBio = ({ userData }) => {
         {/* Display user's category/interests tags */}
         <div className="flex">
           <div className="mr-3">
-            <CategoryTags userData={userData} />
+            <CategoryTags />
           </div>
         </div>
       </div>

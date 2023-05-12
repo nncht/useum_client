@@ -1,5 +1,6 @@
 // import { useState, useContext } from "react";
 import { Routes, Route } from "react-router-dom";
+import { UserDataProvider } from "./context/userData.context";
 // import { AuthContext } from "./context/auth.context";
 import "./App.css";
 import Home from "./pages/Home";
@@ -71,17 +72,24 @@ function App() {
                 </IsPrivate>
               }
             />
+
             <Route
               path="/profile"
               element={
-                <IsPrivate>
-                  {" "}
-                  <ProfilePage />{" "}
-                </IsPrivate>
+                <UserDataProvider>
+                  <ProfilePage />
+                </UserDataProvider>
               }
             />
 
-            <Route path="/users/:username" element={<ProfilePage />} />
+            <Route
+              path="/users/:username"
+              element={
+                <UserDataProvider>
+                  <ProfilePage />
+                </UserDataProvider>
+              }
+            />
 
             <Route
               path="/collections"

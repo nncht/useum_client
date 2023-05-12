@@ -1,4 +1,8 @@
-const ProfilePicture = ({ userData }) => {
+import { useContext } from "react";
+import { UserDataContext } from "../../context/userData.context";
+const ProfilePicture = () => {
+  const { userData } = useContext(UserDataContext);
+
   return (
     <div>
       <img

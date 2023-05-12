@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import { UserDataContext } from "../context/userData.context";
 import axios from "axios";
 import Button from "@mui/material/Button";
 import { Grid } from "@mui/material";
@@ -12,7 +13,7 @@ const API_URL = "http://localhost:5005";
 
 const ProfilePage = () => {
   const { username } = useParams();
-  const [userData, setUserData] = useState({});
+  const { userData, setUserData } = useContext(UserDataContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,7 +22,7 @@ const ProfilePage = () => {
     };
 
     fetchData();
-  }, [username]);
+  }, [username, setUserData]);
 
   return (
     <div id="main-content">
@@ -32,9 +33,9 @@ const ProfilePage = () => {
         </div>
       </div>
 
-      <div>
+      {/* <div>
         <ProfileBio userData={userData} />
-      </div>
+      </div> */}
 
       <section className="px-4 pt-3 pb-20 bg-slate-300">
         <h4 className="text-2xl text-slate-600">Collections</h4>
