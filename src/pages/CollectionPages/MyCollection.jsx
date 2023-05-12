@@ -1,12 +1,16 @@
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
-import Button from "@mui/material/Button";
+import { setCollectionId } from "../../services/sharedDatastore";
+import { AuthContext } from "../../context/auth.context";
 import getCollection from "../../services/getCollection";
 import CollectionHeader from "../../components/Collections/CollectionHeader";
-import { setCollectionId } from "../../services/sharedDatastore";
 import ItemCard from "../../components/Items/ItemCard";
+
+// MUI imports
+import Button from "@mui/material/Button";
 import { Grid } from "@mui/material";
-import { AuthContext } from "../../context/auth.context";
+
+// End of imports
 
 const API_URL = "http://localhost:5005";
 
