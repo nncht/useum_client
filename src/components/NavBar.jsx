@@ -67,16 +67,16 @@ export default function NavBar() {
 				</ListItem>
 
 				{/* Profile */}
-				<ListItem key='Profile' disablePadding>
+				{user && (<ListItem key='Profile' disablePadding>
 					<ListItemButton>
 						<ListItemIcon>
 							<AccountCircleIcon />
 						</ListItemIcon>
-						<Link href='/profile' underline='none'>
+						<Link href={`/${user.username}`} underline='none'>
 							<ListItemText primary='Profile' />
 						</Link>
 					</ListItemButton>
-				</ListItem>
+				</ListItem>)}
 
 				{/* Notifications */}
 				<ListItem key='Notifications' disablePadding>
