@@ -55,7 +55,7 @@ const CollectionCard = ({ collection }) => {
           <Button size="small">View</Button>
         </Link>
         <Link to="#" className="m-2">
-          <Button size="small">Share</Button>
+          <Button size="small">Save</Button>
         </Link>
       </CardActions>
     </Card>
