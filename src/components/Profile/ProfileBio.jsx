@@ -16,7 +16,7 @@ const ProfileBio = () => {
         <div className="flex">
           {/* Username */}
           <h2 className="mr-4 self-end text-3xl text-white m-0">
-            {userData.username}
+            {userData && userData.username}
           </h2>
 
           {/* Pronouns */}
@@ -28,9 +28,7 @@ const ProfileBio = () => {
         </div>
 
         {/* Statistics (Followers, Collections, Items) */}
-        <div className="my-2">
-          <UserStatistics />
-        </div>
+        <div className="my-2">{userData && <UserStatistics />}</div>
 
         {/* UserBio */}
         <p className="text-white text-lg">
@@ -43,9 +41,7 @@ const ProfileBio = () => {
 
         {/* Display user's category/interests tags */}
         <div className="flex">
-          <div className="mr-3">
-            <CategoryTags />
-          </div>
+          <div className="mr-3">{userData && <CategoryTags />}</div>
         </div>
       </div>
     </div>

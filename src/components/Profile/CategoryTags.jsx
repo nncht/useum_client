@@ -4,7 +4,7 @@ import { UserDataContext } from "../../context/userData.context";
 const CategoryTags = () => {
   const { userData } = useContext(UserDataContext);
 
-  if (userData.categories) {
+  if (userData && userData.categories) {
     return (
       <div className="mb-3">
         <div className="flex">
