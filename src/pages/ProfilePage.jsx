@@ -86,10 +86,6 @@ const ProfilePage = () => {
             <Link to="/create-collection" className="m-2">
               <Button variant="contained">New collection</Button>
             </Link>
-
-            <Link to="/create-item" className="m-2">
-              <Button variant="contained">New item</Button>
-            </Link>
           </nav>
         </section>
       </div>
