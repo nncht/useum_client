@@ -58,14 +58,14 @@ export default function NavBar() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {/* Profile */}
-        <ListItem key="Profile" disablePadding>
+        {/* Home */}
+        <ListItem key="Home" disablePadding>
           <ListItemButton>
             <ListItemIcon>
               <AccountCircleIcon />
             </ListItemIcon>
             <Link href="/profile" underline="none">
-              <ListItemText primary="Profile" />
+              <ListItemText primary="Home" />
             </Link>
           </ListItemButton>
         </ListItem>
@@ -78,20 +78,67 @@ export default function NavBar() {
             </ListItemIcon>
             <Link href="/profile" underline="none">
               <ListItemText primary="Profile" />
+            </Link>
+          </ListItemButton>
+        </ListItem>
+
+        {/* Notifications */}
+        <ListItem key="Notifications" disablePadding>
+          <ListItemButton>
+            <ListItemIcon>
+              <AccountCircleIcon />
+            </ListItemIcon>
+            <Link href="#" underline="none">
+              <ListItemText primary="Notifications" />
+            </Link>
+          </ListItemButton>
+        </ListItem>
+
+        {/* Messages */}
+        <ListItem key="Messages" disablePadding>
+          <ListItemButton>
+            <ListItemIcon>
+              <AccountCircleIcon />
+            </ListItemIcon>
+            <Link href="#" underline="none">
+              <ListItemText primary="Messages" />
+            </Link>
+          </ListItemButton>
+        </ListItem>
+
+        {/* Bookmarks */}
+        <ListItem key="Bookmarks" disablePadding>
+          <ListItemButton>
+            <ListItemIcon>
+              <AccountCircleIcon />
+            </ListItemIcon>
+            <Link href="#" underline="none">
+              <ListItemText primary="Bookmarks" />
             </Link>
           </ListItemButton>
         </ListItem>
       </List>
-
-      <Divider />
-      {/* Profile */}
-      <ListItem key="Profile" disablePadding>
+      {/* Settings */}
+      <ListItem key="Settings" disablePadding>
         <ListItemButton>
           <ListItemIcon>
             <AccountCircleIcon />
           </ListItemIcon>
           <Link href="/profile" underline="none">
-            <ListItemText primary="Profile" />
+            <ListItemText primary="Settings" />
+          </Link>
+        </ListItemButton>
+      </ListItem>
+      <Divider />
+
+      {/* New Item */}
+      <ListItem key="New Item" disablePadding>
+        <ListItemButton>
+          <ListItemIcon>
+            <AccountCircleIcon />
+          </ListItemIcon>
+          <Link href="/create-item" underline="none">
+            <ListItemText primary="Create Item" />
           </Link>
         </ListItemButton>
       </ListItem>
