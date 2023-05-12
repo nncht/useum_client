@@ -32,7 +32,7 @@ import EmailIcon from "@mui/icons-material/Email";
 type Anchor = "left";
 
 export default function NavBar() {
-  // Determine login state
+  // Auth functions from AuthContext
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
 
   // Drawer navigation
@@ -153,8 +153,8 @@ export default function NavBar() {
 
       {/* Logout */}
       <ListItem key="Log Out" disablePadding>
-        <ListItemButton>
-          <ListItemIcon onClick={logOutUser}>
+        <ListItemButton onClick={logOutUser}>
+          <ListItemIcon>
             <LogoutIcon />
           </ListItemIcon>
           <ListItemText primary="Log Out" />
