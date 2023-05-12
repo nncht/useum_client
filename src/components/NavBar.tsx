@@ -17,11 +17,15 @@ import MailIcon from "@mui/icons-material/Mail";
 import Link from "@mui/material/Link";
 
 // MUI icons
-import IconButton from "@mui/material/IconButton";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import MenuIcon from "@mui/icons-material/Menu";
+import HomeIcon from "@mui/icons-material/Home";
+import AddBoxIcon from "@mui/icons-material/AddBox";
+import BookmarksIcon from "@mui/icons-material/Bookmarks";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import EmailIcon from "@mui/icons-material/Email";
 
 // -- End of Imports
 
@@ -62,7 +66,7 @@ export default function NavBar() {
         <ListItem key="Home" disablePadding>
           <ListItemButton>
             <ListItemIcon>
-              <AccountCircleIcon />
+              <HomeIcon />
             </ListItemIcon>
             <Link href="/profile" underline="none">
               <ListItemText primary="Home" />
@@ -86,7 +90,7 @@ export default function NavBar() {
         <ListItem key="Notifications" disablePadding>
           <ListItemButton>
             <ListItemIcon>
-              <AccountCircleIcon />
+              <NotificationsIcon />
             </ListItemIcon>
             <Link href="#" underline="none">
               <ListItemText primary="Notifications" />
@@ -98,7 +102,7 @@ export default function NavBar() {
         <ListItem key="Messages" disablePadding>
           <ListItemButton>
             <ListItemIcon>
-              <AccountCircleIcon />
+              <EmailIcon />
             </ListItemIcon>
             <Link href="#" underline="none">
               <ListItemText primary="Messages" />
@@ -110,7 +114,7 @@ export default function NavBar() {
         <ListItem key="Bookmarks" disablePadding>
           <ListItemButton>
             <ListItemIcon>
-              <AccountCircleIcon />
+              <BookmarksIcon />
             </ListItemIcon>
             <Link href="#" underline="none">
               <ListItemText primary="Bookmarks" />
@@ -118,28 +122,42 @@ export default function NavBar() {
           </ListItemButton>
         </ListItem>
       </List>
+
       {/* Settings */}
       <ListItem key="Settings" disablePadding>
         <ListItemButton>
           <ListItemIcon>
-            <AccountCircleIcon />
+            <SettingsIcon />
           </ListItemIcon>
           <Link href="/profile" underline="none">
             <ListItemText primary="Settings" />
           </Link>
         </ListItemButton>
       </ListItem>
+
       <Divider />
 
       {/* New Item */}
       <ListItem key="New Item" disablePadding>
         <ListItemButton>
           <ListItemIcon>
-            <AccountCircleIcon />
+            <AddBoxIcon />
           </ListItemIcon>
           <Link href="/create-item" underline="none">
             <ListItemText primary="Create Item" />
           </Link>
+        </ListItemButton>
+      </ListItem>
+
+      <Divider />
+
+      {/* Logout */}
+      <ListItem key="Log Out" disablePadding>
+        <ListItemButton>
+          <ListItemIcon onClick={logOutUser}>
+            <LogoutIcon />
+          </ListItemIcon>
+          <ListItemText primary="Log Out" />
         </ListItemButton>
       </ListItem>
     </Box>
@@ -181,27 +199,19 @@ export default function NavBar() {
         {/* LOGGED IN NAVBAR */}
         {isLoggedIn && (
           <div>
-            <div>
-              <Link href="/profile">
-                <IconButton color="primary" variant="text">
-                  <AccountCircleIcon className="text-slate-50" />
-                </IconButton>
-              </Link>
-
-              {/* Burger menu */}
-              <React.Fragment key="left">
-                <Button onClick={toggleDrawer("left", true)}>
-                  <MenuIcon className="text-slate-50" />
-                </Button>
-                <Drawer
-                  anchor="left"
-                  open={state["left"]}
-                  onClose={toggleDrawer("left", false)}
-                >
-                  {list("left")}
-                </Drawer>
-              </React.Fragment>
-            </div>
+            {/* Burger menu */}
+            <React.Fragment key="left">
+              <Button onClick={toggleDrawer("left", true)}>
+                <MenuIcon className="text-slate-50" />
+              </Button>
+              <Drawer
+                anchor="left"
+                open={state["left"]}
+                onClose={toggleDrawer("left", false)}
+              >
+                {list("left")}
+              </Drawer>
+            </React.Fragment>
           </div>
         )}
       </div>
