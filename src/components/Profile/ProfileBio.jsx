@@ -41,7 +41,7 @@ const ProfileBio = ({ currentUser }) => {
         {/* Display user's category/interests tags */}
         <div className="flex">
           <div className="mr-3">
-            <CategoryTags />
+            <CategoryTags currentUser={currentUser}/>
           </div>
         </div>
       </div>
