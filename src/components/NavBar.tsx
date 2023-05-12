@@ -24,11 +24,11 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 // -- End of Imports
 
-type Anchor = "right";
+type Anchor = "left";
 
 export default function NavBar() {
   const [state, setState] = React.useState({
-    right: false,
+    left: false,
   });
 
   const toggleDrawer =
@@ -82,14 +82,14 @@ export default function NavBar() {
 
   return (
     <div>
-      <React.Fragment key="right">
-        <Button onClick={toggleDrawer("right", true)}>Open Drawer</Button>
+      <React.Fragment key="left">
+        <Button onClick={toggleDrawer("left", true)}>Open Drawer</Button>
         <Drawer
-          anchor="right"
-          open={state["right"]}
-          onClose={toggleDrawer("right", false)}
+          anchor="left"
+          open={state["left"]}
+          onClose={toggleDrawer("left", false)}
         >
-          {list("right")}
+          {list("left")}
         </Drawer>
       </React.Fragment>
     </div>
