@@ -5,8 +5,9 @@ import Button from '@mui/material/Button';
 import ImageUploader from '../../components/ImageUploader/ImageUploader';
 import SelectCategories from '../../components/SelectCategories';
 import { getCollectionId } from '../../services/sharedDatastore';
+import API_URL from "../../services/apiConfig";
 
-const API_URL = 'http://localhost:5005';
+
 
 const EditItem = () => {
 	const [item, setItem] = useState(null);
