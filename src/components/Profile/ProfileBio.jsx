@@ -10,14 +10,19 @@ import { Link } from "react-router-dom";
 const API_URL = "http://localhost:5005";
 
 const ProfileBio = () => {
+  // This profile's user object
   const { userData } = useContext(UserDataContext);
+  // Logged in user payload
   const { user } = useContext(AuthContext);
+  // Necessary to get the logged in user's data object
   const [currentUser, setCurrentUser] = useState(null);
+
+  // Necessary to reliably check the following status and render the corresponding buttons
   const [isFollowing, setIsFollowing] = useState(false);
   const [followingList, setFollowingList] = useState([]);
   const [refresh, setRefresh] = useState(false);
 
-  // Request user object of currentUser (currently logged in user)
+  // Request user object of currentUser (logged in user)
   useEffect(() => {
     if (user) {
       axios
@@ -31,7 +36,7 @@ const ProfileBio = () => {
     }
   }, [user, refresh]);
 
-  // Check if the user is already being followed when user.following changes
+  // Check if the user is already being followed
   useEffect(() => {
     if (currentUser && currentUser.following.includes(userData._id)) {
       setIsFollowing(true);
@@ -74,7 +79,6 @@ const ProfileBio = () => {
     return (
       <div className="grid grid-auto-rows bg-slate-600 px-4 h-30 py-2">
         {/* Follow, Unfollow, Edit Profile buttons */}
-
         <div className="text-right my-3">
           {currentUser.username === userData.username ? (
             <Link to={`/edit/${userData.username}`}>
@@ -84,7 +88,7 @@ const ProfileBio = () => {
             <div>
               {isFollowing ? (
                 <Button
-                  key={Date.now()}
+                  key={Date.now()} // This magically forces the component to refresh
                   variant="contained"
                   className="unfollow-btn"
                   onMouseOver={() => {
@@ -101,7 +105,7 @@ const ProfileBio = () => {
                 </Button>
               ) : (
                 <Button
-                  key={Date.now()}
+                  key={Date.now()} // This magically forces the component to refresh
                   variant="contained"
                   onClick={handleFollow}
                 >
