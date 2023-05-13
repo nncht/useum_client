@@ -28,6 +28,19 @@ const ProfileBio = () => {
     }
   }, [user]);
 
+  console.log(userData);
+  console.log(userData._id);
+
+  // POST Follow user action
+  const handleFollow = async () => {
+    try {
+      await axios.post(`${API_URL}/${user._id}/follow/${userData._id}`);
+      // setIsFollowing(true);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   if (currentUser) {
     return (
       <div className="grid grid-auto-rows bg-slate-600 px-4 h-30 py-2">
@@ -40,10 +53,15 @@ const ProfileBio = () => {
             </Link>
           ) : currentUser.following.includes(userData._id) ? (
             // Link needs to be added after follow/unfollow routes have been written
-            <Button variant="outlined">Unfollow</Button>
+            <Link to={`/unfollow/${userData.username}`}>
+              <Button variant="outlined">Unfollow</Button>
+            </Link>
           ) : (
             // Link needs to be added after follow/unfollow routes have been written
-            <Button variant="contained">Follow</Button>
+
+            <Button variant="contained" onClick={handleFollow}>
+              Follow
+            </Button>
           )}
         </div>
 
