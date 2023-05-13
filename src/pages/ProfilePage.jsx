@@ -15,6 +15,8 @@ const ProfilePage = () => {
   const { username } = useParams();
   const { userData, setUserData } = useContext(UserDataContext);
 
+  console.log(username)
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(`${API_URL}/users/${username}`);
