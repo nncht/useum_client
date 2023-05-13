@@ -2,11 +2,14 @@ import { useContext } from "react";
 import Button from "@mui/material/Button";
 import UserStatistics from "./UserStatistics";
 import CategoryTags from "./CategoryTags";
+import { AuthContext } from "../../context/auth.context";
 import { UserDataContext } from "../../context/userData.context";
 import { Link } from "react-router-dom";
 
-const ProfileBio = ({ loggedIn }) => {
+const ProfileBio = () => {
   const { userData } = useContext(UserDataContext);
+  const { loggedIn } = useContext(AuthContext);
+
   return (
     <div className="grid grid-auto-rows bg-slate-600 px-4 h-30 py-2">
       {/* Follow, Unfollow, Edit Profile buttons */}
