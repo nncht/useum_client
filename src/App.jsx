@@ -1,6 +1,6 @@
 // import { useState, useContext } from "react";
-import { Routes, Route } from "react-router-dom";
-import { UserDataProvider } from "./context/userData.context";
+import { Routes, Route } from 'react-router-dom';
+import { UserDataProvider } from './context/userData.context';
 // import { AuthContext } from "./context/auth.context";
 import './App.css';
 import Home from './pages/Home';
@@ -19,6 +19,8 @@ import IsPublic from './components/RouteProtectors/IsPublic';
 import EditCollection from './pages/CollectionPages/EditCollection';
 import EditItem from './pages/ItemPages/EditItem';
 import EditProfilePage from './pages/User/EditProfilePage';
+import ChangePasswordPage from './pages/User/ChangePasswordPage';
+import DeleteUserPage from './pages/User/DeleteUserPage';
 
 function App() {
 	return (
@@ -52,7 +54,6 @@ function App() {
 							element={
 								<IsPrivate>
 									{' '}
-
 									<EditProfilePage />
 								</IsPrivate>
 							}
@@ -77,50 +78,68 @@ function App() {
 							}
 						/>
 
-            <Route
-              path="/create-collection"
-              element={
-                <IsPrivate>
-                  <CreateCollectionPage />
-                </IsPrivate>
-              }
-            />
+						<Route
+							path='/create-collection'
+							element={
+								<IsPrivate>
+									<CreateCollectionPage />
+								</IsPrivate>
+							}
+						/>
 
-            <Route
-              path="/profile"
-              element={
-                <UserDataProvider>
-                  <ProfilePage />
-                </UserDataProvider>
-              }
-            />
+						<Route
+							path='/profile'
+							element={
+								<UserDataProvider>
+									<ProfilePage />
+								</UserDataProvider>
+							}
+						/>
 
-            <Route
-              path="/users/:username"
-              element={
-                <UserDataProvider>
-                  <ProfilePage />
-                </UserDataProvider>
-              }
-            />
+						<Route
+							path='/users/:username'
+							element={
+								<UserDataProvider>
+									<ProfilePage />
+								</UserDataProvider>
+							}
+						/>
 
-            <Route
-              path="/collections"
-              element={
-                <IsPrivate>
-                  <Collections />
-                </IsPrivate>
-              }
-            />
+						<Route
+							path='/delete/:userId'
+							element={
+								<UserDataProvider>
+									<DeleteUserPage />
+								</UserDataProvider>
+							}
+						/>
 
-            <Route
-              path="/collections/:collectionId"
-              element={
-                <IsPrivate>
-                  <MyCollection />
-                </IsPrivate>
-              }
-            />
+						<Route
+							path='/change-password/:userId'
+							element={
+								<UserDataProvider>
+									<ChangePasswordPage />
+								</UserDataProvider>
+							}
+						/>
+
+						<Route
+							path='/collections'
+							element={
+								<IsPrivate>
+									<Collections />
+								</IsPrivate>
+							}
+						/>
+
+						<Route
+							path='/collections/:collectionId'
+							element={
+								<IsPrivate>
+									<MyCollection />
+								</IsPrivate>
+							}
+						/>
 
 						<Route
 							path='/items/:itemId'
