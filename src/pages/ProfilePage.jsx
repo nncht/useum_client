@@ -22,8 +22,7 @@ const API_URL = "http://localhost:5005";
 const ProfilePage = () => {
   const { username } = useParams();
   const { userData, setUserData } = useContext(UserDataContext);
-  const { user } = useContext(AuthContext);
-  console.log(user);
+  const { loggedIn } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -69,7 +68,7 @@ const ProfilePage = () => {
         </Grid>
 
         {/* Create new collection button */}
-        {user && user.username === userData.username ? (
+        {loggedIn && loggedIn.username === userData.username ? (
           <nav className="my-4">
             <Link to="/create-collection" className="m-2">
               <Button variant="contained">New collection</Button>
