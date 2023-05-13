@@ -13,6 +13,7 @@ const ProfileBio = () => {
   const { userData } = useContext(UserDataContext);
   const { user } = useContext(AuthContext);
   const [currentUser, setCurrentUser] = useState(null);
+  const [isFollowing, setIsFollowing] = useState(false);
 
   // Request user object of currentUser (currently logged in user)
   useEffect(() => {
@@ -35,7 +36,7 @@ const ProfileBio = () => {
   const handleFollow = async () => {
     try {
       await axios.post(`${API_URL}/${user._id}/follow/${userData._id}`);
-      // setIsFollowing(true);
+      setIsFollowing(true);
     } catch (error) {
       console.error(error);
     }
@@ -51,16 +52,13 @@ const ProfileBio = () => {
             <Link to={`/edit/${userData.username}`}>
               <Button variant="contained">Edit Profile</Button>
             </Link>
-          ) : currentUser.following.includes(userData._id) ? (
-            // Link needs to be added after follow/unfollow routes have been written
-            <Link to={`/unfollow/${userData.username}`}>
-              <Button variant="outlined">Unfollow</Button>
-            </Link>
           ) : (
-            // Link needs to be added after follow/unfollow routes have been written
-
-            <Button variant="contained" onClick={handleFollow}>
-              Follow
+            <Button
+              variant="contained"
+              onClick={handleFollow}
+              disabled={isFollowing}
+            >
+              {isFollowing ? "Following" : "Follow"}
             </Button>
           )}
         </div>
