@@ -3,6 +3,7 @@ import { useContext, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { UserDataContext } from "../context/userData.context";
 import { AuthContext } from "../context/auth.context";
+import { AuthProvider } from "../context/auth.context";
 
 // Custom components
 import ProfileHeader from "../components/Profile/ProfileHeader";
@@ -22,7 +23,7 @@ const API_URL = "http://localhost:5005";
 const ProfilePage = () => {
   const { username } = useParams();
   const { userData, setUserData } = useContext(UserDataContext);
-  const { loggedIn } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,7 +46,9 @@ const ProfilePage = () => {
       </div>
 
       <div>
-        <ProfileBio loggedIn={loggedIn} />
+        <AuthProvider>
+          <ProfileBio />
+        </AuthProvider>
       </div>
 
       {/* Profile body */}
@@ -68,7 +71,7 @@ const ProfilePage = () => {
         </Grid>
 
         {/* Create new collection button */}
-        {loggedIn && loggedIn.username === userData.username ? (
+        {user && user.username === userData.username ? (
           <nav className="my-4">
             <Link to="/create-collection" className="m-2">
               <Button variant="contained">New collection</Button>
