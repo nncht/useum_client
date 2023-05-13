@@ -46,9 +46,7 @@ const ProfilePage = () => {
       </div>
 
       <div>
-        <AuthProvider>
-          <ProfileBio />
-        </AuthProvider>
+        <ProfileBio />
       </div>
 
       {/* Profile body */}

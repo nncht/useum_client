@@ -27,8 +27,6 @@ const ProfileBio = () => {
     }
   }, [user]);
 
-  console.log(currentUser);
-
   if (currentUser) {
     return (
       <div className="grid grid-auto-rows bg-slate-600 px-4 h-30 py-2">
