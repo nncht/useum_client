@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Button from '@mui/material/Button';
@@ -6,7 +6,6 @@ import ImageUploader from '../../components/ImageUploader/ImageUploader';
 import HeaderImageUploader from '../../components/ImageUploader/HeaderImageUploader';
 import SelectCategories from '../../components/SelectCategories';
 import FormControl from '@mui/material/FormControl';
-
 
 const API_URL = 'http://localhost:5005';
 
@@ -17,7 +16,6 @@ const EditProfilePage = () => {
 
 	const [userName, setUserName] = useState('');
 	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
 	const [userBio, setUserBio] = useState('');
 	const [pronouns, setPronouns] = useState('');
 
@@ -52,7 +50,7 @@ const EditProfilePage = () => {
 			setImageUrl(currentUser.imageUrl);
 			setHeaderImageUrl(currentUser.headerImageUrl);
 			setUserName(currentUser.username);
-            setEmail(currentUser.email);
+			setEmail(currentUser.email);
 			setUserBio(currentUser.userbio);
 			setPronouns(currentUser.pronouns);
 			const tags = currentUser.categories.map((category) => {
@@ -101,8 +99,8 @@ const EditProfilePage = () => {
 				headers: { Authorization: `Bearer ${storedToken}` },
 			})
 			.then((response) => {
-                console.log(response.data)
-                navigate(`/users/${currentUser.username}`);
+				console.log(response.data);
+				navigate(`/users/${userName}`);
 			})
 			.catch((err) => {
 				console.error(err);
@@ -117,8 +115,7 @@ const EditProfilePage = () => {
 		return (
 			<div id='main-content' className='px-3 pt-3 pb-20 bg-slate-300'>
 				<FormControl className='flex flex-col w-50 mx-auto gap-y-2'>
-
-<label htmlFor="email"> Email</label>
+					<label htmlFor='email'> Email</label>
 
 					<input
 						type='email'
@@ -132,7 +129,7 @@ const EditProfilePage = () => {
 
 					{/* Username input */}
 
-                <label htmlFor="username">Username</label>
+					<label htmlFor='username'>Username</label>
 
 					<input
 						type='text'
@@ -144,9 +141,8 @@ const EditProfilePage = () => {
 						placeholder='Username'
 					/>
 
-
 					{/* User Bio */}
-                    <label htmlFor="userbio">Bio</label>
+					<label htmlFor='userbio'>Bio</label>
 					<textarea
 						type='text'
 						name='userbio'
@@ -157,7 +153,7 @@ const EditProfilePage = () => {
 					/>
 
 					{/* Pronouns */}
-                    <label htmlFor="pronouns">Pronouns</label>
+					<label htmlFor='pronouns'>Pronouns</label>
 
 					<input
 						type='text'
@@ -215,6 +211,18 @@ const EditProfilePage = () => {
 						Update Profile
 					</Button>
 				</FormControl>
+
+				<Link to={`/delete/${currentUser._id}`}>
+					<Button variant='contained' color='error'>
+						Delete Account
+					</Button>
+				</Link>
+
+				<Link to={`/change-password/${currentUser._id}`}>
+					<Button variant='contained' color='error'>
+						Change Password
+					</Button>
+				</Link>
 
 				{errorMessage && <p className='text-red-500 text-xs p-2'>{errorMessage}</p>}
 			</div>
