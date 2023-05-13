@@ -1,7 +1,8 @@
+import axios from "axios";
 import { useContext, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import axios from "axios";
 import { UserDataContext } from "../context/userData.context";
+import { AuthContext } from "../context/auth.context";
 
 // Custom components
 import ProfileHeader from "../components/Profile/ProfileHeader";
@@ -12,7 +13,6 @@ import CollectionCard from "../components/Collections/CollectionCard";
 // MUI components
 import Button from "@mui/material/Button";
 import { Grid } from "@mui/material";
-import { comma } from "postcss/lib/list";
 
 // ----- End of imports
 
@@ -22,6 +22,8 @@ const API_URL = "http://localhost:5005";
 const ProfilePage = () => {
   const { username } = useParams();
   const { userData, setUserData } = useContext(UserDataContext);
+  const { user } = useContext(AuthContext);
+  console.log(user);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -67,11 +69,15 @@ const ProfilePage = () => {
         </Grid>
 
         {/* Create new collection button */}
-        <nav className="my-4">
-          <Link to="/create-collection" className="m-2">
-            <Button variant="contained">New collection</Button>
-          </Link>
-        </nav>
+        {user && user.username === userData.username ? (
+          <nav className="my-4">
+            <Link to="/create-collection" className="m-2">
+              <Button variant="contained">New collection</Button>
+            </Link>
+          </nav>
+        ) : (
+          <div></div>
+        )}
       </section>
     </div>
   );
