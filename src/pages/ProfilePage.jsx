@@ -45,7 +45,7 @@ const ProfilePage = () => {
       </div>
 
       <div>
-        <ProfileBio />
+        <ProfileBio loggedIn={loggedIn} />
       </div>
 
       {/* Profile body */}
