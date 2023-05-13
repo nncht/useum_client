@@ -15,6 +15,10 @@ const ProfileBio = ({ loggedIn }) => {
           <Link to={`/edit/${userData.username}`} className="m-2">
             <Button variant="contained">Edit Profile</Button>
           </Link>
+        ) : loggedIn && loggedIn.following.includes(userData._id) ? (
+          <Button variant="outlined" className="m-2">
+            Unfollow
+          </Button>
         ) : (
           <Button variant="contained" className="m-2">
             Follow
