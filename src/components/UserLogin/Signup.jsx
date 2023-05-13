@@ -3,8 +3,9 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Button from "@mui/material/Button";
 import ImageUploader from "../../components/ImageUploader/ImageUploader";
+import API_URL from "../../services/apiConfig";
 
-const API_URL = "http://localhost:5005";
+
 
 export default function Signup() {
   const [newUser, setNewUser] = useState({

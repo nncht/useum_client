@@ -1,7 +1,8 @@
 
 import axios from 'axios';
+import API_URL from './apiConfig';
 
-const API_URL = 'http://localhost:5005';
+
 
 const getCollection = (collectionId, setCollection) => {
 		const storedToken = localStorage.getItem('authToken');

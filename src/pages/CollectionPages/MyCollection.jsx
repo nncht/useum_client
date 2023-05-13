@@ -5,6 +5,8 @@ import { AuthContext } from "../../context/auth.context";
 import getCollection from "../../services/getCollection";
 import CollectionHeader from "../../components/Collections/CollectionHeader";
 import ItemCard from "../../components/Items/ItemCard";
+import API_URL from "../../services/apiConfig";
+
 
 // MUI imports
 import Button from "@mui/material/Button";
@@ -12,7 +14,6 @@ import { Grid } from "@mui/material";
 
 // End of imports
 
-const API_URL = "http://localhost:5005";
 
 const MyCollection = () => {
   const { user } = useContext(AuthContext);

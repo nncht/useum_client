@@ -5,11 +5,12 @@ import FormControl from '@mui/material/FormControl';
 import ListItemText from '@mui/material/ListItemText';
 import Select from '@mui/material/Select';
 import Checkbox from '@mui/material/Checkbox';
+import API_URL from "../services/apiConfig";
+
 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5005';
 
 const SelectCategories = ({ categoryArray, setCategoryArray }) => {
 	const ITEM_HEIGHT = 48;

@@ -5,8 +5,9 @@ import Button from '@mui/material/Button';
 import getCollection from '../../services/getCollection';
 import ImageUploader from '../../components/ImageUploader/ImageUploader';
 import SelectCategories from '../../components/SelectCategories';
+import API_URL from "../../services/apiConfig";
 
-const API_URL = 'http://localhost:5005';
+
 
 const EditCollection = () => {
 	const [collection, setCollection] = useState(null);

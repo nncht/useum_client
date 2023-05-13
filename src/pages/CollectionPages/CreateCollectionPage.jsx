@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import CreateForm from "../../components/CreateForm";
 import axios from "axios";
+import API_URL from "../../services/apiConfig";
+
 
 function CollectionsPage() {
   const [selectedCollection, setSelectedCollection] = useState(null);
@@ -9,7 +11,7 @@ function CollectionsPage() {
 
   const handleCreateItem = async (name, description) => {
     try {
-      const response = await fetch("http://localhost:5005/items", {
+      const response = await fetch(`${API_URL}/items`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

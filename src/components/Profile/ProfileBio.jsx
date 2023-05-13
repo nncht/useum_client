@@ -6,8 +6,8 @@ import CategoryTags from "./CategoryTags";
 import { AuthContext } from "../../context/auth.context";
 import { UserDataContext } from "../../context/userData.context";
 import { Link } from "react-router-dom";
+import API_URL from "../../services/apiConfig";
 
-const API_URL = "http://localhost:5005";
 
 const ProfileBio = () => {
   const { userData } = useContext(UserDataContext);

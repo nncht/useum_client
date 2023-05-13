@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import API_URL from "../../services/apiConfig";
+
 
 const Collections = () => {
   const [collections, setCollections] = useState([]);
 
   const refreshCollections = () => {
-    axios.get("http://localhost:5005/collections").then((res) => {
+    axios.get(`${API_URL}/collections`).then((res) => {
       const allCollections = [...res.data.collections];
       setCollections(allCollections);
     });
