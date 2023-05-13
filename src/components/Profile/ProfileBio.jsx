@@ -14,6 +14,7 @@ const ProfileBio = () => {
   const { user } = useContext(AuthContext);
   const [currentUser, setCurrentUser] = useState(null);
   const [isFollowing, setIsFollowing] = useState(false);
+  const [followingList, setFollowingList] = useState([]);
 
   // Request user object of currentUser (currently logged in user)
   useEffect(() => {
@@ -32,11 +33,24 @@ const ProfileBio = () => {
   console.log(userData);
   console.log(userData._id);
 
-  // POST Follow user action
+  // Check if the user is already being followed when user.following changes
+  useEffect(() => {
+    if (currentUser && currentUser.following.includes(userData._id)) {
+      setIsFollowing(true);
+    } else {
+      setIsFollowing(false);
+    }
+  }, [currentUser, userData]);
+
+  // Follow user action
   const handleFollow = async () => {
     try {
-      await axios.post(`${API_URL}/${user._id}/follow/${userData._id}`);
+      const response = await axios.post(
+        `/api/users/${currentUser._id}/follow/${userData._id}`
+      );
       setIsFollowing(true);
+      setFollowingList([...followingList, userData._id]);
+      console.log(response.data.message);
     } catch (error) {
       console.error(error);
     }
