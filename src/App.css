@@ -40,6 +40,10 @@ USER PROFILE
   object-fit: cover;
 }
 
+.danger-button:hover {
+  background-color: #f44336;
+}
+
 /* -----------------------------
 COLLECTION DETAILS
 -------------------------------- */
