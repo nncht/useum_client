@@ -5,23 +5,49 @@ import AllCollections from "../components/Collections/AllCollections";
 
 const Home = () => {
   const [collections, setCollections] = useState({ collections: [] });
+  const [userCollections, setUserCollections] = useState({ collections: [] });
   const API_URL = "http://localhost:5005";
   const { user, isLoggedIn } = useContext(AuthContext);
+  const [popularCollections, setPopularCollections] = useState ({ collections: [] });
+
 
   useEffect(() => {
     axios
       .get(`${API_URL}/collections`)
       .then((res) => {
-        const sortedCollections = res.data.collections.sort(
-          (a, b) => b.likes.length - a.likes.length
+        const fetchedCollections = res.data.collections
+        setCollections({ collections: fetchedCollections });
+        sortCollectionsByLikes(fetchedCollections);
+        const userCollections = fetchedCollections.filter(
+          (collection) => collection.createdBy === user._id
         );
-        setCollections({ collections: sortedCollections });
-        console.log(res.data);
+        console.log("user ID is:" + user._id);
+        console.log("user userCollections are:" + userCollections);
+        setUserCollections({ collections: userCollections });
       })
       .catch((err) => {
         console.error(err);
       });
   }, []);
+
+  //sort collections based on likes here (popular collections)
+  const sortCollectionsByLikes = (collections) => {
+    let sortedCollections = [...collections].sort((a, b) => b.likes.length - a.likes.length);
+    let splicedCollections = sortedCollections.splice(0,4);
+    setPopularCollections({ collections: splicedCollections });
+  };
+
+  const filteredCollections = collections.collections.filter((collection) => {
+    if (
+      userCollections.collections.length &&
+      collection.category === userCollections.collections[0].categories[0]
+    ) {
+      return true;
+    }
+    return false;
+  });
+
+  console.log("FilteredCollections:" + filteredCollections)
 
   return (
     <section id="main-content">
@@ -48,7 +74,11 @@ const Home = () => {
       )}
 
       <div className="px-4 pb-20 bg-slate-300">
-        <AllCollections collections={collections} />
+        <h1>Most popular Collections</h1>
+        <AllCollections collections={popularCollections} />
+        <h1>Filtered Collections</h1>
+        { // <AllCollections collections={filteredCollections} />
+        }
       </div>
     </section>
   );
