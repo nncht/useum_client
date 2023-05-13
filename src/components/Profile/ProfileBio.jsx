@@ -16,10 +16,12 @@ const ProfileBio = ({ loggedIn }) => {
             <Button variant="contained">Edit Profile</Button>
           </Link>
         ) : loggedIn && loggedIn.following.includes(userData._id) ? (
+          // Link needs to be added after follow/unfollow routes have been written
           <Button variant="outlined" className="m-2">
             Unfollow
           </Button>
         ) : (
+          // Link needs to be added after follow/unfollow routes have been written
           <Button variant="contained" className="m-2">
             Follow
           </Button>
@@ -46,11 +48,7 @@ const ProfileBio = ({ loggedIn }) => {
         <div className="my-2">{userData && <UserStatistics />}</div>
 
         {/* UserBio */}
-        <p className="text-white text-lg">
-          {/* Needs to be replaced with {currentUser.userBio} once the Edit Profile function is ready.
-          Leaving Lorem ipsum for testing purposes for now. */}
-          {userData.userbio}
-        </p>
+        <p className="text-white text-lg">{userData.userbio}</p>
 
         {/* Display user's category/interests tags */}
         <div className="flex">
