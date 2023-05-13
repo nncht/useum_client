@@ -15,6 +15,7 @@ const ProfileBio = () => {
   const [currentUser, setCurrentUser] = useState(null);
   const [isFollowing, setIsFollowing] = useState(false);
   const [followingList, setFollowingList] = useState([]);
+  const [refresh, setRefresh] = useState(false);
 
   // Request user object of currentUser (currently logged in user)
   useEffect(() => {
@@ -28,10 +29,7 @@ const ProfileBio = () => {
           console.error(err);
         });
     }
-  }, [user]);
-
-  console.log(userData);
-  console.log(userData._id);
+  }, [user, refresh]);
 
   // Check if the user is already being followed when user.following changes
   useEffect(() => {
@@ -51,6 +49,7 @@ const ProfileBio = () => {
       setIsFollowing(true);
       setFollowingList([...followingList, userData._id]);
       console.log(response.data.message);
+      setRefresh(!refresh);
     } catch (error) {
       console.error(error);
     }
@@ -65,6 +64,7 @@ const ProfileBio = () => {
       setIsFollowing(false);
       setFollowingList(followingList.filter((id) => id !== userData._id));
       console.log(response.data.message);
+      setRefresh(!refresh);
     } catch (error) {
       console.error(error);
     }
@@ -84,6 +84,7 @@ const ProfileBio = () => {
             <div>
               {isFollowing ? (
                 <Button
+                  key={Date.now()}
                   variant="contained"
                   className="unfollow-btn"
                   onMouseOver={() => {
@@ -99,7 +100,11 @@ const ProfileBio = () => {
                   Following
                 </Button>
               ) : (
-                <Button variant="contained" onClick={handleFollow}>
+                <Button
+                  key={Date.now()}
+                  variant="contained"
+                  onClick={handleFollow}
+                >
                   Follow
                 </Button>
               )}
