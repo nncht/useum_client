@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
 import Button from "@mui/material/Button";
 import FormExtra from "./FormExtra";
+import API_URL from "../../services/apiConfig";
 
-const API_URL = "http://localhost:5005";
 
 export default function Login() {
   const [email, setEmail] = useState("");

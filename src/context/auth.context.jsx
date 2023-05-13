@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import API_URL from "../services/apiConfig";
 
-const API_URL = "http://localhost:5005";
+
+
 
 const AuthContext = React.createContext();
 

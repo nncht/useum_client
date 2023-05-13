@@ -6,8 +6,9 @@ import { AuthContext } from "../context/auth.context";
 import ImageUploader from "./ImageUploader/ImageUploader";
 import Button from "@mui/material/Button";
 import SelectCategories from "./SelectCategories";
+import API_URL from "../services/apiConfig";
 
-const API_URL = "http://localhost:5005";
+
 function CreateForm({ target, idObject, forCollection }) {
   const { user } = useContext(AuthContext);
 

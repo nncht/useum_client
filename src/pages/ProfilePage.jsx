@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { UserDataContext } from "../context/userData.context";
 import { AuthContext } from "../context/auth.context";
 import { AuthProvider } from "../context/auth.context";
+import API_URL from "../services/apiConfig";
 
 // Custom components
 import ProfileHeader from "../components/Profile/ProfileHeader";
@@ -17,7 +18,7 @@ import { Grid } from "@mui/material";
 
 // ----- End of imports
 
-const API_URL = "http://localhost:5005";
+// const API_URL = "http://localhost:5005";
 
 // Fetch user object from username in URL
 const ProfilePage = () => {

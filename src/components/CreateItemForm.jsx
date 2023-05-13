@@ -1,4 +1,6 @@
 import { useState } from "react";
+import API_URL from "../services/apiConfig"
+
 
 function CreateItemForm() {
   const [name, setName] = useState("");
@@ -9,7 +11,7 @@ function CreateItemForm() {
     event.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5005/items", {
+      const response = await fetch(`${API_URL}/items`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
