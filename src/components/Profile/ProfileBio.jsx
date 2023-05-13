@@ -46,10 +46,24 @@ const ProfileBio = () => {
   const handleFollow = async () => {
     try {
       const response = await axios.post(
-        `/api/users/${currentUser._id}/follow/${userData._id}`
+        `${API_URL}/${currentUser._id}/follow/${userData._id}`
       );
       setIsFollowing(true);
       setFollowingList([...followingList, userData._id]);
+      console.log(response.data.message);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  // Unfollow user action
+  const handleUnfollow = async () => {
+    try {
+      const response = await axios.post(
+        `${API_URL}/${currentUser._id}/unfollow/${userData._id}`
+      );
+      setIsFollowing(false);
+      setFollowingList(followingList.filter((id) => id !== userData._id));
       console.log(response.data.message);
     } catch (error) {
       console.error(error);
@@ -67,13 +81,32 @@ const ProfileBio = () => {
               <Button variant="contained">Edit Profile</Button>
             </Link>
           ) : (
-            <Button
-              variant="contained"
-              onClick={handleFollow}
-              disabled={isFollowing}
-            >
-              {isFollowing ? "Following" : "Follow"}
-            </Button>
+            <div>
+              {/* <Button
+                variant="contained"
+                onClick={handleFollow}
+                disabled={isFollowing}
+                className={isFollowing ? "unfollow" : ""}
+              >
+                {isFollowing ? "Following" : "Follow"}
+              </Button> */}
+              {isFollowing && (
+                <button
+                  className="unfollow-btn"
+                  onMouseOver={() => {
+                    document.querySelector(".unfollow-btn").textContent =
+                      "Unfollow";
+                  }}
+                  onMouseOut={() => {
+                    document.querySelector(".unfollow-btn").textContent =
+                      "Following";
+                  }}
+                  onClick={handleUnfollow}
+                >
+                  Following
+                </button>
+              )}
+            </div>
           )}
         </div>
 
