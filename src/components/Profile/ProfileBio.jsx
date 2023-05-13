@@ -82,16 +82,9 @@ const ProfileBio = () => {
             </Link>
           ) : (
             <div>
-              {/* <Button
-                variant="contained"
-                onClick={handleFollow}
-                disabled={isFollowing}
-                className={isFollowing ? "unfollow" : ""}
-              >
-                {isFollowing ? "Following" : "Follow"}
-              </Button> */}
-              {isFollowing && (
-                <button
+              {isFollowing ? (
+                <Button
+                  variant="contained"
                   className="unfollow-btn"
                   onMouseOver={() => {
                     document.querySelector(".unfollow-btn").textContent =
@@ -104,7 +97,11 @@ const ProfileBio = () => {
                   onClick={handleUnfollow}
                 >
                   Following
-                </button>
+                </Button>
+              ) : (
+                <Button variant="contained" onClick={handleFollow}>
+                  Follow
+                </Button>
               )}
             </div>
           )}
