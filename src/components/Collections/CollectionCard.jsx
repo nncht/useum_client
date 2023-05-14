@@ -1,3 +1,4 @@
+import { useParams } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -8,7 +9,9 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 
 const CollectionCard = ({ collection }) => {
-  console.log(collection);
+  const { username } = useParams();
+  console.log(username);
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea href={`/collections/${collection._id}`}>
@@ -21,16 +24,51 @@ const CollectionCard = ({ collection }) => {
           }
           title={collection.name}
         />
-        <CardHeader
-          sx={{ height: "80px" }}
-          avatar={<Avatar aria-label="collection">R</Avatar>}
-          title={collection.name}
-          subheader={
+        {username === collection.createdBy.username ? (
+          <CardHeader
+            sx={{ height: "80px" }}
+            avatar={<Avatar aria-label="collection">R</Avatar>}
+            title={collection.name}
+            subheader={
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                sx={{
+                  lineHeight: "1.2em",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  display: "-webkit-box",
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: "vertical",
+                }}
+              >
+                {collection.description}
+              </Typography>
+            }
+          />
+        ) : (
+          <CardContent>
+            <Typography
+              gutterBottom
+              variant="h5"
+              component="div"
+              sx={{
+                minHeight: "2.4rem",
+                maxHeight: "2.4rem",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {collection.name}
+            </Typography>
+
             <Typography
               variant="body2"
               color="text.secondary"
               sx={{
-                lineHeight: "1.2em",
+                minHeight: "2.4rem",
+                maxHeight: "2.4rem",
                 overflow: "hidden",
                 textOverflow: "ellipsis",
                 display: "-webkit-box",
@@ -40,41 +78,8 @@ const CollectionCard = ({ collection }) => {
             >
               {collection.description}
             </Typography>
-          }
-        />
-        {/* <Link to={`/users/${collection.createdBy.username}`}></Link> */}
-        {/* <CardContent>
-          <Typography
-            gutterBottom
-            variant="h5"
-            component="div"
-            sx={{
-              minHeight: "2.4rem",
-              maxHeight: "2.4rem",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              whiteSpace: "nowrap",
-            }}
-          >
-            {collection.name}
-          </Typography>
-
-          <Typography
-            variant="body2"
-            color="text.secondary"
-            sx={{
-              minHeight: "2.4rem",
-              maxHeight: "2.4rem",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              display: "-webkit-box",
-              WebkitLineClamp: 2,
-              WebkitBoxOrient: "vertical",
-            }}
-          >
-            {collection.description}
-          </Typography>
-        </CardContent> */}
+          </CardContent>
+        )}
       </CardActionArea>
     </Card>
   );
