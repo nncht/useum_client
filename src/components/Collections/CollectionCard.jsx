@@ -55,7 +55,7 @@ const CollectionCard = ({ collection }) => {
         {/* If card is on home view, show collection owner's profile picture */}
         {username === collection.createdBy.username ? (
           <CardHeader
-            sx={{ height: "80px" }}
+            sx={{ height: "85px" }}
             avatar={
               <Avatar
                 aria-label="Profile picture"
@@ -63,7 +63,22 @@ const CollectionCard = ({ collection }) => {
                 src={ownerData?.createdBy?.imageUrl}
               />
             }
-            title={collection.name}
+            title={
+              <Typography
+                variant="button"
+                color="text.secondary"
+                sx={{
+                  lineHeight: "2em",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  display: "-webkit-box",
+                  WebkitLineClamp: 1,
+                  WebkitBoxOrient: "vertical",
+                }}
+              >
+                {collection.name}
+              </Typography>
+            }
             subheader={
               <Typography
                 variant="body2"
