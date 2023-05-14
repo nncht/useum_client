@@ -1,10 +1,9 @@
 import axios from "axios";
 import { useContext, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
 import { UserDataContext } from "../context/userData.context";
 import { AuthContext } from "../context/auth.context";
-import { AuthProvider } from "../context/auth.context";
 import API_URL from "../services/apiConfig";
+import { Link, useParams } from "react-router-dom";
 
 // Custom components
 import ProfileHeader from "../components/Profile/ProfileHeader";
@@ -26,7 +25,7 @@ const ProfilePage = () => {
   const { userData, setUserData } = useContext(UserDataContext);
   const { user } = useContext(AuthContext);
 
-  console.log(username)
+  console.log(username);
 
   useEffect(() => {
     const fetchData = async () => {
