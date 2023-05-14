@@ -1,15 +1,19 @@
+import Avatar from "@mui/material/Avatar";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
+import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
+
 import { CardActionArea } from "@mui/material";
 
 const CollectionCard = ({ collection }) => {
+  console.log(collection);
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea href={`/collections/${collection._id}`}>
         <CardMedia
-          sx={{ height: 200, filter: "brightness(90%)" }}
+          sx={{ height: 200, filter: "brightness(95%)" }}
           image={
             collection.imageUrl === ""
               ? "/images/default/default-collection.svg"
@@ -17,7 +21,29 @@ const CollectionCard = ({ collection }) => {
           }
           title={collection.name}
         />
-        <CardContent>
+        <CardHeader
+          sx={{ height: "80px" }}
+          avatar={<Avatar aria-label="collection">R</Avatar>}
+          title={collection.name}
+          subheader={
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{
+                lineHeight: "1.2em",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                display: "-webkit-box",
+                WebkitLineClamp: 2,
+                WebkitBoxOrient: "vertical",
+              }}
+            >
+              {collection.description}
+            </Typography>
+          }
+        />
+        {/* <Link to={`/users/${collection.createdBy.username}`}></Link> */}
+        {/* <CardContent>
           <Typography
             gutterBottom
             variant="h5"
@@ -48,7 +74,7 @@ const CollectionCard = ({ collection }) => {
           >
             {collection.description}
           </Typography>
-        </CardContent>
+        </CardContent> */}
       </CardActionArea>
     </Card>
   );
