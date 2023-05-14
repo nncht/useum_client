@@ -34,7 +34,9 @@ const CollectionCard = ({ collection }) => {
     if (ownerData === null) {
       fetchData();
     }
-  }, [collection._id, ownerData]);
+  }, []);
+
+  console.log(ownerData);
 
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -58,7 +60,7 @@ const CollectionCard = ({ collection }) => {
               <Avatar
                 aria-label="Profile picture"
                 alt={collection.createdBy.username}
-                src={ownerData.imageUrl}
+                src={ownerData?.createdBy?.imageUrl}
               />
             }
             title={collection.name}
