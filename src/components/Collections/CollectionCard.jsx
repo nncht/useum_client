@@ -65,7 +65,7 @@ const CollectionCard = ({ collection }) => {
             }
             title={
               <Typography
-                variant="button"
+                variant="h6"
                 color="text.secondary"
                 sx={{
                   lineHeight: "2em",
@@ -88,7 +88,7 @@ const CollectionCard = ({ collection }) => {
                   overflow: "hidden",
                   textOverflow: "ellipsis",
                   display: "-webkit-box",
-                  WebkitLineClamp: 2,
+                  WebkitLineClamp: 1,
                   WebkitBoxOrient: "vertical",
                 }}
               >
@@ -101,11 +101,11 @@ const CollectionCard = ({ collection }) => {
           <CardContent>
             <Typography
               gutterBottom
-              variant="h5"
+              variant="h6"
               component="div"
               sx={{
-                minHeight: "2.4rem",
-                maxHeight: "2.4rem",
+                minHeight: "2rem",
+                maxHeight: "2rem",
                 overflow: "hidden",
                 textOverflow: "ellipsis",
                 whiteSpace: "nowrap",
