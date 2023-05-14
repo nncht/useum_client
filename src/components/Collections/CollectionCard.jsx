@@ -1,8 +1,6 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { UserDataContext } from "../../context/userData.context";
-import { AuthContext } from "../../context/auth.context";
 import API_URL from "../../services/apiConfig";
 
 // MUI components
