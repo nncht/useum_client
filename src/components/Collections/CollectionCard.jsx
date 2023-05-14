@@ -1,16 +1,40 @@
+import axios from "axios";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { UserDataContext } from "../../context/userData.context";
+import { AuthContext } from "../../context/auth.context";
+import API_URL from "../../services/apiConfig";
+
+// MUI components
 import Avatar from "@mui/material/Avatar";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-
 import { CardActionArea } from "@mui/material";
+
+// --- End of imports
 
 const CollectionCard = ({ collection }) => {
   // Necessary to determine whether the current view is Home or User Profile
   const { username } = useParams();
+  // Necessary to get the profile pictures for the Avatar component
+  const [ownerData, setOwnerData] = useState(null);
+
+  // Fetch ownerData user object
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get(
+        `${API_URL}/collections/${collection._id}`
+      );
+      setOwnerData(response.data);
+    };
+
+    if (ownerData === null) {
+      fetchData();
+    }
+  }, [collection._id, ownerData]);
 
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -30,7 +54,13 @@ const CollectionCard = ({ collection }) => {
         {username === collection.createdBy.username ? (
           <CardHeader
             sx={{ height: "80px" }}
-            avatar={<Avatar aria-label="collection">R</Avatar>}
+            avatar={
+              <Avatar
+                aria-label="Profile picture"
+                alt={collection.createdBy.username}
+                src={ownerData.imageUrl}
+              />
+            }
             title={collection.name}
             subheader={
               <Typography
