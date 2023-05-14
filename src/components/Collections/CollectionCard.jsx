@@ -9,12 +9,14 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 
 const CollectionCard = ({ collection }) => {
+  // Necessary to determine whether the current view is Home or User Profile
   const { username } = useParams();
-  console.log(username);
 
   return (
     <Card sx={{ maxWidth: 345 }}>
+      {/* Clicking anywhere on the card opens Collection Detail page */}
       <CardActionArea href={`/collections/${collection._id}`}>
+        {/* Collection header image */}
         <CardMedia
           sx={{ height: 200, filter: "brightness(95%)" }}
           image={
@@ -24,6 +26,7 @@ const CollectionCard = ({ collection }) => {
           }
           title={collection.name}
         />
+        {/* If card is on home view, show collection owner's profile picture */}
         {username === collection.createdBy.username ? (
           <CardHeader
             sx={{ height: "80px" }}
@@ -47,6 +50,7 @@ const CollectionCard = ({ collection }) => {
             }
           />
         ) : (
+          // Else, the currentUser is viewing the owner's profile and the additional profile picture display is redundant
           <CardContent>
             <Typography
               gutterBottom
