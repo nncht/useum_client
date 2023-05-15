@@ -172,7 +172,11 @@ export default function NavBar() {
   );
 
   return (
-    <nav className="sticky shadow top-0 bg-slate-700" style={{ zIndex: 10 }}>
+    <nav
+      id="back-to-top-anchor"
+      className="sticky shadow top-0 bg-slate-700"
+      style={{ zIndex: 10 }}
+    >
       {/* BRAND LOGO */}
       <div id="nav-bar" className="flex items-center justify-between pl-6">
         <Link href="/" underline="none" className="flex items-center">

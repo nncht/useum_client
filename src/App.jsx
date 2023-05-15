@@ -22,6 +22,7 @@ import EditProfilePage from "./pages/User/EditProfilePage";
 import ChangePasswordPage from "./pages/User/ChangePasswordPage";
 import DeleteUserPage from "./pages/User/DeleteUserPage";
 import SearchBar from "./components/DynamicSearch/SearchBar";
+import BackToTop from "./components/UI/BackToTop";
 
 function App() {
   return (
@@ -172,6 +173,7 @@ function App() {
           </Routes>
         </div>
       </main>
+      <BackToTop />
     </div>
   );
 }
