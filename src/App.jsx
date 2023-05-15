@@ -27,9 +27,9 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      <main className="p-0">
+      <main id="main-content" className="p-0">
         <SearchBar />
-        <div className="px-0">
+        <div>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route
@@ -171,7 +171,6 @@ function App() {
             />
           </Routes>
         </div>
-        {/* <Footer /> */}
       </main>
     </div>
   );

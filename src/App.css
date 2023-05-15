@@ -19,6 +19,12 @@
   height: calc(100vh - 52px);
   margin: 0 auto;
   background-color: rgb(203 213 225);
+  padding-bottom: 20px;
+}
+
+#main-section {
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
 /* -----------------------------
