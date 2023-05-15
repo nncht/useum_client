@@ -25,13 +25,14 @@ const SearchBar = () => {
   }
 
   return (
-    <>
+    <div id="search-bar" className="p-4 bg-slate-500 sticky shadow top-0">
       <input
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         type="search"
         list="items"
         style={{ width: "100%" }}
+        className="sticky"
       />
       <datalist id="items" style={{ width: "100%" }}>
         {filteredItems.map((item, index) => (
@@ -41,14 +42,16 @@ const SearchBar = () => {
       <br />
       <br />
       <form onSubmit={onSubmit}>
-        New Item: <input ref={inputRef} type="text" />
-        <button type="submit">Add</button>
+        <input ref={inputRef} type="text" />
+        <button type="submit" className="m-2">
+          Add
+        </button>
       </form>
 
       {filteredItems.map((item) => (
         <div>{item}</div>
       ))}
-    </>
+    </div>
   );
 };
 

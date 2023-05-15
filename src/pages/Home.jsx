@@ -26,11 +26,6 @@ const Home = () => {
 
   return (
     <section id="main-content">
-      <div className="p-4 bg-slate-500">
-        <p className="text-slate-100">
-          <SearchBar />
-        </p>
-      </div>
       {/* This isLoggedIn serves the purpose of showing just all collections in the regular home screen, and to show additional content based on the user's settings on logged in screen*/}
       {!isLoggedIn ? (
         <div className="p-4 bg-slate-300">
