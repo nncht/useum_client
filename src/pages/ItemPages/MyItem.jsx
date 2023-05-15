@@ -1,15 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import Button from '@mui/material/Button';
+import { AuthContext } from '../../context/auth.context';
 import { setCollectionId } from '../../services/sharedDatastore';
-import { getCollectionId } from "../../services/sharedDatastore";
+import { getCollectionId } from '../../services/sharedDatastore';
 import AddItemToCollection from '../../components/Items/AddItemToCollection';
+import BookmarkButton from '../../components/Bookmarks/BookmarkButton';
+import API_URL from '../../services/apiConfig';
 
-
-const API_URL = 'http://localhost:5005';
 const MyItem = () => {
 	const { itemId } = useParams();
+
+	const { user } = useContext(AuthContext);
+
 	const [item, setItem] = useState({});
 	const collectionId = getCollectionId();
 
@@ -25,8 +29,10 @@ const MyItem = () => {
 			});
 	}, [itemId]);
 
+	console.log(item)
 
-	return (
+
+		return (
 		<>
 			{/* Displays the item details */}
 
@@ -38,14 +44,14 @@ const MyItem = () => {
 							<h4 className='text-2xl text-slate-600'>{item.name}</h4>
 							<p>{item.description}</p>
 
-
-
-							{item.categories && (<div>
-								<h4 className='text-2xl text-slate-600'>Tags</h4>
-								{item.categories.map((tag) => {
-									return <p key={tag._id}>{tag.category}</p>;
-								})}
-							</div>)}
+							{item.categories && (
+								<div>
+									<h4 className='text-2xl text-slate-600'>Tags</h4>
+									{item.categories.map((tag) => {
+										return <p key={tag._id}>{tag.category}</p>;
+									})}
+								</div>
+							)}
 
 							{/* If there are comments, displays the comments for the item */}
 
@@ -62,13 +68,23 @@ const MyItem = () => {
 								</div>
 							)}
 						</div>
-						<Link to={`/edit-item/${item._id}`} onClick={() => setCollectionId(collectionId)}>
+
+						{/* Like button */}
+
+
+
+							<Link to={`/edit-item/${item._id}`} onClick={() => setCollectionId(collectionId)}>
 							<Button>Edit Item</Button>
-						</Link>
+							</Link>
+
+
+							<div>
+								<BookmarkButton id={item._id} />
+							</div>
+
+
 
 						<AddItemToCollection itemId={item._id} />
-
-
 					</section>
 				</div>
 			)}
