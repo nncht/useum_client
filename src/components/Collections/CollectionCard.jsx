@@ -62,12 +62,11 @@ const CollectionCard = ({ collection }) => {
             }
             title={
               <Typography
-                variant="h6"
-                color="text.secondary"
+                variant="button"
                 sx={{
                   lineHeight: "2em",
                   overflow: "hidden",
-                  textOverflow: "ellipsis",
+                  textOverflow: "clip",
                   display: "-webkit-box",
                   WebkitLineClamp: 1,
                   WebkitBoxOrient: "vertical",

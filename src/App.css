@@ -8,9 +8,22 @@
   margin: 0 auto;
 }
 
+#search-bar {
+  max-width: 1280px;
+  margin: 0 auto;
+  z-index: 9;
+}
+
 #main-content {
   max-width: 1280px;
-  height: calc(100vh - 52px);
+  height: calc(100vh - 145px);
+  margin: 0 auto;
+  background-color: rgb(203 213 225);
+  padding-bottom: 20px;
+}
+
+#main-section {
+  max-width: 1280px;
   margin: 0 auto;
 }
 
@@ -32,6 +45,7 @@ USER PROFILE
   background-color: #555;
   height: 200px;
   overflow: hidden;
+  border-radius: 10px 10px 0px 0px;
 }
 
 .cover img {

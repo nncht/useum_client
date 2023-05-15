@@ -1,6 +1,7 @@
 import * as React from "react";
 import { AuthContext } from "../context/auth.context";
 import { useContext, useState } from "react";
+import SearchBar from "./DynamicSearch/SearchBar";
 
 // MUI components
 import Box from "@mui/material/Box";
@@ -161,20 +162,19 @@ export default function NavBar() {
     </Box>
   );
 
-  {
-    /* <IconButton color="primary" variant="text" onClick={logOutUser}>
-                <LogoutIcon className="text-slate-50" />
-              </IconButton> */
-  }
-
   return (
-    <nav className="sticky shadow top-0 bg-slate-700" style={{ zIndex: 10 }}>
+    <nav
+      id="back-to-top-anchor"
+      className="sticky shadow top-0 bg-slate-700"
+      style={{ zIndex: 10 }}
+    >
       {/* BRAND LOGO */}
       <div id="nav-bar" className="flex items-center justify-between pl-6">
         <Link href="/" underline="none" className="flex items-center">
           <h1 className="w-full text-3xl tracking-widest font-bold my-2 text-slate-50">
             /USEUM
           </h1>
+          {/* <SearchBar /> */}
         </Link>
 
         {/* LOGGED OUT NAVBAR */}

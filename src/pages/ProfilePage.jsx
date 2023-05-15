@@ -10,6 +10,7 @@ import ProfileHeader from "../components/Profile/ProfileHeader";
 import ProfileBio from "../components/Profile/ProfileBio";
 import ProfilePicture from "../components/Profile/ProfilePicture";
 import CollectionCard from "../components/Collections/CollectionCard";
+import SectionHeader from "../components/UI/SectionHeader";
 
 // MUI components
 import Button from "@mui/material/Button";
@@ -39,7 +40,7 @@ const ProfilePage = () => {
   // RENDER PROFILE PAGE
   return (
     // Profile header
-    <div id="main-content">
+    <div id="profile" className="mx-4 mt-4 shadow-sm">
       <div className="relative">
         <ProfileHeader />
         <div className="absolute mt-[-80px] mx-4">
@@ -52,8 +53,8 @@ const ProfilePage = () => {
       </div>
 
       {/* Profile body */}
-      <section className="px-4 pt-3 pb-20 bg-slate-300">
-        <h4 className="text-2xl text-slate-600">Collections</h4>
+      <section className="px-4 pt-3 pb-20 bg-slate-200">
+        <SectionHeader title="Popular Collections" />
 
         {/* Render available collections */}
         <Grid container spacing={3}>
