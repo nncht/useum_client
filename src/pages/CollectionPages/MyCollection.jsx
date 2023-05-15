@@ -6,6 +6,7 @@ import getCollection from "../../services/getCollection";
 import CollectionHeader from "../../components/Collections/CollectionHeader";
 import ItemCard from "../../components/Items/ItemCard";
 import API_URL from "../../services/apiConfig";
+import BookmarkButton from "../../components/Bookmarks/BookmarkButton";
 
 
 // MUI imports
@@ -51,6 +52,15 @@ const MyCollection = () => {
               })}
             </div>
 
+            {/* Like button */}
+
+            {user.username === collection.createdBy.username ? (
+              <div></div> ) : (
+              <div>
+              <BookmarkButton id={collection._id}/>
+              </div>
+            )}
+
             {/* Items */}
             <Grid container spacing={3}>
               {collection.items.map((item) => {
@@ -84,8 +94,13 @@ const MyCollection = () => {
                 </Link>
               </div>
             ) : (
-              <div></div>
+              <div>
+
+
+              </div>
             )}
+
+
           </section>
         </div>
       </>
