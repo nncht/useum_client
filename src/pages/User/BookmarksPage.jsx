@@ -32,10 +32,10 @@ const BookmarksPage = () => {
 	return (
 		<div id="main-content">
 			<section className="px-4 pt-3 pb-20 bg-slate-300">
-                <h4 className="text-2xl text-slate-600">Bookmarks</h4>
+                <h4 className="text-2xl text-slate-600">Your Bookmarks</h4>
                 <div>
+                    <h3 className="text-2xl text-slate-600">Items</h3>
                     <Grid container spacing={3}>
-                        <h5>Items</h5>
                         {itemBookmarks.map((item) => {
                             return (
                                 <Grid item xs={12} sm={6} md={4} lg={3} key={item._id}>
@@ -43,7 +43,9 @@ const BookmarksPage = () => {
                                 </Grid>
                             );
                         })}
-                        <h5>Collections</h5>
+                        </Grid>
+                        <h3 className="text-2xl text-slate-600">Collections</h3>
+                        <Grid container spacing={3}>
                         {collectionBookmarks.map((collection) => {
                             return (
                                 <Grid item xs={12} sm={6} md={4} lg={3} key={collection._id}>
