@@ -12,9 +12,8 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import Link from "@mui/material/Link";
+import CreateNewFolderIcon from "@mui/icons-material/CreateNewFolder";
 
 // MUI icons
 import SettingsIcon from "@mui/icons-material/Settings";
@@ -58,101 +57,93 @@ export default function NavBar() {
     >
       <List>
         {/* Home */}
+
         <ListItem key="Home" disablePadding>
-          <ListItemButton>
+          <ListItemButton href="/">
             <ListItemIcon>
               <HomeIcon />
             </ListItemIcon>
-            <Link href="/" underline="none">
-              <ListItemText primary="Home" />
-            </Link>
+            <ListItemText primary="Home" />
           </ListItemButton>
         </ListItem>
 
         {/* Profile */}
+
         <ListItem key="Profile" disablePadding>
-          <ListItemButton>
+          <ListItemButton href={`/users/${user.username}`}>
             <ListItemIcon>
               <AccountCircleIcon />
             </ListItemIcon>
-            <Link href={`/users/${user.username}`} underline="none">
-              <ListItemText primary="Profile" />
-            </Link>
+            <ListItemText primary="Profile" />
           </ListItemButton>
         </ListItem>
 
         {/* Notifications */}
+
         <ListItem key="Notifications" disablePadding>
           <ListItemButton>
             <ListItemIcon>
               <NotificationsIcon />
             </ListItemIcon>
-            <Link href="#" underline="none">
-              <ListItemText primary="Notifications" />
-            </Link>
+            <ListItemText primary="Notifications" />
           </ListItemButton>
         </ListItem>
 
         {/* Messages */}
+
         <ListItem key="Messages" disablePadding>
           <ListItemButton>
             <ListItemIcon>
               <EmailIcon />
             </ListItemIcon>
-            <Link href="#" underline="none">
-              <ListItemText primary="Messages" />
-            </Link>
+            <ListItemText primary="Messages" />
           </ListItemButton>
         </ListItem>
 
         {/* Bookmarks */}
+
         <ListItem key="Bookmarks" disablePadding>
-          <ListItemButton>
+          <ListItemButton href={`/bookmarks/${user._id}`}>
             <ListItemIcon>
               <BookmarksIcon />
             </ListItemIcon>
-            <Link href={`/bookmarks/${user._id}`} underline="none">
-              <ListItemText primary="Bookmarks" />
-            </Link>
+            <ListItemText primary="Bookmarks" />
           </ListItemButton>
         </ListItem>
       </List>
 
       {/* Settings */}
+
       <ListItem key="Settings" disablePadding>
-        <ListItemButton>
+        <ListItemButton href="/profile">
           <ListItemIcon>
             <SettingsIcon />
           </ListItemIcon>
-          <Link href="/profile" underline="none">
-            <ListItemText primary="Settings" />
-          </Link>
+          <ListItemText primary="Settings" />
         </ListItemButton>
       </ListItem>
 
       <Divider />
 
       {/* New Collection */}
+
       <ListItem key="New Collection" disablePadding>
-        <ListItemButton>
+        <ListItemButton href="/create-collection">
           <ListItemIcon>
-            <AddBoxIcon />
+            <CreateNewFolderIcon />
           </ListItemIcon>
-          <Link href="     /create-collection" underline="none">
-            <ListItemText primary="New Collection" />
-          </Link>
+          <ListItemText primary="New Collection" />
         </ListItemButton>
       </ListItem>
 
       {/* New Item */}
+
       <ListItem key="New Item" disablePadding>
-        <ListItemButton>
+        <ListItemButton href="/create-item">
           <ListItemIcon>
             <AddBoxIcon />
           </ListItemIcon>
-          <Link href="/create-item" underline="none">
-            <ListItemText primary="Create Item" />
-          </Link>
+          <ListItemText primary="Create Item" />
         </ListItemButton>
       </ListItem>
 
