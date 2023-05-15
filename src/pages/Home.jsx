@@ -15,7 +15,7 @@ const Home = () => {
       .then((res) => {
         const sortedCollections = res.data.collections
           .sort((a, b) => b.likes.length - a.likes.length)
-          .slice(0, 10); // limit to 10 collections
+          .slice(0, 8); // limit to 8 collections, for dev phase while Lukas is still working on his home page logic
         setCollections({ collections: sortedCollections });
         console.log(res.data);
       })
@@ -39,7 +39,7 @@ const Home = () => {
         </div>
       )}
 
-      <div className="px-4 pb-20 bg-slate-300">
+      <div className="px-4 bg-slate-300">
         <AllCollections collections={collections} />
       </div>
     </section>
