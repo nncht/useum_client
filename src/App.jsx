@@ -21,6 +21,7 @@ import EditItem from './pages/ItemPages/EditItem';
 import EditProfilePage from './pages/User/EditProfilePage';
 import ChangePasswordPage from './pages/User/ChangePasswordPage';
 import DeleteUserPage from './pages/User/DeleteUserPage';
+import BookmarksPage from './pages/User/BookmarksPage';
 
 function App() {
 	return (
@@ -101,6 +102,15 @@ function App() {
 							element={
 								<UserDataProvider>
 									<ProfilePage />
+								</UserDataProvider>
+							}
+						/>
+
+<Route
+							path='/bookmarks/:userId'
+							element={
+								<UserDataProvider>
+									<BookmarksPage />
 								</UserDataProvider>
 							}
 						/>

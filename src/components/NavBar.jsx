@@ -111,7 +111,7 @@ export default function NavBar() {
             <ListItemIcon>
               <BookmarksIcon />
             </ListItemIcon>
-            <Link href="#" underline="none">
+            <Link href={`/bookmarks/${user._id}`} underline="none">
               <ListItemText primary="Bookmarks" />
             </Link>
           </ListItemButton>

@@ -34,7 +34,6 @@ const CollectionCard = ({ collection }) => {
     }
   }, []);
 
-  console.log(ownerData);
 
   return (
     <Card sx={{ maxWidth: 345 }}>

@@ -13,7 +13,6 @@ const getCollection = (collectionId, setCollection) => {
 				},
 			})
 			.then((response) => {
-				console.log(response.data);
 				setCollection(response.data);
 			})
 			.catch((error) => {
