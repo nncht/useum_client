@@ -2,7 +2,7 @@ import { AuthContext } from "../context/auth.context";
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import AllCollections from "../components/Collections/AllCollections";
-import SearchBar from "../components/DynamicSearch/SearchBar";
+import SectionHeader from "../components/UI/SectionHeader";
 
 const Home = () => {
   const [collections, setCollections] = useState({ collections: [] });
@@ -27,6 +27,8 @@ const Home = () => {
   return (
     <section id="main-section">
       <div className="px-4 pt-3">
+        {/* Section headers can now be styled with this reusable component. Just pass the text as a string */}
+        <SectionHeader title="Popular Collections" />
         <AllCollections collections={collections} />
       </div>
 
