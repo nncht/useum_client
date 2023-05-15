@@ -12,8 +12,19 @@ function sleep(delay = 0) {
 export default function SearchBar() {
   const [open, setOpen] = React.useState(false);
   const [options, setOptions] = React.useState([]);
+  const [selectedOption, setSelectedOption] = React.useState(null);
   const loading = open && options.length === 0;
 
+  //   Attempt to autosubmit the selected option and call the search route: /search?q={title from the dropdown}.
+  //   You might have to update the search route to handle the params, I'm not sure.
+  const handleSelectOption = (event, value) => {
+    setSelectedOption(value);
+    const searchParams = new URLSearchParams({ q: value.title }); // This is set to work with the data below, but needs to match our DB properties ofc. Probably value.name or value.username (yikes)
+    const url = `/search?${searchParams.toString()}`;
+    window.location.href = url;
+  };
+
+  //   This stuff below is from the MUI Asynchronous Autocomplete component
   React.useEffect(() => {
     let active = true;
 
@@ -22,7 +33,7 @@ export default function SearchBar() {
     }
 
     (async () => {
-      await sleep(1e3); // For demo purposes.
+      await sleep(1e3);
 
       if (active) {
         setOptions([...topFilms]);
@@ -45,6 +56,7 @@ export default function SearchBar() {
       <div id="search-bar" className="px-4 pt-3 pb-4 top-0">
         <Autocomplete
           id="search-input"
+          onChange={handleSelectOption} // This will fire autosubmit on select, I hope
           sx={{ width: "100%", background: "white", borderRadius: "0.25rem" }}
           open={open}
           onOpen={() => {
