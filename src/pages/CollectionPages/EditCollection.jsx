@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import {AuthContext} from '../../context/auth.context'
 import axios from 'axios';
 import Button from '@mui/material/Button';
 import getCollection from '../../services/getCollection';
@@ -19,13 +20,14 @@ const EditCollection = () => {
 
 	const { collectionId } = useParams();
 
+	const { user } = useContext(AuthContext);
+
 	const navigate = useNavigate();
 
 	useEffect(() => {
 		getCollection(collectionId, setCollection);
 	}, []);
 
-	console.log(collection);
 
 	useEffect(() => {
 		if (collection) {
@@ -85,7 +87,7 @@ const EditCollection = () => {
 			})
 			.then((res) => {
 				console.log('res is: ', res.data);
-				navigate('/profile');
+				navigate(`/users/${user.username}`);
 			})
 			.catch((err) => {
 				console.log('err is: ', err);
