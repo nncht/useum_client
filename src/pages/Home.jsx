@@ -2,6 +2,7 @@ import { AuthContext } from "../context/auth.context";
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import AllCollections from "../components/Collections/AllCollections";
+import SearchBar from "../components/DynamicSearch/SearchBar";
 
 const Home = () => {
   const [collections, setCollections] = useState({ collections: [] });
@@ -12,9 +13,9 @@ const Home = () => {
     axios
       .get(`${API_URL}/collections`)
       .then((res) => {
-        const sortedCollections = res.data.collections.sort(
-          (a, b) => b.likes.length - a.likes.length
-        );
+        const sortedCollections = res.data.collections
+          .sort((a, b) => b.likes.length - a.likes.length)
+          .slice(0, 10); // limit to 10 collections
         setCollections({ collections: sortedCollections });
         console.log(res.data);
       })
@@ -28,22 +29,15 @@ const Home = () => {
       {/* This isLoggedIn serves the purpose of showing just all collections in the regular home screen, and to show additional content based on the user's settings on logged in screen*/}
       {!isLoggedIn ? (
         <div className="p-4 bg-slate-300">
-          <p className="text-2xl text-slate-600">(You need to log in still!)</p>
+          <p className="text-2xl text-slate-600">
+            <SearchBar />
+          </p>
         </div>
       ) : (
         <div className="p-4 bg-slate-300">
           <p className="text-2xl text-slate-600">
-            Welcome back, {user.username}
+            <SearchBar />
           </p>
-          {/* <p>Based on what you selected in your settings, you could see a bunch of stuff here!</p>
-          <p>Examples include:</p>
-          <ul>
-            <li>Recommended collections based on your interests</li>
-            <li>Recommended collections based on your friends' interests</li>
-            <li>The newest items</li>
-            <li>The most popular items</li>
-            <li>Lukas' favorite Ravelist</li>
-          </ul> */}
         </div>
       )}
 

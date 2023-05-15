@@ -1,6 +1,7 @@
 import * as React from "react";
 import { AuthContext } from "../context/auth.context";
 import { useContext, useState } from "react";
+import SearchBar from "./DynamicSearch/SearchBar";
 
 // MUI components
 import Box from "@mui/material/Box";
@@ -184,6 +185,7 @@ export default function NavBar() {
           <h1 className="w-full text-3xl tracking-widest font-bold my-2 text-slate-50">
             /USEUM
           </h1>
+          {/* <SearchBar /> */}
         </Link>
 
         {/* LOGGED OUT NAVBAR */}
