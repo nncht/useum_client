@@ -171,12 +171,6 @@ export default function NavBar() {
     </Box>
   );
 
-  {
-    /* <IconButton color="primary" variant="text" onClick={logOutUser}>
-                <LogoutIcon className="text-slate-50" />
-              </IconButton> */
-  }
-
   return (
     <nav className="sticky shadow top-0 bg-slate-700" style={{ zIndex: 10 }}>
       {/* BRAND LOGO */}

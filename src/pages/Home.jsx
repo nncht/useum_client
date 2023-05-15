@@ -14,7 +14,7 @@ const Home = () => {
       .get(`${API_URL}/collections`)
       .then((res) => {
         const sortedCollections = res.data.collections
-          .sort((a, b) => b.likes.length - a.likes.length)
+          .sort((a, b) => b.likes.length - a.likes.length) // Sort by popular collections
           .slice(0, 8); // limit to 8 collections, for dev phase while Lukas is still working on his home page logic
         setCollections({ collections: sortedCollections });
         console.log(res.data);
@@ -32,8 +32,8 @@ const Home = () => {
           <p className="text-2xl text-slate-600">Please login</p>
         </div>
       ) : (
-        <div className="p-4 bg-slate-300">
-          <p className="text-2xl text-slate-600">
+        <div className="px-4 pt-3 bg-slate-300">
+          <p className="text-xl text-slate-600">
             Welcome back, {user.username}!
           </p>
         </div>

@@ -41,40 +41,43 @@ export default function SearchBar() {
   }, [open]);
 
   return (
-    <div id="search-bar" className="px-4 pt-3 pb-4 bg-slate-500 shadow top-0">
-      <Autocomplete
-        id="search-input"
-        sx={{ width: "100%", background: "white", borderRadius: "0.25rem" }}
-        open={open}
-        onOpen={() => {
-          setOpen(true);
-        }}
-        onClose={() => {
-          setOpen(false);
-        }}
-        isOptionEqualToValue={(option, value) => option.title === value.title}
-        getOptionLabel={(option) => option.title}
-        options={options}
-        loading={loading}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            label="Search for collections, items or users..."
-            InputProps={{
-              ...params.InputProps,
-              endAdornment: (
-                <React.Fragment>
-                  {loading ? (
-                    <CircularProgress color="inherit" size={20} />
-                  ) : null}
-                  {params.InputProps.endAdornment}
-                </React.Fragment>
-              ),
-            }}
-          />
-        )}
-      />
-    </div>
+    <nav className="bg-slate-400" style={{ zIndex: 10 }}>
+      <div id="search-bar" className="px-4 pt-3 pb-4 top-0">
+        <Autocomplete
+          id="search-input"
+          sx={{ width: "100%", background: "white", borderRadius: "0.25rem" }}
+          open={open}
+          onOpen={() => {
+            setOpen(true);
+          }}
+          onClose={() => {
+            setOpen(false);
+          }}
+          isOptionEqualToValue={(option, value) => option.title === value.title}
+          getOptionLabel={(option) => option.title}
+          options={options}
+          loading={loading}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              placeholder="Search for collections, items or users..."
+              InputProps={{
+                ...params.InputProps,
+                style: { paddingBottom: "6px" },
+                endAdornment: (
+                  <React.Fragment>
+                    {loading ? (
+                      <CircularProgress color="inherit" size={20} />
+                    ) : null}
+                    {params.InputProps.endAdornment}
+                  </React.Fragment>
+                ),
+              }}
+            />
+          )}
+        />
+      </div>
+    </nav>
   );
 }
 

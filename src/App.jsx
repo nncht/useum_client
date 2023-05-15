@@ -27,8 +27,8 @@ function App() {
   return (
     <div className="App">
       <NavBar />
+      <SearchBar />
       <main id="main-content" className="p-0">
-        <SearchBar />
         <div>
           <Routes>
             <Route path="/" element={<Home />} />
