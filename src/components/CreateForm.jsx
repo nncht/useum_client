@@ -18,7 +18,7 @@ function CreateForm({ target, idObject, forCollection }) {
   const [imageUrl, setImageUrl] = useState("");
   const [categoryArray, setCategoryArray] = useState([]);
   const [errorMessage, setErrorMessage] = useState(undefined);
-  const [reviews, setReviews] = useState([]);
+  const [comment, setComment] = useState("");
   const [uploadingImage, setUploadingImage] = useState(false);
 
   const storedToken = localStorage.getItem("authToken");
@@ -54,7 +54,7 @@ function CreateForm({ target, idObject, forCollection }) {
       createdBy: user._id,
       imageUrl: imageUrl,
       categories: categoryArray,
-      reviews: reviews,
+      comments: comment,
       collections: forCollection,
     };
 
@@ -66,6 +66,8 @@ function CreateForm({ target, idObject, forCollection }) {
         setName("");
         setDescription("");
         setImageUrl("");
+        setCategoryArray([]);
+        setComment([]);
         navigate(`/${target}/${res.data[idObject]._id}`);
       })
       .catch((err) => {
@@ -112,13 +114,13 @@ function CreateForm({ target, idObject, forCollection }) {
             categoryArray={categoryArray}
           />
           <label htmlFor="review" className="text-xl mt-3">
-            Review
+            Comment
           </label>
           <textarea
             id="review"
             className={fixedInputClass}
-            value={reviews}
-            onChange={(event) => setReviews(event.target.value)}
+            value={comment}
+            onChange={(event) => setComment(event.target.value)}
           />
 
           {uploadingImage === true ? (
