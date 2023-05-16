@@ -40,20 +40,22 @@ const Home = () => {
           <AllCollections collections={collections} />
         </div>
       </section>
-      <section id="login-cta" className="bg-slate-100">
-        {/* This isLoggedIn serves the purpose of showing just all collections in the regular home screen, and to show additional content based on the user's settings on logged in screen*/}
-        {!isLoggedIn ? (
-          <div id="main-section" className="p-4">
+
+      {!isLoggedIn ? (
+        <section id="login-cta" className="bg-slate-100">
+          <div id="main-section" className="py-4">
             <p className="text-2xl text-slate-600">Please login</p>
           </div>
-        ) : (
-          <div id="main-section" className="p-4">
+        </section>
+      ) : (
+        <section id="login-cta" className="bg-slate-100">
+          <div id="main-section" className="py-4">
             <p className="text-xl text-slate-600">
               Welcome back, {user.username}!
             </p>
           </div>
-        )}
-      </section>
+        </section>
+      )}
     </>
   );
 };
