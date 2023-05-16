@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../../context/auth.context';
 import axios from 'axios';
 import Button from '@mui/material/Button';
 import ImageUploader from '../../components/ImageUploader/ImageUploader';
@@ -19,9 +20,10 @@ const EditItem = () => {
 
 	const collectionId = getCollectionId();
 
-	console.log('COLLECTION ID', collectionId);
-
 	const { itemId } = useParams();
+
+	const { user } = useContext(AuthContext);
+
 
 	const navigate = useNavigate();
 
@@ -88,10 +90,11 @@ const EditItem = () => {
 		axios
 			.post(`${API_URL}/items/${itemId}`, {
 				collection: collectionId,
+				createdBy: item.createdBy,
 			})
 			.then((res) => {
 				console.log('res is: ', res.data);
-				navigate('/profile');
+				navigate(`/users/${user.username}`);
 			})
 			.catch((err) => {
 				console.log('err is: ', err);
