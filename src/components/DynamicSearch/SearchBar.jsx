@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import { useEffect } from "react";
 import API_URL from "../../services/apiConfig";
 import axios from "axios";
+import SearchIcon from "@mui/icons-material/Search";
 
 function sleep(delay = 0) {
   return new Promise((resolve) => {
@@ -22,8 +23,6 @@ export default function SearchBar() {
   const [allItemNames, setAllItemNames] = React.useState([]);
   const loading = open && options.length === 0;
 
-
-
   //   Attempt to autosubmit the selected option and call the search route: /search?q={title from the dropdown}.
   //   You might have to update the search route to handle the params, I'm not sure.
   const handleSelectOption = (event, value) => {
@@ -31,7 +30,7 @@ export default function SearchBar() {
   };
 
   const handleKeyPress = (event) => {
-    if (event.key === 'Enter' && selectedOption !== null) {
+    if (event.key === "Enter" && selectedOption !== null) {
       const searchParams = new URLSearchParams({ q: selectedOption.title });
       const url = `/search?${searchParams.toString()}`;
       window.location.href = url;
@@ -39,7 +38,7 @@ export default function SearchBar() {
   };
 
   //   This stuff below is from the MUI Asynchronous Autocomplete component
-useEffect(() => {
+  useEffect(() => {
     let active = true;
 
     if (!loading) {
@@ -50,14 +49,17 @@ useEffect(() => {
       await sleep(1e3);
 
       if (active) {
-
         setOptions([
-          ...allUserNames.map((username) => ({ title: username, type: "user" })),
-          ...allCollectionNames.map((name) => ({ title: name, type: "collection" })),
+          ...allUserNames.map((username) => ({
+            title: username,
+            type: "user",
+          })),
+          ...allCollectionNames.map((name) => ({
+            title: name,
+            type: "collection",
+          })),
           ...allItemNames.map((name) => ({ title: name, type: "item" })),
-        ])
-
-
+        ]);
       }
     })();
 
@@ -66,14 +68,15 @@ useEffect(() => {
     };
   }, [loading, allUserNames, allCollectionNames, allItemNames]);
 
-useEffect(() => {
+  useEffect(() => {
     if (!open) {
       setOptions([]);
     }
   }, [open]);
 
   useEffect(() => {
-    axios.get(`${API_URL}/users`)
+    axios
+      .get(`${API_URL}/users`)
       .then((res) => {
         setAllUserNames(res.data.map((user) => user.username));
       })
@@ -83,17 +86,21 @@ useEffect(() => {
   }, []);
 
   useEffect(() => {
-    axios.get(`${API_URL}/collections`)
+    axios
+      .get(`${API_URL}/collections`)
       .then((res) => {
-        setAllCollectionNames(res.data.collections.map((collection) => collection.name));
+        setAllCollectionNames(
+          res.data.collections.map((collection) => collection.name)
+        );
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
 
-useEffect(() => {
-    axios.get(`${API_URL}/items`)
+  useEffect(() => {
+    axios
+      .get(`${API_URL}/items`)
       .then((res) => {
         setAllItemNames(res.data.items.map((item) => item.name));
       })
@@ -102,15 +109,9 @@ useEffect(() => {
       });
   }, []);
 
-
-
-
-
-
-
   return (
     <nav className="bg-slate-400 shadow-sm" style={{ zIndex: 10 }}>
-      <div id="search-bar" className="px-4 pt-3 pb-4 top-0">
+      <div id="search-bar" className="flex px-4 pt-3 pb-4 top-0">
         <Autocomplete
           id="search-input"
           onChange={handleSelectOption}
@@ -146,7 +147,9 @@ useEffect(() => {
             />
           )}
         />
-        <Button>Search</Button>
+        <Button variant="contained">
+          <SearchIcon />
+        </Button>
       </div>
     </nav>
   );
