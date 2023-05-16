@@ -87,11 +87,15 @@ const EditItem = () => {
 	};
 
 	const deleteItem = () => {
+
+		const requestBody = {
+			collection: collectionId,
+			createdBy: item.createdBy,
+		};
+
+
 		axios
-			.post(`${API_URL}/items/${itemId}`, {
-				collection: collectionId,
-				createdBy: item.createdBy,
-			})
+			.post(`${API_URL}/items/${itemId}`, requestBody)
 			.then((res) => {
 				console.log('res is: ', res.data);
 				navigate(`/users/${user.username}`);
