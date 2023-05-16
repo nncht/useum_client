@@ -185,9 +185,9 @@ function App() {
             <Route
               path="/search"
               element={
-                <IsPublic>
+                <IsPrivate>
                   <SearchResults />
-                </IsPublic>
+                </IsPrivate>
               }
             />
           </Routes>
