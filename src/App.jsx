@@ -24,6 +24,7 @@ import DeleteUserPage from "./pages/User/DeleteUserPage";
 import SearchBar from "./components/DynamicSearch/SearchBar";
 import BackToTop from "./components/UI/BackToTop";
 import BookmarksPage from './pages/User/BookmarksPage';
+import SearchResults from "./pages/SearchResults";
 
 function App() {
   return (
@@ -180,6 +181,16 @@ function App() {
                 </IsPrivate>
               }
             />
+
+            <Route
+              path="/search"
+              element={
+                <IsPrivate>
+                  <SearchResults />
+                </IsPrivate>
+              }
+            />
+
           </Routes>
         </div>
       </main>
