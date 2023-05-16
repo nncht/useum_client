@@ -75,6 +75,26 @@ useEffect(() => {
       });
   }, []);
 
+  useEffect(() => {
+    axios.get(`${API_URL}/collections`)
+      .then((res) => {
+        setAllCollectionNames(res.data.collections.map((collection) => collection.name));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+useEffect(() => {
+    axios.get(`${API_URL}/items`)
+      .then((res) => {
+        setAllItemNames(res.data.items.map((item) => item.name));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
 
 
 
