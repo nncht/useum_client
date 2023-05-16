@@ -54,7 +54,7 @@ function CreateForm({ target, idObject, forCollection }) {
       createdBy: user._id,
       imageUrl: imageUrl,
       categories: categoryArray,
-      comments: comment,
+      comment: comment,
       collections: forCollection,
     };
 
