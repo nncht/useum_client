@@ -51,6 +51,13 @@ useEffect(() => {
 
       if (active) {
 
+        setOptions([
+          ...allUserNames.map((username) => ({ title: username, type: "user" })),
+          ...allCollectionNames.map((name) => ({ title: name, type: "collection" })),
+          ...allItemNames.map((name) => ({ title: name, type: "item" })),
+        ])
+
+
       }
     })();
 
