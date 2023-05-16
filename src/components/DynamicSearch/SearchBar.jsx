@@ -65,6 +65,15 @@ useEffect(() => {
     }
   }, [open]);
 
+  useEffect(() => {
+    axios.get(`${API_URL}/users`)
+      .then((res) => {
+        setAllUserNames(res.data.map((user) => user.username));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
 
 
