@@ -133,6 +133,20 @@ export default function SearchBar() {
           getOptionLabel={(option) => option.title}
           options={options}
           loading={loading}
+          filterOptions={(options, state) => {
+            const filteredOptions = options.filter(
+              (option) =>
+                option.title
+                  .toLowerCase()
+                  .indexOf(state.inputValue.toLowerCase()) !== -1
+            );
+
+            if (filteredOptions.length === 0 && state.inputValue !== "") {
+              return [{ title: "Create Item" }, { title: "Create Collection" }];
+            }
+
+            return filteredOptions;
+          }}
           renderInput={(params) => (
             <TextField
               {...params}
@@ -152,6 +166,7 @@ export default function SearchBar() {
             />
           )}
         />
+
         {/* <Button variant="contained">
           <SearchIcon />
         </Button> */}
