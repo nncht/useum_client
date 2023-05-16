@@ -115,7 +115,7 @@ export default function SearchBar() {
       <div id="search-bar" className="px-4 pt-3 pb-4 top-0">
         <Autocomplete
           id="search-input"
-          onChange={handleSelectOption}
+          onChange={handleSelectOption} // Autosubmit on selection
           sx={{ width: "100%", background: "white", borderRadius: "0.25rem" }}
           open={open}
           onOpen={() => {
@@ -142,6 +142,7 @@ export default function SearchBar() {
 
             return filteredOptions;
           }}
+          // Styles and content of input field
           renderInput={(params) => (
             <TextField
               {...params}
@@ -160,11 +161,29 @@ export default function SearchBar() {
               }}
             />
           )}
+          renderOption={(props, option) => (
+            <li {...props}>
+              {option.type === "user" &&
+                allUserNames.includes(option.title) && (
+                  <span className="text-orange-500 uppercase">
+                    User &nbsp;&nbsp;&nbsp;
+                  </span>
+                )}
+              {option.type === "collection" && (
+                <span className="text-slate-500 uppercase">
+                  Collection &nbsp;&nbsp;&nbsp;
+                </span>
+              )}
+              {option.type === "item" && (
+                <span className="text-slate-700 uppercase">
+                  {" "}
+                  Item &nbsp;&nbsp;&nbsp;
+                </span>
+              )}
+              {option.title}
+            </li>
+          )}
         />
-
-        {/* <Button variant="contained">
-          <SearchIcon />
-        </Button> */}
       </div>
     </nav>
   );
