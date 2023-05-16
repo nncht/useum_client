@@ -15,16 +15,24 @@
 }
 
 #main-content {
-  max-width: 1280px;
-  height: calc(100vh - 145px);
+  width: 100vw;
+  /* height: calc(100vh - 145px); */
   margin: 0 auto;
-  background-color: rgb(203 213 225);
+  /* background-color: rgb(203 213 225); */
   padding-bottom: 20px;
 }
 
 #main-section {
   max-width: 1280px;
   margin: 0 auto;
+}
+
+#login-cta {
+  width: 100vw;
+  margin: 0 auto;
+  background-image: url(/images/default/default-header.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 /* -----------------------------

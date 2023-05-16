@@ -15,7 +15,7 @@ const Home = () => {
       .then((res) => {
         const sortedCollections = res.data.collections
           .sort((a, b) => b.likes.length - a.likes.length) // Sort by popular collections
-          .slice(0, 8); // limit to 8 collections, for dev phase while Lukas is still working on his home page logic
+          .slice(0, 4); // limit to 4 collections, for dev phase while Lukas is still working on his home page logic
         setCollections({ collections: sortedCollections });
         console.log(res.data);
       })
@@ -25,26 +25,36 @@ const Home = () => {
   }, []);
 
   return (
-    <section id="main-section">
-      <div className="px-4 pt-3">
-        {/* Section headers can now be styled with this reusable component. Just pass the text as a string */}
-        <SectionHeader title="Popular Collections" />
-        <AllCollections collections={collections} />
-      </div>
-
-      {/* This isLoggedIn serves the purpose of showing just all collections in the regular home screen, and to show additional content based on the user's settings on logged in screen*/}
-      {!isLoggedIn ? (
-        <div className="p-4 ">
-          <p className="text-2xl text-slate-600">Please login</p>
+    <>
+      <section id="main-content" className="bg-slate-100">
+        <div id="main-section" className="p-4">
+          {/* Section headers can now be styled with this reusable component. Just pass the text as a string */}
+          <SectionHeader title="Popular Collections" />
+          <AllCollections collections={collections} />
         </div>
-      ) : (
-        <div className="px-4 pt-3">
-          <p className="text-xl text-slate-600">
-            Welcome back, {user.username}!
-          </p>
+      </section>
+      <section id="main-content" className="bg-slate-200">
+        <div id="main-section" className="p-4">
+          {/* Section headers can now be styled with this reusable component. Just pass the text as a string */}
+          <SectionHeader title="Popular Items" />
+          <AllCollections collections={collections} />
         </div>
-      )}
-    </section>
+      </section>
+      <section id="login-cta" className="bg-slate-100">
+        {/* This isLoggedIn serves the purpose of showing just all collections in the regular home screen, and to show additional content based on the user's settings on logged in screen*/}
+        {!isLoggedIn ? (
+          <div id="main-section" className="p-4">
+            <p className="text-2xl text-slate-600">Please login</p>
+          </div>
+        ) : (
+          <div id="main-section" className="p-4">
+            <p className="text-xl text-slate-600">
+              Welcome back, {user.username}!
+            </p>
+          </div>
+        )}
+      </section>
+    </>
   );
 };
 
