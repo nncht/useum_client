@@ -23,7 +23,7 @@ import ChangePasswordPage from "./pages/User/ChangePasswordPage";
 import DeleteUserPage from "./pages/User/DeleteUserPage";
 import SearchBar from "./components/DynamicSearch/SearchBar";
 import BackToTop from "./components/UI/BackToTop";
-import BookmarksPage from './pages/User/BookmarksPage';
+import BookmarksPage from "./pages/User/BookmarksPage";
 import SearchResults from "./pages/SearchResults";
 
 function App() {
@@ -110,23 +110,23 @@ function App() {
               }
             />
 
-<Route
-							path='/bookmarks/:userId'
-							element={
-								<UserDataProvider>
-									<BookmarksPage />
-								</UserDataProvider>
-							}
-						/>
+            <Route
+              path="/bookmarks/:userId"
+              element={
+                <UserDataProvider>
+                  <BookmarksPage />
+                </UserDataProvider>
+              }
+            />
 
-						<Route
-							path='/delete/:userId'
-							element={
-								<UserDataProvider>
-									<DeleteUserPage />
-								</UserDataProvider>
-							}
-						/>
+            <Route
+              path="/delete/:userId"
+              element={
+                <UserDataProvider>
+                  <DeleteUserPage />
+                </UserDataProvider>
+              }
+            />
 
             <Route
               path="/change-password/:userId"
@@ -185,12 +185,11 @@ function App() {
             <Route
               path="/search"
               element={
-                <IsPrivate>
+                <IsPublic>
                   <SearchResults />
-                </IsPrivate>
+                </IsPublic>
               }
             />
-
           </Routes>
         </div>
       </main>
