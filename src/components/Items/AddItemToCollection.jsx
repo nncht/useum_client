@@ -8,8 +8,9 @@ import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import Button from '@mui/material/Button';
+import API_URL from "../../services/apiConfig";
 
-const API_URL = 'http://localhost:5005';
+
 
 const AddItemToCollection = ({ itemId }) => {
 	const { user } = useContext(AuthContext);

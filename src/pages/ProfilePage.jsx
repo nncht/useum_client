@@ -18,7 +18,6 @@ import { Grid } from "@mui/material";
 
 // ----- End of imports
 
-// const API_URL = "http://localhost:5005";
 
 // Fetch user object from username in URL
 const ProfilePage = () => {
