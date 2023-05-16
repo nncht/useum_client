@@ -7,7 +7,7 @@ import AllCollections from "../components/Collections/AllCollections";
 import SectionHeader from "../components/UI/SectionHeader";
 
 // MUI imports
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 
 // --- End of imports
 
@@ -47,18 +47,25 @@ const Home = () => {
           <AllCollections collections={collections} />
         </div>
       </section>
-
+      {/* Trending Items - still need to change content here @Lukas */}
+      <section id="main-content" className="bg-slate-100">
+        <div id="main-section" className="p-4">
+          <SectionHeader title="Trending Items" />
+          <AllCollections collections={collections} />
+        </div>
+      </section>
       {!isLoggedIn ? (
-        <section id="main-content" className="bg-slate-300">
+        <section id="main-content" className="bg-slate-200">
           <div id="main-section" className="p-4">
-            <div className="flex flex-col w-full md:w-1/4 gap-3 place-content-center">
+            <div className="grid place-content-center gap-3">
+              <Typography variant="h6">Showcase your own setups</Typography>
               <Button variant="contained">Sign Up</Button>
               <Button variant="outlined">Log In</Button>
             </div>
           </div>
         </section>
       ) : (
-        <section id="main-content" className="bg-slate-300">
+        <section id="main-content" className="bg-slate-100">
           <div id="main-section" className="p-4">
             Stuff that only logged in users should see
           </div>
