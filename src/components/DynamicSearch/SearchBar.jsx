@@ -24,18 +24,24 @@ export default function SearchBar() {
   const loading = open && options.length === 0;
 
   //   Attempt to autosubmit the selected option and call the search route: /search?q={title from the dropdown}.
-  //   You might have to update the search route to handle the params, I'm not sure.
+  // const handleSelectOption = (event, value) => {
+  //   setSelectedOption(value);
+  // };
+
   const handleSelectOption = (event, value) => {
     setSelectedOption(value);
+    const searchParams = new URLSearchParams({ q: value.title });
+    const url = `/search?${searchParams.toString()}`;
+    window.location.href = url;
   };
 
-  const handleKeyPress = (event) => {
-    if (event.key === "Enter" && selectedOption !== null) {
-      const searchParams = new URLSearchParams({ q: selectedOption.title });
-      const url = `/search?${searchParams.toString()}`;
-      window.location.href = url;
-    }
-  };
+  // const handleKeyPress = (event) => {
+  //   if (event.key === "Enter" && selectedOption !== null) {
+  //     const searchParams = new URLSearchParams({ q: selectedOption.title });
+  //     const url = `/search?${searchParams.toString()}`;
+  //     window.location.href = url;
+  //   }
+  // };
 
   //   This stuff below is from the MUI Asynchronous Autocomplete component
   useEffect(() => {
@@ -111,11 +117,10 @@ export default function SearchBar() {
 
   return (
     <nav className="bg-slate-400 shadow-sm" style={{ zIndex: 10 }}>
-      <div id="search-bar" className="flex px-4 pt-3 pb-4 top-0">
+      <div id="search-bar" className="px-4 pt-3 pb-4 top-0">
         <Autocomplete
           id="search-input"
           onChange={handleSelectOption}
-          onKeyDown={handleKeyPress} // This will fire autosubmit on select, I hope
           sx={{ width: "100%", background: "white", borderRadius: "0.25rem" }}
           open={open}
           onOpen={() => {
@@ -147,9 +152,9 @@ export default function SearchBar() {
             />
           )}
         />
-        <Button variant="contained">
+        {/* <Button variant="contained">
           <SearchIcon />
-        </Button>
+        </Button> */}
       </div>
     </nav>
   );
