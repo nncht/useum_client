@@ -23,25 +23,20 @@ export default function SearchBar() {
   const [allItemNames, setAllItemNames] = React.useState([]);
   const loading = open && options.length === 0;
 
-  //   Attempt to autosubmit the selected option and call the search route: /search?q={title from the dropdown}.
-  // const handleSelectOption = (event, value) => {
-  //   setSelectedOption(value);
-  // };
-
+  //  Autosubmit the selected option and call the search route: /search?q={title from the dropdown}.
   const handleSelectOption = (event, value) => {
     setSelectedOption(value);
-    const searchParams = new URLSearchParams({ q: value.title });
-    const url = `/search?${searchParams.toString()}`;
-    window.location.href = url;
-  };
 
-  // const handleKeyPress = (event) => {
-  //   if (event.key === "Enter" && selectedOption !== null) {
-  //     const searchParams = new URLSearchParams({ q: selectedOption.title });
-  //     const url = `/search?${searchParams.toString()}`;
-  //     window.location.href = url;
-  //   }
-  // };
+    if (value.title === "Create Item") {
+      window.location.href = "/create-item";
+    } else if (value.title === "Create Collection") {
+      window.location.href = "/create-collection";
+    } else {
+      const searchParams = new URLSearchParams({ q: value.title });
+      const url = `/search?${searchParams.toString()}`;
+      window.location.href = url;
+    }
+  };
 
   //   This stuff below is from the MUI Asynchronous Autocomplete component
   useEffect(() => {
