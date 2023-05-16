@@ -31,6 +31,16 @@ export default function SearchBar() {
       window.location.href = "/create-item";
     } else if (value.title === "Create Collection") {
       window.location.href = "/create-collection";
+    } else if (value.title === "Search...") {
+      const searchParams = new URLSearchParams({ q: value.title });
+      const url = `/search?${searchParams.toString()}`;
+      window.location.href = url;
+    } else if (options.length === 0 && value.inputValue !== "") {
+      let searchTitle = value.title;
+      searchTitle = value.inputValue;
+      const searchParams = new URLSearchParams({ q: searchTitle });
+      const url = `/search?${searchParams.toString()}`;
+      window.location.href = url;
     } else {
       const searchParams = new URLSearchParams({ q: value.title });
       const url = `/search?${searchParams.toString()}`;
@@ -137,7 +147,11 @@ export default function SearchBar() {
             );
 
             if (filteredOptions.length === 0 && state.inputValue !== "") {
-              return [{ title: "Create Item" }, { title: "Create Collection" }];
+              return [
+                { title: "Create Item" },
+                { title: "Create Collection" },
+                { title: "Search..." },
+              ];
             }
 
             return filteredOptions;
