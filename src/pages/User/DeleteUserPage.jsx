@@ -8,8 +8,9 @@ import { useNavigate } from 'react-router-dom';
 import InputLabel from '@mui/material/InputLabel';
 import Input from '@mui/material/Input';
 import { AuthContext } from '../../context/auth.context';
+import API_URL from "../../services/apiConfig";
 
-const API_URL = 'http://localhost:5005';
+
 
 const DeleteUserPage = () => {
 	const [password, setPassword] = useState('');

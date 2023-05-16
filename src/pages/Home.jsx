@@ -3,10 +3,10 @@ import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import AllCollections from "../components/Collections/AllCollections";
 import SectionHeader from "../components/UI/SectionHeader";
+import API_URL from "../services/apiConfig";
 
 const Home = () => {
   const [collections, setCollections] = useState({ collections: [] });
-  const API_URL = "http://localhost:5005";
   const { user, isLoggedIn } = useContext(AuthContext);
 
   useEffect(() => {
