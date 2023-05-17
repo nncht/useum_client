@@ -4,7 +4,6 @@ import CreateForm from "../../components/CreateForm";
 import axios from "axios";
 import API_URL from "../../services/apiConfig";
 
-
 function CollectionsPage() {
   const [selectedCollection, setSelectedCollection] = useState(null);
   const [successMessage, setSuccessMessage] = useState("");
@@ -35,23 +34,10 @@ function CollectionsPage() {
 
   return (
     <div id="main-content">
-      <h1>Collections</h1>
-      <div className="flex justify-center">
-      <div className="bg-white p-4 mt-5 rounded-lg mx-auto" id="login-box">
-        <h2>Create Collection</h2>
-        <CreateForm target={"collections"} idObject={"collection"}/>
-
-
-        </div>
+      <div id="main-section" className="justify-center">
+        <CreateForm target={"collections"} idObject={"collection"} />
       </div>
-      {/* {selectedCollection ? (
-        <div>
-          <h2>Create Item for Collection {selectedCollection}</h2>
-          <CreateItemForm onCreateItem={handleCreateItem} />
-        </div>
-      ) : (
-        <p>Please select a collection to create items for.</p>
-      )} */}
+
       {successMessage && <p>{successMessage}</p>}
     </div>
   );
