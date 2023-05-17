@@ -8,6 +8,7 @@ import API_URL from "../../services/apiConfig";
 import ImageUploader from "../ImageUploader/ImageUploader";
 import SelectCategories from "../SelectCategories";
 import SectionHeader from "../UI/SectionHeader";
+import CreateItemSearch from "./CreateItemSearch";
 
 // MUI imports
 import Button from "@mui/material/Button";
@@ -69,10 +70,16 @@ const CreateCollectionForm = ({ target, idObject, forCollection }) => {
   return (
     currentUser && (
       <div className="mb-3">
-        <SectionHeader title="Create new collection"></SectionHeader>
+        <SectionHeader title="Create new item"></SectionHeader>
 
         <form className="flex flex-col mx-auto" onSubmit={handleSubmit}>
           <input type="hidden" name="forCollection" value={forCollection} />
+
+          {/* Search for existing item */}
+          <div className="pb-10">
+            <p>Search for an item in the database</p>
+            <CreateItemSearch />
+          </div>
 
           {/* Collection title */}
           <label htmlFor="name" className="text-md">
