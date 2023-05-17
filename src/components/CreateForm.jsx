@@ -58,6 +58,7 @@ function CreateForm({ target, idObject, forCollection }) {
       commentTitle: commentTitle,
       comment: comment,
       collections: forCollection,
+      currentUser: currentUser,
     };
 
     axios
