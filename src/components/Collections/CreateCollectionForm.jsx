@@ -23,8 +23,6 @@ const CreateCollectionForm = ({ target, idObject, forCollection }) => {
   const [imageUrl, setImageUrl] = useState("");
   const [categoryArray, setCategoryArray] = useState([]);
   const [errorMessage, setErrorMessage] = useState(undefined);
-  const [comment, setComment] = useState("");
-  const [commentTitle, setCommentTitle] = useState("");
   const [uploadingImage, setUploadingImage] = useState(false);
 
   const storedToken = localStorage.getItem("authToken");
@@ -33,6 +31,7 @@ const CreateCollectionForm = ({ target, idObject, forCollection }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    // Uploading cover images is optional
     if (uploadingImage) {
       return;
     }
@@ -43,8 +42,6 @@ const CreateCollectionForm = ({ target, idObject, forCollection }) => {
       createdBy: user._id,
       imageUrl: imageUrl,
       categories: categoryArray,
-      commentTitle: commentTitle,
-      comment: comment,
       collections: forCollection,
     };
 
@@ -58,7 +55,7 @@ const CreateCollectionForm = ({ target, idObject, forCollection }) => {
         setDescription("");
         setImageUrl("");
         setCategoryArray([]);
-        setComment([]);
+
         navigate(`/${target}/${res.data[idObject]._id}`);
       })
       .catch((err) => {
@@ -67,7 +64,7 @@ const CreateCollectionForm = ({ target, idObject, forCollection }) => {
   };
 
   const fixedInputClass =
-    "w-full px-3 py-2 my-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm";
+    "w-full p-2 mt-1 mb-3 border border-slate-800 placeholder-gray-700 text-slate-800";
 
   return (
     currentUser && (
