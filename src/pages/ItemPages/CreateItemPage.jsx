@@ -1,6 +1,4 @@
 import CreateItemForm from "../../components/CreateItemForm";
-import ItemList from "../../components/ItemList";
-import CreateForm from "../../components/CreateForm";
 import { getCollectionId } from "../../services/sharedDatastore";
 
 function CreateItemPage() {
@@ -8,14 +6,18 @@ function CreateItemPage() {
   console.log("CollectionID", collectionId);
 
   return (
-    <section id="main-content" className="px-3 pt-3 pb-20 bg-slate-300">
-      <CreateForm
-        target={"items"}
-        idObject={"item"}
-        className="w-50"
-        forCollection={collectionId}
-      />
-    </section>
+    <div id="main-content">
+      <div id="main-section" className="justify-center p-4">
+        <div className="p-4 bg-slate-50 rounded-md">
+          <CreateItemForm
+            target={"items"}
+            idObject={"item"}
+            className="w-50"
+            forCollection={collectionId}
+          />
+        </div>
+      </div>
+    </div>
   );
 }
 
