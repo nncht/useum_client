@@ -64,11 +64,11 @@ const CreateCollectionForm = ({ target, idObject, forCollection }) => {
   };
 
   const fixedInputClass =
-    "w-full p-2 mt-1 mb-3 border border-slate-800 placeholder-gray-700 text-slate-800";
+    "w-full p-2 mt-1 mb-3 border border-slate-800 placeholder-gray-300 text-slate-800";
 
   return (
     currentUser && (
-      <div className="my-3">
+      <div className="mb-3">
         <SectionHeader title="Create new collection"></SectionHeader>
 
         <form className="flex flex-col mx-auto" onSubmit={handleSubmit}>
@@ -96,7 +96,9 @@ const CreateCollectionForm = ({ target, idObject, forCollection }) => {
             id="description"
             className={fixedInputClass}
             value={description}
+            rows={6}
             onChange={(event) => setDescription(event.target.value)}
+            placeholder="Tell us anything that comes to your mind about this collection, e.g. what you're using it for, what you're planning to add in the future, etc."
           />
 
           {/* Collection category selection */}

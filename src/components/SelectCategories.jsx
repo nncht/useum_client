@@ -53,9 +53,7 @@ const SelectCategories = ({ categoryArray, setCategoryArray }) => {
 
   return (
     <FormControl>
-      <InputLabel id="select-categories">
-        Pick any matching categories for your collection
-      </InputLabel>
+      <InputLabel id="select-categories">Choose</InputLabel>
       <Select
         name="categoryArray"
         labelId="select-categories"

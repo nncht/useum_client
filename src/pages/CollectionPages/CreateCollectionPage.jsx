@@ -33,7 +33,12 @@ function CollectionsPage() {
   return (
     <div id="main-content">
       <div id="main-section" className="justify-center p-4">
-        <CreateCollectionForm target={"collections"} idObject={"collection"} />
+        <div className="p-4 bg-slate-50 rounded-md">
+          <CreateCollectionForm
+            target={"collections"}
+            idObject={"collection"}
+          />
+        </div>
       </div>
       {/* {successMessage && <p>{successMessage}</p>} */}
     </div>
