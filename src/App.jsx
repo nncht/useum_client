@@ -24,7 +24,9 @@ import DeleteUserPage from "./pages/User/DeleteUserPage";
 import SearchBar from "./components/DynamicSearch/SearchBar";
 import BackToTop from "./components/UI/BackToTop";
 import BookmarksPage from "./pages/User/BookmarksPage";
+import SearchResults from "./components/DynamicSearch/SearchResults";
 import Footer from "./components/UI/Footer";
+
 
 function App() {
   return (
