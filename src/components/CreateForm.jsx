@@ -8,7 +8,6 @@ import Button from "@mui/material/Button";
 import SelectCategories from "./SelectCategories";
 import API_URL from "../services/apiConfig";
 
-
 function CreateForm({ target, idObject, forCollection }) {
   const { user } = useContext(AuthContext);
 
@@ -25,22 +24,6 @@ function CreateForm({ target, idObject, forCollection }) {
   const storedToken = localStorage.getItem("authToken");
 
   const navigate = useNavigate();
-
-  //Apparently it doesn't matter if we fetch the user or not cause the user info is in the token...
-
-  // useEffect(() => {
-  //   if (user && user._id) {
-  //     axios
-  //       .get(`${API_URL}/users/${user._id}`)
-  //       .then((res) => {
-  //         setCurrentUser(res.data);
-  //       })
-  //       .catch((err) => {
-  //         console.error(err);
-  //       });
-  //   }
-  // }, [user]);
-
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -84,7 +67,7 @@ function CreateForm({ target, idObject, forCollection }) {
   return (
     currentUser && (
       <div className="my-3">
-        <form className="flex flex-col w-75 mx-auto" onSubmit={handleSubmit}>
+        <form className="flex flex-col mx-auto" onSubmit={handleSubmit}>
           <h4 className="text-2xl text-slate-600 my-3">Create Item</h4>
           <input type="hidden" name="forCollection" value={forCollection} />
           <label htmlFor="name" className="text-xl">
@@ -119,7 +102,14 @@ function CreateForm({ target, idObject, forCollection }) {
           <label htmlFor="review" className="text-xl mt-3">
             Comment
           </label>
-          <input type="text" name="" id="" placeholder="Comment Title" value={commentTitle} onChange={(event) => setCommentTitle(event.target.value)} />
+          <input
+            type="text"
+            name=""
+            id=""
+            placeholder="Comment Title"
+            value={commentTitle}
+            onChange={(event) => setCommentTitle(event.target.value)}
+          />
           <textarea
             id="review"
             className={fixedInputClass}
