@@ -49,7 +49,6 @@ const AddItemToCollection = ({ itemId }) => {
 		axios
 			.put(`${API_URL}/collections/${collectionId}/add-item`, { item: itemId, user: user._id })
 			.then((res) => {
-				console.log(res.data);
 				navigate(`/collections/${collectionId}`);
 			})
 			.catch((err) => {
