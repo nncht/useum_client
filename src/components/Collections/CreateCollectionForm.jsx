@@ -76,7 +76,7 @@ const CreateCollectionForm = ({ target, idObject, forCollection }) => {
 
           {/* Collection title */}
           <label htmlFor="name" className="text-md">
-            Name
+            Collection Title
           </label>
           <input
             type="text"
@@ -100,6 +100,9 @@ const CreateCollectionForm = ({ target, idObject, forCollection }) => {
           />
 
           {/* Collection category selection */}
+          <label htmlFor="description" className="text-md pb-1">
+            Categories
+          </label>
           <SelectCategories
             setCategoryArray={setCategoryArray}
             categoryArray={categoryArray}
@@ -107,16 +110,20 @@ const CreateCollectionForm = ({ target, idObject, forCollection }) => {
 
           {/* Upload collection cover picture */}
           {/* Upload preview */}
-          {uploadingImage === true ? (
-            <p>Uploading image, please wait...</p>
-          ) : (
-            <img
-              src={imageUrl !== "" ? imageUrl : "/images/default/no-image.svg"}
-              width={250}
-              height={350}
-              alt=""
-            />
-          )}
+          <div className="py-4">
+            {uploadingImage === true ? (
+              <p>Uploading image, please wait...</p>
+            ) : (
+              <img
+                src={
+                  imageUrl !== "" ? imageUrl : "/images/default/no-image.svg"
+                }
+                width={250}
+                height={350}
+                alt=""
+              />
+            )}
+          </div>
 
           {/* Choose file */}
           <ImageUploader
