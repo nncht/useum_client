@@ -24,8 +24,8 @@ import DeleteUserPage from "./pages/User/DeleteUserPage";
 import SearchBar from "./components/DynamicSearch/SearchBar";
 import BackToTop from "./components/UI/BackToTop";
 import BookmarksPage from "./pages/User/BookmarksPage";
-import SearchResults from "./components/DynamicSearch/SearchResults";
 import Footer from "./components/UI/Footer";
+import SearchResults from "./pages/SearchResults";
 
 
 function App() {
@@ -180,6 +180,15 @@ function App() {
               element={
                 <IsPrivate>
                   <EditItem />
+                </IsPrivate>
+              }
+            />
+
+            <Route
+              path="/search"
+              element={
+                <IsPrivate>
+                  <SearchResults />
                 </IsPrivate>
               }
             />

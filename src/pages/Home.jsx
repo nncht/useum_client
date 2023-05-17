@@ -5,6 +5,7 @@ import { useState, useEffect, useContext } from "react";
 // Custom components
 import AllCollections from "../components/Collections/AllCollections";
 import SectionHeader from "../components/UI/SectionHeader";
+import API_URL from "../services/apiConfig";
 
 // MUI imports
 import { Button, Typography } from "@mui/material";
@@ -13,7 +14,6 @@ import { Button, Typography } from "@mui/material";
 
 const Home = () => {
   const [collections, setCollections] = useState({ collections: [] });
-  const API_URL = "http://localhost:5005";
   const { user, isLoggedIn } = useContext(AuthContext);
 
   useEffect(() => {

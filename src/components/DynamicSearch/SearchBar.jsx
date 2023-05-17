@@ -2,6 +2,11 @@ import * as React from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import CircularProgress from "@mui/material/CircularProgress";
+import Button from "@mui/material/Button";
+import { useEffect } from "react";
+import API_URL from "../../services/apiConfig";
+import axios from "axios";
+import SearchIcon from "@mui/icons-material/Search";
 
 function sleep(delay = 0) {
   return new Promise((resolve) => {
@@ -13,19 +18,38 @@ export default function SearchBar() {
   const [open, setOpen] = React.useState(false);
   const [options, setOptions] = React.useState([]);
   const [selectedOption, setSelectedOption] = React.useState(null);
+  const [allUserNames, setAllUserNames] = React.useState([]);
+  const [allCollectionNames, setAllCollectionNames] = React.useState([]);
+  const [allItemNames, setAllItemNames] = React.useState([]);
   const loading = open && options.length === 0;
 
-  //   Attempt to autosubmit the selected option and call the search route: /search?q={title from the dropdown}.
-  //   You might have to update the search route to handle the params, I'm not sure.
+  //  Autosubmit the selected option and call the search route: /search?q={title from the dropdown}.
   const handleSelectOption = (event, value) => {
     setSelectedOption(value);
-    const searchParams = new URLSearchParams({ q: value.title }); // This is set to work with the data below, but needs to match our DB properties ofc. Probably value.name or value.username (yikes)
-    const url = `/search?${searchParams.toString()}`;
-    window.location.href = url;
+
+    if (value.title === "Create Item") {
+      window.location.href = "/create-item";
+    } else if (value.title === "Create Collection") {
+      window.location.href = "/create-collection";
+    } else if (value.title === "Search...") {
+      const searchParams = new URLSearchParams({ q: value.title });
+      const url = `/search?${searchParams.toString()}`;
+      window.location.href = url;
+    } else if (options.length === 0 && value.inputValue !== "") {
+      let searchTitle = value.title;
+      searchTitle = value.inputValue;
+      const searchParams = new URLSearchParams({ q: searchTitle });
+      const url = `/search?${searchParams.toString()}`;
+      window.location.href = url;
+    } else {
+      const searchParams = new URLSearchParams({ q: value.title });
+      const url = `/search?${searchParams.toString()}`;
+      window.location.href = url;
+    }
   };
 
   //   This stuff below is from the MUI Asynchronous Autocomplete component
-  React.useEffect(() => {
+  useEffect(() => {
     let active = true;
 
     if (!loading) {
@@ -36,27 +60,72 @@ export default function SearchBar() {
       await sleep(1e3);
 
       if (active) {
-        setOptions([...topFilms]);
+        setOptions([
+          ...allUserNames.map((username) => ({
+            title: username,
+            type: "user",
+          })),
+          ...allCollectionNames.map((name) => ({
+            title: name,
+            type: "collection",
+          })),
+          ...allItemNames.map((name) => ({ title: name, type: "item" })),
+        ]);
       }
     })();
 
     return () => {
       active = false;
     };
-  }, [loading]);
+  }, [loading, allUserNames, allCollectionNames, allItemNames]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!open) {
       setOptions([]);
     }
   }, [open]);
+
+  useEffect(() => {
+    axios
+      .get(`${API_URL}/users`)
+      .then((res) => {
+        setAllUserNames(res.data.map((user) => user.username));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(`${API_URL}/collections`)
+      .then((res) => {
+        setAllCollectionNames(
+          res.data.collections.map((collection) => collection.name)
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(`${API_URL}/items`)
+      .then((res) => {
+        setAllItemNames(res.data.items.map((item) => item.name));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <nav className="bg-slate-400 shadow-sm" style={{ zIndex: 10 }}>
       <div id="search-bar" className="px-4 pt-3 pb-4 top-0">
         <Autocomplete
           id="search-input"
-          onChange={handleSelectOption} // This will fire autosubmit on select, I hope
+          onChange={handleSelectOption} // Autosubmit on selection
           sx={{ width: "100%", background: "white", borderRadius: "0.25rem" }}
           open={open}
           onOpen={() => {
@@ -69,6 +138,25 @@ export default function SearchBar() {
           getOptionLabel={(option) => option.title}
           options={options}
           loading={loading}
+          filterOptions={(options, state) => {
+            const filteredOptions = options.filter(
+              (option) =>
+                option.title
+                  .toLowerCase()
+                  .indexOf(state.inputValue.toLowerCase()) !== -1
+            );
+
+            if (filteredOptions.length === 0 && state.inputValue !== "") {
+              return [
+                { title: "Create Item" },
+                { title: "Create Collection" },
+                { title: "Search..." },
+              ];
+            }
+
+            return filteredOptions;
+          }}
+          // Styles and content of input field
           renderInput={(params) => (
             <TextField
               {...params}
@@ -87,59 +175,30 @@ export default function SearchBar() {
               }}
             />
           )}
+          renderOption={(props, option) => (
+            <li {...props}>
+              {option.type === "user" &&
+                allUserNames.includes(option.title) && (
+                  <span className="text-orange-500 uppercase">
+                    User &nbsp;&nbsp;&nbsp;
+                  </span>
+                )}
+              {option.type === "collection" && (
+                <span className="text-slate-500 uppercase">
+                  Collection &nbsp;&nbsp;&nbsp;
+                </span>
+              )}
+              {option.type === "item" && (
+                <span className="text-slate-700 uppercase">
+                  {" "}
+                  Item &nbsp;&nbsp;&nbsp;
+                </span>
+              )}
+              {option.title}
+            </li>
+          )}
         />
       </div>
     </nav>
   );
 }
-
-// Top films as rated by IMDb users. http://www.imdb.com/chart/top
-const topFilms = [
-  { title: "The Shawshank Redemption", year: 1994 },
-  { title: "The Godfather", year: 1972 },
-  { title: "The Godfather: Part II", year: 1974 },
-  { title: "The Dark Knight", year: 2008 },
-  { title: "12 Angry Men", year: 1957 },
-  { title: "Schindler's List", year: 1993 },
-  { title: "Pulp Fiction", year: 1994 },
-  {
-    title: "The Lord of the Rings: The Return of the King",
-    year: 2003,
-  },
-  { title: "The Good, the Bad and the Ugly", year: 1966 },
-  { title: "Fight Club", year: 1999 },
-  {
-    title: "The Lord of the Rings: The Fellowship of the Ring",
-    year: 2001,
-  },
-  {
-    title: "Star Wars: Episode V - The Empire Strikes Back",
-    year: 1980,
-  },
-  { title: "Forrest Gump", year: 1994 },
-  { title: "Inception", year: 2010 },
-  {
-    title: "The Lord of the Rings: The Two Towers",
-    year: 2002,
-  },
-  { title: "One Flew Over the Cuckoo's Nest", year: 1975 },
-  { title: "Goodfellas", year: 1990 },
-  { title: "The Matrix", year: 1999 },
-  { title: "Seven Samurai", year: 1954 },
-  {
-    title: "Star Wars: Episode IV - A New Hope",
-    year: 1977,
-  },
-  { title: "City of God", year: 2002 },
-  { title: "Se7en", year: 1995 },
-  { title: "The Silence of the Lambs", year: 1991 },
-  { title: "It's a Wonderful Life", year: 1946 },
-  { title: "Life Is Beautiful", year: 1997 },
-  { title: "The Usual Suspects", year: 1995 },
-  { title: "Léon: The Professional", year: 1994 },
-  { title: "Spirited Away", year: 2001 },
-  { title: "Saving Private Ryan", year: 1998 },
-  { title: "Once Upon a Time in the West", year: 1968 },
-  { title: "American History X", year: 1998 },
-  { title: "Interstellar", year: 2014 },
-];

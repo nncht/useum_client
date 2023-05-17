@@ -6,8 +6,9 @@ import ImageUploader from '../../components/ImageUploader/ImageUploader';
 import HeaderImageUploader from '../../components/ImageUploader/HeaderImageUploader';
 import SelectCategories from '../../components/SelectCategories';
 import FormControl from '@mui/material/FormControl';
+import API_URL from "../../services/apiConfig";
 
-const API_URL = 'http://localhost:5005';
+
 
 const EditProfilePage = () => {
 	const { userId } = useParams();

@@ -1,6 +1,5 @@
 import axios from 'axios';
-
-const API_URL = 'http://localhost:5005';
+import API_URL from '../../services/apiConfig';
 
 const handleFileUpload = (setHeaderImageUrl, e, setUploadingHeaderImage) => {
 	const uploadData = new FormData();
