@@ -41,7 +41,7 @@ const ProfilePage = () => {
   // RENDER PROFILE PAGE
   return (
     // Profile header
-    <div id="main-content" className="flex justify-center">
+    <div id="main-content" className="justify-center">
       <div id="main-section" className="my-4 shadow-md">
         <div className="relative">
           <ProfileHeader />
