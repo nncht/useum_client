@@ -24,14 +24,16 @@ import DeleteUserPage from "./pages/User/DeleteUserPage";
 import SearchBar from "./components/DynamicSearch/SearchBar";
 import BackToTop from "./components/UI/BackToTop";
 import BookmarksPage from "./pages/User/BookmarksPage";
+import Footer from "./components/UI/Footer";
 import SearchResults from "./pages/SearchResults";
+
 
 function App() {
   return (
     <div className="App">
       <NavBar />
       <SearchBar />
-      <main id="main-content" className="p-0">
+      <main className="p-0">
         <div>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -193,6 +195,7 @@ function App() {
           </Routes>
         </div>
       </main>
+      {/* <Footer /> */}
       <BackToTop />
     </div>
   );

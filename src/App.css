@@ -15,16 +15,20 @@
 }
 
 #main-content {
-  max-width: 1280px;
-  height: calc(100vh - 145px);
   margin: 0 auto;
-  background-color: rgb(203 213 225);
   padding-bottom: 20px;
 }
 
 #main-section {
   max-width: 1280px;
   margin: 0 auto;
+}
+
+#login-cta {
+  width: 100%;
+  height: 400px;
+  margin: 0 auto;
+  position: relative;
 }
 
 /* -----------------------------
@@ -45,7 +49,21 @@ USER PROFILE
   background-color: #555;
   height: 200px;
   overflow: hidden;
-  border-radius: 10px 10px 0px 0px;
+  border-radius: 8px 8px 0px 0px;
+}
+
+.footer img {
+  width: 100%;
+  object-position: center;
+  object-fit: cover;
+}
+
+.footer {
+  width: 100%;
+  background-color: #555;
+  height: 40px;
+  overflow: hidden;
+  border-radius: 0px 0px 8px 8px;
 }
 
 .cover img {

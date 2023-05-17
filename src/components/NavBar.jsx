@@ -169,7 +169,7 @@ export default function NavBar() {
       style={{ zIndex: 10 }}
     >
       {/* BRAND LOGO */}
-      <div id="nav-bar" className="flex items-center justify-between pl-6">
+      <div id="nav-bar" className="flex items-center justify-between px-6">
         <Link href="/" underline="none" className="flex items-center">
           <h1 className="w-full text-3xl tracking-widest font-bold my-2 text-slate-50">
             /USEUM
