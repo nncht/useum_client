@@ -15,7 +15,7 @@ import Button from "@mui/material/Button";
 
 // --- End of imports
 
-const CreateitemForm = ({ target, idObject, foritem }) => {
+const CreateitemForm = ({ target, idObject, forCollection }) => {
   const { user } = useContext(AuthContext);
 
   const [currentUser, setCurrentUser] = useState(user);
@@ -24,6 +24,8 @@ const CreateitemForm = ({ target, idObject, foritem }) => {
   const [imageUrl, setImageUrl] = useState("");
   const [categoryArray, setCategoryArray] = useState([]);
   const [errorMessage, setErrorMessage] = useState(undefined);
+  const [comment, setComment] = useState("");
+  const [commentTitle, setCommentTitle] = useState("");
   const [uploadingImage, setUploadingImage] = useState(false);
 
   const storedToken = localStorage.getItem("authToken");
@@ -43,7 +45,10 @@ const CreateitemForm = ({ target, idObject, foritem }) => {
       createdBy: user._id,
       imageUrl: imageUrl,
       categories: categoryArray,
-      items: foritem,
+      commentTitle: commentTitle,
+      comment: comment,
+      collections: forCollection,
+      currentUser: currentUser,
     };
 
     axios
@@ -73,7 +78,7 @@ const CreateitemForm = ({ target, idObject, foritem }) => {
         <SectionHeader title="Create new item"></SectionHeader>
 
         <form className="flex flex-col mx-auto" onSubmit={handleSubmit}>
-          <input type="hidden" name="foritem" value={foritem} />
+          <input type="hidden" name="forCollection" value={forCollection} />
 
           {/* Search for existing item */}
           <div className="pb-10">
@@ -81,7 +86,7 @@ const CreateitemForm = ({ target, idObject, foritem }) => {
             <CreateItemSearch />
           </div>
 
-          {/* item title */}
+          {/* Item title */}
           <label htmlFor="name" className="text-md">
             Item Name
           </label>
@@ -96,20 +101,20 @@ const CreateitemForm = ({ target, idObject, foritem }) => {
           <input type="hidden" name="" value={currentUser._id} />
 
           {/* Collecion description */}
-          <label htmlFor="description" className="text-md">
+          <label htmlFor="comment" className="text-md">
             Comment
           </label>
           <textarea
             id="comment"
             className={fixedInputClass}
-            value={description} // needs update!
+            value={comment}
             rows={4}
             onChange={(event) => setDescription(event.target.value)}
-            placeholder="Let the community know your thoughts about this item, e.g. why you're using it, or whether you think it's good or not. Anything goes!"
+            placeholder="Let the community know your thoughts about this item, e.g. why you're using it, or whether you think it's good or not. Short or long description, anything goes!"
           />
 
           {/* item category selection */}
-          <label htmlFor="description" className="text-md pb-1">
+          <label htmlFor="categories" className="text-md pb-1">
             Categories
           </label>
           <SelectCategories
