@@ -15,7 +15,7 @@ import Button from "@mui/material/Button";
 
 // --- End of imports
 
-const CreateCollectionForm = ({ target, idObject, forCollection }) => {
+const CreateitemForm = ({ target, idObject, foritem }) => {
   const { user } = useContext(AuthContext);
 
   const [currentUser, setCurrentUser] = useState(user);
@@ -43,7 +43,7 @@ const CreateCollectionForm = ({ target, idObject, forCollection }) => {
       createdBy: user._id,
       imageUrl: imageUrl,
       categories: categoryArray,
-      collections: forCollection,
+      items: foritem,
     };
 
     axios
@@ -73,7 +73,7 @@ const CreateCollectionForm = ({ target, idObject, forCollection }) => {
         <SectionHeader title="Create new item"></SectionHeader>
 
         <form className="flex flex-col mx-auto" onSubmit={handleSubmit}>
-          <input type="hidden" name="forCollection" value={forCollection} />
+          <input type="hidden" name="foritem" value={foritem} />
 
           {/* Search for existing item */}
           <div className="pb-10">
@@ -81,9 +81,9 @@ const CreateCollectionForm = ({ target, idObject, forCollection }) => {
             <CreateItemSearch />
           </div>
 
-          {/* Collection title */}
+          {/* item title */}
           <label htmlFor="name" className="text-md">
-            Collection Title
+            Item Name
           </label>
           <input
             type="text"
@@ -97,18 +97,18 @@ const CreateCollectionForm = ({ target, idObject, forCollection }) => {
 
           {/* Collecion description */}
           <label htmlFor="description" className="text-md">
-            Description
+            Comment
           </label>
           <textarea
-            id="description"
+            id="comment"
             className={fixedInputClass}
-            value={description}
-            rows={6}
+            value={description} // needs update!
+            rows={4}
             onChange={(event) => setDescription(event.target.value)}
-            placeholder="Tell us anything that comes to your mind about this collection, e.g. what you're using it for, what you're planning to add in the future, etc."
+            placeholder="Let the community know your thoughts about this item, e.g. why you're using it, or whether you think it's good or not. Anything goes!"
           />
 
-          {/* Collection category selection */}
+          {/* item category selection */}
           <label htmlFor="description" className="text-md pb-1">
             Categories
           </label>
@@ -117,7 +117,7 @@ const CreateCollectionForm = ({ target, idObject, forCollection }) => {
             categoryArray={categoryArray}
           />
 
-          {/* Upload collection cover picture */}
+          {/* Upload item cover picture */}
           {/* Upload preview */}
           <div className="py-4">
             {uploadingImage === true ? (
@@ -141,10 +141,10 @@ const CreateCollectionForm = ({ target, idObject, forCollection }) => {
             message={"Upload a cover picture"}
           />
 
-          {/* Create collection button */}
+          {/* Create item button */}
           <div>
             <Button variant="contained" type="submit" className="text-xl mt-3">
-              Create collection
+              Add item
             </Button>
           </div>
         </form>
@@ -158,4 +158,4 @@ const CreateCollectionForm = ({ target, idObject, forCollection }) => {
   );
 };
 
-export default CreateCollectionForm;
+export default CreateitemForm;

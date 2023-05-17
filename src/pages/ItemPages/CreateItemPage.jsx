@@ -8,7 +8,9 @@ function CreateItemPage() {
   return (
     <div id="main-content">
       <div id="main-section" className="justify-center p-4">
-        <CreateItemForm />
+        <div className="p-4 bg-slate-50 rounded-md">
+          <CreateItemForm />
+        </div>
       </div>
     </div>
   );
