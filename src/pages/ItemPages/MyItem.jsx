@@ -15,24 +15,24 @@ const MyItem = () => {
 	const { user } = useContext(AuthContext);
 
 	const [item, setItem] = useState({});
+	const [comments, setComments] = useState('');
 	const collectionId = getCollectionId();
 
 	useEffect(() => {
 		axios
 			.get(`${API_URL}/items/${itemId}`)
 			.then((response) => {
-				console.log(response.data.item);
 				setItem(response.data.item);
+				setComments(response.data.comments);
 			})
 			.catch((error) => {
 				console.log(error);
 			});
 	}, [itemId]);
 
-	console.log(item)
+	console.log(comments);
 
-
-		return (
+	return (
 		<>
 			{/* Displays the item details */}
 
@@ -55,13 +55,15 @@ const MyItem = () => {
 
 							{/* If there are comments, displays the comments for the item */}
 
-							{item.comments && (
+							{comments && (
 								<div>
-									{item.comments.map((comment) => {
+									{comments.map((comment) => {
 										return (
 											<div key={comment._id}>
+
+												<h6><Link to={`/users/${comment.user.username}`}>{comment.user.username} </Link> says:</h6>
 												<p>{comment.title}</p>
-												<p>{comment.description}</p>
+												<p>{comment.body}</p>
 											</div>
 										);
 									})}
@@ -71,18 +73,13 @@ const MyItem = () => {
 
 						{/* Like button */}
 
-
-
-							<Link to={`/edit-item/${item._id}`} onClick={() => setCollectionId(collectionId)}>
+						<Link to={`/edit-item/${item._id}`} onClick={() => setCollectionId(collectionId)}>
 							<Button>Edit Item</Button>
-							</Link>
+						</Link>
 
-
-							<div>
-								<BookmarkButton id={item._id} />
-							</div>
-
-
+						<div>
+							<BookmarkButton id={item._id} />
+						</div>
 
 						<AddItemToCollection itemId={item._id} />
 					</section>
