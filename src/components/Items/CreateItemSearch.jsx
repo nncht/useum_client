@@ -26,12 +26,16 @@ export default function SearchBar() {
   const handleSelectOption = (event, value) => {
     setSelectedOption(value);
 
-    if (value.title === "No match? Add a new item to the database ⤴") {
-      setItemDoesntExist(true);
+    if (
+      value &&
+      value.title === "No match? Add a new item to the database ✍️"
+    ) {
+      setItemDoesntExist(true); // This will display the create NEW item form
     } else {
-      const searchParams = new URLSearchParams({ q: value.title });
-      const url = `/search?${searchParams.toString()}`;
-      window.location.href = url;
+      setItemExists(true); // This will display the add to EXISTING item form
+      // const searchParams = new URLSearchParams({ q: value.title });
+      // const url = `/search?${searchParams.toString()}`;
+      // window.location.href = url;
     }
   };
 
@@ -102,7 +106,7 @@ export default function SearchBar() {
           );
 
           if (filteredOptions.length === 0 && state.inputValue !== "") {
-            return [{ title: "No match? Add a new item to the database ⤴" }];
+            return [{ title: "No match? Add a new item to the database ✍️" }];
           }
 
           return filteredOptions;
@@ -143,8 +147,10 @@ export default function SearchBar() {
         <div className="mt-10">
           <CreateItemForm target={"items"} idObject={"item"} />
         </div>
+      ) : itemExists ? (
+        <div className="mt-10">Add</div>
       ) : (
-        <div className="mt-10">aaa</div>
+        <div className="mt-10">Nothing</div>
       )}
     </div>
   );
