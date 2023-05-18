@@ -68,6 +68,7 @@ export default function SearchBar() {
     }
   }, [open]);
 
+  // Fetch all existing item names
   useEffect(() => {
     axios
       .get(`${API_URL}/items`)
