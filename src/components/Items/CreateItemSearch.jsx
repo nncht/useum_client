@@ -27,16 +27,22 @@ function sleep(delay = 0) {
 }
 
 export default function SearchBar() {
+  // Handle item search autocomplete component
   const [open, setOpen] = React.useState(false);
   const [options, setOptions] = React.useState([]);
   const [selectedOption, setSelectedOption] = React.useState(null);
   const [allItemNames, setAllItemNames] = React.useState([]);
   const loading = open && options.length === 0;
+
+  // Handle form display
   const [itemExists, setItemExists] = React.useState(false);
   const [itemDoesntExist, setItemDoesntExist] = React.useState(false);
   const [itemsFound, setItemsFound] = useState([]);
+
+  // Determine itemId from selectedOption
   const [itemId, setItemId] = useState("");
 
+  // Handle modal popup
   const [openModal, setOpenModal] = React.useState(false);
   const handleOpen = () => setOpenModal(true);
   const handleClose = () => setOpenModal(false);
@@ -45,6 +51,7 @@ export default function SearchBar() {
     console.log(itemId);
   }
 
+  // Modal styles
   const style = {
     position: "absolute",
     top: "50%",
@@ -69,10 +76,10 @@ export default function SearchBar() {
     ) {
       setItemDoesntExist(true);
       setItemExists(false);
+      // Result: Display create new item form
     } else if (selectedOption) {
       setItemDoesntExist(false);
       setItemExists(true);
-      // Search for item in DB
       axios
         .get(`${API_URL}/search?search=${selectedOption.title}`)
         .then((res) => {
@@ -82,9 +89,11 @@ export default function SearchBar() {
         .catch((err) => {
           console.log(err);
         });
+      // Result: Search for item in DB and display add to existing item options
     } else {
       setItemDoesntExist(false);
       setItemExists(false);
+      // Result: Display nothing
     }
   }, [selectedOption]);
 
@@ -101,7 +110,19 @@ export default function SearchBar() {
       });
   };
 
-  //   This stuff below is from the MUI Asynchronous Autocomplete component
+  // Fetch all existing item names
+  useEffect(() => {
+    axios
+      .get(`${API_URL}/items`)
+      .then((res) => {
+        setAllItemNames(res.data.items.map((item) => item.name));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  //   The code below is from the MUI Asynchronous Autocomplete component
   useEffect(() => {
     let active = true;
 
@@ -130,20 +151,9 @@ export default function SearchBar() {
     }
   }, [open]);
 
-  // Fetch all existing item names
-  useEffect(() => {
-    axios
-      .get(`${API_URL}/items`)
-      .then((res) => {
-        setAllItemNames(res.data.items.map((item) => item.name));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
   // RENDER FORMS
   return (
+    // First, search for existing item in DB
     <div id="search-bar" className="pt-4">
       <Autocomplete
         id="search-input"
@@ -206,20 +216,21 @@ export default function SearchBar() {
         )}
       />
 
+      {/* Then, handle form display after search */}
       {itemDoesntExist ? (
+        // If the item doesn't exist, a NEW item needs to be CREATED = display CREATE NEW ITEM form
         <div className="mt-10">
           <CreateItemForm target={"items"} idObject={"item"} />
         </div>
       ) : !itemDoesntExist & itemExists ? (
+        // Else, display search results and buttons to add item from search results
         <div className="mt-10">
           <Grid container spacing={3}>
             {itemsFound.length ? (
               itemsFound.map((item) => (
                 <Grid item xs={12} sm={6} md={4} lg={3} key={item._id}>
                   <ItemCard key={item._id} item={item} />
-                  {/* <Button onClick={() => setItemId(item._id)}>
-                    Add this item
-                  </Button> */}
+                  {/* Button triggers a modal that prompts the user to write an optional comment */}
                   <Button onClick={handleOpen}>Add this item</Button>
                   <Modal
                     open={openModal}
