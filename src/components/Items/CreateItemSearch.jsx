@@ -23,18 +23,8 @@ export default function SearchBar() {
   const handleSelectOption = (event, value) => {
     setSelectedOption(value);
 
-    if (value.title === "Create Item") {
+    if (value.title === "No match? Add a new item to the database ⤴") {
       window.location.href = "/create-item";
-    } else if (value.title === "Search...") {
-      const searchParams = new URLSearchParams({ q: value.title });
-      const url = `/search?${searchParams.toString()}`;
-      window.location.href = url;
-    } else if (options.length === 0 && value.inputValue !== "") {
-      let searchTitle = value.title;
-      searchTitle = value.inputValue;
-      const searchParams = new URLSearchParams({ q: searchTitle });
-      const url = `/search?${searchParams.toString()}`;
-      window.location.href = url;
     } else {
       const searchParams = new URLSearchParams({ q: value.title });
       const url = `/search?${searchParams.toString()}`;
@@ -108,11 +98,7 @@ export default function SearchBar() {
           );
 
           if (filteredOptions.length === 0 && state.inputValue !== "") {
-            return [
-              { title: "Create Item" },
-              { title: "Create Collection" },
-              { title: "Search..." },
-            ];
+            return [{ title: "No match? Add a new item to the database ⤴" }];
           }
 
           return filteredOptions;
