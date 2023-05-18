@@ -25,19 +25,23 @@ export default function SearchBar() {
   //  Autosubmit the selected option and call the search route: /search?q={title from the dropdown}.
   const handleSelectOption = (event, value) => {
     setSelectedOption(value);
-
-    if (
-      value &&
-      value.title === "No match? Add a new item to the database ✍️"
-    ) {
-      setItemDoesntExist(true); // This will display the create NEW item form
-    } else {
-      setItemExists(true); // This will display the add to EXISTING item form
-      // const searchParams = new URLSearchParams({ q: value.title });
-      // const url = `/search?${searchParams.toString()}`;
-      // window.location.href = url;
-    }
   };
+
+  useEffect(() => {
+    if (
+      selectedOption &&
+      selectedOption.title === "No match? Add a new item to the database ✍️"
+    ) {
+      setItemDoesntExist(true);
+      setItemExists(false);
+    } else if (selectedOption) {
+      setItemDoesntExist(false);
+      setItemExists(true);
+    } else {
+      setItemDoesntExist(false);
+      setItemExists(false);
+    }
+  }, [selectedOption]);
 
   //   This stuff below is from the MUI Asynchronous Autocomplete component
   useEffect(() => {
@@ -94,7 +98,7 @@ export default function SearchBar() {
         onClose={() => {
           setOpen(false);
         }}
-        isOptionEqualToValue={(option, value) => option.title === value.title}
+        isOptionEqualToValue={(option, value) => option.title === value?.title}
         getOptionLabel={(option) => option.title}
         options={options}
         loading={loading}
@@ -148,7 +152,7 @@ export default function SearchBar() {
         <div className="mt-10">
           <CreateItemForm target={"items"} idObject={"item"} />
         </div>
-      ) : itemExists ? (
+      ) : !itemDoesntExist & itemExists ? (
         <div className="mt-10">Add</div>
       ) : (
         <div></div> // Display no form at the start
