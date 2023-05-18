@@ -8,7 +8,7 @@ import API_URL from "../../services/apiConfig";
 
 
 export default function Login() {
-  const [email, setEmail] = useState("");
+  const [loginName, setLoginName] = useState("");
   const [password, setPassword] = useState("");
 
   const [errorMessage, setErrorMessage] = useState(undefined);
@@ -20,7 +20,7 @@ export default function Login() {
   const handleLoginSubmit = (e) => {
     e.preventDefault();
 
-    const loginBody = { email, password };
+    const loginBody = { loginName, password };
 
     axios
       .post(`${API_URL}/login`, loginBody)
@@ -47,13 +47,13 @@ export default function Login() {
       <form onSubmit={handleLoginSubmit}>
         {/* Email input */}
         <input
-          type="email"
+          type="text"
           name="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={loginName}
+          onChange={(e) => setLoginName(e.target.value)}
           id="email"
           className={fixedInputClass}
-          placeholder="Email address"
+          placeholder="Username or email address"
         />
 
         {/* Password input */}
