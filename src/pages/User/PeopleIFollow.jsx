@@ -27,36 +27,36 @@ const Followers = () => {
 		}
 	}, [user]);
 
-	if (currentUser){return (
-		<div id="main-content" className="justify-center">
-      <div id="main-section" className="my-4 shadow-md">
-      <section className="px-4 pt-3 pb-20 bg-slate-100">
-      <SectionHeader title="My Followers" />
+	if (currentUser) {
+		return (
+			<div id='main-content' className='justify-center'>
+				<div id='main-section' className='my-4 shadow-md'>
+					<section className='px-4 pt-3 pb-20 bg-slate-100'>
+						<SectionHeader title='People I Follow' />
 
-
-			<Grid container spacing={3}>
-				{currentUser.followers.length === 0 ? (
-					<p>Looks like you don't have any followers yet!</p>
-				) : (
-
-					currentUser.followers.map((follower) => {
-						return (
-							<Grid item xs={12} sm={6} md={4} lg={3} key={follower._id}>
-								<div key={follower._id}>
-									<img src={follower.imageUrl} alt={follower.username} />
-									<Link to={`/users/${follower.username}`}>
-										<p>{follower.username}</p>
-									</Link>
-								</div>
-							</Grid>
-						);
-					})
-				)}
-			</Grid>
-      </section>
-      </div>
-              </div>
-	);}
+						<Grid container spacing={3}>
+							{currentUser.following.length === 0 ? (
+								<p>Looks like you don't have any followers yet!</p>
+							) : (
+								currentUser.following.map((followed) => {
+									return (
+										<Grid item xs={12} sm={6} md={4} lg={3} key={followed._id}>
+											<div key={followed._id}>
+												<img src={followed.imageUrl} alt={followed.username} />
+												<Link to={`/users/${followed.username}`}>
+													<p>{followed.username}</p>
+												</Link>
+											</div>
+										</Grid>
+									);
+								})
+							)}
+						</Grid>
+					</section>
+				</div>
+			</div>
+		);
+	}
 };
 
 export default Followers;
