@@ -1,12 +1,21 @@
 import * as React from "react";
-import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
-import CircularProgress from "@mui/material/CircularProgress";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import API_URL from "../../services/apiConfig";
-import axios from "axios";
+
+// Custom components
 import CreateItemForm from "./CreateItemForm";
+import ItemCard from "./ItemCard";
 import AddExistingItemForm from "./AddExistingItemForm";
+import AddItemToCollection from "./AddItemToCollection";
+
+// MUI imports
+import CircularProgress from "@mui/material/CircularProgress";
+import Autocomplete from "@mui/material/Autocomplete";
+import TextField from "@mui/material/TextField";
+import { Grid, Button } from "@mui/material";
+
+// --- End of imports
 
 function sleep(delay = 0) {
   return new Promise((resolve) => {
@@ -166,8 +175,18 @@ export default function SearchBar() {
         </div>
       ) : !itemDoesntExist & itemExists ? (
         <div className="mt-10">
-          Choose the item that you want to add
-          {/* <AddExistingItemForm selectedOption={selectedOption} /> */}
+          <Grid container spacing={3}>
+            {itemsFound.length ? (
+              itemsFound.map((item) => (
+                <Grid item xs={12} sm={6} md={4} lg={3} key={item._id}>
+                  <ItemCard key={item._id} item={item} />
+                  <Button itemID={item._id}>Add this item</Button>
+                </Grid>
+              ))
+            ) : (
+              <p>No items found</p>
+            )}
+          </Grid>
         </div>
       ) : (
         <div></div> // Display no form at the start
