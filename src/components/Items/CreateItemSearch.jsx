@@ -153,7 +153,13 @@ export default function SearchBar() {
           <CreateItemForm target={"items"} idObject={"item"} />
         </div>
       ) : !itemDoesntExist & itemExists ? (
-        <div className="mt-10">Add</div>
+        <div className="mt-10">
+          <CreateItemForm
+            target={"items"}
+            idObject={"item"}
+            selectedOption={selectedOption} // This will tell the CreateItemForm to disable Item Name
+          />
+        </div>
       ) : (
         <div></div> // Display no form at the start
       )}
