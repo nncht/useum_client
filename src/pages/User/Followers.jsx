@@ -1,5 +1,4 @@
 import {useState, useEffect, useContext} from 'react'
-import { AuthContext } from '../../context/auth.context'
 import { UserDataContext } from "../../context/userData.context";
 import { Link } from "react-router-dom";
 
@@ -11,11 +10,10 @@ import { Grid } from '@mui/material'
 
 const Followers = () => {
 
-    const { user } = useContext(AuthContext);
     const { userData } = useContext(UserDataContext);
 
-    //"otherUser" is the user whose profile we are viewing
     const [otherUser, setOtherUser] = useState(null);
+
 
 
         useEffect(() => {
