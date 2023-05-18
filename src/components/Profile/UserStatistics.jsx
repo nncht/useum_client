@@ -19,7 +19,7 @@ const UserStatistics = () => {
           </div>
           <div className="mr-4">
             <span className="font-bold">{userData.following.length}</span>{" "}
-            Following
+            <Link to={"/following"}>Following</Link>
           </div>
           <div className="mr-4">
             <span className="font-bold">{userData.collections.length}</span>{" "}
