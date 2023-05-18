@@ -16,8 +16,6 @@ export default function SearchBar() {
   const [open, setOpen] = React.useState(false);
   const [options, setOptions] = React.useState([]);
   const [selectedOption, setSelectedOption] = React.useState(null);
-  const [allUserNames, setAllUserNames] = React.useState([]);
-  const [allCollectionNames, setAllCollectionNames] = React.useState([]);
   const [allItemNames, setAllItemNames] = React.useState([]);
   const loading = open && options.length === 0;
 
@@ -27,8 +25,6 @@ export default function SearchBar() {
 
     if (value.title === "Create Item") {
       window.location.href = "/create-item";
-    } else if (value.title === "Create Collection") {
-      window.location.href = "/create-collection";
     } else if (value.title === "Search...") {
       const searchParams = new URLSearchParams({ q: value.title });
       const url = `/search?${searchParams.toString()}`;
@@ -59,14 +55,6 @@ export default function SearchBar() {
 
       if (active) {
         setOptions([
-          ...allUserNames.map((username) => ({
-            title: username,
-            type: "user",
-          })),
-          ...allCollectionNames.map((name) => ({
-            title: name,
-            type: "collection",
-          })),
           ...allItemNames.map((name) => ({ title: name, type: "item" })),
         ]);
       }
@@ -75,37 +63,13 @@ export default function SearchBar() {
     return () => {
       active = false;
     };
-  }, [loading, allUserNames, allCollectionNames, allItemNames]);
+  }, [loading, allItemNames]);
 
   useEffect(() => {
     if (!open) {
       setOptions([]);
     }
   }, [open]);
-
-  useEffect(() => {
-    axios
-      .get(`${API_URL}/users`)
-      .then((res) => {
-        setAllUserNames(res.data.map((user) => user.username));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
-  useEffect(() => {
-    axios
-      .get(`${API_URL}/collections`)
-      .then((res) => {
-        setAllCollectionNames(
-          res.data.collections.map((collection) => collection.name)
-        );
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
 
   useEffect(() => {
     axios
@@ -174,16 +138,6 @@ export default function SearchBar() {
         )}
         renderOption={(props, option) => (
           <li {...props}>
-            {option.type === "user" && allUserNames.includes(option.title) && (
-              <span className="text-orange-500 uppercase">
-                User &nbsp;&nbsp;&nbsp;
-              </span>
-            )}
-            {option.type === "collection" && (
-              <span className="text-slate-500 uppercase">
-                Collection &nbsp;&nbsp;&nbsp;
-              </span>
-            )}
             {option.type === "item" && (
               <span className="text-slate-700 uppercase">
                 {" "}
