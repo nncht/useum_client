@@ -10,13 +10,19 @@ import AddExistingItemForm from "./AddExistingItemForm";
 import AddItemToCollection from "./AddItemToCollection";
 
 // MUI imports
-import CircularProgress from "@mui/material/CircularProgress";
-import Autocomplete from "@mui/material/Autocomplete";
-import TextField from "@mui/material/TextField";
-import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
-import Typography from "@mui/material/Typography";
-import { Grid, Button } from "@mui/material";
+import { Textarea } from "@mui/joy";
+import {
+  Grid,
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  TextField,
+  DialogActions,
+  CircularProgress,
+  Autocomplete,
+} from "@mui/material";
 
 // --- End of imports
 
@@ -232,23 +238,25 @@ export default function SearchBar() {
                   <ItemCard key={item._id} item={item} />
                   {/* Button triggers a modal that prompts the user to write an optional comment */}
                   <Button onClick={handleOpen}>Add this item</Button>
-                  <Modal
+                  <Dialog
                     open={openModal}
                     onClose={handleClose}
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description"
                   >
-                    <Box sx={style}>
-                      <Typography
-                        id="modal-modal-title"
-                        variant="button"
-                        component="h2"
-                      >
-                        <p>Write a comment (optional)</p>
-                      </Typography>
-                      <Button>Add item</Button>
-                    </Box>
-                  </Modal>
+                    <DialogTitle>Write a comment (optional)</DialogTitle>
+                    <DialogContent>
+                      <DialogContentText>
+                        Let the community know your thoughts about this item,
+                        e.g. why you're using it, or whether you think it's good
+                        or not.
+                      </DialogContentText>
+                      <Textarea minRows={2} sx={{ mt: 2 }} />
+                    </DialogContent>
+                    <DialogActions>
+                      <Button onClick={handleClose}>Add item now</Button>
+                    </DialogActions>
+                  </Dialog>
                 </Grid>
               ))
             ) : (
