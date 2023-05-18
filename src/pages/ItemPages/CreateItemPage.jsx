@@ -9,7 +9,7 @@ function CreateItemPage() {
     <div id="main-content">
       <div id="main-section" className="justify-center p-4">
         <div className="p-4 bg-slate-50 rounded-md">
-          <CreateItemForm />
+          <CreateItemForm target={"items"} idObject={"item"} />
         </div>
       </div>
     </div>

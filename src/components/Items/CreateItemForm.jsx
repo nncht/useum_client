@@ -41,7 +41,7 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
 
     const params = {
       name: name,
-      description: description,
+      //   description: description,
       createdBy: user._id,
       imageUrl: imageUrl,
       categories: categoryArray,
@@ -60,6 +60,8 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
         setName("");
         setDescription("");
         setImageUrl("");
+        setCategoryArray([]);
+        setComment([]);
         setCategoryArray([]);
 
         navigate(`/${target}/${res.data[idObject]._id}`);
@@ -109,7 +111,7 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
             className={fixedInputClass}
             value={comment}
             rows={4}
-            onChange={(event) => setDescription(event.target.value)}
+            onChange={(event) => setComment(event.target.value)}
             placeholder="Let the community know your thoughts about this item, e.g. why you're using it, or whether you think it's good or not. Short or long description, anything goes!"
           />
 
