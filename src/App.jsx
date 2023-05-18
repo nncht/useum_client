@@ -27,6 +27,7 @@ import BookmarksPage from "./pages/User/BookmarksPage";
 import Footer from "./components/UI/Footer";
 import SearchResults from "./pages/SearchResults";
 import PeopleIFollow from "./pages/User/PeopleIFollow";
+import Followers from "./pages/User/Followers";
 
 
 function App() {
@@ -197,9 +198,18 @@ function App() {
             <Route
               path="/following"
               element={
-                <IsPrivate>
+                <UserDataProvider>
                   <PeopleIFollow />
-                </IsPrivate>
+                  </UserDataProvider>
+              }
+            />
+
+            <Route
+              path="/followers"
+              element={
+                <UserDataProvider>
+                  <Followers />
+                  </UserDataProvider>
               }
             />
 
