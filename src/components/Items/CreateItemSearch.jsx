@@ -13,6 +13,9 @@ import AddItemToCollection from "./AddItemToCollection";
 import CircularProgress from "@mui/material/CircularProgress";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import Typography from "@mui/material/Typography";
 import { Grid, Button } from "@mui/material";
 
 // --- End of imports
@@ -32,6 +35,27 @@ export default function SearchBar() {
   const [itemExists, setItemExists] = React.useState(false);
   const [itemDoesntExist, setItemDoesntExist] = React.useState(false);
   const [itemsFound, setItemsFound] = useState([]);
+  const [itemId, setItemId] = useState("");
+
+  const [openModal, setOpenModal] = React.useState(false);
+  const handleOpen = () => setOpenModal(true);
+  const handleClose = () => setOpenModal(false);
+
+  if (itemId) {
+    console.log(itemId);
+  }
+
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "0px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
 
   //  Autosubmit the selected option and call the search route: /search?q={title from the dropdown}.
   const handleSelectOption = (event, value) => {
@@ -63,6 +87,19 @@ export default function SearchBar() {
       setItemExists(false);
     }
   }, [selectedOption]);
+
+  // Add item from search results to the current collection
+  const addSelectedItem = () => {
+    axios
+      .put(`${API_URL}/collections/${itemId}/add-item`, {
+        item: itemId,
+        user: user._id,
+      })
+      .then((res) => {})
+      .catch((err) => {
+        console.error(err);
+      });
+  };
 
   //   This stuff below is from the MUI Asynchronous Autocomplete component
   useEffect(() => {
@@ -180,7 +217,27 @@ export default function SearchBar() {
               itemsFound.map((item) => (
                 <Grid item xs={12} sm={6} md={4} lg={3} key={item._id}>
                   <ItemCard key={item._id} item={item} />
-                  <Button itemID={item._id}>Add this item</Button>
+                  {/* <Button onClick={() => setItemId(item._id)}>
+                    Add this item
+                  </Button> */}
+                  <Button onClick={handleOpen}>Add this item</Button>
+                  <Modal
+                    open={openModal}
+                    onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                  >
+                    <Box sx={style}>
+                      <Typography
+                        id="modal-modal-title"
+                        variant="button"
+                        component="h2"
+                      >
+                        <p>Write a comment (optional)</p>
+                      </Typography>
+                      <Button>Add item</Button>
+                    </Box>
+                  </Modal>
                 </Grid>
               ))
             ) : (
