@@ -6,8 +6,7 @@ import API_URL from "../../services/apiConfig";
 // Custom components
 import CreateItemForm from "./CreateItemForm";
 import ItemCard from "./ItemCard";
-import AddExistingItemForm from "./AddExistingItemForm";
-import AddItemToCollection from "./AddItemToCollection";
+import { getCollectionId } from "../../services/sharedDatastore";
 
 // MUI imports
 import { Textarea } from "@mui/joy";
@@ -32,7 +31,10 @@ function sleep(delay = 0) {
   });
 }
 
-export default function SearchBar() {
+const CreateItemSearch = () => {
+  const collectionId = getCollectionId();
+  console.log("CollectionID", collectionId);
+
   // Handle item search autocomplete component
   const [open, setOpen] = React.useState(false);
   const [options, setOptions] = React.useState([]);
@@ -47,6 +49,7 @@ export default function SearchBar() {
 
   // Determine itemId from selectedOption
   const [itemId, setItemId] = useState("");
+  const [collection, setCollection] = useState(null);
 
   // Handle modal popup
   const [openModal, setOpenModal] = React.useState(false);
@@ -241,21 +244,32 @@ export default function SearchBar() {
                   <Dialog
                     open={openModal}
                     onClose={handleClose}
-                    aria-labelledby="modal-modal-title"
-                    aria-describedby="modal-modal-description"
+                    aria-labelledby="Comment"
+                    aria-describedby="Write a comment for this item"
                   >
-                    <DialogTitle>Write a comment (optional)</DialogTitle>
-                    <DialogContent>
-                      <DialogContentText>
-                        Let the community know your thoughts about this item,
-                        e.g. why you're using it, or whether you think it's good
-                        or not.
-                      </DialogContentText>
-                      <Textarea minRows={2} sx={{ mt: 2 }} />
-                    </DialogContent>
-                    <DialogActions>
-                      <Button onClick={handleClose}>Add item now</Button>
-                    </DialogActions>
+                    <form
+                      onSubmit={(event) => {
+                        event.preventDefault();
+                      }}
+                    >
+                      <DialogTitle>Write a comment (optional)</DialogTitle>
+                      <DialogContent>
+                        <DialogContentText>
+                          Let the community know your thoughts about this item,
+                          e.g. why you're using it, how much you like it, etc.
+                        </DialogContentText>
+
+                        <Textarea minRows={2} sx={{ mt: 2 }} />
+                      </DialogContent>
+                      <DialogActions>
+                        <Button
+                          type="submit"
+                          onClick={() => setCollectionId(collection._id)}
+                        >
+                          Add item now
+                        </Button>
+                      </DialogActions>
+                    </form>
                   </Dialog>
                 </Grid>
               ))
@@ -269,4 +283,6 @@ export default function SearchBar() {
       )}
     </div>
   );
-}
+};
+
+export default CreateItemSearch;
