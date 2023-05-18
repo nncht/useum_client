@@ -46,12 +46,9 @@ const AddItemToCollection = ({ itemId }) => {
 	const handleCollectionChoice = (e) => {
 		e.preventDefault();
 
-		console.log('TWO ', collectionId);
-
 		axios
-			.put(`${API_URL}/collections/${collectionId}/add-item`, { item: itemId })
+			.put(`${API_URL}/collections/${collectionId}/add-item`, { item: itemId, user: user._id })
 			.then((res) => {
-				console.log(res.data);
 				navigate(`/collections/${collectionId}`);
 			})
 			.catch((err) => {
