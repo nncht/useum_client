@@ -2,11 +2,9 @@ import * as React from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import CircularProgress from "@mui/material/CircularProgress";
-import Button from "@mui/material/Button";
 import { useEffect } from "react";
 import API_URL from "../../services/apiConfig";
 import axios from "axios";
-import SearchIcon from "@mui/icons-material/Search";
 
 function sleep(delay = 0) {
   return new Promise((resolve) => {

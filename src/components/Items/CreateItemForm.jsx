@@ -84,7 +84,6 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
 
           {/* Search for existing item */}
           <div className="pb-10">
-            <p>Search for an item in the database</p>
             <CreateItemSearch />
           </div>
 
