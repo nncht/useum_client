@@ -150,7 +150,7 @@ export default function SearchBar() {
       ) : itemExists ? (
         <div className="mt-10">Add</div>
       ) : (
-        <div className="mt-10">Nothing</div>
+        <div></div> // Display no form at the start
       )}
     </div>
   );
