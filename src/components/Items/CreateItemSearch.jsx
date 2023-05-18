@@ -5,6 +5,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { useEffect } from "react";
 import API_URL from "../../services/apiConfig";
 import axios from "axios";
+import CreateItemForm from "./CreateItemForm";
 
 function sleep(delay = 0) {
   return new Promise((resolve) => {
@@ -134,6 +135,9 @@ export default function SearchBar() {
           </li>
         )}
       />
+      <div className="mt-10">
+        <CreateItemForm target={"items"} idObject={"item"} />
+      </div>
     </div>
   );
 }

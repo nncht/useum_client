@@ -77,15 +77,8 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
   return (
     currentUser && (
       <div className="mb-3">
-        <SectionHeader title="Create new item"></SectionHeader>
-
         <form className="flex flex-col mx-auto" onSubmit={handleSubmit}>
           <input type="hidden" name="forCollection" value={forCollection} />
-
-          {/* Search for existing item */}
-          <div className="pb-10">
-            <CreateItemSearch />
-          </div>
 
           {/* Item title */}
           <label htmlFor="name" className="text-md">
