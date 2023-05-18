@@ -19,13 +19,15 @@ export default function SearchBar() {
   const [selectedOption, setSelectedOption] = React.useState(null);
   const [allItemNames, setAllItemNames] = React.useState([]);
   const loading = open && options.length === 0;
+  const [itemExists, setItemExists] = React.useState(false);
+  const [itemDoesntExist, setItemDoesntExist] = React.useState(false);
 
   //  Autosubmit the selected option and call the search route: /search?q={title from the dropdown}.
   const handleSelectOption = (event, value) => {
     setSelectedOption(value);
 
     if (value.title === "No match? Add a new item to the database ⤴") {
-      window.location.href = "/create-item";
+      setItemDoesntExist(true);
     } else {
       const searchParams = new URLSearchParams({ q: value.title });
       const url = `/search?${searchParams.toString()}`;
@@ -46,7 +48,7 @@ export default function SearchBar() {
 
       if (active) {
         setOptions([
-          ...allItemNames.map((name) => ({ title: name, type: "item" })),
+          ...allItemNames.map((name) => ({ title: name, type: "item" })), // On click opens dropdown with all fetched items
         ]);
       }
     })();
@@ -73,6 +75,7 @@ export default function SearchBar() {
       });
   }, []);
 
+  // RENDER FORMS
   return (
     <div id="search-bar" className="pt-4">
       <Autocomplete
@@ -135,9 +138,14 @@ export default function SearchBar() {
           </li>
         )}
       />
-      <div className="mt-10">
-        <CreateItemForm target={"items"} idObject={"item"} />
-      </div>
+
+      {itemDoesntExist ? (
+        <div className="mt-10">
+          <CreateItemForm target={"items"} idObject={"item"} />
+        </div>
+      ) : (
+        <div className="mt-10">aaa</div>
+      )}
     </div>
   );
 }
