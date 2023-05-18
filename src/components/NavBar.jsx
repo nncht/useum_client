@@ -139,14 +139,14 @@ export default function NavBar() {
 
       {/* New Item */}
 
-      <ListItem key="New Item" disablePadding>
+      {/* <ListItem key="New Item" disablePadding>
         <ListItemButton href="/create-item">
           <ListItemIcon>
             <AddBoxIcon />
           </ListItemIcon>
           <ListItemText primary="Create Item" />
         </ListItemButton>
-      </ListItem>
+      </ListItem> */}
 
       <Divider />
 

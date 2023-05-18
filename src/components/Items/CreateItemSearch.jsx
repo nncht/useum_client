@@ -1,12 +1,12 @@
 import * as React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import API_URL from "../../services/apiConfig";
 
 // Custom components
 import CreateItemForm from "./CreateItemForm";
 import ItemCard from "./ItemCard";
-import { getCollectionId } from "../../services/sharedDatastore";
 
 // MUI imports
 import { Textarea } from "@mui/joy";
@@ -32,9 +32,6 @@ function sleep(delay = 0) {
 }
 
 const CreateItemSearch = () => {
-  const collectionId = getCollectionId();
-  console.log("CollectionID", collectionId);
-
   // Handle item search autocomplete component
   const [open, setOpen] = React.useState(false);
   const [options, setOptions] = React.useState([]);
@@ -49,7 +46,12 @@ const CreateItemSearch = () => {
 
   // Determine itemId from selectedOption
   const [itemId, setItemId] = useState("");
-  const [collection, setCollection] = useState(null);
+
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const collectionId = searchParams.get("collectionId");
+
+  console.log(collectionId);
 
   // Handle modal popup
   const [openModal, setOpenModal] = React.useState(false);

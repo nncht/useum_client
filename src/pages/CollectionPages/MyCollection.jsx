@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { setCollectionId } from "../../services/sharedDatastore";
 import { AuthContext } from "../../context/auth.context";
@@ -19,6 +19,8 @@ const MyCollection = () => {
 
   const [collection, setCollection] = useState(null);
   const { collectionId } = useParams();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     getCollection(collectionId, setCollection);
@@ -80,7 +82,13 @@ const MyCollection = () => {
 
             {user.username === collection.createdBy.username ? (
               <div className="py-4">
-                <Button href="/add-item" variant="contained" className="m-2">
+                <Button
+                  variant="contained"
+                  className="m-2"
+                  onClick={() =>
+                    navigate(`/add-item?collectionId=${collection._id}`)
+                  }
+                >
                   Add item
                 </Button>
 
