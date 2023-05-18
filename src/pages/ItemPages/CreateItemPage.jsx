@@ -4,8 +4,8 @@ import CreateItemSearch from "../../components/Items/CreateItemSearch.jsx";
 import SectionHeader from "../../components/UI/SectionHeader";
 
 function CreateItemPage() {
-  const collectionId = getCollectionId();
-  console.log("CollectionID", collectionId);
+  // const collectionId = getCollectionId();
+  // console.log("CollectionID", collectionId);
 
   return (
     <div id="main-content">
