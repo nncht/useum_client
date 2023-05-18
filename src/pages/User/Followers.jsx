@@ -17,7 +17,7 @@ const Followers = () => {
 	useEffect(() => {
 		if (userData) {
 			axios
-				.get(`${API_URL}/users/${userData.username}`)
+				.get(`${API_URL}/users/${userData.username}/follow`)
 				.then((res) => {
 					setOtherUser(res.data);
 				})
