@@ -1,14 +1,20 @@
-import { useState, useEffect } from "react";
 import axios from "axios";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "../context/auth.context";
-import ImageUploader from "./ImageUploader/ImageUploader";
-import Button from "@mui/material/Button";
-import SelectCategories from "./SelectCategories";
-import API_URL from "../services/apiConfig";
+import { AuthContext } from "../../context/auth.context";
+import API_URL from "../../services/apiConfig";
 
-function CreateForm({ target, idObject, forCollection }) {
+// Custom components
+import ImageUploader from "../ImageUploader/ImageUploader";
+import SelectCategories from "../SelectCategories";
+import SectionHeader from "../UI/SectionHeader";
+
+// MUI imports
+import Button from "@mui/material/Button";
+
+// --- End of imports
+
+const CreateCollectionForm = ({ target, idObject, forCollection }) => {
   const { user } = useContext(AuthContext);
 
   const [currentUser, setCurrentUser] = useState(user);
@@ -17,17 +23,15 @@ function CreateForm({ target, idObject, forCollection }) {
   const [imageUrl, setImageUrl] = useState("");
   const [categoryArray, setCategoryArray] = useState([]);
   const [errorMessage, setErrorMessage] = useState(undefined);
-  const [comment, setComment] = useState("");
-  const [commentTitle, setCommentTitle] = useState("");
   const [uploadingImage, setUploadingImage] = useState(false);
 
   const storedToken = localStorage.getItem("authToken");
-
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    // Uploading cover images is optional
     if (uploadingImage) {
       return;
     }
@@ -38,10 +42,7 @@ function CreateForm({ target, idObject, forCollection }) {
       createdBy: user._id,
       imageUrl: imageUrl,
       categories: categoryArray,
-      commentTitle: commentTitle,
-      comment: comment,
       collections: forCollection,
-      currentUser: currentUser,
     };
 
     axios
@@ -54,7 +55,7 @@ function CreateForm({ target, idObject, forCollection }) {
         setDescription("");
         setImageUrl("");
         setCategoryArray([]);
-        setComment([]);
+
         navigate(`/${target}/${res.data[idObject]._id}`);
       })
       .catch((err) => {
@@ -63,16 +64,19 @@ function CreateForm({ target, idObject, forCollection }) {
   };
 
   const fixedInputClass =
-    "rounded-md appearance-none relative block w-full px-3 py-2 my-4 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm";
+    "w-full p-2 mt-1 mb-3 border border-slate-800 placeholder-gray-300 text-slate-800";
 
   return (
     currentUser && (
-      <div className="my-3">
+      <div className="mb-3">
+        <SectionHeader title="Create new collection"></SectionHeader>
+
         <form className="flex flex-col mx-auto" onSubmit={handleSubmit}>
-          <h4 className="text-2xl text-slate-600 my-3">Create Item</h4>
           <input type="hidden" name="forCollection" value={forCollection} />
-          <label htmlFor="name" className="text-xl">
-            Name
+
+          {/* Collection title */}
+          <label htmlFor="name" className="text-md">
+            Collection Title
           </label>
           <input
             type="text"
@@ -81,62 +85,59 @@ function CreateForm({ target, idObject, forCollection }) {
             value={name}
             onChange={(event) => setName(event.target.value)}
           />
+
           <input type="hidden" name="" value={currentUser._id} />
-          <label htmlFor="description" className="text-xl">
+
+          {/* Collecion description */}
+          <label htmlFor="description" className="text-md">
             Description
           </label>
           <textarea
             id="description"
             className={fixedInputClass}
             value={description}
+            rows={6}
             onChange={(event) => setDescription(event.target.value)}
+            placeholder="Tell us anything that comes to your mind about this collection, e.g. what you're using it for, what you're planning to add in the future, etc."
           />
 
-          <label htmlFor="categoryArray" className="text-xl">
-            Category
+          {/* Collection category selection */}
+          <label htmlFor="description" className="text-md pb-1">
+            Categories
           </label>
-
           <SelectCategories
             setCategoryArray={setCategoryArray}
             categoryArray={categoryArray}
           />
-          <label htmlFor="review" className="text-xl mt-3">
-            Comment
-          </label>
-          <input
-            type="text"
-            name=""
-            id=""
-            placeholder="Comment Title"
-            value={commentTitle}
-            onChange={(event) => setCommentTitle(event.target.value)}
-          />
-          <textarea
-            id="review"
-            className={fixedInputClass}
-            value={comment}
-            onChange={(event) => setComment(event.target.value)}
-          />
 
-          {uploadingImage === true ? (
-            <p>Uploading image, please wait...</p>
-          ) : (
-            <img
-              src={imageUrl !== "" ? imageUrl : "/images/default/no-image.svg"}
-              width={250}
-              height={350}
-              alt=""
-            />
-          )}
+          {/* Upload collection cover picture */}
+          {/* Upload preview */}
+          <div className="py-4">
+            {uploadingImage === true ? (
+              <p>Uploading image, please wait...</p>
+            ) : (
+              <img
+                src={
+                  imageUrl !== "" ? imageUrl : "/images/default/no-image.svg"
+                }
+                width={250}
+                height={350}
+                alt=""
+              />
+            )}
+          </div>
 
+          {/* Choose file */}
           <ImageUploader
             setImageUrl={setImageUrl}
             setUploadingImage={setUploadingImage}
-            message={"Upload a picture"}
+            message={"Upload a cover picture"}
           />
+
+          {/* Create collection button */}
           <div>
             <Button variant="contained" type="submit" className="text-xl mt-3">
-              Add
+              Create collection
             </Button>
           </div>
         </form>
@@ -148,6 +149,6 @@ function CreateForm({ target, idObject, forCollection }) {
       </div>
     )
   );
-}
+};
 
-export default CreateForm;
+export default CreateCollectionForm;
