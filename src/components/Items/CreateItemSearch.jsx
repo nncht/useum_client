@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import API_URL from "../../services/apiConfig";
 import axios from "axios";
 import CreateItemForm from "./CreateItemForm";
+import AddExistingItemForm from "./AddExistingItemForm";
 
 function sleep(delay = 0) {
   return new Promise((resolve) => {
@@ -154,11 +155,7 @@ export default function SearchBar() {
         </div>
       ) : !itemDoesntExist & itemExists ? (
         <div className="mt-10">
-          <CreateItemForm
-            target={"items"}
-            idObject={"item"}
-            selectedOption={selectedOption} // This will tell the CreateItemForm to disable Item Name
-          />
+          <AddExistingItemForm selectedOption={selectedOption} />
         </div>
       ) : (
         <div></div> // Display no form at the start
