@@ -6,7 +6,6 @@ import Button from "@mui/material/Button";
 import FormExtra from "./FormExtra";
 import API_URL from "../../services/apiConfig";
 
-
 export default function Login() {
   const [loginName, setLoginName] = useState("");
   const [password, setPassword] = useState("");
@@ -53,7 +52,7 @@ export default function Login() {
           onChange={(e) => setLoginName(e.target.value)}
           id="email"
           className={fixedInputClass}
-          placeholder="Username or email address"
+          placeholder="Username or email"
         />
 
         {/* Password input */}
