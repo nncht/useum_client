@@ -2,7 +2,7 @@ import * as React from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import CircularProgress from "@mui/material/CircularProgress";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import API_URL from "../../services/apiConfig";
 import axios from "axios";
 import CreateItemForm from "./CreateItemForm";
@@ -22,6 +22,7 @@ export default function SearchBar() {
   const loading = open && options.length === 0;
   const [itemExists, setItemExists] = React.useState(false);
   const [itemDoesntExist, setItemDoesntExist] = React.useState(false);
+  const [itemsFound, setItemsFound] = useState([]);
 
   //  Autosubmit the selected option and call the search route: /search?q={title from the dropdown}.
   const handleSelectOption = (event, value) => {
@@ -38,6 +39,16 @@ export default function SearchBar() {
     } else if (selectedOption) {
       setItemDoesntExist(false);
       setItemExists(true);
+      // Search for item in DB
+      axios
+        .get(`${API_URL}/search?search=${selectedOption.title}`)
+        .then((res) => {
+          setItemsFound(res.data.items);
+          console.log(res.data.items);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } else {
       setItemDoesntExist(false);
       setItemExists(false);
@@ -155,7 +166,8 @@ export default function SearchBar() {
         </div>
       ) : !itemDoesntExist & itemExists ? (
         <div className="mt-10">
-          <AddExistingItemForm selectedOption={selectedOption} />
+          Choose the item that you want to add
+          {/* <AddExistingItemForm selectedOption={selectedOption} /> */}
         </div>
       ) : (
         <div></div> // Display no form at the start
