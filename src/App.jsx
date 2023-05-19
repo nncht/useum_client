@@ -26,6 +26,8 @@ import BackToTop from "./components/UI/BackToTop";
 import BookmarksPage from "./pages/User/BookmarksPage";
 import Footer from "./components/UI/Footer";
 import SearchResults from "./pages/SearchResults";
+import PeopleIFollow from "./pages/User/PeopleIFollow";
+import Followers from "./pages/User/Followers";
 
 
 function App() {
@@ -192,6 +194,25 @@ function App() {
                 </IsPrivate>
               }
             />
+
+            <Route
+              path="/following"
+              element={
+                <UserDataProvider>
+                  <PeopleIFollow />
+                  </UserDataProvider>
+              }
+            />
+
+            <Route
+              path="/followers"
+              element={
+                <UserDataProvider>
+                  <Followers />
+                  </UserDataProvider>
+              }
+            />
+
           </Routes>
         </div>
       </main>
