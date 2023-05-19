@@ -23,9 +23,6 @@ const UserCard = ({ user }) => {
           <Typography variant="body2" color="text.secondary">
             {user.followers.length} Followers
           </Typography>
-          <Typography variant="body1" color="text.secondary">
-            {user.userbio}
-          </Typography>
         </CardContent>
       </CardActionArea>
     </Card>
