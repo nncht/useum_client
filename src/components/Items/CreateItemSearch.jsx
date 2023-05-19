@@ -52,6 +52,8 @@ const CreateItemSearch = () => {
 
   // Handle modal popup
   const [openModal, setOpenModal] = React.useState(false);
+
+  // When the button to open the modal is clicked, also set that item's ID as itemId (necessary to add it to the right item)
   const handleOpen = (item) => {
     setItemId(item._id);
     console.log(`itemID set to ${item._id}`);
