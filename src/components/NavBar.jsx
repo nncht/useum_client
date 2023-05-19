@@ -26,6 +26,7 @@ import AddBoxIcon from "@mui/icons-material/AddBox";
 import BookmarksIcon from "@mui/icons-material/Bookmarks";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import EmailIcon from "@mui/icons-material/Email";
+import SubdirectoryArrowRightIcon from "@mui/icons-material/SubdirectoryArrowRight";
 
 // -- End of Imports
 
@@ -56,7 +57,7 @@ export default function NavBar() {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <List>
+      <List sx={{ width: 250, paddingTop: 0 }}>
         {/* Home */}
 
         {/* <ListItem key="Home" disablePadding>
@@ -72,7 +73,7 @@ export default function NavBar() {
 
         <ListItem
           key="Profile"
-          sx={{ backgroundColor: "#334155" }}
+          sx={{ backgroundColor: "#334155", color: "white" }}
           disablePadding
         >
           <ListItemButton href={`/users/${user.username}`}>
@@ -102,6 +103,17 @@ export default function NavBar() {
               <BookmarksIcon />
             </ListItemIcon>
             <ListItemText primary="Bookmarks" />
+          </ListItemButton>
+        </ListItem>
+
+        {/* My Bookmarks */}
+
+        <ListItem key="Following" disablePadding>
+          <ListItemButton href="#">
+            <ListItemIcon>
+              <BookmarksIcon />
+            </ListItemIcon>
+            <ListItemText primary="Following" />
           </ListItemButton>
         </ListItem>
       </List>
