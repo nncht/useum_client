@@ -59,49 +59,42 @@ export default function NavBar() {
       <List>
         {/* Home */}
 
-        <ListItem key="Home" disablePadding>
+        {/* <ListItem key="Home" disablePadding>
           <ListItemButton href="/">
             <ListItemIcon>
               <HomeIcon />
             </ListItemIcon>
             <ListItemText primary="Home" />
           </ListItemButton>
-        </ListItem>
+        </ListItem> */}
 
         {/* Profile */}
 
-        <ListItem key="Profile" disablePadding>
+        <ListItem
+          key="Profile"
+          sx={{ backgroundColor: "#334155" }}
+          disablePadding
+        >
           <ListItemButton href={`/users/${user.username}`}>
             <ListItemIcon>
               <AccountCircleIcon />
             </ListItemIcon>
-            <ListItemText primary="Profile" />
+            <ListItemText primary={user.username} />
           </ListItemButton>
         </ListItem>
 
-        {/* Notifications */}
+        {/* My Collections */}
 
-        <ListItem key="Notifications" disablePadding>
-          <ListItemButton>
+        <ListItem key="Collections" disablePadding>
+          <ListItemButton href="/create-collection">
             <ListItemIcon>
-              <NotificationsIcon />
+              <CreateNewFolderIcon />
             </ListItemIcon>
-            <ListItemText primary="Notifications" />
+            <ListItemText primary="Collections" />
           </ListItemButton>
         </ListItem>
 
-        {/* Messages */}
-
-        <ListItem key="Messages" disablePadding>
-          <ListItemButton>
-            <ListItemIcon>
-              <EmailIcon />
-            </ListItemIcon>
-            <ListItemText primary="Messages" />
-          </ListItemButton>
-        </ListItem>
-
-        {/* Bookmarks */}
+        {/* My Bookmarks */}
 
         <ListItem key="Bookmarks" disablePadding>
           <ListItemButton href={`/bookmarks/${user._id}`}>
@@ -113,6 +106,28 @@ export default function NavBar() {
         </ListItem>
       </List>
 
+      {/* Notifications */}
+
+      <ListItem key="Notifications" disablePadding>
+        <ListItemButton>
+          <ListItemIcon>
+            <NotificationsIcon />
+          </ListItemIcon>
+          <ListItemText primary="Notifications" />
+        </ListItemButton>
+      </ListItem>
+
+      {/* Messages */}
+
+      <ListItem key="Messages" disablePadding>
+        <ListItemButton>
+          <ListItemIcon>
+            <EmailIcon />
+          </ListItemIcon>
+          <ListItemText primary="Messages" />
+        </ListItemButton>
+      </ListItem>
+
       {/* Settings */}
 
       <ListItem key="Settings" disablePadding>
@@ -121,19 +136,6 @@ export default function NavBar() {
             <SettingsIcon />
           </ListItemIcon>
           <ListItemText primary="Settings" />
-        </ListItemButton>
-      </ListItem>
-
-      <Divider />
-
-      {/* New Collection */}
-
-      <ListItem key="New Collection" disablePadding>
-        <ListItemButton href="/create-collection">
-          <ListItemIcon>
-            <CreateNewFolderIcon />
-          </ListItemIcon>
-          <ListItemText primary="New Collection" />
         </ListItemButton>
       </ListItem>
 
