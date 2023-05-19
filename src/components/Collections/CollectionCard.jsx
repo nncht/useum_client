@@ -34,8 +34,22 @@ const CollectionCard = ({ collection }) => {
     }
   }, []);
 
+  let standIn;
 
-  return (
+  if (import.meta.env.VITE_LOCAL_SEARCH) {
+
+    standIn = ownerData
+
+  } else {
+
+    standIn = collection
+  }
+
+
+
+
+
+ if (collection && ownerData) { return (
     <Card sx={{ maxWidth: 345 }}>
       {/* Clicking anywhere on the card opens Collection Detail page */}
       <CardActionArea href={`/collections/${collection._id}`}>
@@ -50,7 +64,7 @@ const CollectionCard = ({ collection }) => {
           title={collection.name}
         />
         {/* If card is on home view, show collection owner's profile picture */}
-        {username === collection.createdBy.username ? (
+        {username === standIn.createdBy.username ? (
           <CardHeader
             sx={{ height: "85px" }}
             avatar={
@@ -129,7 +143,7 @@ const CollectionCard = ({ collection }) => {
         )}
       </CardActionArea>
     </Card>
-  );
+  );}
 };
 
 export default CollectionCard;
