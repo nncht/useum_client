@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 // Custom components
 import ItemCard from "../components/Items/ItemCard";
 import SectionHeader from "../components/UI/SectionHeader";
+import UserCard from "../components/Profile/UserCard";
 import CollectionCard from "../components/Collections/CollectionCard";
 import API_URL from "../services/apiConfig";
 
@@ -52,11 +53,8 @@ const SearchResults = () => {
           <Grid container spacing={3}>
             {usersFound.length ? (
               usersFound.map((user) => (
-                <Grid item xs={12} sm={6} md={4} lg={3} key={user._id}>
-                  <div key={user._id}>
-                    <img src={user.imageUrl} alt="" />
-                    <p>{user.username}</p>
-                  </div>
+                <Grid item xs={12} sm={6} md={3} lg={3} key={user._id}>
+                  <UserCard key={user._id} user={user} />
                 </Grid>
               ))
             ) : (
