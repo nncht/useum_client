@@ -8,6 +8,12 @@ import Button from "@mui/material/Button";
 import SelectCategories from "./SelectCategories";
 import API_URL from "../services/apiConfig";
 
+//   ----------------
+//   ATTENTION: THIS IS THE OLD CREATE ITEM FORM.
+//   IT'S NOT BEING USED ON THE LIVE APP ANYMORE.
+//   PLEASE USE CreateItemForm.jsx AND CreateItemSearch.jsx in the /components/Items FOLDER INSTEAD!
+// ----------------
+
 function CreateForm({ target, idObject, forCollection }) {
   const { user } = useContext(AuthContext);
 
