@@ -89,7 +89,8 @@ COLLECTION DETAILS
   justify-content: center;
   width: 100%;
   height: 300px;
-  filter: brightness(75%) saturate(30%);
+  filter: brightness(100%) saturate(70%);
+  border-radius: 8px 8px 0px 0px;
 }
 
 #collection-header img {
