@@ -1,20 +1,21 @@
-import { useState, useEffect } from "react";
 import axios from "axios";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "../context/auth.context";
-import ImageUploader from "./ImageUploader/ImageUploader";
+import { AuthContext } from "../../context/auth.context";
+import API_URL from "../../services/apiConfig";
+
+// Custom components
+import ImageUploader from "../ImageUploader/ImageUploader";
+import SelectCategories from "../SelectCategories";
+import SectionHeader from "../UI/SectionHeader";
+import CreateItemSearch from "./CreateItemSearch";
+
+// MUI imports
 import Button from "@mui/material/Button";
-import SelectCategories from "./SelectCategories";
-import API_URL from "../services/apiConfig";
 
-//   ----------------
-//   ATTENTION: THIS IS THE OLD CREATE ITEM FORM.
-//   IT'S NOT BEING USED ON THE LIVE APP ANYMORE.
-//   PLEASE USE CreateItemForm.jsx AND CreateItemSearch.jsx in the /components/Items FOLDER INSTEAD!
-//   ----------------
+// --- End of imports
 
-function CreateForm({ target, idObject, forCollection }) {
+const CreateitemForm = ({ target, idObject, forCollection }) => {
   const { user } = useContext(AuthContext);
 
   const [currentUser, setCurrentUser] = useState(user);
@@ -28,19 +29,19 @@ function CreateForm({ target, idObject, forCollection }) {
   const [uploadingImage, setUploadingImage] = useState(false);
 
   const storedToken = localStorage.getItem("authToken");
-
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    // Uploading cover images is optional
     if (uploadingImage) {
       return;
     }
 
     const params = {
       name: name,
-      description: description,
+      //   description: description,
       createdBy: user._id,
       imageUrl: imageUrl,
       categories: categoryArray,
@@ -61,6 +62,8 @@ function CreateForm({ target, idObject, forCollection }) {
         setImageUrl("");
         setCategoryArray([]);
         setComment([]);
+        setCategoryArray([]);
+
         navigate(`/${target}/${res.data[idObject]._id}`);
       })
       .catch((err) => {
@@ -69,16 +72,17 @@ function CreateForm({ target, idObject, forCollection }) {
   };
 
   const fixedInputClass =
-    "rounded-md appearance-none relative block w-full px-3 py-2 my-4 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm";
+    "w-full p-2 mt-1 mb-3 border border-slate-800 placeholder-gray-300 text-slate-800";
 
   return (
     currentUser && (
-      <div className="my-3">
+      <div className="mb-3">
         <form className="flex flex-col mx-auto" onSubmit={handleSubmit}>
-          <h4 className="text-2xl text-slate-600 my-3">Create Item</h4>
           <input type="hidden" name="forCollection" value={forCollection} />
-          <label htmlFor="name" className="text-xl">
-            Name
+
+          {/* Item title */}
+          <label htmlFor="name" className="text-md">
+            Item Name
           </label>
           <input
             type="text"
@@ -87,62 +91,59 @@ function CreateForm({ target, idObject, forCollection }) {
             value={name}
             onChange={(event) => setName(event.target.value)}
           />
+
           <input type="hidden" name="" value={currentUser._id} />
-          <label htmlFor="description" className="text-xl">
-            Description
+
+          {/* Collecion description */}
+          <label htmlFor="comment" className="text-md">
+            Comment
           </label>
           <textarea
-            id="description"
+            id="comment"
             className={fixedInputClass}
-            value={description}
-            onChange={(event) => setDescription(event.target.value)}
+            value={comment}
+            rows={4}
+            onChange={(event) => setComment(event.target.value)}
+            placeholder="Let the community know your thoughts about this item, e.g. why you're using it, or whether you think it's good or not. Short or long description, anything goes!"
           />
 
-          <label htmlFor="categoryArray" className="text-xl">
-            Category
+          {/* item category selection */}
+          <label htmlFor="categories" className="text-md pb-1">
+            Categories
           </label>
-
           <SelectCategories
             setCategoryArray={setCategoryArray}
             categoryArray={categoryArray}
           />
-          <label htmlFor="review" className="text-xl mt-3">
-            Comment
-          </label>
-          <input
-            type="text"
-            name=""
-            id=""
-            placeholder="Comment Title"
-            value={commentTitle}
-            onChange={(event) => setCommentTitle(event.target.value)}
-          />
-          <textarea
-            id="review"
-            className={fixedInputClass}
-            value={comment}
-            onChange={(event) => setComment(event.target.value)}
-          />
 
-          {uploadingImage === true ? (
-            <p>Uploading image, please wait...</p>
-          ) : (
-            <img
-              src={imageUrl !== "" ? imageUrl : "/images/default/no-image.svg"}
-              width={250}
-              height={350}
-              alt=""
-            />
-          )}
+          {/* Upload item cover picture */}
+          {/* Upload preview */}
+          <div className="py-4">
+            {uploadingImage === true ? (
+              <p>Uploading image, please wait...</p>
+            ) : (
+              <img
+                src={
+                  imageUrl !== "" ? imageUrl : "/images/default/no-image.svg"
+                }
+                width={250}
+                height={350}
+                alt=""
+              />
+            )}
+          </div>
 
+          {/* Choose file */}
           <ImageUploader
             setImageUrl={setImageUrl}
             setUploadingImage={setUploadingImage}
-            message={"Upload a picture"}
+            message={"Upload a cover picture"}
           />
+
+          {/* Create item button */}
           <div>
             <Button variant="contained" type="submit" className="text-xl mt-3">
-              Add
+              Add item
             </Button>
           </div>
         </form>
@@ -154,6 +155,6 @@ function CreateForm({ target, idObject, forCollection }) {
       </div>
     )
   );
-}
+};
 
-export default CreateForm;
+export default CreateitemForm;

@@ -1,11 +1,16 @@
 import { useState } from "react";
-import API_URL from "../services/apiConfig"
-
+import API_URL from "../services/apiConfig";
 
 function CreateItemForm() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
+
+  //   ----------------
+  //   ATTENTION: THIS IS THE OLD CREATE ITEM FORM.
+  //   IT'S NOT BEING USED ON THE LIVE APP ANYMORE.
+  //   PLEASE USE CreateItemForm.jsx in the /components/Items FOLDER INSTEAD!
+  //   ----------------
 
   const handleSubmit = async (event) => {
     event.preventDefault();

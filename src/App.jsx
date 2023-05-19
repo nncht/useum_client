@@ -8,7 +8,6 @@ import NavBar from "./components/NavBar";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import CreateItemPage from "./pages/ItemPages/CreateItemPage";
-import CreateFreeItemPage from "./pages/ItemPages/CreateFreeItemPage";
 import ProfilePage from "./pages/ProfilePage";
 import CreateCollectionPage from "./pages/CollectionPages/CreateCollectionPage";
 import Collections from "./pages/CollectionPages/Collections";
@@ -24,18 +23,16 @@ import DeleteUserPage from "./pages/User/DeleteUserPage";
 import SearchBar from "./components/DynamicSearch/SearchBar";
 import BackToTop from "./components/UI/BackToTop";
 import BookmarksPage from "./pages/User/BookmarksPage";
-import Footer from "./components/UI/Footer";
 import SearchResults from "./pages/SearchResults";
 import PeopleIFollow from "./pages/User/PeopleIFollow";
 import Followers from "./pages/User/Followers";
-
 
 function App() {
   return (
     <div className="App">
       <NavBar />
       <SearchBar />
-      <main className="p-0">
+      <main id="main-content" className="p-0">
         <div>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -43,8 +40,7 @@ function App() {
               path="/login"
               element={
                 <IsPublic>
-                  {" "}
-                  <LoginPage />{" "}
+                  <LoginPage />
                 </IsPublic>
               }
             />
@@ -52,7 +48,6 @@ function App() {
               path="/signup"
               element={
                 <IsPublic>
-                  {" "}
                   <SignupPage />
                 </IsPublic>
               }
@@ -62,7 +57,6 @@ function App() {
               path="/edit/:userId"
               element={
                 <IsPrivate>
-                  {" "}
                   <EditProfilePage />
                 </IsPrivate>
               }
@@ -72,8 +66,7 @@ function App() {
               path="/add-item"
               element={
                 <IsPrivate>
-                  {" "}
-                  <CreateItemPage />{" "}
+                  <CreateItemPage />
                 </IsPrivate>
               }
             />
@@ -81,8 +74,7 @@ function App() {
               path="/create-item"
               element={
                 <IsPrivate>
-                  {" "}
-                  <CreateFreeItemPage />{" "}
+                  <CreateItemPage />
                 </IsPrivate>
               }
             />
@@ -216,7 +208,6 @@ function App() {
           </Routes>
         </div>
       </main>
-      {/* <Footer /> */}
       <BackToTop />
     </div>
   );

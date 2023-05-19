@@ -19,7 +19,6 @@ import { Grid } from "@mui/material";
 
 // ----- End of imports
 
-
 // Fetch user object from username in URL
 const ProfilePage = () => {
   const { username } = useParams();
@@ -55,7 +54,7 @@ const ProfilePage = () => {
 
         {/* Profile body */}
         <section className="px-4 pt-3 pb-20 bg-slate-100">
-          <SectionHeader title="Popular Collections" />
+          <SectionHeader title="Collections" />
 
           {/* Render available collections */}
           <Grid container spacing={3}>

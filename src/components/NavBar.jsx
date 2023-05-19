@@ -21,11 +21,10 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import MenuIcon from "@mui/icons-material/Menu";
-import HomeIcon from "@mui/icons-material/Home";
-import AddBoxIcon from "@mui/icons-material/AddBox";
 import BookmarksIcon from "@mui/icons-material/Bookmarks";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import EmailIcon from "@mui/icons-material/Email";
+import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 
 // -- End of Imports
 
@@ -56,18 +55,7 @@ export default function NavBar() {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <List>
-        {/* Home */}
-
-        <ListItem key="Home" disablePadding>
-          <ListItemButton href="/">
-            <ListItemIcon>
-              <HomeIcon />
-            </ListItemIcon>
-            <ListItemText primary="Home" />
-          </ListItemButton>
-        </ListItem>
-
+      <List sx={{ width: 250, paddingTop: 0 }}>
         {/* Profile */}
 
         <ListItem key="Profile" disablePadding>
@@ -75,7 +63,42 @@ export default function NavBar() {
             <ListItemIcon>
               <AccountCircleIcon />
             </ListItemIcon>
-            <ListItemText primary="Profile" />
+            <ListItemText primary={user.username} />
+          </ListItemButton>
+        </ListItem>
+
+        {/* My Collections */}
+
+        <ListItem key="Collections" disablePadding>
+          {/* In the future, this should show the user's collections but without the profile headers, etc.
+          A page still needs to be created, for now it opens this user's profile  */}
+          <ListItemButton href={`/users/${user.username}`}>
+            <ListItemIcon>
+              <CreateNewFolderIcon />
+            </ListItemIcon>
+            <ListItemText primary="Collections" />
+          </ListItemButton>
+        </ListItem>
+
+        {/* My Bookmarks */}
+
+        <ListItem key="Bookmarks" disablePadding>
+          <ListItemButton href={`/bookmarks/${user._id}`}>
+            <ListItemIcon>
+              <BookmarksIcon />
+            </ListItemIcon>
+            <ListItemText primary="Bookmarks" />
+          </ListItemButton>
+        </ListItem>
+
+        {/* Following */}
+
+        <ListItem key="Following" disablePadding>
+          <ListItemButton href="#">
+            <ListItemIcon>
+              <PeopleAltIcon />
+            </ListItemIcon>
+            <ListItemText primary="Following" />
           </ListItemButton>
         </ListItem>
 
@@ -101,64 +124,29 @@ export default function NavBar() {
           </ListItemButton>
         </ListItem>
 
-        {/* Bookmarks */}
+        {/* Settings */}
 
-        <ListItem key="Bookmarks" disablePadding>
-          <ListItemButton href={`/bookmarks/${user._id}`}>
+        <ListItem key="Settings" disablePadding>
+          <ListItemButton href="/profile">
             <ListItemIcon>
-              <BookmarksIcon />
+              <SettingsIcon />
             </ListItemIcon>
-            <ListItemText primary="Bookmarks" />
+            <ListItemText primary="Settings" />
+          </ListItemButton>
+        </ListItem>
+
+        <Divider />
+
+        {/* Logout */}
+        <ListItem key="Log Out" disablePadding>
+          <ListItemButton onClick={logOutUser}>
+            <ListItemIcon>
+              <LogoutIcon />
+            </ListItemIcon>
+            <ListItemText primary="Log Out" />
           </ListItemButton>
         </ListItem>
       </List>
-
-      {/* Settings */}
-
-      <ListItem key="Settings" disablePadding>
-        <ListItemButton href="/profile">
-          <ListItemIcon>
-            <SettingsIcon />
-          </ListItemIcon>
-          <ListItemText primary="Settings" />
-        </ListItemButton>
-      </ListItem>
-
-      <Divider />
-
-      {/* New Collection */}
-
-      <ListItem key="New Collection" disablePadding>
-        <ListItemButton href="/create-collection">
-          <ListItemIcon>
-            <CreateNewFolderIcon />
-          </ListItemIcon>
-          <ListItemText primary="New Collection" />
-        </ListItemButton>
-      </ListItem>
-
-      {/* New Item */}
-
-      <ListItem key="New Item" disablePadding>
-        <ListItemButton href="/create-item">
-          <ListItemIcon>
-            <AddBoxIcon />
-          </ListItemIcon>
-          <ListItemText primary="Create Item" />
-        </ListItemButton>
-      </ListItem>
-
-      <Divider />
-
-      {/* Logout */}
-      <ListItem key="Log Out" disablePadding>
-        <ListItemButton onClick={logOutUser}>
-          <ListItemIcon>
-            <LogoutIcon />
-          </ListItemIcon>
-          <ListItemText primary="Log Out" />
-        </ListItemButton>
-      </ListItem>
     </Box>
   );
 

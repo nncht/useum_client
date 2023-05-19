@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { setCollectionId } from "../../services/sharedDatastore";
 import { AuthContext } from "../../context/auth.context";
@@ -8,19 +8,19 @@ import ItemCard from "../../components/Items/ItemCard";
 import API_URL from "../../services/apiConfig";
 import BookmarkButton from "../../components/Bookmarks/BookmarkButton";
 
-
 // MUI imports
 import Button from "@mui/material/Button";
 import { Grid } from "@mui/material";
 
 // End of imports
 
-
 const MyCollection = () => {
   const { user } = useContext(AuthContext);
 
   const [collection, setCollection] = useState(null);
   const { collectionId } = useParams();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     getCollection(collectionId, setCollection);
@@ -55,9 +55,10 @@ const MyCollection = () => {
             {/* Like button */}
 
             {user.username === collection.createdBy.username ? (
-              <div></div> ) : (
+              <div></div>
+            ) : (
               <div>
-              <BookmarkButton id={collection._id}/>
+                <BookmarkButton id={collection._id} />
               </div>
             )}
 
@@ -81,26 +82,24 @@ const MyCollection = () => {
 
             {user.username === collection.createdBy.username ? (
               <div className="py-4">
-                <Link
-                  to="/add-item"
+                <Button
+                  variant="contained"
                   className="m-2"
-                  onClick={() => setCollectionId(collection._id)}
+                  onClick={() =>
+                    navigate(`/add-item?collectionId=${collection._id}`)
+                  }
                 >
-                  <Button variant="contained">Add item</Button>
-                </Link>
+                  Add item
+                </Button>
+
                 {/* Edot collection buttone */}
                 <Link to={`/edit-collection/${collection._id}`}>
                   <Button>Edit Collection</Button>
                 </Link>
               </div>
             ) : (
-              <div>
-
-
-              </div>
+              <div></div>
             )}
-
-
           </section>
         </div>
       </>

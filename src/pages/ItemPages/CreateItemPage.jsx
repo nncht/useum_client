@@ -1,21 +1,23 @@
-import CreateItemForm from "../../components/CreateItemForm";
-import ItemList from "../../components/ItemList";
-import CreateForm from "../../components/CreateForm";
+import CreateItemForm from "../../components/Items/CreateItemForm";
 import { getCollectionId } from "../../services/sharedDatastore";
+import CreateItemSearch from "../../components/Items/CreateItemSearch.jsx";
+import SectionHeader from "../../components/UI/SectionHeader";
 
 function CreateItemPage() {
-  const collectionId = getCollectionId();
-  console.log("CollectionID", collectionId);
+  // const collectionId = getCollectionId();
+  // console.log("CollectionID", collectionId);
 
   return (
-    <section id="main-content" className="px-3 pt-3 pb-20 bg-slate-300">
-      <CreateForm
-        target={"items"}
-        idObject={"item"}
-        className="w-50"
-        forCollection={collectionId}
-      />
-    </section>
+    <div id="main-content">
+      <div id="main-section" className="justify-center p-4">
+        <div className="p-4 bg-slate-50 rounded-md">
+          <SectionHeader title="Add item"></SectionHeader>
+          <div className="pb-10">
+            <CreateItemSearch />
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
