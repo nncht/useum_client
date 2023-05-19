@@ -1,12 +1,14 @@
 import * as React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import API_URL from "../../services/apiConfig";
+import { useContext } from "react";
 
 // Custom components
 import CreateItemForm from "./CreateItemForm";
 import ItemCard from "./ItemCard";
+import { AuthContext } from "../../context/auth.context";
 
 // MUI imports
 import { Textarea } from "@mui/joy";
@@ -32,6 +34,10 @@ function sleep(delay = 0) {
 }
 
 const CreateItemSearch = () => {
+  const navigate = useNavigate();
+  const { user, isLoggedIn } = useContext(AuthContext);
+  console.log(`User ID: ${user._id}`);
+
   // Handle item search autocomplete component
   const [open, setOpen] = React.useState(false);
   const [options, setOptions] = React.useState([]);
@@ -44,38 +50,27 @@ const CreateItemSearch = () => {
   const [itemDoesntExist, setItemDoesntExist] = React.useState(false);
   const [itemsFound, setItemsFound] = useState([]);
 
+  // Handle modal popup
+  const [openModal, setOpenModal] = React.useState(false);
+  const handleOpen = (item) => {
+    setItemId(item._id);
+    console.log(`itemID set to ${item._id}`);
+    setOpenModal(true);
+  };
+
+  const handleClose = () => setOpenModal(false);
+
   // Determine itemId from selectedOption
   const [itemId, setItemId] = useState("");
 
+  // Datermine collectionId from query params (after navigating here from Add Item on MyCollection page)
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const collectionId = searchParams.get("collectionId");
 
-  console.log(collectionId);
+  console.log(`Collection ID: ${collectionId}`);
 
-  // Handle modal popup
-  const [openModal, setOpenModal] = React.useState(false);
-  const handleOpen = () => setOpenModal(true);
-  const handleClose = () => setOpenModal(false);
-
-  if (itemId) {
-    console.log(itemId);
-  }
-
-  // Modal styles
-  const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 400,
-    bgcolor: "background.paper",
-    border: "0px solid #000",
-    boxShadow: 24,
-    p: 4,
-  };
-
-  //  Autosubmit the selected option and call the search route: /search?q={title from the dropdown}.
+  //  Search input logic
   const handleSelectOption = (event, value) => {
     setSelectedOption(value);
   };
@@ -108,20 +103,7 @@ const CreateItemSearch = () => {
     }
   }, [selectedOption]);
 
-  // Add item from search results to the current collection
-  const addSelectedItem = () => {
-    axios
-      .put(`${API_URL}/collections/${itemId}/add-item`, {
-        item: itemId,
-        user: user._id,
-      })
-      .then((res) => {})
-      .catch((err) => {
-        console.error(err);
-      });
-  };
-
-  // Fetch all existing item names
+  // Fetch all existing item names for search bar dropdown
   useEffect(() => {
     axios
       .get(`${API_URL}/items`)
@@ -133,7 +115,23 @@ const CreateItemSearch = () => {
       });
   }, []);
 
-  //   The code below is from the MUI Asynchronous Autocomplete component
+  // Add existing item to this collection
+  const handleAddExistingItem = (e) => {
+    e.preventDefault();
+    axios
+      .put(`${API_URL}/collections/${collectionId}/add-item`, {
+        item: itemId,
+        user: user._id,
+      })
+      .then((res) => {
+        navigate(`/collections/${collectionId}`);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  //   The code handles the MUI Asynchronous Autocomplete component behaviour
   useEffect(() => {
     let active = true;
 
@@ -242,7 +240,9 @@ const CreateItemSearch = () => {
                 <Grid item xs={12} sm={6} md={4} lg={3} key={item._id}>
                   <ItemCard key={item._id} item={item} />
                   {/* Button triggers a modal that prompts the user to write an optional comment */}
-                  <Button onClick={handleOpen}>Add this item</Button>
+                  <Button onClick={() => handleOpen(item)}>
+                    Add this item
+                  </Button>
                   <Dialog
                     open={openModal}
                     onClose={handleClose}
@@ -250,8 +250,8 @@ const CreateItemSearch = () => {
                     aria-describedby="Write a comment for this item"
                   >
                     <form
-                      onSubmit={(event) => {
-                        event.preventDefault();
+                      onSubmit={(e) => {
+                        e.preventDefault();
                       }}
                     >
                       <DialogTitle>Write a comment (optional)</DialogTitle>
@@ -264,10 +264,7 @@ const CreateItemSearch = () => {
                         <Textarea minRows={2} sx={{ mt: 2 }} />
                       </DialogContent>
                       <DialogActions>
-                        <Button
-                          type="submit"
-                          onClick={() => setCollectionId(collection._id)}
-                        >
+                        <Button type="submit" onClick={handleAddExistingItem}>
                           Add item now
                         </Button>
                       </DialogActions>
