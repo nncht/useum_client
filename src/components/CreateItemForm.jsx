@@ -10,7 +10,7 @@ function CreateItemForm() {
   //   ATTENTION: THIS IS THE OLD CREATE ITEM FORM.
   //   IT'S NOT BEING USED ON THE LIVE APP ANYMORE.
   //   PLEASE USE CreateItemForm.jsx in the /components/Items FOLDER INSTEAD!
-  // ----------------
+  //   ----------------
 
   const handleSubmit = async (event) => {
     event.preventDefault();
