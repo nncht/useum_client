@@ -1,13 +1,19 @@
-import { useParams, useNavigate } from "react-router-dom";
-import { useState, useEffect, useContext } from "react";
-import { AuthContext } from "../../context/auth.context";
 import axios from "axios";
-import Button from "@mui/material/Button";
-import ImageUploader from "../../components/ImageUploader/ImageUploader";
-import SelectCategories from "../../components/SelectCategories";
+import { useState, useEffect, useContext } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/auth.context";
 import { getCollectionId } from "../../services/sharedDatastore";
 import API_URL from "../../services/apiConfig";
+
+// Custom components
+import ImageUploader from "../../components/ImageUploader/ImageUploader";
+import SelectCategories from "../../components/SelectCategories";
 import SectionHeader from "../../components/UI/SectionHeader";
+
+// MUI components
+import Button from "@mui/material/Button";
+
+// --- End of imports
 
 const EditItem = () => {
   const [item, setItem] = useState(null);
@@ -18,13 +24,9 @@ const EditItem = () => {
   const [comment, setComment] = useState("");
   const [commentTitle, setCommentTitle] = useState("");
   const [uploadingImage, setUploadingImage] = useState(false);
-
   const collectionId = getCollectionId();
-
   const { itemId } = useParams();
-
   const { user } = useContext(AuthContext);
-
   const navigate = useNavigate();
 
   useEffect(() => {
