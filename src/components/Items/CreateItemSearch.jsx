@@ -53,7 +53,7 @@ const CreateItemSearch = () => {
   // Handle modal popup
   const [openModal, setOpenModal] = React.useState(false);
 
-  // When the button to open the modal is clicked, also set that item's ID as itemId (necessary to add it to the right item)
+  // When the button "Add this item" is clicked open Comment modal and also set that item's ID as itemId
   const handleOpen = (item) => {
     setItemId(item._id);
     console.log(`itemID set to ${item._id}`);
@@ -133,7 +133,7 @@ const CreateItemSearch = () => {
       });
   };
 
-  //   The code handles the MUI Asynchronous Autocomplete component behaviour
+  //   The code below handles the MUI Asynchronous Autocomplete component behaviour
   useEffect(() => {
     let active = true;
 
