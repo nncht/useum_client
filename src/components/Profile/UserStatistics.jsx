@@ -17,10 +17,10 @@ const UserStatistics = () => {
             <span className="font-bold">{userData.followers.length}</span>{" "}
             <Link to={"/followers"}>Followers</Link>
           </div>
-          <div className="mr-4">
+          {/* <div className="mr-4">
             <span className="font-bold">{userData.following.length}</span>{" "}
             <Link to={"/following"}>Following</Link>
-          </div>
+          </div> */}
           <div className="mr-4">
             <span className="font-bold">{userData.collections.length}</span>{" "}
             Collections
