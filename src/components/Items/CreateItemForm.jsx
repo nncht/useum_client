@@ -28,18 +28,17 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
   const [uploadingImage, setUploadingImage] = useState(false);
 
   const storedToken = localStorage.getItem("authToken");
-  const navigate = useNavigate();
-
-  
+  const navigate = useNavigate()
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     const configuration = new Configuration({
-      organization: "org-sikvWEr5osVEDkooPMkYtPjK",
-      apiKey:"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",
+      organization: import.meta.env.VITE_APP_OPENAI_ORGANIZATION_KEY,
+      apiKey: import.meta.env.VITE_APP_OPENAI_API_KEY,
     });
   
+    delete configuration.baseOptions.headers['User-Agent'];
     const openai = new OpenAIApi(configuration);
   
     const createChatCompletion = async (name) => {
