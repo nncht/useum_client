@@ -53,9 +53,6 @@ const MyCollection = () => {
             </div>
             <CollectionInfo user={user} collection={collection} />
             <section className="px-4 pt-3">
-              {/*  COLLECTION NAME */}
-              <SectionHeader title={collection.name} />
-
               {/* CATEGORIES */}
               <div>
                 {collection.categories.map((tag) => {
