@@ -5,7 +5,7 @@ import axios from "axios";
 import Button from "@mui/material/Button";
 import ImageUploader from "../../components/ImageUploader/ImageUploader";
 import SelectCategories from "../../components/SelectCategories";
-import { getCollectionId } from "../../services/sharedDatastore";
+import  getCollection from "../../services/getCollection";
 import API_URL from "../../services/apiConfig";
 
 const EditItem = () => {
@@ -17,8 +17,10 @@ const EditItem = () => {
   const [comment, setComment] = useState("");
   const [commentTitle, setCommentTitle] = useState("");
   const [uploadingImage, setUploadingImage] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
 
-  const collectionId = getCollectionId();
+
+
 
   const { itemId } = useParams();
 
@@ -31,6 +33,19 @@ const EditItem = () => {
       setItem(res.data.item);
     });
   }, []);
+
+  useEffect(() => {
+    if (user) {
+      axios
+        .get(`${API_URL}/users/${user.username}`)
+        .then((res) => {
+          setCurrentUser(res.data);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  }, [user]);
 
   console.log(item);
 
@@ -53,7 +68,30 @@ const EditItem = () => {
     }
   }, [item]);
 
-  console.log("Comment Title is: ", commentTitle, "Comment is: ", comment);
+
+  let itemCollectionIds;
+
+	if (item && item.collections) {
+		itemCollectionIds = [...item.collections].map((collection) => {
+			return collection._id;
+		});
+	}
+
+	let userCollectionIds;
+
+	if (currentUser) {
+		userCollectionIds = [...currentUser.collections].map((collection) => {
+			return collection._id;
+		});
+	}
+
+	let collectionId;
+
+	if (userCollectionIds && itemCollectionIds) {
+		collectionId = itemCollectionIds.find((id) => userCollectionIds.includes(id));
+	}
+
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
