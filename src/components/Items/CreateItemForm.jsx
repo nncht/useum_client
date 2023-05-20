@@ -3,6 +3,7 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
 import API_URL from "../../services/apiConfig";
+import { Configuration, OpenAIApi } from "openai";
 
 // Custom components
 import ImageUploader from "../ImageUploader/ImageUploader";
@@ -27,10 +28,35 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
   const [uploadingImage, setUploadingImage] = useState(false);
 
   const storedToken = localStorage.getItem("authToken");
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    const configuration = new Configuration({
+      organization: import.meta.env.VITE_APP_OPENAI_ORGANIZATION_KEY,
+      apiKey: import.meta.env.VITE_APP_OPENAI_API_KEY,
+    });
+  
+    delete configuration.baseOptions.headers['User-Agent'];
+    const openai = new OpenAIApi(configuration);
+  
+    const createChatCompletion = async (name) => {
+      const completion = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: [
+        { role: "system", content: `You are creating an item named "${name}"` },
+        { role: "user", content: `Describe the item "${name}" in detail with at least 40 words` },
+      ]
+      });
+      console.log(completion.data.choices[0].message);
+      const description = completion.data.choices[0].message.content;
+      return description;
+    };
+
+    //something wrong with headers
+  
+    const description = await createChatCompletion(name);
 
     // Uploading cover images is optional
     if (uploadingImage) {
@@ -39,7 +65,7 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
 
     const params = {
       name: name,
-      //   description: description,
+      description: description,
       createdBy: user._id,
       imageUrl: imageUrl,
       categories: categoryArray,
