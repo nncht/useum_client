@@ -51,27 +51,9 @@ const MyCollection = () => {
                 </div>
               </div>
             </div>
+            {/* ------------------------------ */}
             <CollectionInfo user={user} collection={collection} />
-            <section className="px-4 pt-3">
-              {/* CATEGORIES */}
-              <div>
-                {collection.categories.map((tag) => {
-                  return <p key={tag._id}>{tag.category}</p>;
-                })}
-              </div>
-
-              <div className="pt-2 pb-4">{collection.description}</div>
-
-              {/* Like button */}
-
-              {user.username === collection.createdBy.username ? (
-                <div></div>
-              ) : (
-                <div className="py-4">
-                  <BookmarkButton id={collection._id} />
-                </div>
-              )}
-
+            <section className="px-4 pt-10">
               {/* Items */}
               <Grid container spacing={3} className="pb-10">
                 {collection.items.map((item) => {
@@ -88,6 +70,23 @@ const MyCollection = () => {
                   );
                 })}
               </Grid>
+              {/* Add new item buttone */}
+
+              {user.username === collection.createdBy.username ? (
+                <div className="py-4">
+                  <Button
+                    variant="contained"
+                    className="m-2"
+                    onClick={() =>
+                      navigate(`/add-item?collectionId=${collection._id}`)
+                    }
+                  >
+                    Add item
+                  </Button>
+                </div>
+              ) : (
+                <div></div>
+              )}
             </section>
           </div>
         </div>
