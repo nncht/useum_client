@@ -65,6 +65,7 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     //  <==  ADD
+
     verifyUser();
   }, []);
 

@@ -3,7 +3,6 @@ import axios from "axios";
 import API_URL from "../../services/apiConfig";
 import AllCollections from "./AllCollections";
 import { UserDataContext } from "../../context/userData.context";
-
 import { AuthContext } from "../../context/auth.context";
 
 const RecommendedCollections = () => {
@@ -14,59 +13,63 @@ const RecommendedCollections = () => {
     // const username = user.name;
 
 
-
-
-
-
+    
     useEffect(() => {
 
-    if(user){
-        const fetchData = async () => {
-        const response = await axios.get(`${API_URL}/users/${user.username}`);
-        setUserData([...response.data.categories]);
-      };
-      
-      fetchData();
-}
+      if(user){
+          const fetchData = async () => {
+          const response = await axios.get(`${API_URL}/users/${user.username}`);
+          console.log("*")
+          console.log(response.data.categories)
+          setUserData([...response.data.categories]);
+        };
+        
+        fetchData();
+      }
     }, [user]);
-
-
+    
+    const checkEmptyObj = (obj) => {
+      console.log(Object.keys(obj).length === 0)
+      return Object.keys(obj).length === 0
+    }
 
     useEffect(() => {
-        if(userData){
+      
+        // change later useState of object to null instead of {}
+        if(!checkEmptyObj(userData)){
         axios
           .get(`${API_URL}/collections`)
           .then((res) => {
             let filteredCollections = res.data.collections;
             
-            console.log(userData);
-    
+            const userCategoryIds = userData.map((category) => {
+              console.log(category)
+               return category._id
+              }); // Convert ObjectIDs to strings
             
-         
-            const userCategoryIds = userData.map((category) => category.toString()); // Convert ObjectIDs to strings
-            console.log(userCategoryIds)
-            
-            const thisCollections = filteredCollections.filter((collection) =>
-              collection.categories.some((category) =>
-                userCategoryIds.includes(category._id.toString())
-              )
-            );
+            const thisCollections = filteredCollections.filter((collection) => {
+            for (let i = 0; i < collection.categories.length; i++)
+              {
+                const categoryCollection = collection.categories[i]
+                for (let j = 0; j < userCategoryIds.length; j++){
+                
+                  if ( userCategoryIds[j] === categoryCollection) return true
 
-            console.log(thisCollections);
-            
-            /*
+                }
+              }
+            });
+ 
             const sortedCollections = thisCollections
               .sort((a, b) => b.likes.length - a.likes.length)
               .slice(0, 4);
-            */
-
-            setCollections(thisCollections);
+            
+            setCollections(sortedCollections);
             
           })
           .catch((err) => {
             console.error(err);
           });}
-      }, [userData, user]);
+      }, [userData]);
 
 
 
