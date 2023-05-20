@@ -7,9 +7,9 @@ import getCollection from "../../services/getCollection";
 import CollectionHeader from "../../components/Collections/CollectionHeader";
 import ItemCard from "../../components/Items/ItemCard";
 import BookmarkButton from "../../components/Bookmarks/BookmarkButton";
+import CollectionInfo from "../../components/Collections/CollectionInfo";
 
 // MUI imports
-import Button from "@mui/material/Button";
 import { Grid } from "@mui/material";
 import SectionHeader from "../../components/UI/SectionHeader";
 
@@ -33,7 +33,7 @@ const MyCollection = () => {
           <div id="main-section" className="my-4 shadow-md bg-slate-100">
             {/* COLLECTION HEADER */}
             <CollectionHeader collection={collection} />
-
+            <CollectionInfo user={user} collection={collection} />
             <section className="px-4 pt-3">
               {/*  COLLECTION NAME */}
               <SectionHeader title={collection.name} />
@@ -81,9 +81,8 @@ const MyCollection = () => {
                   );
                 })}
               </Grid>
-              {/* Add new item buttone */}
 
-              {user.username === collection.createdBy.username ? (
+              {/* {user.username === collection.createdBy.username ? (
                 <div className="py-4">
                   <Button
                     variant="contained"
@@ -95,14 +94,13 @@ const MyCollection = () => {
                     Add item
                   </Button>
 
-                  {/* Edot collection buttone */}
                   <Link to={`/edit-collection/${collection._id}`}>
                     <Button>Edit Collection</Button>
                   </Link>
                 </div>
               ) : (
                 <div></div>
-              )}
+              )} */}
             </section>
           </div>
         </div>
