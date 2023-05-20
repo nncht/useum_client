@@ -20,9 +20,9 @@ const UserCard = ({ user }) => {
           <Typography gutterBottom variant="button" component="div">
             {user.username}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          {user.followers && <Typography variant="body2" color="text.secondary">
             {user.followers.length} Followers
-          </Typography>
+          </Typography> }
         </CardContent>
       </CardActionArea>
     </Card>
