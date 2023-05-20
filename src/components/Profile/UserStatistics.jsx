@@ -7,7 +7,6 @@ const UserStatistics = () => {
 
   // Don't ask me why that line below makes it work magically...
 
-  console.log(userData)
 
   if (
     userData.followers ||
