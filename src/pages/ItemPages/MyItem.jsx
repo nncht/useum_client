@@ -9,6 +9,7 @@ import getCollection from "../../services/getCollection";
 // Custom components
 import AddItemToCollection from "../../components/Items/AddItemToCollection";
 import BookmarkButton from "../../components/Bookmarks/BookmarkButton";
+import LikeButton from "../../components/Likes/LikeButton";
 
 // MUI imports
 import Button from "@mui/material/Button";
@@ -140,9 +141,9 @@ if (currentUser && currentUser._id && itemCollectionIds){return (
                   </Button>) : null}
                 </div>
 
-                <div>
-                  <Button variant="contained">Like</Button>
-                </div>
+
+                <LikeButton id={itemId} />
+
 
                 <div>
                   <BookmarkButton id={item._id} />

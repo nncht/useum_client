@@ -68,7 +68,7 @@ const BookmarkButton = ({id}) => {
                     `${API_URL}/${currentUser._id}/unbookmark/${id}`
                 );
                 setIsBookmarked(false);
-                setBookmarkList([...bookmarkList, id]);
+                setBookmarkList(bookmarkList.filter((bookmark) => bookmark !== id));
                 console.log(response.data);
             } catch (error) {
                 console.error(error);
