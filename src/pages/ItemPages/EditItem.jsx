@@ -162,12 +162,12 @@ const EditItem = () => {
   //   RENDER EDIT COLLECTION FORM
   const fixedInputClass =
     "rounded-md appearance-none relative block w-full p-3 py-2 mb-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:z-10 sm:text-sm";
-
-  return (
+    if (item)
+ { return (
     <div id="main-content">
       <div id="main-section" className="justify-center p-4">
         <div className="p-4 bg-slate-50 rounded-md">
-          <form
+          {item.createdBy._id === user._id ? (<form
             onSubmit={handleEditItemSubmit}
             className="flex flex-col gap-y-2"
           >
@@ -204,14 +204,7 @@ const EditItem = () => {
             <label htmlFor="review" className="text-xl mt-3">
               Comment
             </label>
-            <input
-              type="text"
-              name=""
-              id=""
-              placeholder="Comment Title"
-              value={commentTitle}
-              onChange={(event) => setCommentTitle(event.target.value)}
-            />
+
             <textarea
               id="review"
               className={fixedInputClass}
@@ -236,14 +229,40 @@ const EditItem = () => {
                 Update{" "}
               </Button>
               <Button variant="outlined" onClick={deleteItem} className="m-3">
-                Delete Item
+                Remove Item From Collection
               </Button>
             </div>
-          </form>
+          </form>) : (
+            <form
+            onSubmit={handleEditItemSubmit}
+            className="flex flex-col gap-y-2"
+          >
+
+            <label htmlFor="review" className="text-xl mt-3">
+              Comment
+            </label>
+
+            <textarea
+              id="review"
+              className={fixedInputClass}
+              value={comment}
+              onChange={(event) => setComment(event.target.value)}
+            />
+
+            <div className="flex justify-center">
+              <Button variant="contained" type="submit" className="m-3">
+                {" "}
+                Update{" "}
+              </Button>
+              <Button variant="outlined" onClick={deleteItem} className="m-3">
+                Remove Item From Collection
+              </Button>
+            </div>
+          </form>)}
         </div>
       </div>
     </div>
-  );
+  );}
 };
 
 export default EditItem;
