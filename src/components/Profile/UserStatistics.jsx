@@ -23,7 +23,7 @@ const UserStatistics = () => {
               sx={{
                 color: "white",
                 "&:hover": {
-                  color: "#ccc", // Replace "blue" with your desired color
+                  color: "#ccc",
                 },
               }}
               underline="none"
