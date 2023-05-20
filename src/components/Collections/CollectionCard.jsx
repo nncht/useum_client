@@ -50,7 +50,7 @@ const CollectionCard = ({ collection }) => {
             title={collection.name}
           />
           {/* If card is on home view, show collection owner's profile picture */}
-          {username === ownerData.createdBy.username ? (
+          {username != ownerData.createdBy.username ? (
             <CardHeader
               sx={{ height: "85px" }}
               avatar={
@@ -84,7 +84,7 @@ const CollectionCard = ({ collection }) => {
                     overflow: "hidden",
                     textOverflow: "ellipsis",
                     display: "-webkit-box",
-                    WebkitLineClamp: 1,
+                    WebkitLineClamp: 2,
                     WebkitBoxOrient: "vertical",
                   }}
                 >
@@ -97,7 +97,7 @@ const CollectionCard = ({ collection }) => {
             <CardContent>
               <Typography
                 gutterBottom
-                variant="h6"
+                variant="button"
                 component="div"
                 sx={{
                   minHeight: "2rem",
