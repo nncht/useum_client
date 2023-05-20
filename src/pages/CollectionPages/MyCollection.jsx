@@ -7,6 +7,7 @@ import getCollection from "../../services/getCollection";
 import CollectionHeader from "../../components/Collections/CollectionHeader";
 import ItemCard from "../../components/Items/ItemCard";
 import BookmarkButton from "../../components/Bookmarks/BookmarkButton";
+import LikeButton from "../../components/Likes/LikeButton";
 
 // MUI imports
 import Button from "@mui/material/Button";
@@ -60,8 +61,13 @@ const MyCollection = () => {
               {user.username === collection.createdBy.username ? (
                 <div></div>
               ) : (
-                <div className="py-4">
-                  <BookmarkButton id={collection._id} />
+                <div className="flex gap-4">
+                  <div className="py-4">
+                    <BookmarkButton id={collection._id} />
+                  </div>
+                  <div className="py-4">
+                    <LikeButton id={collection._id} />
+                  </div>
                 </div>
               )}
 

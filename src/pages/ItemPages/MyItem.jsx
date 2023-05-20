@@ -9,6 +9,7 @@ import { getCollectionId } from "../../services/sharedDatastore";
 // Custom components
 import AddItemToCollection from "../../components/Items/AddItemToCollection";
 import BookmarkButton from "../../components/Bookmarks/BookmarkButton";
+import LikeButton from "../../components/Likes/LikeButton";
 
 // MUI imports
 import Button from "@mui/material/Button";
@@ -94,9 +95,8 @@ const MyItem = () => {
                     Edit Item
                   </Button>
                 </div>
-                <div>
-                  <Button variant="contained">Like</Button>
-                </div>
+
+                <LikeButton id={itemId} />
 
                 <div>
                   <BookmarkButton id={item._id} />
