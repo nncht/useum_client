@@ -34,45 +34,36 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     const configuration = new Configuration({
       organization: "org-sikvWEr5osVEDkooPMkYtPjK",
-      apiKey: "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",
+      apiKey:"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",
     });
   
     const openai = new OpenAIApi(configuration);
   
     const createChatCompletion = async (name) => {
-      const headers = {
-        Authorization: "Bearer YOUR_API_KEY",
-        "Content-Type": "application/json",
-      };
-  
-      const data = {
-        model: "gpt-3.5-turbo",
-        messages: [
-          { role: "system", content: `You are creating an item named "${name}"` },
-          { role: "user", content: `Describe the item "${name}" in detail with at least 40 words` },
-        ],
-      };
-  
-      try {
-        const response = await axios.post("https://api.openai.com/v1/chat/completions", data, { headers });
-        console.log(response.data.choices[0].message);
-        return response.data.choices[0].message.content;
-      } catch (error) {
-        console.error(error);
-        return ""; // Return an empty string as the description in case of an error
-      }
+      const completion = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: [
+        { role: "system", content: `You are creating an item named "${name}"` },
+        { role: "user", content: `Describe the item "${name}" in detail with at least 40 words` },
+      ]
+      });
+      console.log(completion.data.choices[0].message);
+      const description = completion.data.choices[0].message.content;
+      return description;
     };
+
+    //something wrong with headers
   
     const description = await createChatCompletion(name);
-  
+
     // Uploading cover images is optional
     if (uploadingImage) {
       return;
     }
-  
+
     const params = {
       name: name,
       description: description,
@@ -84,7 +75,7 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
       collections: forCollection,
       currentUser: currentUser,
     };
-  
+
     axios
       .post(`${API_URL}/${target}`, params, {
         headers: { Authorization: `Bearer ${storedToken}` },
@@ -97,14 +88,14 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
         setCategoryArray([]);
         setComment([]);
         setCategoryArray([]);
-  
+
         navigate(`/${target}/${res.data[idObject]._id}`);
       })
       .catch((err) => {
         console.error(err);
       });
   };
-  
+
   const fixedInputClass =
     "w-full p-2 mt-1 mb-3 border border-slate-800 placeholder-gray-300 text-slate-800";
 
