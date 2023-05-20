@@ -12,6 +12,7 @@ import { Button, Typography } from "@mui/material";
 import PopularCollections from "../components/Collections/PopularCollections";
 import RecommendedCollections from "../components/Collections/RecommendedCollections";
 import TrendingItems from "../components/Items/TrendingItems";
+import RecommendedItems from "../components/Items/RecommendedItems";
 
 // --- End of imports
 
@@ -40,6 +41,12 @@ const Home = () => {
         <div id="main-section" className="p-4">
           <SectionHeader title="Trending Items" />
           <TrendingItems />
+        </div>
+      </section>
+      <section id="main-content" className="bg-slate-100">
+        <div id="main-section" className="p-4">
+          <SectionHeader title="Recommended Items" />
+          <RecommendedItems />
         </div>
       </section>
       {!isLoggedIn ? (
