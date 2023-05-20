@@ -49,6 +49,7 @@ const CreateItemSearch = () => {
   const [itemExists, setItemExists] = React.useState(false);
   const [itemDoesntExist, setItemDoesntExist] = React.useState(false);
   const [itemsFound, setItemsFound] = useState([]);
+  const [comment, setComment] = useState("");
 
   // Handle modal popup
   const [openModal, setOpenModal] = React.useState(false);
@@ -120,6 +121,10 @@ const CreateItemSearch = () => {
   // Add existing item to this collection
   const handleAddExistingItem = (e) => {
     e.preventDefault();
+
+
+
+
     axios
       .put(`${API_URL}/collections/${collectionId}/add-item`, {
         item: itemId,
@@ -131,6 +136,34 @@ const CreateItemSearch = () => {
       .catch((err) => {
         console.error(err);
       });
+
+
+      if (comment !== "" && user && user._id) {
+
+        console.log("ITEM ID", itemId)
+      axios.put(`${API_URL}/items/${itemId}/comment`, {
+        comment: comment,
+        currentUserId: user._id,
+      })
+      .then((res) => {
+        console.log(res.data);
+      }
+      )
+      .catch((err) => {
+        console.error(err);
+      }
+      )}
+
+
+
+
+
+
+  };
+
+  const handleComment = (e) => {
+    setComment(e.target.value);
+    console.log(comment);
   };
 
   //   The code below handles the MUI Asynchronous Autocomplete component behaviour
@@ -263,7 +296,7 @@ const CreateItemSearch = () => {
                           e.g. why you're using it, how much you like it, etc.
                         </DialogContentText>
 
-                        <Textarea minRows={2} sx={{ mt: 2 }} />
+                        <Textarea minRows={2} sx={{ mt: 2 }} onChange={handleComment} />
                       </DialogContent>
                       <DialogActions>
                         <Button type="submit" onClick={handleAddExistingItem}>
