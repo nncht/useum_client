@@ -45,16 +45,14 @@ const RecommendedCollections = () => {
             const userCategoryIds = userData.map((category) => {
               console.log(category)
                return category._id
-              }); // Convert ObjectIDs to strings
+            }); // Convert ObjectIDs to strings
             
             const thisCollections = filteredCollections.filter((collection) => {
             for (let i = 0; i < collection.categories.length; i++)
               {
                 const categoryCollection = collection.categories[i]
-                for (let j = 0; j < userCategoryIds.length; j++){
-                
+                for (let j = 0; j < userCategoryIds.length; j++){                
                   if ( userCategoryIds[j] === categoryCollection) return true
-
                 }
               }
             });
