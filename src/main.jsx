@@ -9,13 +9,14 @@ import { UserDataProvider } from './context/userData.context.jsx'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <Router>
-    <UserDataProvider>
-      <AuthProvider>
-        <App />
-      </AuthProvider>
+<React.StrictMode>
+  <Router>
+      <UserDataProvider>
+        <AuthProvider>
+          <App />
+        </AuthProvider>
       </UserDataProvider>
     </Router>
-  </React.StrictMode>,
+</React.StrictMode>
 )
+
