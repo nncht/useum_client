@@ -1,11 +1,16 @@
-import Button from "@mui/material/Button";
+// Custom components
 import BookmarkButton from "../Bookmarks/BookmarkButton";
+
+// MUI components
+import { Box, Link, Button } from "@mui/material/";
+
+// --- End of imports
 
 const CollectionInfo = ({ user, collection }) => {
   return (
-    <div className="grid grid-auto-rows bg-slate-700 px-4 h-30 py-2">
-      {/* Follow, Unfollow, Edit Profile buttons */}
-      <div className="text-right my-3">
+    <Box className="grid grid-auto-rows bg-slate-700 px-4 h-30 py-2">
+      {/* Edit Collection OR Bookmark button */}
+      {/* <div className="text-right my-3">
         {user.username === collection.createdBy.username ? (
           <Button
             variant="contained"
@@ -18,13 +23,25 @@ const CollectionInfo = ({ user, collection }) => {
             <BookmarkButton id={collection._id} />
           </div>
         )}
-      </div>
+      </div> */}
+      {/* ------------------------------------------- */}
 
       <div>
         <div className="flex mt-2">
-          <h2 className="mr-4 self-end text-3xl text-white m-0">
-            {user.username}
-          </h2>
+          <div className="text-light">
+            by{" "}
+            <Link
+              href={`/users/${collection.createdBy.username}`}
+              sx={{
+                color: "white",
+                "&:hover": {
+                  color: "#ccc",
+                },
+              }}
+            >
+              {collection.createdBy.username}
+            </Link>
+          </div>
         </div>
 
         {/* Statistics (Followers, Collections, Items) */}
@@ -38,7 +55,7 @@ const CollectionInfo = ({ user, collection }) => {
           {/* <div className="mr-3">{userData && <CategoryTags />}</div> */}
         </div>
       </div>
-    </div>
+    </Box>
   );
 };
 

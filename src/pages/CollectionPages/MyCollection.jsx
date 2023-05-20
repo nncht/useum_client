@@ -10,7 +10,7 @@ import BookmarkButton from "../../components/Bookmarks/BookmarkButton";
 import CollectionInfo from "../../components/Collections/CollectionInfo";
 
 // MUI imports
-import { Grid } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import SectionHeader from "../../components/UI/SectionHeader";
 
 // ---End of imports
@@ -32,7 +32,25 @@ const MyCollection = () => {
         <div id="main-content" className="justify-center">
           <div id="main-section" className="my-4 shadow-md bg-slate-100">
             {/* COLLECTION HEADER */}
-            <CollectionHeader collection={collection} />
+            <div className="relative">
+              <CollectionHeader collection={collection} />
+              <div className="absolute mt-[-76px] w-100 pr-6">
+                <div className="text-right my-3">
+                  {user.username === collection.createdBy.username ? (
+                    <Button
+                      variant="contained"
+                      href={`/edit-collection/${collection._id}`}
+                    >
+                      Edit Collection
+                    </Button>
+                  ) : (
+                    <div>
+                      <BookmarkButton id={collection._id} />
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
             <CollectionInfo user={user} collection={collection} />
             <section className="px-4 pt-3">
               {/*  COLLECTION NAME */}
@@ -43,14 +61,6 @@ const MyCollection = () => {
                 {collection.categories.map((tag) => {
                   return <p key={tag._id}>{tag.category}</p>;
                 })}
-              </div>
-
-              {/* COLLECTION DESCRIPTION */}
-              <div>
-                Created by{" "}
-                <Link to={`/users/${collection.createdBy.username}`}>
-                  {collection.createdBy.username}
-                </Link>
               </div>
 
               <div className="pt-2 pb-4">{collection.description}</div>
@@ -81,26 +91,6 @@ const MyCollection = () => {
                   );
                 })}
               </Grid>
-
-              {/* {user.username === collection.createdBy.username ? (
-                <div className="py-4">
-                  <Button
-                    variant="contained"
-                    className="m-2"
-                    onClick={() =>
-                      navigate(`/add-item?collectionId=${collection._id}`)
-                    }
-                  >
-                    Add item
-                  </Button>
-
-                  <Link to={`/edit-collection/${collection._id}`}>
-                    <Button>Edit Collection</Button>
-                  </Link>
-                </div>
-              ) : (
-                <div></div>
-              )} */}
             </section>
           </div>
         </div>
