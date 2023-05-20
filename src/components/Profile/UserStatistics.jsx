@@ -1,21 +1,35 @@
 import { useContext } from "react";
 import { UserDataContext } from "../../context/userData.context";
-import { Link } from "react-router-dom";
+import Link from "@mui/material/Link";
 
 const UserStatistics = () => {
   const { userData } = useContext(UserDataContext);
 
-
   // Don't ask me why that line below makes it work magically...
 
-  if(userData.followers || userData.following || userData.collections || userData.items) {
+  if (
+    userData.followers ||
+    userData.following ||
+    userData.collections ||
+    userData.items
+  ) {
     return (
-    <div className="text-white flex">
-
+      <div className="text-white flex">
         <>
           <div className="mr-4">
             <span className="font-bold">{userData.followers.length}</span>{" "}
-            <Link to={"/followers"}>Followers</Link>
+            <Link
+              href={"/followers"}
+              sx={{
+                color: "white",
+                "&:hover": {
+                  color: "#ccc",
+                },
+              }}
+              underline="none"
+            >
+              Followers
+            </Link>
           </div>
           {/* <div className="mr-4">
             <span className="font-bold">{userData.following.length}</span>{" "}
@@ -30,9 +44,9 @@ const UserStatistics = () => {
             <span className="font-bold">{userData.items.length}</span> Items
           </div>
         </>
-
-    </div>
-  );}
+      </div>
+    );
+  }
 };
 
 export default UserStatistics;
