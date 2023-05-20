@@ -53,7 +53,7 @@ const MyCollection = () => {
                 </Link>
               </div>
 
-              <div>{collection.description}</div>
+              <div className="pt-2 pb-4">{collection.description}</div>
 
               {/* Like button */}
 
@@ -70,7 +70,7 @@ const MyCollection = () => {
                 {collection.items.map((item) => {
                   return (
                     <>
-                      <Grid item xs={12} sm={6} md={4} lg={3}>
+                      <Grid item xs={12} sm={6} md={4} lg={3} key={item._id}>
                         <ItemCard
                           item={item}
                           key={item._id}

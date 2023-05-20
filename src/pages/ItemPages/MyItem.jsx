@@ -88,20 +88,14 @@ const MyItem = () => {
                 <div>
                   <Button
                     variant="outlined"
-                    to={`/edit-item/${item._id}`}
+                    href={`/edit-item/${item._id}`}
                     onClick={() => setCollectionId(collectionId)}
                   >
                     Edit Item
                   </Button>
                 </div>
                 <div>
-                  <Button
-                    variant="contained"
-                    to={`/edit-item/${item._id}`}
-                    onClick={() => setCollectionId(collectionId)}
-                  >
-                    Like
-                  </Button>
+                  <Button variant="contained">Like</Button>
                 </div>
 
                 <div>
