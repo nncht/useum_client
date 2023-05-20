@@ -11,6 +11,7 @@ import API_URL from "../services/apiConfig";
 import { Button, Typography } from "@mui/material";
 import PopularCollections from "../components/Collections/PopularCollections";
 import RecommendedCollections from "../components/Collections/RecommendedCollections";
+import TrendingItems from "../components/Items/TrendingItems";
 
 // --- End of imports
 
@@ -38,7 +39,7 @@ const Home = () => {
       <section id="main-content" className="bg-slate-100">
         <div id="main-section" className="p-4">
           <SectionHeader title="Trending Items" />
-          <PopularCollections />
+          <TrendingItems />
         </div>
       </section>
       {!isLoggedIn ? (
