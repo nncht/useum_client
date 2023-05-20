@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
-import { UserDataContext } from '../../context/userData.context';
+import { UserDataContext } from '../../context/userData.context'
 import { AuthContext } from '../../context/auth.context';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import axios from 'axios';
 import API_URL from '../../services/apiConfig';
@@ -10,14 +10,18 @@ import SectionHeader from '../../components/UI/SectionHeader';
 
 const Followers = () => {
 	const { user } = useContext(AuthContext);
-	const { userData } = useContext(UserDataContext);
+	const { username } = useParams();
 
 	const [otherUser, setOtherUser] = useState(null);
 
+
+
+
 	useEffect(() => {
-		if (userData) {
+		if (username) {
+
 			axios
-				.get(`${API_URL}/users/${userData.username}/follow`)
+				.get(`${API_URL}/users/${username}/follow`)
 				.then((res) => {
 					setOtherUser(res.data);
 				})
@@ -25,9 +29,9 @@ const Followers = () => {
 					console.error(err);
 				});
 		}
-	}, [userData]);
+	}, [username]);
 
-	if (otherUser && user._id) {
+	if (otherUser && user && user._id) {
 		return (
 			<>
 				<div id='main-content' className='justify-center'>

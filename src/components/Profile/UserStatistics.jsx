@@ -7,6 +7,7 @@ const UserStatistics = () => {
 
   // Don't ask me why that line below makes it work magically...
 
+
   if (
     userData.followers ||
     userData.following ||
@@ -19,7 +20,7 @@ const UserStatistics = () => {
           <div className="mr-4">
             <span className="font-bold">{userData.followers.length}</span>{" "}
             <Link
-              href={"/followers"}
+              href={`/followers/${userData.username}`}
               sx={{
                 color: "white",
                 "&:hover": {
