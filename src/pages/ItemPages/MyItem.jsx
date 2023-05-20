@@ -51,7 +51,6 @@ const MyItem = () => {
 	}
 }, [user]);
 
-console.log(item)
 
 // const itemCollections = item.collections;
 
@@ -142,7 +141,7 @@ if (currentUser && currentUser._id && itemCollectionIds){return (
                 </div>
 
 
-                <LikeButton id={itemId} />
+                <LikeButton id={itemId} isItem={true} />
 
 
                 <div>

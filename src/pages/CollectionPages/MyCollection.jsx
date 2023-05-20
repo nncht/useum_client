@@ -26,6 +26,7 @@ const MyCollection = () => {
     getCollection(collectionId, setCollection);
   }, [collectionId]);
 
+
   // COLLECTION DETAILS RENDER
   if (collection) {
     return (
@@ -66,7 +67,7 @@ const MyCollection = () => {
                     <BookmarkButton id={collection._id} />
                   </div>
                   <div className="py-4">
-                    <LikeButton id={collection._id} />
+                    <LikeButton id={collection._id} isItem={false} />
                   </div>
                 </div>
               )}
