@@ -3,6 +3,7 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
 import API_URL from "../../services/apiConfig";
+import { Configuaration, OpenAIApi } from "openai";
 
 // Custom components
 import ImageUploader from "../ImageUploader/ImageUploader";
