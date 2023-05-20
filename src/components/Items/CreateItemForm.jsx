@@ -54,6 +54,8 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
       const description = completion.data.choices[0].message.content;
       return description;
     };
+
+    //something wrong with headers
   
     const description = await createChatCompletion(name);
 
