@@ -94,7 +94,7 @@ export default function NavBar() {
         {/* Following */}
 
         <ListItem key="Following" disablePadding>
-          <ListItemButton href="#">
+          <ListItemButton href="/following">
             <ListItemIcon>
               <PeopleAltIcon />
             </ListItemIcon>
