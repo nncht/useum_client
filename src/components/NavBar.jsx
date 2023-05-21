@@ -26,6 +26,10 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import EmailIcon from "@mui/icons-material/Email";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 
+
+
+import TerminalIcon from '@mui/icons-material/Terminal';
+
 // -- End of Imports
 
 export default function NavBar() {
@@ -110,6 +114,17 @@ export default function NavBar() {
               <NotificationsIcon />
             </ListItemIcon>
             <ListItemText primary="Notifications" />
+          </ListItemButton>
+        </ListItem>
+
+        {/* Events */}
+
+        <ListItem key="Event Log" disablePadding>
+          <ListItemButton href={`/eventlog/${user._id}`}>
+            <ListItemIcon>
+              <TerminalIcon />
+            </ListItemIcon>
+            <ListItemText primary="Event Log" />
           </ListItemButton>
         </ListItem>
 
