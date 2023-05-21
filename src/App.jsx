@@ -28,6 +28,10 @@ import PeopleIFollow from './pages/User/PeopleIFollow';
 import Followers from './pages/User/Followers';
 import MyLikesPage from './pages/User/MyLikesPage';
 
+
+
+import LogPage from './pages/User/LogPage';
+
 function App() {
 	return (
 		<div className='App'>
@@ -214,6 +218,31 @@ function App() {
 								</UserDataProvider>
 							}
 						/>
+
+
+
+
+
+						<Route
+							path='/eventlog/:username'
+							element={
+								<UserDataProvider>
+									<LogPage />
+								</UserDataProvider>
+							}
+						/>
+
+
+
+
+
+
+
+
+
+
+
+
 					</Routes>
 				</div>
 			</main>
