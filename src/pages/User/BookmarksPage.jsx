@@ -62,7 +62,7 @@ const BookmarksPage = () => {
         <div id="main-section" className="p-4">
           <h3 className="text-xl text-slate-600">Collections</h3>
           {collectionBookmarks.length < 1 ? (
-            <div id="main-section">You've not bookmarked any items.</div>
+            <div id="main-section">You've not bookmarked any collections.</div>
           ) : (
             <Grid container spacing={3}>
               {collectionBookmarks.map((collection) => {
