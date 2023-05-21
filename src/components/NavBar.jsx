@@ -25,6 +25,7 @@ import BookmarksIcon from "@mui/icons-material/Bookmarks";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import EmailIcon from "@mui/icons-material/Email";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 
 // -- End of Imports
 
@@ -88,6 +89,17 @@ export default function NavBar() {
               <BookmarksIcon />
             </ListItemIcon>
             <ListItemText primary="Bookmarks" />
+          </ListItemButton>
+        </ListItem>
+
+        {/* My Likes */}
+
+        <ListItem key="Likes" disablePadding>
+          <ListItemButton href={`/likes/${user._id}`}>
+            <ListItemIcon>
+              <ThumbUpIcon />
+            </ListItemIcon>
+            <ListItemText primary="Likes" />
           </ListItemButton>
         </ListItem>
 
