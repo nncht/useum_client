@@ -43,7 +43,7 @@ const MyLikesPage = () => {
           <div>
             <h3 className="text-xl text-slate-600">Items</h3>
             {itemLikes.length < 1 ? (
-              <div id="main-section">You've not bookmarked any items.</div>
+              <div id="main-section">You have not liked any items.</div>
             ) : (
               <Grid container spacing={3}>
                 {itemLikes.map((item) => {
@@ -62,7 +62,7 @@ const MyLikesPage = () => {
         <div id="main-section" className="p-4">
           <h3 className="text-xl text-slate-600">Collections</h3>
           {collectionLikes.length < 1 ? (
-            <div id="main-section">You've not bookmarked any items.</div>
+            <div id="main-section">You haven't liked any collections.</div>
           ) : (
             <Grid container spacing={3}>
               {collectionLikes.map((collection) => {
