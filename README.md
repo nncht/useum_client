@@ -108,6 +108,10 @@ Most important technologies include:
   - Providing core functionality for React Router
 - [MUI](https://www.npmjs.com/package/@mui/material)
   - React UI component library
+- [TailwindCSS](https://www.npmjs.com/package/tailwindcss)
+  - CSS framework for custom UI building
+- [PostCSS](https://www.npmjs.com/package/postcss)
+  - Transforming styles with JS plugins
 - [OpenAI](https://www.npmjs.com/package/openai)
   - Accessing OpenAI API from Node
 - [cloudinary](https://www.npmjs.com/package/cloudinary)
