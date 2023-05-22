@@ -468,7 +468,7 @@ module.exports = Item;
 <h2 align="center"> Shoutouts </h2>
 </br>
 
-<p align="center">We'd like to shoutout to and thank everyone who made thos project possible, from supporting in the deployment of this app to populating the deployed version with real life data.</p>
+<p align="center">We'd like to shout out to and thank everyone who made this project possible, from supporting in the deployment of this app to populating the deployed version with real life data</p>
 
 </br>
 
