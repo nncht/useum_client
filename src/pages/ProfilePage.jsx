@@ -46,11 +46,22 @@ const ProfilePage = () => {
           <ProfileHeader />
           <div className="absolute mt-[-80px] mx-4">
             <ProfilePicture />
+
+
           </div>
+          {!user && (
+          <div className="justify-center">
+            <br />
+            <br />
+            <br />
+            <br />
+            <p className="px-3 mx-5">{username}</p>
+          </div>
+          )}
         </div>
 
         <div>
-          <ProfileBio />
+         <ProfileBio />
         </div>
 
         {/* Profile body */}
