@@ -463,6 +463,48 @@ module.exports = Item;
 ---
 
 </br>
+</br>
+
+<h2 align="center"> Shoutouts </h2>
+</br>
+
+<p align="center">We'd like to shoutout to and thank everyone who made thos project possible, from supporting in the deployment of this app to populating the deployed version with real life data.</p>
+
+</br>
+
+<div align="center">
+
+<p style="font-size: 18px">Thank you all!</p>
+
+  <table width="100%">
+    <thead>
+      <tr>
+          <th style="text-align: center" width="25%">Ironhack</th>
+          <th style="text-align: center" width="25%">Transatlantic</th>
+          <th style="text-align: center" width="25%">AI-Powered</th>
+          <th style="text-align: center" width="25%">Feline</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr align="center">
+        <td>
+          <p><a href="https://github.com/InstructorDiogo" target="_blank">Diogo</a>, <a href="https://github.com/Jaime-Laureano" target="_blank">Jaime</a> & <a href="https://github.com/DaniCalvente" target="_blank">Dani</a> - the OTHER Three Amigos</p>
+        </td>
+        <td>
+          <p>Pat</p>
+        </td>
+        <td>
+          <p><a href="https://chat.openai.com" target="_blank">Chatty</a></p>
+        </td>
+        <td>
+          <p><a href="https://files.mastodon.social/cache/media_attachments/files/109/766/990/965/340/131/original/65b440331774fdec.jpg" target="_blank">Chicken the Cat</a></p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</br>
 
 <h2 align="center"> Contributors </h2>
 
