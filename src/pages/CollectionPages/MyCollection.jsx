@@ -31,10 +31,12 @@ const MyCollection = () => {
       <>
         <div id="main-content" className="justify-center">
           <div id="main-section" className="my-4 shadow-md bg-slate-100">
-            {/* COLLECTION HEADER */}
+            {/* --- COLLECTION HEADER ---------------------- */}
             <div className="relative">
               <CollectionHeader collection={collection} />
+              {/* --------------------------------------------- */}
               <div className="absolute mt-[-76px] w-100 pr-6">
+                {/* --- BOOKMARK/LIKE BUTTONS ----------------- */}
                 <div className="text-right my-3">
                   {user.username === collection.createdBy.username ? (
                     <Button
@@ -44,18 +46,20 @@ const MyCollection = () => {
                       Edit Collection
                     </Button>
                   ) : (
-                    <div className="flex flex-row gap-2">
+                    <div className="flex flex-row gap-3 justify-end">
                       <LikeButton id={collection._id} isItem={false} />
                       <BookmarkButton id={collection._id} />
                     </div>
                   )}
                 </div>
+                {/* --------------------------------------------- */}
               </div>
             </div>
-            {/* ------------------------------ */}
+            {/* --------------------------------------------- */}
+
+            {/* --- ITEMS ----------------------------------- */}
             <CollectionInfo user={user} collection={collection} />
             <section className="px-4 pt-10">
-              {/* Items */}
               <Grid container spacing={3} className="pb-10">
                 {collection.items.map((item) => {
                   return (
@@ -71,8 +75,9 @@ const MyCollection = () => {
                   );
                 })}
               </Grid>
-              {/* Add new item buttone */}
+              {/* --------------------------------------------- */}
 
+              {/* --- ADD NEW ITEM BUTTON --------------------- */}
               {user.username === collection.createdBy.username ? (
                 <div className="py-4">
                   <Button
@@ -88,6 +93,7 @@ const MyCollection = () => {
               ) : (
                 <div></div>
               )}
+              {/* --------------------------------------------- */}
             </section>
           </div>
         </div>

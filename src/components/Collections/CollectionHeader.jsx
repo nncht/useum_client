@@ -1,4 +1,4 @@
-const CollectionHeader = ({ collection }) => {
+const CollectionHeader = ({ user, collection }) => {
   return (
     <div id="collection-header">
       <img
