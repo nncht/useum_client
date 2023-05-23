@@ -1,7 +1,5 @@
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
-import { UserDataContext } from "../../context/userData.context";
-import { Link } from "react-router-dom";
 
 import axios from "axios";
 import API_URL from "../../services/apiConfig";
@@ -32,7 +30,7 @@ const Followers = () => {
     return (
       <div id="main-content" className="justify-center">
         <div id="main-section" className="my-4 shadow-md">
-          <section className="px-4 pt-3 pb-20 bg-slate-100 rounded">
+          <section className="px-4 pt-3 pb-20 bg-slate-100 rounded-lg">
             <SectionHeader title="Following" />
 
             <Grid container spacing={3}>
