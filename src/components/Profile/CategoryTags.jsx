@@ -7,12 +7,12 @@ const CategoryTags = () => {
 
   if (userData && userData.categories) {
     return (
-      <div className="flex flex-wrap">
+      <>
         {userData.categories.map((category) => {
           return (
             <>
               <div
-                className="bg-slate-500 text-white text-xs px-2 py-1 m-2 rounded "
+                className="bg-slate-500 text-white inline-block text-xs px-2 py-1 m-2 rounded "
                 style={{ whiteSpace: "nowrap" }}
               >
                 {category.category}
@@ -20,7 +20,7 @@ const CategoryTags = () => {
             </>
           );
         })}
-      </div>
+      </>
     );
   }
 };
