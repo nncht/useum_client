@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import API_URL from "../../services/apiConfig";
-import AllCollections from "./AllCollections";
+import AllItems from "./AllItems";
 import { UserDataContext } from "../../context/userData.context";
 import { AuthContext } from "../../context/auth.context";
 
-const RecommendedCollections = () => {
-  const [collections, setCollections] = useState([]);
+const RecommendedItems = () => {
+  const [items, setItems] = useState([]);
   const { userData, setUserData } = useContext(UserDataContext);
   const { user, isLoggedIn } = useContext(AuthContext);
   // const username = user.name;
@@ -33,29 +33,36 @@ const RecommendedCollections = () => {
     // change later useState of object to null instead of {}
     if (!checkEmptyObj(userData)) {
       axios
-        .get(`${API_URL}/collections`)
+        .get(`${API_URL}/items`)
         .then((res) => {
-          let filteredCollections = res.data.collections;
+          let filteredItems = res.data.items;
+          console.log(filteredItems);
 
           const userCategoryIds = userData.map((category) => {
-            console.log(category);
+            console.log(category._id);
+
             return category._id;
           }); // Convert ObjectIDs to strings
 
-          const thisCollections = filteredCollections.filter((collection) => {
-            for (let i = 0; i < collection.categories.length; i++) {
-              const categoryCollection = collection.categories[i];
+          console.log(userCategoryIds);
+          const thisItems = filteredItems.filter((item) => {
+            for (let i = 0; i < item.categories.length; i++) {
+              const categoryItem = item.categories[i];
+              console.log(categoryItem);
               for (let j = 0; j < userCategoryIds.length; j++) {
-                if (userCategoryIds[j] === categoryCollection) return true;
+                if (userCategoryIds[j] === categoryItem._id) return true;
               }
             }
           });
 
-          const sortedCollections = thisCollections
+          console.log(thisItems);
+
+          const sortedItems = thisItems
             .sort((a, b) => b.likes.length - a.likes.length)
             .slice(0, 4);
 
-          setCollections(sortedCollections);
+          console.log(sortedItems);
+          setItems(sortedItems);
         })
         .catch((err) => {
           console.error(err);
@@ -65,13 +72,10 @@ const RecommendedCollections = () => {
 
   return (
     <div>
-      {/* Render the collections using the AllCollections component */}
-      <AllCollections
-        collections={{ collections: collections }}
-        user={{ user }}
-      />
+      {/* Render the Items using the AllItems component */}
+      <AllItems items={items} user={user} />
     </div>
   );
 };
 
-export default RecommendedCollections;
+export default RecommendedItems;

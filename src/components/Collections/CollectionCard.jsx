@@ -34,102 +34,103 @@ const CollectionCard = ({ collection }) => {
     }
   }, []);
 
-
-  return (
-    <Card sx={{ maxWidth: 345 }}>
-      {/* Clicking anywhere on the card opens Collection Detail page */}
-      <CardActionArea href={`/collections/${collection._id}`}>
-        {/* Collection header image */}
-        <CardMedia
-          sx={{ height: 200, filter: "brightness(95%)" }}
-          image={
-            collection.imageUrl === ""
-              ? "/images/default/default-collection.svg"
-              : collection.imageUrl
-          }
-          title={collection.name}
-        />
-        {/* If card is on home view, show collection owner's profile picture */}
-        {username === collection.createdBy.username ? (
-          <CardHeader
-            sx={{ height: "85px" }}
-            avatar={
-              <Avatar
-                aria-label="Profile picture"
-                alt={collection.createdBy.username}
-                src={ownerData?.createdBy?.imageUrl}
-              />
+  if (collection && ownerData) {
+    return (
+      <Card sx={{ maxWidth: 345 }}>
+        {/* Clicking anywhere on the card opens Collection Detail page */}
+        <CardActionArea href={`/collections/${collection._id}`}>
+          {/* Collection header image */}
+          <CardMedia
+            sx={{ height: 200, filter: "brightness(95%)" }}
+            image={
+              collection.imageUrl === ""
+                ? "/images/default/default-collection.svg"
+                : collection.imageUrl
             }
-            title={
+            title={collection.name}
+          />
+          {/* If card is on home view, show collection owner's profile picture */}
+          {username != ownerData.createdBy.username ? (
+            <CardHeader
+              sx={{ height: "85px" }}
+              avatar={
+                <Avatar
+                  aria-label="Profile picture"
+                  alt={collection.createdBy.username}
+                  src={ownerData?.createdBy?.imageUrl}
+                />
+              }
+              title={
+                <Typography
+                  variant="button"
+                  sx={{
+                    lineHeight: "2em",
+                    overflow: "hidden",
+                    textOverflow: "clip",
+                    display: "-webkit-box",
+                    WebkitLineClamp: 1,
+                    WebkitBoxOrient: "vertical",
+                  }}
+                >
+                  {collection.name}
+                </Typography>
+              }
+              subheader={
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{
+                    lineHeight: "1.2em",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    display: "-webkit-box",
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: "vertical",
+                  }}
+                >
+                  {collection.description}
+                </Typography>
+              }
+            />
+          ) : (
+            // Else, the currentUser is viewing the owner's profile and the additional profile picture display is redundant
+            <CardContent>
               <Typography
+                gutterBottom
                 variant="button"
+                component="div"
                 sx={{
-                  lineHeight: "2em",
+                  minHeight: "2rem",
+                  maxHeight: "2rem",
                   overflow: "hidden",
-                  textOverflow: "clip",
-                  display: "-webkit-box",
-                  WebkitLineClamp: 1,
-                  WebkitBoxOrient: "vertical",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
                 }}
               >
                 {collection.name}
               </Typography>
-            }
-            subheader={
+
               <Typography
                 variant="body2"
                 color="text.secondary"
                 sx={{
-                  lineHeight: "1.2em",
+                  minHeight: "2.4rem",
+                  maxHeight: "2.4rem",
                   overflow: "hidden",
                   textOverflow: "ellipsis",
                   display: "-webkit-box",
-                  WebkitLineClamp: 1,
+                  WebkitLineClamp: 2,
                   WebkitBoxOrient: "vertical",
                 }}
               >
                 {collection.description}
               </Typography>
-            }
-          />
-        ) : (
-          // Else, the currentUser is viewing the owner's profile and the additional profile picture display is redundant
-          <CardContent>
-            <Typography
-              gutterBottom
-              variant="h6"
-              component="div"
-              sx={{
-                minHeight: "2rem",
-                maxHeight: "2rem",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                whiteSpace: "nowrap",
-              }}
-            >
-              {collection.name}
-            </Typography>
-
-            <Typography
-              variant="body2"
-              color="text.secondary"
-              sx={{
-                minHeight: "2.4rem",
-                maxHeight: "2.4rem",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                display: "-webkit-box",
-                WebkitLineClamp: 2,
-                WebkitBoxOrient: "vertical",
-              }}
-            >
-              {collection.description}
-            </Typography>
-          </CardContent>
-        )}
-      </CardActionArea>
-    </Card>
-  );
+            </CardContent>
+          )}
+        </CardActionArea>
+      </Card>
+    );
+  }
 };
 
 export default CollectionCard;

@@ -4,11 +4,12 @@ import { useParams, Link } from "react-router-dom";
 import API_URL from "../../services/apiConfig";
 import { AuthContext } from "../../context/auth.context";
 import { setCollectionId } from "../../services/sharedDatastore";
-import { getCollectionId } from "../../services/sharedDatastore";
+import getCollection from "../../services/getCollection";
 
 // Custom components
 import AddItemToCollection from "../../components/Items/AddItemToCollection";
 import BookmarkButton from "../../components/Bookmarks/BookmarkButton";
+import LikeButton from "../../components/Likes/LikeButton";
 
 // MUI imports
 import Button from "@mui/material/Button";
@@ -20,7 +21,10 @@ const MyItem = () => {
   const { user } = useContext(AuthContext);
   const [item, setItem] = useState({});
   const [comments, setComments] = useState("");
-  const collectionId = getCollectionId();
+  const [currentUser, setCurrentUser] = useState(null);
+
+  const collectionId = getCollection();
+
 
   useEffect(() => {
     axios
@@ -34,9 +38,48 @@ const MyItem = () => {
       });
   }, [itemId]);
 
-  console.log(comments);
+  useEffect(() => {
+	if (user) {
+		axios
+			.get(`${API_URL}/users/${user.username}`)
+			.then((res) => {
+				setCurrentUser(res.data);
+			})
+			.catch((err) => {
+				console.error(err);
+			});
+	}
+}, [user]);
 
-  return (
+
+// const itemCollections = item.collections;
+
+let itemCollectionIds;
+
+if (item && item.collections) {
+  itemCollectionIds = [...item.collections].map((collection) => {
+    return collection._id;
+  });
+}
+
+console.log(itemCollectionIds);
+
+let userCollectionIds;
+
+if (currentUser) {
+	userCollectionIds = [...currentUser.collections].map((collection) => {
+		return collection._id;
+	});
+
+
+}
+
+
+// console.log(item.collections)
+
+// console.log(userCollectionIds.includes(collectionId))
+
+if (currentUser && currentUser._id && itemCollectionIds){return (
     <>
       {/* Displays the item details */}
 
@@ -85,18 +128,21 @@ const MyItem = () => {
               {/* Like button */}
 
               <div className="flex flex-row gap-4 py-10">
+
                 <div>
+				{itemCollectionIds.some((id) => userCollectionIds.includes(id)) ? (
                   <Button
                     variant="outlined"
                     href={`/edit-item/${item._id}`}
                     onClick={() => setCollectionId(collectionId)}
                   >
                     Edit Item
-                  </Button>
+                  </Button>) : null}
                 </div>
-                <div>
-                  <Button variant="contained">Like</Button>
-                </div>
+
+
+                <LikeButton id={itemId} isItem={true} />
+
 
                 <div>
                   <BookmarkButton id={item._id} />
@@ -109,7 +155,7 @@ const MyItem = () => {
         </div>
       )}
     </>
-  );
+  );}
 };
 
 export default MyItem;

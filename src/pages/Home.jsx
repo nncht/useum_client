@@ -11,11 +11,12 @@ import API_URL from "../services/apiConfig";
 import { Button, Typography } from "@mui/material";
 import PopularCollections from "../components/Collections/PopularCollections";
 import RecommendedCollections from "../components/Collections/RecommendedCollections";
+import TrendingItems from "../components/Items/TrendingItems";
+import RecommendedItems from "../components/Items/RecommendedItems";
 
 // --- End of imports
 
 const Home = () => {
-
   const { user, isLoggedIn } = useContext(AuthContext);
 
   return (
@@ -27,36 +28,50 @@ const Home = () => {
           <PopularCollections />
         </div>
       </section>
-      {/* Popular Items - still need to change content here @Lukas */}
-      <section id="main-content" className="bg-slate-200">
-        <div id="main-section" className="p-4">
-          <SectionHeader title="Recommended Collections" />
-          <RecommendedCollections />
-        </div>
-      </section>
-      {/* Trending Items - still need to change content here @Lukas */}
+
+      {isLoggedIn ? (
+        <section id="main-content" className="bg-slate-200">
+          <div id="main-section" className="p-4">
+            <SectionHeader title="Recommended Collections" />
+            <RecommendedCollections />
+          </div>
+        </section>
+      ) : (
+        <div></div>
+      )}
+
       <section id="main-content" className="bg-slate-100">
         <div id="main-section" className="p-4">
           <SectionHeader title="Trending Items" />
-          <PopularCollections />
+          <TrendingItems />
         </div>
       </section>
+
+      {isLoggedIn ? (
+        <section id="main-content" className="bg-slate-100">
+          <div id="main-section" className="p-4">
+            <SectionHeader title="Recommended Items" />
+            <RecommendedItems />
+          </div>
+        </section>
+      ) : (
+        <div></div>
+      )}
+
       {!isLoggedIn ? (
         <section id="main-content" className="bg-slate-200">
           <div id="main-section" className="p-4">
             <div className="grid place-content-center gap-3">
-              <Typography variant="h6">Showcase your own setups</Typography>
+              <Typography variant="h6">
+                Showcase your own collections, setups, etc.
+              </Typography>
               <Button variant="contained">Sign Up</Button>
               <Button variant="outlined">Log In</Button>
             </div>
           </div>
         </section>
       ) : (
-        <section id="main-content" className="bg-slate-100">
-          <div id="main-section" className="p-4">
-            Stuff that only logged in users should see
-          </div>
-        </section>
+        <div></div>
       )}
     </>
   );

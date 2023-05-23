@@ -7,7 +7,9 @@ const AllCollections = ({ collections }) => {
       <Grid container spacing={3}>
         {/* Available collections of all users will be rendered as cards here */}
         {collections.collections.length < 1 ? (
-          <div id="main-section">Loading...</div>
+          <div id="main-section" className="mt-4">
+            🏛️ Add interests to your profile to receive recommendations 🏛️
+          </div>
         ) : (
           collections.collections.map((collection) => {
             return (

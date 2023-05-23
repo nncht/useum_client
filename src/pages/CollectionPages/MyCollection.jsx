@@ -7,6 +7,7 @@ import getCollection from "../../services/getCollection";
 import CollectionHeader from "../../components/Collections/CollectionHeader";
 import ItemCard from "../../components/Items/ItemCard";
 import BookmarkButton from "../../components/Bookmarks/BookmarkButton";
+import LikeButton from "../../components/Likes/LikeButton";
 import CollectionInfo from "../../components/Collections/CollectionInfo";
 
 // MUI imports
@@ -43,7 +44,8 @@ const MyCollection = () => {
                       Edit Collection
                     </Button>
                   ) : (
-                    <div>
+                    <div className="flex flex-row gap-2">
+                      <LikeButton id={collection._id} isItem={false} />
                       <BookmarkButton id={collection._id} />
                     </div>
                   )}

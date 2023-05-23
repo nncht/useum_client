@@ -26,6 +26,11 @@ import BookmarksPage from './pages/User/BookmarksPage';
 import SearchResults from './pages/SearchResults';
 import PeopleIFollow from './pages/User/PeopleIFollow';
 import Followers from './pages/User/Followers';
+import MyLikesPage from './pages/User/MyLikesPage';
+
+
+
+import LogPage from './pages/User/LogPage';
 
 function App() {
 	return (
@@ -111,6 +116,15 @@ function App() {
 							element={
 								<UserDataProvider>
 									<BookmarksPage />
+								</UserDataProvider>
+							}
+						/>
+
+						<Route
+							path='/likes/:userId'
+							element={
+								<UserDataProvider>
+									<MyLikesPage />
 								</UserDataProvider>
 							}
 						/>
@@ -204,6 +218,31 @@ function App() {
 								</UserDataProvider>
 							}
 						/>
+
+
+
+
+
+						<Route
+							path='/eventlog/:username'
+							element={
+								<UserDataProvider>
+									<LogPage />
+								</UserDataProvider>
+							}
+						/>
+
+
+
+
+
+
+
+
+
+
+
+
 					</Routes>
 				</div>
 			</main>

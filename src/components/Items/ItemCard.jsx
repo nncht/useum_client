@@ -39,8 +39,7 @@ const ItemCard = ({ item, currentCollection }) => {
             variant="button"
             component="div"
             sx={{
-              minHeight: "2.4rem",
-              maxHeight: "2.4rem",
+              lineHeight: "2em",
               overflow: "hidden",
               textOverflow: "ellipsis",
               whiteSpace: "nowrap",

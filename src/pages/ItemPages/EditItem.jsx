@@ -5,7 +5,7 @@ import axios from "axios";
 import Button from "@mui/material/Button";
 import ImageUploader from "../../components/ImageUploader/ImageUploader";
 import SelectCategories from "../../components/SelectCategories";
-import { getCollectionId } from "../../services/sharedDatastore";
+import  getCollection from "../../services/getCollection";
 import API_URL from "../../services/apiConfig";
 
 const EditItem = () => {
@@ -17,8 +17,10 @@ const EditItem = () => {
   const [comment, setComment] = useState("");
   const [commentTitle, setCommentTitle] = useState("");
   const [uploadingImage, setUploadingImage] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
 
-  const collectionId = getCollectionId();
+
+
 
   const { itemId } = useParams();
 
@@ -31,6 +33,19 @@ const EditItem = () => {
       setItem(res.data.item);
     });
   }, []);
+
+  useEffect(() => {
+    if (user) {
+      axios
+        .get(`${API_URL}/users/${user.username}`)
+        .then((res) => {
+          setCurrentUser(res.data);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  }, [user]);
 
   console.log(item);
 
@@ -53,7 +68,30 @@ const EditItem = () => {
     }
   }, [item]);
 
-  console.log("Comment Title is: ", commentTitle, "Comment is: ", comment);
+
+  let itemCollectionIds;
+
+	if (item && item.collections) {
+		itemCollectionIds = [...item.collections].map((collection) => {
+			return collection._id;
+		});
+	}
+
+	let userCollectionIds;
+
+	if (currentUser) {
+		userCollectionIds = [...currentUser.collections].map((collection) => {
+			return collection._id;
+		});
+	}
+
+	let collectionId;
+
+	if (userCollectionIds && itemCollectionIds) {
+		collectionId = itemCollectionIds.find((id) => userCollectionIds.includes(id));
+	}
+
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -124,12 +162,12 @@ const EditItem = () => {
   //   RENDER EDIT COLLECTION FORM
   const fixedInputClass =
     "rounded-md appearance-none relative block w-full p-3 py-2 mb-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:z-10 sm:text-sm";
-
-  return (
+    if (item)
+ { return (
     <div id="main-content">
       <div id="main-section" className="justify-center p-4">
         <div className="p-4 bg-slate-50 rounded-md">
-          <form
+          {item.createdBy._id === user._id ? (<form
             onSubmit={handleEditItemSubmit}
             className="flex flex-col gap-y-2"
           >
@@ -166,14 +204,7 @@ const EditItem = () => {
             <label htmlFor="review" className="text-xl mt-3">
               Comment
             </label>
-            <input
-              type="text"
-              name=""
-              id=""
-              placeholder="Comment Title"
-              value={commentTitle}
-              onChange={(event) => setCommentTitle(event.target.value)}
-            />
+
             <textarea
               id="review"
               className={fixedInputClass}
@@ -198,14 +229,40 @@ const EditItem = () => {
                 Update{" "}
               </Button>
               <Button variant="outlined" onClick={deleteItem} className="m-3">
-                Delete Item
+                Remove Item From Collection
               </Button>
             </div>
-          </form>
+          </form>) : (
+            <form
+            onSubmit={handleEditItemSubmit}
+            className="flex flex-col gap-y-2"
+          >
+
+            <label htmlFor="review" className="text-xl mt-3">
+              Comment
+            </label>
+
+            <textarea
+              id="review"
+              className={fixedInputClass}
+              value={comment}
+              onChange={(event) => setComment(event.target.value)}
+            />
+
+            <div className="flex justify-center">
+              <Button variant="contained" type="submit" className="m-3">
+                {" "}
+                Update{" "}
+              </Button>
+              <Button variant="outlined" onClick={deleteItem} className="m-3">
+                Remove Item From Collection
+              </Button>
+            </div>
+          </form>)}
         </div>
       </div>
     </div>
-  );
+  );}
 };
 
 export default EditItem;

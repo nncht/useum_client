@@ -13,10 +13,10 @@ import SectionHeader from "../../components/UI/SectionHeader";
 
 // --- End of imports
 
-const BookmarksPage = () => {
+const MyLikesPage = () => {
   const { userId } = useParams();
-  const [collectionBookmarks, setCollectionBookmarks] = useState([]);
-  const [itemBookmarks, setItemBookmarks] = useState([]);
+  const [collectionLikes, setCollectionLikes] = useState([]);
+  const [itemLikes, setItemLikes] = useState([]);
 
   const navigate = useNavigate();
 
@@ -24,11 +24,11 @@ const BookmarksPage = () => {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/bookmarks/${userId}`)
+      .get(`${API_URL}/likes/${userId}`)
       .then((res) => {
-        console.log(res.data.itemBookmarks);
-        setItemBookmarks(res.data.itemBookmarks);
-        setCollectionBookmarks(res.data.collectionBookmarks);
+        console.log(res.data.itemLikes);
+        setItemLikes(res.data.itemLikes);
+        setCollectionLikes(res.data.collectionLikes);
       })
       .catch((err) => {
         console.error(err);
@@ -39,14 +39,14 @@ const BookmarksPage = () => {
     <>
       <section id="main-content" className="bg-slate-100">
         <div id="main-section" className="p-4">
-          <SectionHeader title="Bookmarks" />
+          <SectionHeader title="My Likes" />
           <div>
             <h3 className="text-xl text-slate-600">Items</h3>
-            {itemBookmarks.length < 1 ? (
-              <div id="main-section">You've not bookmarked any items.</div>
+            {itemLikes.length < 1 ? (
+              <div id="main-section">You have not liked any items.</div>
             ) : (
               <Grid container spacing={3}>
-                {itemBookmarks.map((item) => {
+                {itemLikes.map((item) => {
                   return (
                     <Grid item xs={12} sm={6} md={4} lg={3} key={item._id}>
                       <ItemCard key={item._id} item={item} />
@@ -61,11 +61,11 @@ const BookmarksPage = () => {
       <section id="main-content" className="bg-slate-200">
         <div id="main-section" className="p-4">
           <h3 className="text-xl text-slate-600">Collections</h3>
-          {collectionBookmarks.length < 1 ? (
-            <div id="main-section">You've not bookmarked any collections.</div>
+          {collectionLikes.length < 1 ? (
+            <div id="main-section">You haven't liked any collections.</div>
           ) : (
             <Grid container spacing={3}>
-              {collectionBookmarks.map((collection) => {
+              {collectionLikes.map((collection) => {
                 return (
                   <Grid item xs={12} sm={6} md={4} lg={3} key={collection._id}>
                     <CollectionCard
@@ -83,4 +83,4 @@ const BookmarksPage = () => {
   );
 };
 
-export default BookmarksPage;
+export default MyLikesPage;
