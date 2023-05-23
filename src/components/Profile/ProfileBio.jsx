@@ -8,7 +8,6 @@ import { UserDataContext } from "../../context/userData.context";
 import { Link } from "react-router-dom";
 import API_URL from "../../services/apiConfig";
 
-
 const ProfileBio = () => {
   // This profile's user object
   const { userData } = useContext(UserDataContext);
@@ -140,9 +139,7 @@ const ProfileBio = () => {
           <p className="text-white text-lg">{userData.userbio}</p>
 
           {/* Display user's category/interests tags */}
-          <div className="flex">
-            <div className="mr-3">{userData && <CategoryTags />}</div>
-          </div>
+          <div className="mb-2">{userData && <CategoryTags />}</div>
         </div>
       </div>
     );

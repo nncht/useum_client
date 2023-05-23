@@ -43,6 +43,7 @@ const CollectionInfo = ({ user, collection }) => {
               key={tag._id}
               variant="caption"
               className="inline-block bg-slate-500 text-white text-xs px-2 py-1 rounded mx-1"
+              style={{ whiteSpace: "nowrap" }}
             >
               {tag.category}
             </Typography>
