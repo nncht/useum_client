@@ -1,4 +1,4 @@
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 
 // Custom components
@@ -11,7 +11,6 @@ import CollectionInfo from "../../components/Collections/CollectionInfo";
 
 // MUI imports
 import { Button, Grid } from "@mui/material";
-import SectionHeader from "../../components/UI/SectionHeader";
 
 // ---End of imports
 
