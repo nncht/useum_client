@@ -7,11 +7,11 @@ import { Box, Link, Typography } from "@mui/material/";
 
 const CollectionInfo = ({ user, collection }) => {
   return (
-    <Box className="grid grid-auto-rows bg-slate-700 px-4 h-30 py-2">
-      <Typography variant="button" className="text-light">
+    <Box className="grid grid-auto-rows bg-slate-800 px-4 h-30 py-2">
+      <Typography variant="h4" className="text-light text-2xl mt-2">
         {collection.name}
       </Typography>
-      <div className="text-light">
+      <Typography variant="overline" className="text-light">
         by{" "}
         <Link
           href={`/users/${collection.createdBy.username}`}
@@ -24,15 +24,24 @@ const CollectionInfo = ({ user, collection }) => {
         >
           {collection.createdBy.username}
         </Link>
-      </div>
+      </Typography>
 
-      <Typography variant="body" className="text-light">
+      <Typography variant="body" className="text-light my-2">
         {collection.description}{" "}
       </Typography>
+
       {/* CATEGORIES */}
-      <div>
+      <div className="my-2">
         {collection.categories.map((tag) => {
-          return <p key={tag._id}>{tag.category}</p>;
+          return (
+            <Typography
+              key={tag._id}
+              variant="caption"
+              className="inline-block bg-slate-500 text-white text-xs px-2 py-1 rounded"
+            >
+              {tag.category}
+            </Typography>
+          );
         })}
       </div>
       {/* Statistics (Followers, Collections, Items) */}
