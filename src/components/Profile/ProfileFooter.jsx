@@ -5,9 +5,19 @@ const ProfileFooter = () => {
   const { userData } = useContext(UserDataContext);
 
   return (
-    <div className="footer">
-      {userData && <img src={userData.headerImageUrl} alt="Header image" />}
-    </div>
+    <>
+      {userData && (
+        <div
+          style={{
+            backgroundImage: `url(${userData.headerImageUrl})`,
+          }}
+          className="footer"
+        />
+      )}
+    </>
+    // <div className="footer">
+    //   {userData && <img src={userData.headerImageUrl} alt="Header image" />}
+    // </div>
   );
 };
 

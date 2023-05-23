@@ -4,10 +4,19 @@ import { UserDataContext } from "../../context/userData.context";
 const ProfileHeader = () => {
   const { userData } = useContext(UserDataContext);
 
+  console.log(userData.headerImageUrl);
+
   return (
-    <div className="cover">
-      {userData && <img src={userData.headerImageUrl} alt="Header image" />}
-    </div>
+    <>
+      {userData && (
+        <div
+          style={{
+            backgroundImage: `url(${userData.headerImageUrl})`,
+          }}
+          className="cover"
+        />
+      )}
+    </>
   );
 };
 
