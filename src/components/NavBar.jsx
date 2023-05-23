@@ -180,7 +180,7 @@ export default function NavBar() {
   return (
     <nav
       id="back-to-top-anchor"
-      className="sticky shadow top-0 bg-slate-700"
+      className="sticky shadow top-0 bg-slate-800"
       style={{ zIndex: 10 }}
     >
       {/* BRAND LOGO */}
