@@ -148,8 +148,10 @@ if (currentUser && currentUser._id && itemCollectionIds){return (
                   <BookmarkButton id={item._id} />
                 </div>
               </div>
-
+              {itemCollectionIds.some((id) => userCollectionIds.includes(id)) ? (
+              <div></div>) : (
               <AddItemToCollection itemId={item._id} />
+              )}
             </div>
           </div>
         </div>
