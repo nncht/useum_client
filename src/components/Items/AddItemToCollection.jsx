@@ -35,6 +35,20 @@ const AddItemToCollection = ({ itemId }) => {
 
   const collectionArray = currentUser.collections;
 
+  //create array of all item ids from all of the user's collections to compare to the current item id
+
+   const allItemIdsFromCollections = [];
+    if (collectionArray) {
+      collectionArray.forEach((collection) => {
+        collection.items.forEach((item) => {
+          allItemIdsFromCollections.push(item);
+        });
+      });
+
+    }
+
+
+
   const handleSelectChange = (e) => {
     console.log(e.target.value);
     setCollectionId(e.target.value);
@@ -57,11 +71,11 @@ const AddItemToCollection = ({ itemId }) => {
       });
   };
 
-  if (collectionArray) {
+  if (currentUser && collectionArray) {
     return (
       <div>
-        <p>To which collection would you like to add this item?</p>
-
+      { allItemIdsFromCollections.includes(itemId) ? (<p>Add item to another collection?</p>):(<p>To which collection would you like to add this item?</p>)
+}
         <Box sx={{ minWidth: 120 }}>
           <FormControl onSubmit={handleCollectionChoice}>
             <InputLabel id="collection-picker">Collection</InputLabel>
