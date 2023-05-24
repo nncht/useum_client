@@ -39,9 +39,11 @@ const Followers = () => {
               ) : (
                 <SectionHeader title={`${otherUser.username}'s Followers`} />
               )}
-              <Grid container spacing={2} className="py-5 flex justify-center">
+              <Grid container spacing={2} >
                 {otherUser.followers.length === 0 ? (
+                  <div className="py-5 flex justify-center w-full">
                   <p> - No followers yet - </p>
+                  </div>
                 ) : (
                   otherUser.followers.map((follower) => {
                     return (
