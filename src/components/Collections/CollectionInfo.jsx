@@ -39,13 +39,13 @@ const CollectionInfo = ({ user, collection }) => {
       <div className="my-2">
         {collection.categories.map((tag) => {
           return (
-            <Typography
+            <div
               key={tag._id}
-              variant="caption"
-              className="inline-block bg-slate-500 text-white text-xs px-2 py-1 rounded"
+              className="inline-block bg-slate-500 text-white text-xs px-2 py-1 rounded m-2"
+              style={{ whiteSpace: "nowrap" }}
             >
               {tag.category}
-            </Typography>
+            </div>
           );
         })}
       </div>
