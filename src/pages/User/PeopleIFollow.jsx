@@ -35,7 +35,9 @@ const Followers = () => {
 
             <Grid container spacing={3}>
               {currentUser.following.length === 0 ? (
-                <p>Looks like you're not following anyone yet</p>
+                <div className="py-5 flex justify-center w-full">
+                  <p>Looks like you're not following anyone yet</p>
+                </div>
               ) : (
                 currentUser.following.map((followed) => {
                   return (
