@@ -10,6 +10,8 @@ import FormControl from "@mui/material/FormControl";
 import Button from "@mui/material/Button";
 import API_URL from "../../services/apiConfig";
 
+const storedToken = localStorage.getItem("authToken");
+
 const AddItemToCollection = ({ itemId }) => {
   const { user } = useContext(AuthContext);
 
@@ -22,7 +24,10 @@ const AddItemToCollection = ({ itemId }) => {
   useEffect(() => {
     if (user && user.username) {
       axios
-        .get(`${API_URL}/users/${user.username}`)
+        .get(`${API_URL}/users/${user.username}`,
+        {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        })
         .then((res) => {
           setCurrentUser(res.data);
           console.log(res.data);
@@ -61,7 +66,10 @@ const AddItemToCollection = ({ itemId }) => {
       .put(`${API_URL}/collections/${collectionId}/add-item`, {
         item: itemId,
         user: user._id,
-      })
+      },
+      {
+				headers: { Authorization: `Bearer ${storedToken}` },
+			})
       .then((res) => {
         navigate(`/collections/${collectionId}`);
       })

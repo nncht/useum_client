@@ -16,6 +16,8 @@ import Button from '@mui/material/Button';
 
 // --- End of imports
 
+const storedToken = localStorage.getItem('authToken');
+
 const MyItem = () => {
 	const { itemId } = useParams();
 	const { user } = useContext(AuthContext);
@@ -27,7 +29,10 @@ const MyItem = () => {
 
 	useEffect(() => {
 		axios
-			.get(`${API_URL}/items/${itemId}`)
+			.get(`${API_URL}/items/${itemId}`,
+			{
+				headers: { Authorization: `Bearer ${storedToken}` },
+			})
 			.then((response) => {
 				setItem(response.data.item);
 				setComments(response.data.comments);
@@ -40,7 +45,10 @@ const MyItem = () => {
 	useEffect(() => {
 		if (user) {
 			axios
-				.get(`${API_URL}/users/${user.username}`)
+				.get(`${API_URL}/users/${user.username}`,
+				{
+					headers: { Authorization: `Bearer ${storedToken}` },
+				})
 				.then((res) => {
 					setCurrentUser(res.data);
 				})

@@ -11,10 +11,15 @@ const RecommendedCollections = () => {
   const { user, isLoggedIn } = useContext(AuthContext);
   // const username = user.name;
 
+  const storedToken = localStorage.getItem("authToken");
+
   useEffect(() => {
     if (user) {
       const fetchData = async () => {
-        const response = await axios.get(`${API_URL}/users/${user.username}`);
+        const response = await axios.get(`${API_URL}/users/${user.username}`,
+        {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        });
         console.log("*");
         console.log(response.data.categories);
         setUserData([...response.data.categories]);

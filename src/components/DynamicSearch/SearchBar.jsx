@@ -6,6 +6,8 @@ import { useEffect } from "react";
 import API_URL from "../../services/apiConfig";
 import axios from "axios";
 
+const storedToken = localStorage.getItem("authToken");
+
 function sleep(delay = 0) {
   return new Promise((resolve) => {
     setTimeout(resolve, delay);
@@ -85,7 +87,10 @@ export default function SearchBar() {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/users`)
+      .get(`${API_URL}/users`,
+      {
+				headers: { Authorization: `Bearer ${storedToken}` },
+			})
       .then((res) => {
         setAllUserNames(res.data.map((user) => user.username));
       })
@@ -96,7 +101,10 @@ export default function SearchBar() {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/collections`)
+      .get(`${API_URL}/collections`,
+      {
+				headers: { Authorization: `Bearer ${storedToken}` },
+			})
       .then((res) => {
         setAllCollectionNames(
           res.data.collections.map((collection) => collection.name)
@@ -109,7 +117,10 @@ export default function SearchBar() {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/items`)
+      .get(`${API_URL}/items`,
+      {
+				headers: { Authorization: `Bearer ${storedToken}` },
+			})
       .then((res) => {
         setAllItemNames(res.data.items.map((item) => item.name));
       })

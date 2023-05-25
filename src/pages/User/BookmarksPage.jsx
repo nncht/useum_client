@@ -19,12 +19,16 @@ const BookmarksPage = () => {
   const [itemBookmarks, setItemBookmarks] = useState([]);
 
   const navigate = useNavigate();
+  const storedToken = localStorage.getItem("authToken");
 
   console.log(userId);
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/bookmarks/${userId}`)
+      .get(`${API_URL}/bookmarks/${userId}`,
+      {
+				headers: { Authorization: `Bearer ${storedToken}` },
+			})
       .then((res) => {
         console.log(res.data.itemBookmarks);
         setItemBookmarks(res.data.itemBookmarks);

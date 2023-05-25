@@ -28,8 +28,6 @@ import PeopleIFollow from './pages/User/PeopleIFollow';
 import Followers from './pages/User/Followers';
 import MyLikesPage from './pages/User/MyLikesPage';
 
-
-
 import LogPage from './pages/User/LogPage';
 
 function App() {
@@ -114,36 +112,44 @@ function App() {
 						<Route
 							path='/bookmarks/:userId'
 							element={
-								<UserDataProvider>
-									<BookmarksPage />
-								</UserDataProvider>
+								<IsPrivate>
+									<UserDataProvider>
+										<BookmarksPage />
+									</UserDataProvider>
+								</IsPrivate>
 							}
 						/>
 
 						<Route
 							path='/likes/:userId'
 							element={
-								<UserDataProvider>
-									<MyLikesPage />
-								</UserDataProvider>
+								<IsPrivate>
+									<UserDataProvider>
+										<MyLikesPage />
+									</UserDataProvider>
+								</IsPrivate>
 							}
 						/>
 
 						<Route
 							path='/delete/:userId'
 							element={
-								<UserDataProvider>
-									<DeleteUserPage />
-								</UserDataProvider>
+								<IsPrivate>
+									<UserDataProvider>
+										<DeleteUserPage />
+									</UserDataProvider>
+								</IsPrivate>
 							}
 						/>
 
 						<Route
 							path='/change-password/:userId'
 							element={
-								<UserDataProvider>
-									<ChangePasswordPage />
-								</UserDataProvider>
+								<IsPrivate>
+									<UserDataProvider>
+										<ChangePasswordPage />
+									</UserDataProvider>
+								</IsPrivate>
 							}
 						/>
 
@@ -204,45 +210,35 @@ function App() {
 						<Route
 							path='/following'
 							element={
-								<UserDataProvider>
-									<PeopleIFollow />
-								</UserDataProvider>
+								<IsPrivate>
+									<UserDataProvider>
+										<PeopleIFollow />
+									</UserDataProvider>
+								</IsPrivate>
 							}
 						/>
 
 						<Route
 							path='/followers/:username'
 							element={
-								<UserDataProvider>
-									<Followers />
-								</UserDataProvider>
+								<IsPrivate>
+									<UserDataProvider>
+										<Followers />
+									</UserDataProvider>
+								</IsPrivate>
 							}
 						/>
-
-
-
-
 
 						<Route
 							path='/eventlog/:username'
 							element={
-								<UserDataProvider>
-									<LogPage />
-								</UserDataProvider>
+								<IsPrivate>
+									<UserDataProvider>
+										<LogPage />
+									</UserDataProvider>
+								</IsPrivate>
 							}
 						/>
-
-
-
-
-
-
-
-
-
-
-
-
 					</Routes>
 				</div>
 			</main>
