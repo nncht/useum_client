@@ -164,7 +164,9 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
         <form className="flex flex-col mx-auto" onSubmit={handleSubmit}>
           <input type="hidden" name="forCollection" value={forCollection} />
 
-          {/* Item title */}
+          {/* ------------------------------ */}
+          {/* Item Name */}
+          {/* ------------------------------ */}
           <label htmlFor="name" className="text-md">
             Item Name
           </label>
@@ -178,7 +180,52 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
 
           <input type="hidden" name="" value={currentUser._id} />
 
-          {/* Collecion description */}
+          {/* ------------------------------ */}
+          {/* Item Category Selection */}
+          {/* ------------------------------ */}
+          <label htmlFor="categories" className="text-md pb-1">
+            Categories
+          </label>
+
+          <SelectCategories
+            setCategoryArray={setCategoryArray}
+            categoryArray={categoryArray}
+          />
+
+          {/* ------------------------------ */}
+          {/* Generate Auto-Description */}
+          {/* ------------------------------ */}
+
+          <label htmlFor="description" className="text-md pt-4">
+            Description
+          </label>
+          {/* OpenAI Error Message */}
+          <div className="mb-1">
+            {aiErrorMessage && <p className="text-danger">{aiErrorMessage}</p>}
+          </div>
+
+          <textarea
+            id="description"
+            className={fixedInputClass}
+            value={description}
+            rows={4}
+            onChange={(event) => setDescription(event.target.value)}
+            placeholder="Try our automatic description generation by clicking the Auto-Description button below and wait for the magic to happen."
+          />
+          {/* Generate Description Button */}
+          <div>
+            <Button
+              variant="outlined"
+              onClick={() => createDescription(name)}
+              className="text-xl mb-4"
+            >
+              Auto-Description
+            </Button>
+          </div>
+
+          {/* ------------------------------ */}
+          {/* Comment */}
+          {/* ------------------------------ */}
           <label htmlFor="comment" className="text-md">
             Comment
           </label>
@@ -191,18 +238,14 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
             placeholder="Let the community know your thoughts about this item, e.g. why you're using it, or whether you think it's good or not. Short or long description, anything goes!"
           />
 
-          {/* item category selection */}
-          <label htmlFor="categories" className="text-md pb-1">
-            Categories
+          {/* ------------------------------ */}
+          {/* Upload Item Picture */}
+          {/* ------------------------------ */}
+          <label htmlFor="categories" className="text-md mt-4 pb-1">
+            Upload Item Picture
           </label>
-          <SelectCategories
-            setCategoryArray={setCategoryArray}
-            categoryArray={categoryArray}
-          />
-
-          {/* Upload item cover picture */}
           {/* Upload preview */}
-          <div className="py-4">
+          <div className="pb-4">
             {uploadingImage === true ? (
               <p>Uploading image, please wait...</p>
             ) : (
@@ -221,41 +264,15 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
           <ImageUploader
             setImageUrl={setImageUrl}
             setUploadingImage={setUploadingImage}
-            message={"Upload a cover picture"}
           />
 
-          {/* Create description button */}
-          <label htmlFor="description" className="text-md">
-            Description
-          </label>
-          <textarea
-            id="description"
-            className={fixedInputClass}
-            value={description}
-            rows={4}
-            onChange={(event) => setDescription(event.target.value)}
-          />
-
-          <div>
-            <Button
-              variant="contained"
-              onClick={() => createDescription(name)}
-              className="text-xl mt-3"
-            >
-              Create Description
-            </Button>
-          </div>
-
-          {/* Create item button */}
+          {/* ------------------------------ */}
+          {/* SUBMIT ITEM */}
+          {/* ------------------------------ */}
           <div>
             <Button variant="contained" type="submit" className="text-xl mt-3">
               Add item
             </Button>
-          </div>
-
-          {/* AI error message */}
-          <div className="my-2">
-            {aiErrorMessage && <p className="text-danger">{aiErrorMessage}</p>}
           </div>
         </form>
 
