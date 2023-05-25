@@ -4,6 +4,7 @@ import { UserDataContext } from "../context/userData.context";
 import { AuthContext } from "../context/auth.context";
 import API_URL from "../services/apiConfig";
 import { Link, useParams } from "react-router-dom";
+import { MoonLoader } from "react-spinners";
 
 // Custom components
 import ProfileHeader from "../components/Profile/ProfileHeader";
@@ -24,6 +25,7 @@ const ProfilePage = () => {
   const { username } = useParams();
   const { userData, setUserData } = useContext(UserDataContext);
   const { user } = useContext(AuthContext);
+  const [loading, setLoading] = useState(true);
 
   const [errorMessage, setErrorMessage] = useState(null);
 
@@ -51,7 +53,7 @@ const ProfilePage = () => {
         {errorMessage ? (
           <>
             <div id="main-content" className="flex justify-center">
-              <p> {errorMessage}</p>
+              <p>{errorMessage}</p>
             </div>
           </>
         ) : (
