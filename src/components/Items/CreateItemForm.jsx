@@ -3,6 +3,7 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
 import API_URL from "../../services/apiConfig";
+import { MoonLoader } from "react-spinners";
 import { Configuration, OpenAIApi } from "openai";
 
 // Custom components
@@ -168,7 +169,7 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
           {/* Item Name */}
           {/* ------------------------------ */}
           <label htmlFor="name" className="text-md">
-            Item Name
+            <Typography variant="button">Item Name</Typography>
           </label>
           <input
             type="text"
@@ -183,8 +184,8 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
           {/* ------------------------------ */}
           {/* Item Category Selection */}
           {/* ------------------------------ */}
-          <label htmlFor="categories" className="text-md pb-1">
-            Categories
+          <label htmlFor="categories" className="text-md mt-3 pb-1">
+            <Typography variant="button">Categories</Typography>
           </label>
 
           <SelectCategories
@@ -196,13 +197,9 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
           {/* Generate Auto-Description */}
           {/* ------------------------------ */}
 
-          <label htmlFor="description" className="text-md pt-4">
-            Description
+          <label htmlFor="description" className="text-md mt-3 pt-4">
+            <Typography variant="button">Description</Typography>
           </label>
-          {/* OpenAI Error Message */}
-          <div className="mb-1">
-            {aiErrorMessage && <p className="text-danger">{aiErrorMessage}</p>}
-          </div>
 
           <textarea
             id="description"
@@ -223,11 +220,16 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
             </Button>
           </div>
 
+          {/* OpenAI Error Message */}
+          <div className="mb-3">
+            {aiErrorMessage && <p className="text-danger">{aiErrorMessage}</p>}
+          </div>
+
           {/* ------------------------------ */}
           {/* Comment */}
           {/* ------------------------------ */}
           <label htmlFor="comment" className="text-md">
-            Comment
+            <Typography variant="button">Comment</Typography>
           </label>
           <textarea
             id="comment"
@@ -242,20 +244,20 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
           {/* Upload Item Picture */}
           {/* ------------------------------ */}
           <label htmlFor="categories" className="text-md mt-4 pb-1">
-            Upload Item Picture
+            <Typography variant="button">Upload Item Picture</Typography>
           </label>
           {/* Upload preview */}
-          <div className="pb-4">
+          <div className="pb-1">
             {uploadingImage === true ? (
-              <p>Uploading image, please wait...</p>
+              <MoonLoader color="#1976D2" size={30} />
             ) : (
               <img
                 src={
                   imageUrl !== "" ? imageUrl : "/images/default/no-image.svg"
                 }
-                width={250}
-                height={350}
+                width={350}
                 alt=""
+                className="rounded-lg"
               />
             )}
           </div>
