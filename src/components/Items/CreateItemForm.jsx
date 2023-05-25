@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
 import API_URL from "../../services/apiConfig";
@@ -17,7 +17,6 @@ import Typography from "@mui/material/Typography";
 
 const CreateitemForm = ({ target, idObject, forCollection }) => {
   const { user } = useContext(AuthContext);
-
   const [currentUser, setCurrentUser] = useState(user);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -31,6 +30,10 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
 
   const storedToken = localStorage.getItem("authToken");
   const navigate = useNavigate();
+
+  // -------------------------------------------------------
+  // AUTOMATIC DESCRIPTIONS POWERED BY OPENAI API
+  // -------------------------------------------------------
 
   const createChatCompletion = async (name) => {
     try {
@@ -87,9 +90,10 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    //something wrong with headers
+    // -------------------------------------------------------
+    // IMAGE UPLOADS POWERED BY CLOUDINARY
+    // -------------------------------------------------------
 
-    // Uploading cover images is optional
     if (uploadingImage) {
       return;
     }
@@ -121,6 +125,10 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
       };
     }
 
+    // -------------------------------------------------------
+    // SEND DATA TO BACKEND
+    // -------------------------------------------------------
+
     axios
       .post(`${API_URL}/${target}`, params, {
         headers: { Authorization: `Bearer ${storedToken}` },
@@ -141,9 +149,15 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
       });
   };
 
+  // -------------------------------------------------------
+  // STYLING
+  // -------------------------------------------------------
   const fixedInputClass =
     "w-full p-2 mt-1 mb-3 border border-slate-800 placeholder-gray-300 text-slate-800";
 
+  // -------------------------------------------------------
+  // RENDER
+  // -------------------------------------------------------
   return (
     currentUser && (
       <div className="mb-3">
