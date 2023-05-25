@@ -166,7 +166,7 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
   // STYLING
   // -------------------------------------------------------
   const fixedInputClass =
-    "w-full p-2 mt-1 mb-3 border border-slate-800 placeholder-gray-300 text-slate-800";
+    "w-full rounded p-2 mt-1 mb-3 border border-slate-800 placeholder-gray-300 text-slate-800";
 
   // -------------------------------------------------------
   // RENDER
@@ -215,7 +215,7 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
             <Typography variant="button">Item Description</Typography>
           </label>
 
-          <Textarea
+          <textarea
             id="description"
             className={fixedInputClass}
             value={description}
@@ -232,7 +232,7 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
             >
               Auto-Description
             </Button>
-            <div className="py-1">
+            <div className="py-1" key={Date.now()}>
               {isGenerating && (
                 <MoonLoader key={Date.now()} color="#1976D2" size={22} />
               )}
@@ -250,7 +250,7 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
           <label htmlFor="comment" className="text-md">
             <Typography variant="button">Your Thoughts?</Typography>
           </label>
-          <Textarea
+          <textarea
             id="comment"
             className={fixedInputClass}
             value={comment}
@@ -295,7 +295,7 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
             <Button variant="contained" type="submit" className="text-xl mt-3">
               Add Item
             </Button>
-            <div className="mt-3 mx-2 py-1">
+            <div className="mt-3 mx-2 py-1" key={Date.now()}>
               {isLoading && (
                 <MoonLoader key={Date.now()} color="#1976D2" size={22} />
               )}

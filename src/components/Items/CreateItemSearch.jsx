@@ -294,9 +294,14 @@ const CreateItemSearch = () => {
                 <Grid item xs={12} sm={6} md={4} lg={3} key={item._id}>
                   <ItemCard key={item._id} item={item} />
                   {/* Button triggers a modal that prompts the user to write an optional comment */}
-                  <Button onClick={() => handleOpen(item)}>
-                    Add this item
-                  </Button>
+                  <div className="my-3 text-center">
+                    <Button
+                      variant="contained"
+                      onClick={() => handleOpen(item)}
+                    >
+                      Add this item
+                    </Button>
+                  </div>
                   <Dialog
                     open={openModal}
                     onClose={handleClose}
