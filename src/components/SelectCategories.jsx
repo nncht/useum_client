@@ -27,13 +27,13 @@ const SelectCategories = ({ categoryArray, setCategoryArray }) => {
       .get(`${API_URL}/categories`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
-
       .then((res) => {
-        console.log([...res.data.categories]);
         const categories = [...res.data.categories];
         const categoriesArray = categories.map((category) => {
           return category.category;
         });
+
+        categoriesArray.sort();
 
         setAllCategories(categoriesArray);
       })
