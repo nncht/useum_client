@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { MoonLoader } from "react-spinners";
 
 // Custom components
 import ItemCard from "../components/Items/ItemCard";
@@ -57,8 +58,8 @@ const SearchResults = () => {
           <SectionHeader title="Users" />
           <Grid container spacing={3}>
             {isSearching ? (
-              <div className="p-4">
-                <p>Searching...</p>
+              <div className="p-4 my-4 flex justify-center w-100">
+                <MoonLoader color="#1976D2" size={30} />
               </div>
             ) : usersFound.length ? (
               usersFound.map((user) => (
@@ -67,7 +68,7 @@ const SearchResults = () => {
                 </Grid>
               ))
             ) : (
-              <div className="p-4">
+              <div className="p-4 my-4 flex justify-center w-100">
                 <p>Could not find any matching users</p>
               </div>
             )}
@@ -81,8 +82,8 @@ const SearchResults = () => {
           <SectionHeader title="Items" />
           <Grid container spacing={3}>
             {isSearching ? (
-              <div className="p-4">
-                <p>Searching...</p>
+              <div className="p-4 my-4 flex justify-center w-100">
+                <MoonLoader color="#1976D2" size={30} />
               </div>
             ) : itemsFound.length ? (
               itemsFound.map((item) => (
@@ -91,7 +92,7 @@ const SearchResults = () => {
                 </Grid>
               ))
             ) : (
-              <div className="p-4">
+              <div className="p-4 my-4 flex justify-center w-100">
                 <p>Could not find any matching items</p>
               </div>
             )}
@@ -105,8 +106,8 @@ const SearchResults = () => {
           <SectionHeader title="Collections" />
           <Grid container spacing={3}>
             {isSearching ? (
-              <div className="p-4">
-                <p>Searching...</p>
+              <div className="p-4 my-4 flex justify-center w-100">
+                <MoonLoader color="#1976D2" size={30} />
               </div>
             ) : collectionsFound.length ? (
               collectionsFound.map((collection) => (
@@ -118,7 +119,7 @@ const SearchResults = () => {
                 </Grid>
               ))
             ) : (
-              <div className="p-4">
+              <div className="p-4 my-4 flex justify-center w-100">
                 <p>Could not find any matching collections</p>
               </div>
             )}
