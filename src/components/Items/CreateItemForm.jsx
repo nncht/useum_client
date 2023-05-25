@@ -257,15 +257,6 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
           <div className="my-2">
             {aiErrorMessage && <p className="text-danger">{aiErrorMessage}</p>}
           </div>
-
-          <div id="main-section" className="p-4">
-            <Typography variant="h6" sx={{ color: "red" }}>
-              Creating new items works, it just takes a long time before the
-              process is finished due to auto-generated descriptions taking a
-              while. We still need to add loading spinners, until then give it a
-              little time before you'll see the created item.
-            </Typography>
-          </div>
         </form>
 
         {/* Error message */}
