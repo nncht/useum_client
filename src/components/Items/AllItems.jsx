@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { Grid } from "@mui/material";
 import ItemCard from "./ItemCard";
+import { MoonLoader } from "react-spinners";
 
 const AllItems = ({ items, user }) => {
   return (
@@ -8,7 +10,7 @@ const AllItems = ({ items, user }) => {
         {/* Available items will be rendered as cards here */}
         {items.length < 1 ? (
           <div id="main-section" className="mt-4">
-            🏛️ Add interests to your profile to receive recommendations 🏛️
+            <MoonLoader color="#1976D2" size={30} />
           </div>
         ) : (
           items.map((item) => {

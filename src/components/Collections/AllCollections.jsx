@@ -1,5 +1,6 @@
 import { Grid } from "@mui/material";
 import CollectionCard from "./CollectionCard";
+import { MoonLoader } from "react-spinners";
 
 const AllCollections = ({ collections }) => {
   return (
@@ -8,7 +9,7 @@ const AllCollections = ({ collections }) => {
         {/* Available collections of all users will be rendered as cards here */}
         {collections.collections.length < 1 ? (
           <div id="main-section" className="mt-4">
-            🏛️ Add interests to your profile to receive recommendations 🏛️
+            <MoonLoader color="#1976D2" size={30} />
           </div>
         ) : (
           collections.collections.map((collection) => {
