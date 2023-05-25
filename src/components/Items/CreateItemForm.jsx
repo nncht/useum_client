@@ -28,6 +28,8 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
   const [commentTitle, setCommentTitle] = useState("");
   const [uploadingImage, setUploadingImage] = useState(false);
   const [aiErrorMessage, setAiErrorMessage] = useState(undefined);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
 
   const storedToken = localStorage.getItem("authToken");
   const navigate = useNavigate();
@@ -83,14 +85,22 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
   };
 
   const createDescription = async (name) => {
+    setIsGenerating(true);
     console.log("createDescription");
-    await createChatCompletion(name);
-    await waitForDescription();
+
+    try {
+      await createChatCompletion(name);
+      await waitForDescription();
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsGenerating(false);
+    }
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    setIsLoading(true);
     // -------------------------------------------------------
     // IMAGE UPLOADS POWERED BY CLOUDINARY
     // -------------------------------------------------------
@@ -169,7 +179,8 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
           {/* Item Name */}
           {/* ------------------------------ */}
           <label htmlFor="name" className="text-md">
-            <Typography variant="button">Item Name</Typography>
+            <Typography variant="button">Item Name</Typography>{" "}
+            <Typography variant="caption">(required)</Typography>
           </label>
           <input
             type="text"
@@ -198,7 +209,7 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
           {/* ------------------------------ */}
 
           <label htmlFor="description" className="text-md mt-3 pt-4">
-            <Typography variant="button">Description</Typography>
+            <Typography variant="button">Item Description</Typography>
           </label>
 
           <textarea
@@ -210,7 +221,7 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
             placeholder="Try our automatic description generation by clicking the Auto-Description button below and wait for the magic to happen."
           />
           {/* Generate Description Button */}
-          <div>
+          <div className="flex flex-row gap-2">
             <Button
               variant="outlined"
               onClick={() => createDescription(name)}
@@ -218,6 +229,11 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
             >
               Auto-Description
             </Button>
+            <div className="py-1">
+              {isGenerating && (
+                <MoonLoader key={Date.now()} color="#1976D2" size={22} />
+              )}
+            </div>
           </div>
 
           {/* OpenAI Error Message */}
@@ -229,7 +245,7 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
           {/* Comment */}
           {/* ------------------------------ */}
           <label htmlFor="comment" className="text-md">
-            <Typography variant="button">Comment</Typography>
+            <Typography variant="button">Your Thoughts?</Typography>
           </label>
           <textarea
             id="comment"
@@ -244,7 +260,8 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
           {/* Upload Item Picture */}
           {/* ------------------------------ */}
           <label htmlFor="categories" className="text-md mt-4 pb-1">
-            <Typography variant="button">Upload Item Picture</Typography>
+            <Typography variant="button">Upload Item Picture</Typography>{" "}
+            <Typography variant="caption">(.JPEG or .PNG)</Typography>
           </label>
           {/* Upload preview */}
           <div className="pb-1">
@@ -271,15 +288,20 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
           {/* ------------------------------ */}
           {/* SUBMIT ITEM */}
           {/* ------------------------------ */}
-          <div>
+          <div className="flex flex-row">
             <Button variant="contained" type="submit" className="text-xl mt-3">
-              Add item
+              Add Item
             </Button>
+            <div className="mt-3 mx-2 py-1">
+              {isLoading && (
+                <MoonLoader key={Date.now()} color="#1976D2" size={22} />
+              )}
+            </div>
           </div>
         </form>
 
         {/* Error message */}
-        <div className="my-2">
+        <div className="my-4">
           {errorMessage && <p className="text-danger">{errorMessage}</p>}
         </div>
       </div>
