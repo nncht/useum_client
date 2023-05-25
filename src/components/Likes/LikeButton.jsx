@@ -9,20 +9,20 @@ const LikeButton = ({ id, isItem }) => {
   //id here either means collection or item id
 
   const { user } = useContext(AuthContext);
-
-  console.log(id);
+  const storedToken = localStorage.getItem("authToken");
 
   const [currentUser, setCurrentUser] = useState(null);
-
   const [isLiked, setIsLiked] = useState(false);
   const [likeList, setLikeList] = useState([]);
 
-  console.log(isItem);
 
   useEffect(() => {
     if (user) {
       axios
-        .get(`${API_URL}/users/${user.username}`)
+        .get(`${API_URL}/users/${user.username}`,
+        {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        })
         .then((res) => {
           setCurrentUser(res.data);
         })
@@ -35,7 +35,10 @@ const LikeButton = ({ id, isItem }) => {
   useEffect(() => {
     if (isItem) {
       axios
-        .get(`${API_URL}/items/${id}`)
+        .get(`${API_URL}/items/${id}`,
+        {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        })
         .then((res) => {
           setLikeList(res.data.item.likes);
         })
@@ -44,7 +47,10 @@ const LikeButton = ({ id, isItem }) => {
         });
     } else {
       axios
-        .get(`${API_URL}/collections/${id}`)
+        .get(`${API_URL}/collections/${id}`,
+        {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        })
         .then((res) => {
           setLikeList(res.data.likes);
         })
@@ -70,7 +76,10 @@ const LikeButton = ({ id, isItem }) => {
     console.log("You clicked like");
     try {
       const response = await axios.post(
-        `${API_URL}/${currentUser._id}/like/${id}`
+        `${API_URL}/${currentUser._id}/like/${id}`,
+        {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        }
       );
       setIsLiked(true);
       setLikeList([...likeList, id]);
@@ -85,7 +94,10 @@ const LikeButton = ({ id, isItem }) => {
   const handleUnlike = async () => {
     try {
       const response = await axios.post(
-        `${API_URL}/${currentUser._id}/unlike/${id}`
+        `${API_URL}/${currentUser._id}/unlike/${id}`,
+        {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        }
       );
       setIsLiked(false);
       setLikeList(likeList.filter((like) => like !== id));

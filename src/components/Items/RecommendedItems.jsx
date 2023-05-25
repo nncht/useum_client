@@ -9,12 +9,16 @@ const RecommendedItems = () => {
   const [items, setItems] = useState([]);
   const { userData, setUserData } = useContext(UserDataContext);
   const { user, isLoggedIn } = useContext(AuthContext);
-  // const username = user.name;
+  // const username = user.name;+
+  const storedToken = localStorage.getItem("authToken");
 
   useEffect(() => {
     if (user) {
       const fetchData = async () => {
-        const response = await axios.get(`${API_URL}/users/${user.username}`);
+        const response = await axios.get(`${API_URL}/users/${user.username}`,
+        {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        });
         console.log("*");
         console.log(response.data.categories);
         setUserData([...response.data.categories]);
@@ -33,7 +37,10 @@ const RecommendedItems = () => {
     // change later useState of object to null instead of {}
     if (!checkEmptyObj(userData)) {
       axios
-        .get(`${API_URL}/items`)
+        .get(`${API_URL}/items`,
+        {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        })
         .then((res) => {
           let filteredItems = res.data.items;
           console.log(filteredItems);

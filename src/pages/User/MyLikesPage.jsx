@@ -19,12 +19,16 @@ const MyLikesPage = () => {
   const [itemLikes, setItemLikes] = useState([]);
 
   const navigate = useNavigate();
+  const storedToken = localStorage.getItem("authToken");
 
   console.log(userId);
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/likes/${userId}`)
+      .get(`${API_URL}/likes/${userId}`,
+      {
+				headers: { Authorization: `Bearer ${storedToken}` },
+			})
       .then((res) => {
         console.log(res.data.itemLikes);
         setItemLikes(res.data.itemLikes);

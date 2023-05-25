@@ -20,11 +20,16 @@ const CollectionCard = ({ collection }) => {
   // Necessary to get the profile pictures for the Avatar component
   const [ownerData, setOwnerData] = useState(null);
 
+  const storedToken = localStorage.getItem("authToken");
+
   // Fetch ownerData user object
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `${API_URL}/collections/${collection._id}`
+        `${API_URL}/collections/${collection._id}`,
+        {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        }
       );
       setOwnerData(response.data);
     };

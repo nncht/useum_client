@@ -8,6 +8,8 @@ import ImageUploader from '../../components/ImageUploader/ImageUploader';
 import SelectCategories from '../../components/SelectCategories';
 import API_URL from "../../services/apiConfig";
 
+const storedToken = localStorage.getItem('authToken');
+
 
 
 const EditCollection = () => {
@@ -68,7 +70,10 @@ const EditCollection = () => {
 		};
 
 		axios
-			.put(`${API_URL}/collections/${collectionId}/edit`, updatedCollectionBody)
+			.put(`${API_URL}/collections/${collectionId}/edit`, updatedCollectionBody,
+			{
+				headers: { Authorization: `Bearer ${storedToken}` },
+			})
 			.then((res) => {
 				console.log('res is: ', res.data);
 				setCollection(res.data);
@@ -84,6 +89,9 @@ const EditCollection = () => {
 		axios
 			.post(`${API_URL}/collections/${collectionId}`, {
 				createdBy: collection.createdBy,
+			},
+			{
+				headers: { Authorization: `Bearer ${storedToken}` },
 			})
 			.then((res) => {
 				console.log('res is: ', res.data);

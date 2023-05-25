@@ -1,6 +1,8 @@
 import axios from 'axios';
 import API_URL from '../../services/apiConfig';
 
+const storedToken = localStorage.getItem('authToken');
+
 const handleFileUpload = (setHeaderImageUrl, e, setUploadingHeaderImage) => {
 	const uploadData = new FormData();
 
@@ -9,7 +11,10 @@ const handleFileUpload = (setHeaderImageUrl, e, setUploadingHeaderImage) => {
 	setUploadingHeaderImage(true);
 
 	axios
-		.post(`${API_URL}/upload-header`, uploadData)
+		.post(`${API_URL}/upload-header`, uploadData,
+		{
+			headers: { Authorization: `Bearer ${storedToken}` },
+		})
 		.then((response) => {
 			setHeaderImageUrl(response.data.fileUrl);
 			setUploadingHeaderImage(false);

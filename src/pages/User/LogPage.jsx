@@ -17,10 +17,15 @@ const LogPage = () => {
 
   const [currentUser, setCurrentUser] = useState(null);
 
+  const storedToken = localStorage.getItem("authToken");
+
   useEffect(() => {
     if (user) {
       axios
-        .get(`${API_URL}/users/${user.username}`)
+        .get(`${API_URL}/users/${user.username}`,
+        {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        })
         .then((res) => {
           setCurrentUser(res.data);
         })

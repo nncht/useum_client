@@ -20,16 +20,17 @@ const EditItem = () => {
   const [currentUser, setCurrentUser] = useState(null);
 
 
-
-
   const { itemId } = useParams();
-
   const { user } = useContext(AuthContext);
 
+  const storedToken = localStorage.getItem("authToken");
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`${API_URL}/items/${itemId}`).then((res) => {
+    axios.get(`${API_URL}/items/${itemId}`,
+    {
+      headers: { Authorization: `Bearer ${storedToken}` },
+    }).then((res) => {
       setItem(res.data.item);
     });
   }, []);
@@ -37,7 +38,10 @@ const EditItem = () => {
   useEffect(() => {
     if (user) {
       axios
-        .get(`${API_URL}/users/${user.username}`)
+        .get(`${API_URL}/users/${user.username}`,
+        {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        })
         .then((res) => {
           setCurrentUser(res.data);
         })
@@ -129,7 +133,10 @@ const EditItem = () => {
     console.log(updatedItemBody);
 
     axios
-      .put(`${API_URL}/items/${itemId}/edit`, updatedItemBody)
+      .put(`${API_URL}/items/${itemId}/edit`, updatedItemBody,
+      {
+				headers: { Authorization: `Bearer ${storedToken}` },
+			})
       .then((res) => {
         console.log("res is: ", res.data);
         setItem(res.data);
@@ -149,7 +156,10 @@ const EditItem = () => {
     };
 
     axios
-      .post(`${API_URL}/items/${itemId}`, requestBody)
+      .post(`${API_URL}/items/${itemId}`, requestBody,
+      {
+				headers: { Authorization: `Bearer ${storedToken}` },
+			})
       .then((res) => {
         console.log("res is: ", res.data);
         navigate(`/users/${user.username}`);

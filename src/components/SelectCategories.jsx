@@ -10,6 +10,8 @@ import API_URL from "../services/apiConfig";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+const storedToken = localStorage.getItem("authToken");
+
 const SelectCategories = ({ categoryArray, setCategoryArray }) => {
   const ITEM_HEIGHT = 48;
   const ITEM_PADDING_TOP = 8;
@@ -27,10 +29,8 @@ const SelectCategories = ({ categoryArray, setCategoryArray }) => {
   useEffect(() => {
     axios
       .get(`${API_URL}/categories`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-        },
-      })
+				headers: { Authorization: `Bearer ${storedToken}` },
+			})
 
       .then((res) => {
         console.log([...res.data.categories]);

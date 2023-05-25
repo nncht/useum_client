@@ -21,11 +21,16 @@ const ProfileBio = () => {
   const [followingList, setFollowingList] = useState([]);
   const [refresh, setRefresh] = useState(false);
 
+  const storedToken = localStorage.getItem("authToken");
+
   // Request user object of currentUser (logged in user)
   useEffect(() => {
     if (user) {
       axios
-        .get(`${API_URL}/users/${user.username}`)
+        .get(`${API_URL}/users/${user.username}`,
+        {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        })
         .then((res) => {
           setCurrentUser(res.data);
         })
@@ -48,7 +53,10 @@ const ProfileBio = () => {
   const handleFollow = async () => {
     try {
       const response = await axios.post(
-        `${API_URL}/${currentUser._id}/follow/${userData._id}`
+        `${API_URL}/${currentUser._id}/follow/${userData._id}`,
+        {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        }
       );
       setIsFollowing(true);
       setFollowingList([...followingList, userData._id]);
@@ -63,7 +71,10 @@ const ProfileBio = () => {
   const handleUnfollow = async () => {
     try {
       const response = await axios.post(
-        `${API_URL}/${currentUser._id}/unfollow/${userData._id}`
+        `${API_URL}/${currentUser._id}/unfollow/${userData._id}`,
+        {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        }
       );
       setIsFollowing(false);
       setFollowingList(followingList.filter((id) => id !== userData._id));

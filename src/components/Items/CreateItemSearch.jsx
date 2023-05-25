@@ -27,6 +27,8 @@ import {
 
 // --- End of imports
 
+const storedToken = localStorage.getItem('authToken');
+
 function sleep(delay = 0) {
 	return new Promise((resolve) => {
 		setTimeout(resolve, delay);
@@ -93,7 +95,10 @@ const CreateItemSearch = () => {
 			setItemDoesntExist(false);
 			setItemExists(true);
 			axios
-				.get(`${API_URL}/search?search=${selectedOption.title}`)
+				.get(`${API_URL}/search?search=${selectedOption.title}`,
+				{
+					headers: { Authorization: `Bearer ${storedToken}` },
+				})
 				.then((res) => {
 					setItemsFound(res.data.items);
 					console.log(res.data.items);
@@ -112,7 +117,10 @@ const CreateItemSearch = () => {
 	// Fetch all existing item names for search bar dropdown
 	useEffect(() => {
 		axios
-			.get(`${API_URL}/items`)
+			.get(`${API_URL}/items`,
+			{
+				headers: { Authorization: `Bearer ${storedToken}` },
+			})
 			.then((res) => {
 				setAllItemNames(res.data.items.map((item) => item.name));
 			})
@@ -129,9 +137,15 @@ const CreateItemSearch = () => {
 			.put(`${API_URL}/collections/${collectionId}/add-item`, {
 				item: itemId,
 				user: user._id,
+			},
+			{
+				headers: { Authorization: `Bearer ${storedToken}` },
 			})
 			.then((res) => {
-				navigate(`/collections/${collectionId}`);
+				navigate(`/collections/${collectionId}`,
+				{
+					headers: { Authorization: `Bearer ${storedToken}` },
+				});
 			})
 			.catch((err) => {
 				console.error(err);
@@ -143,6 +157,9 @@ const CreateItemSearch = () => {
 				.put(`${API_URL}/items/${itemId}/comment`, {
 					comment: comment,
 					currentUserId: user._id,
+				},
+				{
+					headers: { Authorization: `Bearer ${storedToken}` },
 				})
 				.then((res) => {
 					console.log(res.data);

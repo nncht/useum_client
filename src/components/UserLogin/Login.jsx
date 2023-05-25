@@ -24,8 +24,6 @@ export default function Login() {
     axios
       .post(`${API_URL}/login`, loginBody)
       .then((res) => {
-        console.log("JWT token", res.data.authToken);
-
         storeToken(res.data.authToken);
 
         verifyUser();
