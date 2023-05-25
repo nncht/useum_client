@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Grid } from "@mui/material";
 import ItemCard from "./ItemCard";
 import { MoonLoader } from "react-spinners";

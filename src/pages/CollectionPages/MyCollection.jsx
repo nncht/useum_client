@@ -20,6 +20,7 @@ const MyCollection = () => {
   const [collection, setCollection] = useState(null);
   const { collectionId } = useParams();
   const navigate = useNavigate();
+  const [loadingInProgress, setLoading] = useState(true);
 
   useEffect(() => {
     getCollection(collectionId, setCollection);
