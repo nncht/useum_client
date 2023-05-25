@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/auth.context';
 import API_URL from '../../services/apiConfig';
@@ -27,43 +27,69 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
 	const [comment, setComment] = useState('');
 	const [commentTitle, setCommentTitle] = useState('');
 	const [uploadingImage, setUploadingImage] = useState(false);
+	const [aiErrorMessage, setAiErrorMessage] = useState(undefined);
 
 	const storedToken = localStorage.getItem('authToken');
 	const navigate = useNavigate();
 
+	const createChatCompletion = async (name) => {
+		try {
+			const configuration = new Configuration({
+				organization: import.meta.env.VITE_APP_OPENAI_ORGANIZATION_KEY,
+				apiKey: import.meta.env.VITE_APP_OPENAI_API_KEY,
+			});
+
+			delete configuration.baseOptions.headers['User-Agent'];
+			const openai = new OpenAIApi(configuration);
+
+			const messages = [
+				{
+					role: 'system',
+					content: `You are creating an item named "${name}"`,
+				},
+				{
+					role: 'user',
+					content: `Describe the item "${name}" in detail with at least 40 words`,
+				},
+			];
+
+			const completion = await openai.createChatCompletion({
+				model: 'gpt-3.5-turbo',
+				messages,
+			});
+
+			const generatedDescription = completion.data.choices[0].message.content;
+			console.log(generatedDescription);
+			setDescription(generatedDescription);
+		} catch (error) {
+			console.error(error);
+			setAiErrorMessage(error.message);
+		}
+	};
+
+	const waitForDescription = async () => {
+		return new Promise((resolve, reject) => {
+			const timer = setInterval(() => {
+				if (description !== '') {
+					clearInterval(timer);
+					resolve();
+				}
+			}, 500);
+		});
+	};
+
+	const createDescription = async (name) => {
+		console.log('createDescription');
+		await createChatCompletion(name);
+		await waitForDescription();
+	};
+
+
+
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
-		const configuration = new Configuration({
-			organization: import.meta.env.VITE_APP_OPENAI_ORGANIZATION_KEY,
-			apiKey: import.meta.env.VITE_APP_OPENAI_API_KEY,
-		});
-
-		delete configuration.baseOptions.headers['User-Agent'];
-		const openai = new OpenAIApi(configuration);
-
-		const createChatCompletion = async (name) => {
-			const completion = await openai.createChatCompletion({
-				model: 'gpt-3.5-turbo',
-				messages: [
-					{
-						role: 'system',
-						content: `You are creating an item named "${name}"`,
-					},
-					{
-						role: 'user',
-						content: `Describe the item "${name}" in detail with at least 40 words`,
-					},
-				],
-			});
-			console.log(completion.data.choices[0].message);
-			const description = completion.data.choices[0].message.content;
-			return description;
-		};
-
 		//something wrong with headers
-
-		const description = await createChatCompletion(name);
 
 		// Uploading cover images is optional
 		if (uploadingImage) {
@@ -175,12 +201,34 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
 						message={'Upload a cover picture'}
 					/>
 
+					{/* Create description button */}
+					<label htmlFor='description' className='text-md'>
+						Description
+					</label>
+					<textarea
+						id='description'
+						className={fixedInputClass}
+						value={description}
+						rows={4}
+						onChange={(event) => setDescription(event.target.value)}
+					/>
+
+					<div>
+						<Button variant='contained' onClick={()=>createDescription(name)} className='text-xl mt-3'>
+							Create Description
+						</Button>
+					</div>
+
 					{/* Create item button */}
 					<div>
 						<Button variant='contained' type='submit' className='text-xl mt-3'>
 							Add item
 						</Button>
 					</div>
+
+					{/* AI error message */}
+					<div className='my-2'>{aiErrorMessage && <p className='text-danger'>{aiErrorMessage}</p>}</div>
+
 					<div id='main-section' className='p-4'>
 						<Typography variant='h6' sx={{ color: 'red' }}>
 							Creating new items works, it just takes a long time before the process is finished due to auto-generated
