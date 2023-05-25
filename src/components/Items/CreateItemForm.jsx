@@ -11,6 +11,8 @@ import ImageUploader from "../ImageUploader/ImageUploader";
 import SelectCategories from "../SelectCategories";
 
 // MUI imports
+import { Textarea, Input } from "@mui/joy";
+
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
@@ -182,8 +184,9 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
             <Typography variant="button">Item Name</Typography>{" "}
             <Typography variant="caption">(required)</Typography>
           </label>
-          <input
+          <Input
             type="text"
+            size="lg"
             id="name"
             className={fixedInputClass}
             value={name}
@@ -212,7 +215,7 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
             <Typography variant="button">Item Description</Typography>
           </label>
 
-          <textarea
+          <Textarea
             id="description"
             className={fixedInputClass}
             value={description}
@@ -247,7 +250,7 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
           <label htmlFor="comment" className="text-md">
             <Typography variant="button">Your Thoughts?</Typography>
           </label>
-          <textarea
+          <Textarea
             id="comment"
             className={fixedInputClass}
             value={comment}
