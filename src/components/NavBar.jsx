@@ -1,7 +1,6 @@
 import * as React from "react";
 import { AuthContext } from "../context/auth.context";
 import { useContext, useState } from "react";
-import SearchBar from "./DynamicSearch/SearchBar";
 
 // MUI components
 import Box from "@mui/material/Box";
@@ -17,19 +16,16 @@ import Link from "@mui/material/Link";
 import CreateNewFolderIcon from "@mui/icons-material/CreateNewFolder";
 
 // MUI icons
-import SettingsIcon from "@mui/icons-material/Settings";
+// import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import MenuIcon from "@mui/icons-material/Menu";
 import BookmarksIcon from "@mui/icons-material/Bookmarks";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import EmailIcon from "@mui/icons-material/Email";
+// import NotificationsIcon from "@mui/icons-material/Notifications";
+// import EmailIcon from "@mui/icons-material/Email";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
-import ThumbUpIcon from '@mui/icons-material/ThumbUp';
-
-
-
-import TerminalIcon from '@mui/icons-material/Terminal';
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import HistoryIcon from "@mui/icons-material/History";
 
 // -- End of Imports
 
@@ -120,47 +116,47 @@ export default function NavBar() {
 
         {/* Notifications */}
 
-        <ListItem key="Notifications" disablePadding>
+        {/* <ListItem key="Notifications" disablePadding>
           <ListItemButton>
             <ListItemIcon>
               <NotificationsIcon />
             </ListItemIcon>
             <ListItemText primary="Notifications" />
           </ListItemButton>
-        </ListItem>
+        </ListItem> */}
 
-        {/* Events */}
+        {/* History */}
 
-        <ListItem key="Event Log" disablePadding>
+        <ListItem key="History" disablePadding>
           <ListItemButton href={`/eventlog/${user._id}`}>
             <ListItemIcon>
-              <TerminalIcon />
+              <HistoryIcon />
             </ListItemIcon>
-            <ListItemText primary="Event Log" />
+            <ListItemText primary="History" />
           </ListItemButton>
         </ListItem>
 
         {/* Messages */}
 
-        <ListItem key="Messages" disablePadding>
+        {/* <ListItem key="Messages" disablePadding>
           <ListItemButton>
             <ListItemIcon>
               <EmailIcon />
             </ListItemIcon>
             <ListItemText primary="Messages" />
           </ListItemButton>
-        </ListItem>
+        </ListItem> */}
 
         {/* Settings */}
 
-        <ListItem key="Settings" disablePadding>
+        {/* <ListItem key="Settings" disablePadding>
           <ListItemButton href="/profile">
             <ListItemIcon>
               <SettingsIcon />
             </ListItemIcon>
             <ListItemText primary="Settings" />
           </ListItemButton>
-        </ListItem>
+        </ListItem> */}
 
         <Divider />
 
