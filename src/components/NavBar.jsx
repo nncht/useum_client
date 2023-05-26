@@ -51,9 +51,8 @@ export default function NavBar() {
 
       fetchData();
     }
-  }, []);
+  }, [user]);
 
-  console.log(userData);
   // Drawer navigation
   const [state, setState] = useState({
     left: false,
