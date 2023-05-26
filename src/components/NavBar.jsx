@@ -85,8 +85,8 @@ export default function NavBar() {
             <ListItemIcon>
               <Avatar
                 aria-label="Profile picture"
-                alt={userData.username}
-                src={userData.imageUrl}
+                alt={userData?.username}
+                src={userData?.imageUrl}
                 sx={{ width: 34, height: 34 }}
               />
             </ListItemIcon>
