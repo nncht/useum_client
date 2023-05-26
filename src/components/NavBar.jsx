@@ -51,7 +51,7 @@ export default function NavBar() {
 
       fetchData();
     }
-  }, [user, userData]);
+  }, []);
 
   console.log(userData);
   // Drawer navigation
