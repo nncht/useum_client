@@ -32,6 +32,7 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
   const [aiErrorMessage, setAiErrorMessage] = useState(undefined);
   const [isLoading, setIsLoading] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [isDescriptionGenerated, setIsDescriptionGenerated] = useState(false);
 
   const storedToken = localStorage.getItem("authToken");
   const navigate = useNavigate();
@@ -69,6 +70,7 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
       const generatedDescription = completion.data.choices[0].message.content;
       console.log(generatedDescription);
       setDescription(generatedDescription);
+      setIsDescriptionGenerated(true);
     } catch (error) {
       console.error(error);
       setAiErrorMessage(error.message);
@@ -159,6 +161,9 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
       })
       .catch((err) => {
         console.error(err);
+      })
+      .finally(() => {
+        setIsDescriptionGenerated(false);
       });
   };
 
@@ -233,9 +238,11 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
               Auto-Description
             </Button>
             <div className="py-1" key={Date.now()}>
-              {isGenerating && (
-                <MoonLoader key={Date.now()} color="#1976D2" size={22} />
-              )}
+              <MoonLoader
+                color="#1976D2"
+                size={22}
+                loading={isGenerating && !isDescriptionGenerated}
+              />
             </div>
           </div>
 

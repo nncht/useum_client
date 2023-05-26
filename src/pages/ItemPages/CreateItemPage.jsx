@@ -1,11 +1,12 @@
-// import CreateItemForm from "../../components/Items/CreateItemForm";
-// import { getCollectionId } from "../../services/sharedDatastore";
+import { useLocation } from "react-router-dom";
+import CreateItemForm from "../../components/Items/CreateItemForm.jsx";
 import CreateItemSearch from "../../components/Items/CreateItemSearch.jsx";
 import SectionHeader from "../../components/UI/SectionHeader";
 
 function CreateItemPage() {
-  // const collectionId = getCollectionId();
-  // console.log("CollectionID", collectionId);
+  const location = useLocation();
+  const { fromSearch } = location.state || { fromSearch: false };
+  console.log(fromSearch);
 
   return (
     <div id="main-content">
@@ -13,7 +14,7 @@ function CreateItemPage() {
         <div className="p-4 bg-slate-50 rounded-md">
           <SectionHeader title="Add Item"></SectionHeader>
           <div className="pb-10">
-            <CreateItemSearch />
+            {fromSearch ? <CreateItemForm /> : <CreateItemSearch />}
           </div>
         </div>
       </div>

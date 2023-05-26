@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -15,6 +16,7 @@ function sleep(delay = 0) {
 }
 
 export default function SearchBar() {
+  const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
   const [options, setOptions] = React.useState([]);
   const [selectedOption, setSelectedOption] = React.useState(null);
@@ -28,7 +30,7 @@ export default function SearchBar() {
     setSelectedOption(value);
 
     if (value.title === "Create Item") {
-      window.location.href = "/create-item";
+      navigate("/create-item", { state: { fromSearch: true } });
     } else if (value.title === "Create Collection") {
       window.location.href = "/create-collection";
     } else if (value.title === "Search...") {
@@ -87,10 +89,9 @@ export default function SearchBar() {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/users`,
-      {
-				headers: { Authorization: `Bearer ${storedToken}` },
-			})
+      .get(`${API_URL}/users`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
       .then((res) => {
         setAllUserNames(res.data.map((user) => user.username));
       })
@@ -101,10 +102,9 @@ export default function SearchBar() {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/collections`,
-      {
-				headers: { Authorization: `Bearer ${storedToken}` },
-			})
+      .get(`${API_URL}/collections`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
       .then((res) => {
         setAllCollectionNames(
           res.data.collections.map((collection) => collection.name)
@@ -117,10 +117,9 @@ export default function SearchBar() {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/items`,
-      {
-				headers: { Authorization: `Bearer ${storedToken}` },
-			})
+      .get(`${API_URL}/items`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
       .then((res) => {
         setAllItemNames(res.data.items.map((item) => item.name));
       })
