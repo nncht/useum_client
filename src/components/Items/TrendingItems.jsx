@@ -11,8 +11,8 @@ const TrendingItems = () => {
       .get(`${API_URL}/items`)
       .then((res) => {
         const trendingItems = res.data.items
-        .sort((a, b) => b.likes.length - a.likes.length)
-        .slice(0, 4);
+          .sort((a, b) => b.likes.length - a.likes.length)
+          .slice(0, 8);
         setItems(trendingItems);
       })
       .catch((err) => {

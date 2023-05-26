@@ -30,7 +30,7 @@ const Home = () => {
       </section>
 
       {isLoggedIn ? (
-        <section id="main-content" className="bg-slate-200">
+        <section id="main-content" className="bg-slate-300">
           <div id="main-section" className="p-4">
             <SectionHeader title="Recommended Collections" />
             <RecommendedCollections />
@@ -48,7 +48,7 @@ const Home = () => {
       </section>
 
       {isLoggedIn ? (
-        <section id="main-content" className="bg-slate-100">
+        <section id="main-content" className="bg-slate-300">
           <div id="main-section" className="p-4">
             <SectionHeader title="Recommended Items" />
             <RecommendedItems />

@@ -12,7 +12,7 @@ const PopularCollections = () => {
       .then((res) => {
         const sortedCollections = res.data.collections
           .sort((a, b) => b.likes.length - a.likes.length)
-          .slice(0, 4);
+          .slice(0, 8);
         setCollections(sortedCollections);
       })
       .catch((err) => {
@@ -20,13 +20,12 @@ const PopularCollections = () => {
       });
   }, []);
 
-    return (
-        <div>
-          {/* Render the collections using the AllCollections component */}
-          <AllCollections collections={{ collections: collections }} />
-        </div>
-      );
-      
+  return (
+    <div>
+      {/* Render the collections using the AllCollections component */}
+      <AllCollections collections={{ collections: collections }} />
+    </div>
+  );
 };
 
 export default PopularCollections;
