@@ -1,43 +1,39 @@
+import API_URL from "../services/apiConfig";
+import { useState, useEffect } from "react";
+import axios from "axios";
+
+// MUI Imports
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import ListItemText from "@mui/material/ListItemText";
-import Select from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
-import API_URL from "../services/apiConfig";
+import Select from "@mui/material/Select";
 
-import { useState, useEffect } from "react";
-import axios from "axios";
+// --- End of imports
 
 const storedToken = localStorage.getItem("authToken");
 
 const SelectCategories = ({ categoryArray, setCategoryArray }) => {
-  const ITEM_HEIGHT = 48;
-  const ITEM_PADDING_TOP = 8;
-  const MenuProps = {
-    PaperProps: {
-      style: {
-        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-        width: 250,
-      },
-    },
-  };
-
   const [allCategories, setAllCategories] = useState([]);
+
+  // -------------------------------------------------------
+  // FETCH CATEGORIES FROM BACKEND
+  // -------------------------------------------------------
 
   useEffect(() => {
     axios
       .get(`${API_URL}/categories`, {
-				headers: { Authorization: `Bearer ${storedToken}` },
-			})
-
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
       .then((res) => {
-        console.log([...res.data.categories]);
         const categories = [...res.data.categories];
         const categoriesArray = categories.map((category) => {
           return category.category;
         });
+
+        categoriesArray.sort();
 
         setAllCategories(categoriesArray);
       })
@@ -51,6 +47,10 @@ const SelectCategories = ({ categoryArray, setCategoryArray }) => {
     setCategoryArray(e.target.value);
   };
 
+  // -------------------------------------------------------
+  // RENDER
+  // -------------------------------------------------------
+
   return (
     <FormControl>
       <InputLabel id="select-categories">Choose</InputLabel>
@@ -63,7 +63,20 @@ const SelectCategories = ({ categoryArray, setCategoryArray }) => {
         onChange={handleSelectChange}
         input={<OutlinedInput label="Catego" />}
         renderValue={(selected) => selected.join(", ")}
-        MenuProps={MenuProps}
+        MenuProps={{
+          // Styling of dropdown window
+          PaperProps: {
+            style: {
+              maxHeight: 500,
+            },
+          },
+          // Styling of the menu items
+          MenuListProps: {
+            style: {
+              padding: "0 !important",
+            },
+          },
+        }}
       >
         {allCategories.map((cat) => (
           <MenuItem key={cat} value={cat}>
