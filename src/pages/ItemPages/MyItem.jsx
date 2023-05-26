@@ -114,14 +114,18 @@ const MyItem = () => {
                   <Grid item md={7} xs={12}>
                     <CardMedia
                       image={item.imageUrl}
-                      sx={{ height: 480 }}
+                      sx={{
+                        height: "100%",
+                        minHeight: 400,
+                        objectFit: "cover",
+                      }}
                       className="rounded shadow-md"
                     />
                   </Grid>
 
                   {/* ITEM DETAILS */}
                   <Grid item md={5} xs={12}>
-                    <Grid xs={12}>
+                    <Grid item xs={12}>
                       {/* BUTTON GROUP */}
                       {/* Edit button */}
                       <div className="flex flex-row gap-4 pb-2 justify-end">
@@ -145,7 +149,7 @@ const MyItem = () => {
                       </div>
                     </Grid>
 
-                    <Grid xs={12}>
+                    <Grid item xs={12}>
                       {/* ITEM CATEGORIES */}
                       {item.categories && (
                         <div className="mt-2 mb-4">
@@ -164,12 +168,12 @@ const MyItem = () => {
                       )}
                     </Grid>
                     {/* ITEM DESCRIPTION */}
-                    <Grid xs={12} className="my-3">
+                    <Grid item xs={12} className="my-3">
                       {item.description}
                     </Grid>
 
                     {/* If this item is already in EVERY collection, you can't add it to another one */}
-                    <Grid xs={12} className="my-3">
+                    <Grid item xs={12} className="my-3">
                       {userCollectionsItemIdArray.every((item) =>
                         item.includes(itemId)
                       ) ? (

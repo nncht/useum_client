@@ -4,11 +4,12 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import Button from "@mui/material/Button";
 import API_URL from "../../services/apiConfig";
+
+import { Grid, Link, Typography } from "@mui/material/";
 
 const storedToken = localStorage.getItem("authToken");
 
@@ -24,8 +25,7 @@ const AddItemToCollection = ({ itemId }) => {
   useEffect(() => {
     if (user && user.username) {
       axios
-        .get(`${API_URL}/users/${user.username}`,
-        {
+        .get(`${API_URL}/users/${user.username}`, {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
         .then((res) => {
@@ -42,17 +42,14 @@ const AddItemToCollection = ({ itemId }) => {
 
   //create array of all item ids from all of the user's collections to compare to the current item id
 
-   const allItemIdsFromCollections = [];
-    if (collectionArray) {
-      collectionArray.forEach((collection) => {
-        collection.items.forEach((item) => {
-          allItemIdsFromCollections.push(item);
-        });
+  const allItemIdsFromCollections = [];
+  if (collectionArray) {
+    collectionArray.forEach((collection) => {
+      collection.items.forEach((item) => {
+        allItemIdsFromCollections.push(item);
       });
-
-    }
-
-
+    });
+  }
 
   const handleSelectChange = (e) => {
     console.log(e.target.value);
@@ -63,13 +60,16 @@ const AddItemToCollection = ({ itemId }) => {
     e.preventDefault();
 
     axios
-      .put(`${API_URL}/collections/${collectionId}/add-item`, {
-        item: itemId,
-        user: user._id,
-      },
-      {
-				headers: { Authorization: `Bearer ${storedToken}` },
-			})
+      .put(
+        `${API_URL}/collections/${collectionId}/add-item`,
+        {
+          item: itemId,
+          user: user._id,
+        },
+        {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        }
+      )
       .then((res) => {
         navigate(`/collections/${collectionId}`);
       })
@@ -81,10 +81,17 @@ const AddItemToCollection = ({ itemId }) => {
 
   if (currentUser && collectionArray) {
     return (
-      <div>
-      { allItemIdsFromCollections.includes(itemId) ? (<p>Add item to another collection?</p>):(<p>To which collection would you like to add this item?</p>)
-}
-        <Box sx={{ minWidth: 120 }}>
+      <Grid container spacing={1}>
+        <Grid item xs={12} className="mt-2">
+          {allItemIdsFromCollections.includes(itemId) ? (
+            <Typography variant="button">Add item to a collection?</Typography>
+          ) : (
+            <Typography variant="button">
+              To which collection would you like to add this item?
+            </Typography>
+          )}
+        </Grid>
+        <Grid item xs={12} className="my-2">
           <FormControl onSubmit={handleCollectionChoice}>
             <InputLabel id="collection-picker">Collection</InputLabel>
             <Select
@@ -102,14 +109,21 @@ const AddItemToCollection = ({ itemId }) => {
                 );
               })}
             </Select>
-            <Button type="submit" onClick={handleCollectionChoice}>
+            <Button
+              variant="contained"
+              type="submit"
+              onClick={handleCollectionChoice}
+              className="mt-3"
+            >
               Add to collection
             </Button>
           </FormControl>
-        </Box>
+        </Grid>
 
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
-      </div>
+        {errorMessage && (
+          <Typography className="error-message">{errorMessage}</Typography>
+        )}
+      </Grid>
     );
   }
 };
