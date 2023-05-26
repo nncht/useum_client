@@ -62,7 +62,7 @@ export default function SearchBar() {
       await sleep(1e3);
 
       if (active) {
-        setOptions([
+        const sortedOptions = [
           ...allUserNames.map((username) => ({
             title: username,
             type: "user",
@@ -72,7 +72,14 @@ export default function SearchBar() {
             type: "collection",
           })),
           ...allItemNames.map((name) => ({ title: name, type: "item" })),
-        ]);
+        ].sort((a, b) => {
+          if (a.type !== b.type) {
+            return a.type.localeCompare(b.type);
+          }
+          return a.title.localeCompare(b.title);
+        });
+
+        setOptions(sortedOptions);
       }
     })();
 
