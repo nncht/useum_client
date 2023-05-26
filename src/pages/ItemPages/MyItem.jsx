@@ -17,6 +17,7 @@ import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import CardMedia from "@mui/material/CardMedia";
+import { Typography } from "@mui/material/";
 
 // --- End of imports
 
@@ -102,12 +103,30 @@ const MyItem = () => {
 
         {item && (
           <div id="main-content">
-            <div id="main-section" className="justify-center p-4">
+            <div id="main-section" className="justify-center pt-4">
               <Box
                 sx={{ flexGrow: 1 }}
                 className="p-4 bg-slate-50 rounded-md shadow-md"
               >
                 <h4 className="text-2xl text-slate-600 mb-4">{item.name}</h4>
+                <Grid item xs={12}>
+                  {/* ITEM CATEGORIES */}
+                  {item.categories && (
+                    <div className="mt-2 mb-4">
+                      {item.categories.map((tag) => {
+                        return (
+                          <div
+                            key={tag._id}
+                            className="inline-block bg-slate-500 text-white text-xs px-2 pt-1 pb-2 rounded"
+                            style={{ whiteSpace: "nowrap" }}
+                          >
+                            {tag.category}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </Grid>
 
                 <Grid container spacing={3}>
                   {/* ITEM PICTURE */}
@@ -128,7 +147,7 @@ const MyItem = () => {
                     <Grid item xs={12}>
                       {/* BUTTON GROUP */}
                       {/* Edit button */}
-                      <div className="flex flex-row gap-4 pb-2 justify-end">
+                      <div className="flex flex-row gap-4 pb-2 justify-center">
                         {itemCollectionIds.some((id) =>
                           userCollectionIds.includes(id)
                         ) ? (
@@ -149,24 +168,6 @@ const MyItem = () => {
                       </div>
                     </Grid>
 
-                    <Grid item xs={12}>
-                      {/* ITEM CATEGORIES */}
-                      {item.categories && (
-                        <div className="mt-2 mb-4">
-                          {item.categories.map((tag) => {
-                            return (
-                              <div
-                                key={tag._id}
-                                className="inline-block bg-slate-500 text-white text-xs px-2 pt-1 pb-2 rounded"
-                                style={{ whiteSpace: "nowrap" }}
-                              >
-                                {tag.category}
-                              </div>
-                            );
-                          })}
-                        </div>
-                      )}
-                    </Grid>
                     {/* ITEM DESCRIPTION */}
                     <Grid item xs={12} className="my-3">
                       {item.description}

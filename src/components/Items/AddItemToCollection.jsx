@@ -86,9 +86,7 @@ const AddItemToCollection = ({ itemId }) => {
           {allItemIdsFromCollections.includes(itemId) ? (
             <Typography variant="button">Add item to a collection?</Typography>
           ) : (
-            <Typography variant="button">
-              To which collection would you like to add this item?
-            </Typography>
+            <Typography variant="button">Add item to a collection?</Typography> // Testing this, as we can't add items from Search Bar anymore
           )}
         </Grid>
         <Grid item xs={12} className="my-2">
