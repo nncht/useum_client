@@ -14,7 +14,11 @@ function CreateItemPage() {
         <div className="p-4 bg-slate-50 rounded-md">
           <SectionHeader title="Add Item"></SectionHeader>
           <div className="pb-10">
-            {fromSearch ? <CreateItemForm /> : <CreateItemSearch />}
+            {fromSearch ? (
+              <CreateItemForm target={"items"} idObject={"item"} />
+            ) : (
+              <CreateItemSearch />
+            )}
           </div>
         </div>
       </div>

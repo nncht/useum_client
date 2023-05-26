@@ -84,7 +84,9 @@ const AddItemToCollection = ({ itemId }) => {
       <Grid container spacing={1}>
         <Grid item xs={12} className="mt-2">
           {allItemIdsFromCollections.includes(itemId) ? (
-            <Typography variant="button">Add item to a collection?</Typography>
+            <Typography variant="button">
+              Add item to another collection?
+            </Typography>
           ) : (
             <Typography variant="button">Add item to a collection?</Typography> // Testing this, as we can't add items from Search Bar anymore
           )}
