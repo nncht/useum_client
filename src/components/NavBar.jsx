@@ -39,8 +39,6 @@ export default function NavBar() {
   const { userData, setUserData } = useContext(UserDataContext);
   const storedToken = localStorage.getItem("authToken");
 
-
-
   // Drawer navigation
   const [state, setState] = useState({
     left: false,
@@ -59,9 +57,12 @@ export default function NavBar() {
     if (open) {
       if (user) {
         const fetchData = async () => {
-          const response = await axios.get(`${API_URL}/users/${user.username}`, {
-            headers: { Authorization: `Bearer ${storedToken}` },
-          });
+          const response = await axios.get(
+            `${API_URL}/users/${user.username}`,
+            {
+              headers: { Authorization: `Bearer ${storedToken}` },
+            }
+          );
           console.log(response.data);
           setUserData(response.data);
         };
@@ -203,11 +204,7 @@ export default function NavBar() {
   );
 
   return (
-    <nav
-      id="back-to-top-anchor"
-      className="sticky shadow top-0 bg-slate-800"
-      style={{ zIndex: 10 }}
-    >
+    <nav className="sticky shadow top-0 bg-slate-800" style={{ zIndex: 10 }}>
       {/* BRAND LOGO */}
       <div id="nav-bar" className="flex items-center justify-between px-6">
         <Link href="/" underline="none" className="flex items-center">

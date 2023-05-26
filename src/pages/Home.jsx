@@ -29,6 +29,26 @@ const Home = () => {
         </div>
       </section>
 
+      {!isLoggedIn ? (
+        <section id="main-content" className="bg-slate-200">
+          <div id="main-section" className="p-4">
+            <div className="grid place-content-center gap-3">
+              <Typography variant="h6">
+                Showcase your own collections, setups, etc.
+              </Typography>
+              <Button href="/signup" variant="contained">
+                Sign Up
+              </Button>
+              <Button href="/login" variant="outlined">
+                Log In
+              </Button>
+            </div>
+          </div>
+        </section>
+      ) : (
+        <div></div>
+      )}
+
       {isLoggedIn ? (
         <section id="main-content" className="bg-slate-300">
           <div id="main-section" className="p-4">
@@ -52,22 +72,6 @@ const Home = () => {
           <div id="main-section" className="p-4">
             <SectionHeader title="Recommended Items" />
             <RecommendedItems />
-          </div>
-        </section>
-      ) : (
-        <div></div>
-      )}
-
-      {!isLoggedIn ? (
-        <section id="main-content" className="bg-slate-200">
-          <div id="main-section" className="p-4">
-            <div className="grid place-content-center gap-3">
-              <Typography variant="h6">
-                Showcase your own collections, setups, etc.
-              </Typography>
-              <Button variant="contained">Sign Up</Button>
-              <Button variant="outlined">Log In</Button>
-            </div>
           </div>
         </section>
       ) : (
