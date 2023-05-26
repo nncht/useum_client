@@ -39,19 +39,7 @@ export default function NavBar() {
   const { userData, setUserData } = useContext(UserDataContext);
   const storedToken = localStorage.getItem("authToken");
 
-  useEffect(() => {
-    if (user) {
-      const fetchData = async () => {
-        const response = await axios.get(`${API_URL}/users/${user.username}`, {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        });
-        console.log(response.data);
-        setUserData(response.data);
-      };
 
-      fetchData();
-    }
-  }, [user]);
 
   // Drawer navigation
   const [state, setState] = useState({
@@ -64,6 +52,22 @@ export default function NavBar() {
       (event.key === "Tab" || event.key === "Shift")
     ) {
       return;
+    }
+
+    // Fetch user data only if drawer is opened
+
+    if (open) {
+      if (user) {
+        const fetchData = async () => {
+          const response = await axios.get(`${API_URL}/users/${user.username}`, {
+            headers: { Authorization: `Bearer ${storedToken}` },
+          });
+          console.log(response.data);
+          setUserData(response.data);
+        };
+
+        fetchData();
+      }
     }
 
     setState({ ...state, [anchor]: open });
