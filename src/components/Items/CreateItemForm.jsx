@@ -90,7 +90,7 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
 
   const createDescription = async (name) => {
     setIsGenerating(true);
-    console.log("createDescription");
+    setIsDescriptionGenerated(false);
 
     try {
       await createChatCompletion(name);
@@ -232,7 +232,10 @@ const CreateitemForm = ({ target, idObject, forCollection }) => {
           <div className="flex flex-row gap-2">
             <Button
               variant="outlined"
-              onClick={() => createDescription(name)}
+              onClick={() => {
+                setIsDescriptionGenerated(false);
+                createDescription(name);
+              }}
               className="text-xl mb-4"
             >
               Auto-Description
