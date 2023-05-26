@@ -17,7 +17,7 @@ import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import CardMedia from "@mui/material/CardMedia";
-import { Typography } from "@mui/material/";
+import { Avatar, Typography } from "@mui/material/";
 
 // --- End of imports
 
@@ -117,7 +117,7 @@ const MyItem = () => {
                         return (
                           <div
                             key={tag._id}
-                            className="inline-block bg-slate-500 text-white text-xs px-2 pt-1 pb-2 rounded"
+                            className="inline-block bg-slate-500 text-white text-xs mr-2 px-2 pt-1 pb-2 rounded"
                             style={{ whiteSpace: "nowrap" }}
                           >
                             {tag.category}
@@ -188,19 +188,37 @@ const MyItem = () => {
 
                 {/* If there are comments, displays the comments for the item */}
                 {comments && (
-                  <Grid container spacing={3} className="my-3">
+                  <Grid container spacing={3} className="mt-3 mb-10">
                     {comments.map((comment) => {
                       return (
                         <>
                           <Grid item xs={12} key={comment._id}>
-                            <h6>
-                              <Link href={`/users/${comment.user.username}`}>
-                                {comment.user.username}
-                              </Link>{" "}
-                              says:
-                            </h6>
-                            <p>{comment.title}</p>
-                            <p>{comment.body}</p>
+                            <div className="flex flex-row gap-2 mb-2">
+                              <div>
+                                {" "}
+                                <Avatar
+                                  aria-label="Profile picture"
+                                  alt={comment.user.username}
+                                  src={comment?.user?.imageUrl}
+                                  sx={{ width: 84, height: 84 }}
+                                  className="mx-1"
+                                />
+                              </div>
+                              <div>
+                                <h6>
+                                  <Link
+                                    href={`/users/${comment.user.username}`}
+                                    underline="none"
+                                  >
+                                    {comment.user.username}
+                                  </Link>{" "}
+                                  says
+                                </h6>
+                                <div className="rounded bg-slate-100 p-3 shadow-md">
+                                  {comment.body}
+                                </div>
+                              </div>
+                            </div>
                           </Grid>
                         </>
                       );
