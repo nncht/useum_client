@@ -51,7 +51,7 @@ export default function NavBar() {
 
       fetchData();
     }
-  }, [user]);
+  }, [user, userData]);
 
   console.log(userData);
   // Drawer navigation
@@ -85,7 +85,7 @@ export default function NavBar() {
             <ListItemIcon>
               <Avatar
                 aria-label="Profile picture"
-                alt={userData?.username}
+                alt={user.username}
                 src={userData?.imageUrl}
                 sx={{ width: 34, height: 34 }}
               />
