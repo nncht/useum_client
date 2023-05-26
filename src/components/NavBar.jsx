@@ -1,6 +1,9 @@
 import * as React from "react";
+import axios from "axios";
+import API_URL from "../services/apiConfig";
 import { AuthContext } from "../context/auth.context";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
+import { UserDataContext } from "../context/userData.context";
 
 // MUI components
 import Box from "@mui/material/Box";
@@ -26,13 +29,31 @@ import BookmarksIcon from "@mui/icons-material/Bookmarks";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import HistoryIcon from "@mui/icons-material/History";
+import { Avatar, Typography } from "@mui/material/";
 
 // -- End of Imports
 
 export default function NavBar() {
   // Auth functions from AuthContext
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
+  const { userData, setUserData } = useContext(UserDataContext);
+  const storedToken = localStorage.getItem("authToken");
 
+  useEffect(() => {
+    if (user) {
+      const fetchData = async () => {
+        const response = await axios.get(`${API_URL}/users/${user.username}`, {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        });
+        console.log(response.data);
+        setUserData(response.data);
+      };
+
+      fetchData();
+    }
+  }, [user]);
+
+  console.log(userData);
   // Drawer navigation
   const [state, setState] = useState({
     left: false,
@@ -56,13 +77,18 @@ export default function NavBar() {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <List sx={{ width: 250, paddingTop: 0 }}>
+      <List sx={{ width: 250, paddingTop: 1 }}>
         {/* Profile */}
 
         <ListItem key="Profile" disablePadding>
           <ListItemButton href={`/users/${user.username}`}>
             <ListItemIcon>
-              <AccountCircleIcon />
+              <Avatar
+                aria-label="Profile picture"
+                alt={userData.username}
+                src={userData.imageUrl}
+                sx={{ width: 34, height: 34 }}
+              />
             </ListItemIcon>
             <ListItemText primary={user.username} />
           </ListItemButton>

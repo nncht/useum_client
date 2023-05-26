@@ -193,7 +193,10 @@ const MyItem = () => {
                       return (
                         <>
                           <Grid item xs={12} key={comment._id}>
-                            <div className="flex flex-row gap-2 mb-2">
+                            <div
+                              className="flex flex-row gap-2 mb-2"
+                              key={comment._id}
+                            >
                               <div>
                                 {" "}
                                 <Avatar
