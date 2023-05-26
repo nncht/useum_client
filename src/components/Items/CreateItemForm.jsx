@@ -11,7 +11,7 @@ import ImageUploader from "../ImageUploader/ImageUploader";
 import SelectCategories from "../SelectCategories";
 
 // MUI imports
-import { Textarea, Input } from "@mui/joy";
+import { Input } from "@mui/joy";
 
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
