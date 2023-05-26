@@ -15,9 +15,6 @@ const ProfileFooter = () => {
         />
       )}
     </>
-    // <div className="footer">
-    //   {userData && <img src={userData.headerImageUrl} alt="Header image" />}
-    // </div>
   );
 };
 

@@ -9,6 +9,7 @@ import ItemCard from "../../components/Items/ItemCard";
 import BookmarkButton from "../../components/Bookmarks/BookmarkButton";
 import LikeButton from "../../components/Likes/LikeButton";
 import CollectionInfo from "../../components/Collections/CollectionInfo";
+import CollectionFooter from "../../components/Collections/CollectionFooter";
 
 // MUI imports
 import { Button, Grid } from "@mui/material";
@@ -96,6 +97,7 @@ const MyCollection = () => {
               )}
               {/* --------------------------------------------- */}
             </section>
+            <CollectionFooter collection={collection} />
           </div>
         </div>
       </>
