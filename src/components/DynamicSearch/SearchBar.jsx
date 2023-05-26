@@ -136,7 +136,11 @@ export default function SearchBar() {
   }, []);
 
   return (
-    <nav className="bg-slate-400 shadow-sm" style={{ zIndex: 10 }}>
+    <nav
+      id="back-to-top-anchor"
+      className="bg-slate-400 shadow-sm"
+      style={{ zIndex: 10 }}
+    >
       <div id="search-bar" className="px-4 pt-3 pb-4 top-0">
         <Autocomplete
           id="search-input"
