@@ -32,7 +32,7 @@ const EditProfilePage = () => {
   useEffect(() => {
     if (userId) {
       axios
-        .get(`${API_URL}/users/${userId}`, )
+        .get(`${API_URL}/users/${userId}`)
         .then((res) => {
           setCurrentUser(res.data);
         })
@@ -232,13 +232,16 @@ const EditProfilePage = () => {
                   Change Password
                 </Button>
 
-                <Button
+                {/* Delete Account option is disabled for now because deleting accounts results in client errors. */}
+                {/* We need to ensure that a deleted user's collections are removed properly before re-enabling this */}
+
+                {/* <Button
                   href={`/delete/${currentUser._id}`}
                   variant="contained"
                   color="error"
                 >
                   Delete Account
-                </Button>
+                </Button> */}
               </div>
             </FormControl>
 
