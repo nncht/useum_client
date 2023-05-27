@@ -12,7 +12,7 @@ const TrendingItems = () => {
       .then((res) => {
         const trendingItems = res.data.items
           .sort((a, b) => b.likes.length - a.likes.length)
-          .slice(0, 8);
+          .slice(0, 4);
         setItems(trendingItems);
       })
       .catch((err) => {
