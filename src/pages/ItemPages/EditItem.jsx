@@ -39,9 +39,7 @@ const EditItem = () => {
     if (user) {
       axios
         .get(`${API_URL}/users/${user.username}`,
-        {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        })
+        )
         .then((res) => {
           setCurrentUser(res.data);
         })

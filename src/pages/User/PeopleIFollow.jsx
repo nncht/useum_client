@@ -18,9 +18,7 @@ const Followers = () => {
     if (user) {
       axios
         .get(`${API_URL}/users/${user.username}/follow`,
-        {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        })
+        )
         .then((res) => {
           setCurrentUser(res.data);
         })

@@ -48,9 +48,7 @@ const MyItem = () => {
   useEffect(() => {
     if (user) {
       axios
-        .get(`${API_URL}/users/${user.username}`, {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        })
+        .get(`${API_URL}/users/${user.username}`, )
         .then((res) => {
           setCurrentUser(res.data);
         })

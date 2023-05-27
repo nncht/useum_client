@@ -16,9 +16,7 @@ const RecommendedItems = () => {
     if (user) {
       const fetchData = async () => {
         const response = await axios.get(`${API_URL}/users/${user.username}`,
-        {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        });
+        );
         console.log("*");
         console.log(response.data.categories);
         setUserData([...response.data.categories]);
@@ -38,9 +36,7 @@ const RecommendedItems = () => {
     if (!checkEmptyObj(userData)) {
       axios
         .get(`${API_URL}/items`,
-        {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        })
+        )
         .then((res) => {
           let filteredItems = res.data.items;
           console.log(filteredItems);

@@ -98,9 +98,7 @@ const CreateItemSearch = () => {
       setItemDoesntExist(false);
       setItemExists(true);
       axios
-        .get(`${API_URL}/search?search=${selectedOption.title}`, {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        })
+        .get(`${API_URL}/search?search=${selectedOption.title}`, )
         .then((res) => {
           setItemsFound(res.data.items);
           console.log(res.data.items);
@@ -141,14 +139,10 @@ const CreateItemSearch = () => {
           item: itemId,
           user: user._id,
         },
-        {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        }
+
       )
       .then((res) => {
-        navigate(`/collections/${collectionId}`, {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        });
+        navigate(`/collections/${collectionId}`, );
       })
       .catch((err) => {
         console.error(err);

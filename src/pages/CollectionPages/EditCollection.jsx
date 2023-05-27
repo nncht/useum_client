@@ -70,9 +70,7 @@ const EditCollection = () => {
       .put(
         `${API_URL}/collections/${collectionId}/edit`,
         updatedCollectionBody,
-        {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        }
+
       )
       .then((res) => {
         console.log("res is: ", res.data);
@@ -92,9 +90,7 @@ const EditCollection = () => {
         {
           createdBy: collection.createdBy,
         },
-        {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        }
+
       )
       .then((res) => {
         console.log("res is: ", res.data);
