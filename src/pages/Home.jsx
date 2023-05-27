@@ -30,11 +30,11 @@ const Home = () => {
       </section>
 
       {!isLoggedIn ? (
-        <section id="main-content" className="bg-slate-200">
+        <section id="main-content" className="bg-slate-300">
           <div id="main-section" className="p-4">
             <div className="grid place-content-center gap-3">
               <Typography variant="h6">
-                Showcase your own collections, setups, etc.
+                Showcase your own gear, setups, etc.
               </Typography>
               <Button href="/signup" variant="contained">
                 Sign Up
@@ -49,8 +49,15 @@ const Home = () => {
         <div></div>
       )}
 
+      <section id="main-content" className="bg-slate-200">
+        <div id="main-section" className="p-4">
+          <SectionHeader title="Trending Items" />
+          <TrendingItems />
+        </div>
+      </section>
+
       {isLoggedIn ? (
-        <section id="main-content" className="bg-slate-300">
+        <section id="main-content" className="bg-slate-100">
           <div id="main-section" className="p-4">
             <SectionHeader title="Recommended Collections" />
             <RecommendedCollections />
@@ -60,15 +67,8 @@ const Home = () => {
         <div></div>
       )}
 
-      <section id="main-content" className="bg-slate-100">
-        <div id="main-section" className="p-4">
-          <SectionHeader title="Trending Items" />
-          <TrendingItems />
-        </div>
-      </section>
-
       {isLoggedIn ? (
-        <section id="main-content" className="bg-slate-300">
+        <section id="main-content" className="bg-slate-200">
           <div id="main-section" className="p-4">
             <SectionHeader title="Recommended Items" />
             <RecommendedItems />
