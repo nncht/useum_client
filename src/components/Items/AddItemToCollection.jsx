@@ -25,9 +25,7 @@ const AddItemToCollection = ({ itemId }) => {
   useEffect(() => {
     if (user && user.username) {
       axios
-        .get(`${API_URL}/users/${user.username}`, {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        })
+        .get(`${API_URL}/users/${user.username}`, )
         .then((res) => {
           setCurrentUser(res.data);
           console.log(res.data);
@@ -66,9 +64,7 @@ const AddItemToCollection = ({ itemId }) => {
           item: itemId,
           user: user._id,
         },
-        {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        }
+
       )
       .then((res) => {
         navigate(`/collections/${collectionId}`);

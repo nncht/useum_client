@@ -17,9 +17,7 @@ const RecommendedCollections = () => {
     if (user) {
       const fetchData = async () => {
         const response = await axios.get(`${API_URL}/users/${user.username}`,
-        {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        });
+        );
         console.log("*");
         console.log(response.data.categories);
         setUserData([...response.data.categories]);

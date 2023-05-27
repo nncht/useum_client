@@ -27,9 +27,7 @@ const CollectionCard = ({ collection }) => {
     const fetchData = async () => {
       const response = await axios.get(
         `${API_URL}/collections/${collection._id}`,
-        {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        }
+
       );
       setOwnerData(response.data);
     };

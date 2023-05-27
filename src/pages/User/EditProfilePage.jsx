@@ -32,9 +32,7 @@ const EditProfilePage = () => {
   useEffect(() => {
     if (userId) {
       axios
-        .get(`${API_URL}/users/${userId}`, {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        })
+        .get(`${API_URL}/users/${userId}`, )
         .then((res) => {
           setCurrentUser(res.data);
         })

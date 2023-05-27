@@ -28,9 +28,7 @@ const ProfileBio = () => {
     if (user) {
       axios
         .get(`${API_URL}/users/${user.username}`,
-        {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        })
+        )
         .then((res) => {
           setCurrentUser(res.data);
         })
@@ -54,9 +52,7 @@ const ProfileBio = () => {
     try {
       const response = await axios.post(
         `${API_URL}/${currentUser._id}/follow/${userData._id}`,
-        {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        }
+
       );
       setIsFollowing(true);
       setFollowingList([...followingList, userData._id]);
@@ -72,9 +68,7 @@ const ProfileBio = () => {
     try {
       const response = await axios.post(
         `${API_URL}/${currentUser._id}/unfollow/${userData._id}`,
-        {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        }
+
       );
       setIsFollowing(false);
       setFollowingList(followingList.filter((id) => id !== userData._id));
