@@ -1,10 +1,9 @@
-import axios from "axios";
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "../../services/api"; // ✅ Use configured Axios instance
 import { AuthContext } from "../../context/auth.context";
 import Button from "@mui/material/Button";
 import FormExtra from "./FormExtra";
-import API_URL from "../../services/apiConfig";
 
 export default function Login() {
   const [loginName, setLoginName] = useState("");
@@ -21,8 +20,8 @@ export default function Login() {
 
     const loginBody = { loginName, password };
 
-    axios
-      .post(`${API_URL}/login`, loginBody)
+    api
+      .post("/login", loginBody) // ✅ Use relative path
       .then((res) => {
         storeToken(res.data.authToken);
 
@@ -31,11 +30,11 @@ export default function Login() {
       })
       .catch((err) => {
         console.log(err);
-        setErrorMessage(err.response.data.errorMessage);
+        const errorDescription = err.response?.data?.errorMessage || "An error occurred.";
+        setErrorMessage(errorDescription);
       });
   };
 
-  // Store all UI classes into a reusable class variable
   const fixedInputClass =
     "rounded-md appearance-none relative block w-full px-3 py-2 my-4 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm";
 
@@ -64,7 +63,7 @@ export default function Login() {
           placeholder="Password"
         />
 
-        {/* Remember me and forgot password component. Not functional yet. */}
+        {/* Remember me and forgot password component */}
         <FormExtra />
 
         {/* Login button */}

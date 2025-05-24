@@ -1,11 +1,10 @@
 // /src/services/api.js
 
 import axios from 'axios';
-import API_URL from './apiConfig';
 
 const api = axios.create({
-  baseURL: API_URL,
-  withCredentials: true, // Important for cookies, etc.
+  baseURL: import.meta.env.VITE_LOCAL_API || "https://useum-server.onrender.com",
+  withCredentials: false,
 });
 
 export default api;

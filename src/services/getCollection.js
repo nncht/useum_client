@@ -1,24 +1,24 @@
 import api from './api'; // Import the axios instance
 
 const getCollection = (collectionId, setCollection) => {
-		const storedToken = localStorage.getItem('authToken');
+  const storedToken = localStorage.getItem('authToken');
 
-		if (collectionId !== undefined) {
-		axios
-			.get(`${API_URL}/collections/${collectionId}`, {
-				headers: {
-					Authorization: `Bearer ${storedToken}`,
-				},
-			})
-			.then((response) => {
-				setCollection(response.data);
-			})
-			.catch((error) => {
-				console.error(error);
-			});
-		} else {
-			console.warn('collectionId as ItemCard prop is undefined. That is okay in this instance, it still works.');
-		}
-	};
+  if (collectionId !== undefined) {
+    api
+      .get(`/collections/${collectionId}`, {
+        headers: {
+          Authorization: `Bearer ${storedToken}`,
+        },
+      })
+      .then((response) => {
+        setCollection(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  } else {
+    console.warn('collectionId as ItemCard prop is undefined. That is okay in this instance, it still works.');
+  }
+};
 
-    export default getCollection;
+export default getCollection;

@@ -1,11 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../../services/api";
 import Button from "@mui/material/Button";
 import ImageUploader from "../../components/ImageUploader/ImageUploader";
-import API_URL from "../../services/apiConfig";
-
-
 
 export default function Signup() {
   const [newUser, setNewUser] = useState({
@@ -40,13 +37,14 @@ export default function Signup() {
     };
 
     console.log("signupBody is: ", signupBody);
-    axios
-      .post(`${API_URL}/signup`, signupBody)
+
+    api
+      .post("/signup", signupBody) // ✅ Use relative path
       .then((res) => {
         navigate("/login");
       })
       .catch((err) => {
-        const errorDescription = err.response.data.message;
+        const errorDescription = err.response?.data?.message || "An error occurred.";
         setErrorMessage(errorDescription);
       });
   };
@@ -75,7 +73,7 @@ export default function Signup() {
           name="username"
           value={newUser.username}
           onChange={handleChange}
-          id="name"
+          id="username"
           className={fixedInputClass}
           placeholder="Username"
         />
@@ -92,7 +90,6 @@ export default function Signup() {
         />
 
         {/* Image uploader */}
-
         {uploadingImage === true ? (
           <p>Uploading image, please wait...</p>
         ) : (
@@ -100,7 +97,7 @@ export default function Signup() {
             src={imageUrl !== "" ? imageUrl : "/images/default/no-image.svg"}
             width={250}
             height={350}
-            alt=""
+            alt="Profile"
           />
         )}
 
