@@ -1,8 +1,4 @@
-
-import axios from 'axios';
-import API_URL from './apiConfig';
-
-
+import api from './api'; // Import the axios instance
 
 const getCollection = (collectionId, setCollection) => {
 		const storedToken = localStorage.getItem('authToken');
